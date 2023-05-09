@@ -423,3 +423,5 @@ gl:
   previous: "Previous"
   first: "First"
   last: "Last"
+  summary_description: "Summary Description"
+  one_million_voices: "One Million Voices"

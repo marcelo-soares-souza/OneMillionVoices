@@ -26,7 +26,8 @@
         <th><%= t("type") %></th>
         <th><%= t(:gallery) %></th>
         <th><%= t("experiences") %></th>
-        <th><%= t(:safs) %></th>
+        <th><%= t("one_million_voices") %></th>
+<!--        <th><%#= t(:safs) %></th>-->
         <% if usuario_signed_in? %>
           <th class="list-control"></th>
           <th class="list-control"></th>
@@ -43,7 +44,14 @@
           <% total_midia = Midia.where(experiencia_agroecologica: local.experiencia_agroecologicas).count + Midia.where(saf: local.safs).count%>
           <td><%= link_to total_midia, local_gallery_path(local.id) %></td>
           <td><%= link_to local.experiencia_agroecologicas.count, local_experiencia_agroecologicas_path(local) %></td>
-          <td><%= link_to local.safs.count, local_safs_path(local) %></td>
+
+          <td>
+          <% if  local.one_million_voice %>
+            <%= link_to 'Yes', local_one_million_voice_path(local, '') %>
+          <% else %>
+            No
+          <% end %>
+          </td>
 
           <% if usuario_signed_in? %>
             <% if current_usuario.admin? or local.usuario.id == current_usuario.id %>

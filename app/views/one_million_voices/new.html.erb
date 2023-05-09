@@ -1,0 +1,19 @@
+<% title t(:register_new_one_million_voices) %>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:one_million_voices), one_million_voices_path, :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:new), new_one_million_voice_path, :class => "nav-link active" %>
+  </li>
+</ul>
+
+<br>
+
+<% if !@locais.empty? %>
+  <%= render 'form', one_million_voice: @one_million_voice %>
+<% else %>
+  <br>
+  <h3>No Registered Location. <%= link_to "Do you want to Register?", new_local_url %></h3>
+<% end %>

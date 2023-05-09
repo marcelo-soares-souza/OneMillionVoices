@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_09_192414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "imagem_file_name"
     t.string "imagem_content_type"
-    t.integer "imagem_file_size"
+    t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.index ["slug"], name: "index_animais_on_slug", unique: true
     t.index ["usuario_id"], name: "index_animais_on_usuario_id"
@@ -91,7 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "imagem_file_name"
     t.string "imagem_content_type"
-    t.integer "imagem_file_size"
+    t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.string "tipo"
     t.string "hospedagem"
@@ -117,13 +115,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "imagem_file_name"
     t.string "imagem_content_type"
-    t.integer "imagem_file_size"
+    t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.bigint "usuario_id"
     t.index ["experiencia_agroecologica_id"], name: "index_midias_on_experiencia_agroecologica_id"
     t.index ["saf_id"], name: "index_midias_on_saf_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
     t.index ["usuario_id"], name: "index_midias_on_usuario_id"
+  end
+
+  create_table "one_million_voices", force: :cascade do |t|
+    t.text "description"
+    t.bigint "local_id", null: false
+    t.bigint "usuario_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["local_id"], name: "index_one_million_voices_on_local_id"
+    t.index ["usuario_id"], name: "index_one_million_voices_on_usuario_id"
   end
 
   create_table "organizacao_locais", force: :cascade do |t|
@@ -169,7 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "imagem_file_name"
     t.string "imagem_content_type"
-    t.integer "imagem_file_size"
+    t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.index ["slug"], name: "index_plantas_on_slug", unique: true
     t.index ["usuario_id"], name: "index_plantas_on_usuario_id"
@@ -278,7 +286,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
     t.string "slug"
     t.string "imagem_file_name"
     t.string "imagem_content_type"
-    t.integer "imagem_file_size"
+    t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.index ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
     t.index ["email"], name: "index_usuarios_on_email", unique: true
@@ -302,6 +310,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_172736) do
   add_foreign_key "midias", "experiencia_agroecologicas"
   add_foreign_key "midias", "safs"
   add_foreign_key "midias", "usuarios"
+  add_foreign_key "one_million_voices", "locais"
+  add_foreign_key "one_million_voices", "usuarios"
   add_foreign_key "organizacao_locais", "locais"
   add_foreign_key "organizacao_locais", "organizacoes"
   add_foreign_key "organizacoes", "tipo_organizacoes"

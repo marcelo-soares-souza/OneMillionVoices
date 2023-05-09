@@ -598,3 +598,9 @@ a:focus, a:hover {
     background-color: transparent;
     padding-left: 10px;
 }
+
+.tip {
+    text-align: left;
+    font-size: 14px;
+    font-style: italic;
+}

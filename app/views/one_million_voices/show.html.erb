@@ -1,0 +1,42 @@
+<% title @one_million_voice.local.nome %>
+<br>
+<br>
+<br>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:one_million_voices) + " on " + @one_million_voice.local.nome, local_path(@one_million_voice.local), :class => "nav-link active" %>
+  </li>
+
+</ul>
+
+<br>
+
+<div class="tab-content" style="min-height: 64px;">
+  <div class="tab-pane active">
+    <% if @one_million_voice.local.imagem %>
+      <div  class="thumbnail">
+        <%= image_tag(@one_million_voice.local.imagem.url(:medium)) %>
+      </div>
+    <% end %>
+    <br><br>
+    <div class='<%= (@one_million_voice.local.nome.length() > 90 ? 'text-box' : '') %>'><h3><%= @one_million_voice.local.nome %></h3></div>
+    <%= "<br><br><strong>#{t(:summary_description)}:</strong><br><div class='text-box'>#{simple_format (h @one_million_voice.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @one_million_voice.description %>
+    <%= "<br><strong>#{t(:locations)}</strong><br>#{link_to @one_million_voice.local.nome, local_path(@one_million_voice.local)}&nbsp;".html_safe if @one_million_voice.local.nome? %>
+    <%= "<br><br><strong>#{t(:responsible_for_information)}:</strong><br>#{link_to @one_million_voice.usuario.nome, usuario_path(@one_million_voice.usuario)}&nbsp;".html_safe if @one_million_voice.usuario.nome? %>
+
+    <% if usuario_signed_in? %>
+      <% if current_usuario.admin? or current_usuario.id == @one_million_voice.usuario.id %>
+        <br><br>
+        <div id="one_million_voice-footer">
+          <div class="form-actions">
+            <%= link_to t(:edit), edit_one_million_voice_path(@one_million_voice), :class => 'btn btn-success' %>
+            <%= link_to t(:destroy), one_million_voice_path(@one_million_voice), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <br><br>
+  </div>
+</div>

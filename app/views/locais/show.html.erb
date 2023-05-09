@@ -1,7 +1,9 @@
 <% title @local.nome %>
 
 
-<%= link_to t(:register_new_experience), new_local_experiencia_agroecologica_path(@local), :class => "btn btn-warning", :style => "float:right;" %>
+<%= link_to t(:register_new_experience), new_local_experiencia_agroecologica_path(@local), :class => "btn btn-warning", :style => "float:right; margin-left: 16px;" %>
+<%= link_to t(:register_new_one_million_voices), new_local_one_million_voice_path(@local), :class => "btn btn-info", :style => "float:right;" unless @local.one_million_voice%>
+
 <br><br><br>
 
 <ul class="nav nav-tabs">
@@ -16,6 +18,12 @@
     <% total_midia = Midia.where(experiencia_agroecologica: @local.experiencia_agroecologicas).count + Midia.where(saf: @local.safs).count%>
     <%= link_to t(:gallery) + " (#{total_midia})", local_gallery_path(@local.id), :class => "nav-link", :style => "color: red !important" %>
   </li>
+
+  <% if @local.one_million_voice %>
+    <li class="nav-item">
+      <%= link_to t(:one_million_voices), local_one_million_voice_path(@local, ''), :class => "nav-link", :style => "color: red !important" %>
+    </li>
+  <% end %>
 
   <!--
   <li class="nav-item">
