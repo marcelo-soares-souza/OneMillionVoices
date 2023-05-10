@@ -3,7 +3,7 @@ class OneMillionVoicesController < ApplicationController
   before_action :authenticate_usuario!, only: %i[new edit update destroy]
 
   before_action lambda {
-    check_owner OneMillionVoice.friendly.find(params[:id]).usuario_id
+    check_owner OneMillionVoice.find(params[:id]).usuario_id
   }, only: %i[edit update destroy]
 
   before_action :load_locais, except: %i[index show]
@@ -75,7 +75,13 @@ class OneMillionVoicesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_one_million_voice
-    @one_million_voice = OneMillionVoice.find(params[:id])
+    if params[:local_id]
+      local_id = Local.friendly.find(params[:local_id])
+      @one_million_voice = OneMillionVoice.where(local_id: local_id).load_async.sort_by(&:updated_at).reverse.first
+      puts @one_million_voice
+    else
+      @one_million_voice = OneMillionVoice.find(params[:id])
+    end
   end
 
   # Only allow a list of trusted parameters through.

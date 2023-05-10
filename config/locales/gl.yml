@@ -425,3 +425,7 @@ gl:
   last: "Last"
   summary_description: "Summary Description"
   one_million_voices: "One Million Voices"
+  problem_it_address: "What is the problem you address"
+  how_it_is_done: "How it is Done"
+  expected_function_effects: "Expected function/effects"
+

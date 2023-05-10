@@ -7,7 +7,6 @@
   <li class="nav-item">
     <%= link_to t(:one_million_voices) + " on " + @one_million_voice.local.nome, local_path(@one_million_voice.local), :class => "nav-link active" %>
   </li>
-
 </ul>
 
 <br>
@@ -30,7 +29,7 @@
         <br><br>
         <div id="one_million_voice-footer">
           <div class="form-actions">
-            <%= link_to t(:edit), edit_one_million_voice_path(@one_million_voice), :class => 'btn btn-success' %>
+            <%= link_to t(:edit), edit_local_one_million_voice_path(@one_million_voice.local, @one_million_voice.id), :class => 'btn btn-success' %>
             <%= link_to t(:destroy), one_million_voice_path(@one_million_voice), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
           </div>
         </div>

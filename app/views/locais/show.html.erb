@@ -42,6 +42,14 @@
     <br><br>
     <div class='<%= (@local.nome.length() > 100 ? 'text-box' : '') %>'><h3><%= @local.nome %></h3></div>
     <%= "<strong>#{t(:type)}:</strong><br>#{@tipos.key(@local.tipo)}&nbsp;<br>".html_safe if @local.tipo? %>
+
+    <br><strong><%= t(:one_million_voices) %></strong><br>
+    <% if @local.one_million_voice %>
+      <%= link_to "Yes".html_safe, local_one_million_voice_path(@local) %>
+    <% else %>
+    No
+    <% end %>
+    <br>
     <%= "<br><strong>#{t(:experiences_in_agroecology)}:</strong><br><div>#{@local.experiencia_agroecologicas.map { |experiencia_agroecologica| link_to experiencia_agroecologica.nome.truncate(50), experiencia_agroecologica_path(experiencia_agroecologica), style: "font-size:21px !important;" }.join("<br>").html_safe}&nbsp;</div>".html_safe if @local.experiencia_agroecologicas.count > 0 %>
     <%= "<br><strong>#{t(:safs)}:</strong><br>#{@local.safs.map { |saf| link_to saf.nome, saf_path(saf), style: "font-size:21px !important;" }.join("<br>").html_safe}&nbsp;<br>".html_safe if @local.safs.count > 0 %>
     <%= "<br><strong>#{t(:description)}:</strong><br><div class='text-box'>#{simple_format (h @local.observacao).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @local.observacao? %>
