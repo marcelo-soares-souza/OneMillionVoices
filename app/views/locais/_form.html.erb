@@ -81,17 +81,23 @@
   <div class="actions">
     <%= f.submit t(:submit), class: "btn btn-primary" %>
   </div>
-
+  <%= "#{request.location.latitude} #{request.location.longitude}" %>
   <script>
       $(document).ready(function () {
           <% if params[:action] == 'new' %>
-          lat = -15.77835833463309;
-          lon = -47.88219451904297;
+            lat = -15.77835833463309;
+            lon = -47.88219451904297;
+
+            <% if request.location %>
+              lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309%>
+              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297%>
+            <% end %>
+
           <% elsif params[:action] != 'new' %>
-          <% if f.object.latitude? %>
-          lat = <%= f.object.latitude %>;
-          <% else %>
-          lat = -15.77835833463309;
+            <% if f.object.latitude? %>
+              lat = <%= f.object.latitude %>;
+            <% else %>
+            lat = -15.77835833463309;
           <% end %>
 
           <% if f.object.longitude? %>
@@ -155,5 +161,5 @@
           });
       });
   </script>
-  
+
 <% end %>
