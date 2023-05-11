@@ -5,7 +5,7 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:one_million_voices) + " on " + @one_million_voice.local.nome, local_path(@one_million_voice.local), :class => "nav-link active" %>
+    <%= link_to t(:one_million_voices) + " on " + truncate(@one_million_voice.local.nome, length: 10), local_path(@one_million_voice.local), :class => "nav-link active" %>
   </li>
   <li class="nav-item">
     <%= link_to "#{t(:gallery)} (#{@one_million_voice.midias.count})", one_million_voice_gallery_path(@one_million_voice), :class => "nav-link", :style => "color: red !important" %>
