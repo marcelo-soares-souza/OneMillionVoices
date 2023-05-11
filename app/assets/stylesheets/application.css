@@ -626,3 +626,11 @@ a:focus, a:hover {
     font-style: italic;
     color: #124400 !important;
 }
+
+input::file-selector-button {
+    font-weight: bold;
+    color: dodgerblue;
+    border: thin solid grey;
+    border-radius: 3px;
+    font-size: 14px;
+}
