@@ -611,3 +611,11 @@ a:focus, a:hover {
     font-style: italic;
     color: #d97800 !important;
 }
+
+
+.tip-explanation {
+    text-align: left;
+    font-size: 12px;
+    font-style: italic;
+    color: #124400 !important;
+}

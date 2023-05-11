@@ -32,6 +32,7 @@ class OneMillionVoicesController < ApplicationController
 
   # GET /one_million_voices/1/edit
   def edit
+
   end
 
   # POST /one_million_voices or /one_million_voices.json
@@ -88,7 +89,7 @@ class OneMillionVoicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def one_million_voice_params
-      params.require(:one_million_voice).permit(:description, :problem_it_address, :how_it_is_done, :expected_function_effects, :local_id, :usuario_id)
+      params.require(:one_million_voice).permit(:description, :problem_it_address, :how_it_is_done, :expected_function_effects, :local_id, :usuario_id, principles: [])
     end
 
 

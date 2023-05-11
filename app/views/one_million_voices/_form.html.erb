@@ -74,6 +74,67 @@
   </div>
 
   <br>
+  <div class="form-group row">
+    <%= f.label t(:expected_function_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-10">
+      <%= f.text_area :expected_function_effects, class: "form-control", :rows => "6" %>
+      <div class="tip">
+        Which agroecological principles are addressed or engaged through the practice?
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <div class="form-group row">
+    <%= f.label t(:principles), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-10">
+      <div style="text-align: left;">
+        <%= check_box_tag 'one_million_voice[principles][]', 'Recycling', checked('Recycling'), id: 'principle' %> Recycling
+        <div class="tip-explanation">Preferentially use local renewable resources and close as far as possible resource cycles of nutrients and biomass.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Input reduction', checked('Input reduction'), id: 'principle' %> Input reduction
+        <div class="tip-explanation">Reduce or eliminate dependency on purchased inputs.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Soil heath', checked('Soil heath'), id: 'principle' %> Soil heath
+        <div class="tip-explanation">Secure and enhance soil health and functioning for improved plant growth, particularly by managing organic matter and by enhancing soil biological activity.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Animal health', checked('Animal health'), id: 'principle' %> Animal health
+        <div class="tip-explanation">Ensure animal health and welfare.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Biodiversity', checked('Biodiversity'), id: 'principle' %> Biodiversity
+        <div class="tip-explanation">Maintain and enhance diversity of species, functional diversity and genetic resources and maintain biodiversity in the agroecosystem over time and space at field, farm and landscape scales.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Synergy', checked('Synergy'), id: 'principle' %> Synergy
+        <div class="tip-explanation">Enhance positive ecological interaction, synergy, integration, and complementarity amongst the elements of agroecosystems (plants, animals, trees, soil, water).</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Economic diversification', checked('Economic diversification'), id: 'principle' %> Economic diversification
+        <div class="tip-explanation">Diversify on-farm incomes by ensuring small-scale farmers have greater financial independence and value addition opportunities while enabling them to respond to demand from consumers.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Co-creation of knowledge', checked('Co-creation of knowledge'), id: 'principle' %> Co-creation of knowledge
+        <div class="tip-explanation">Enhance co-creation and horizontal sharing of knowledge including local and scientific innovation, especially through farmer-to-farmer exchange.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Social values and diets', checked('Social values and diets'), id: 'principle' %> Social values and diets
+        <div class="tip-explanation">Build food systems based on the culture, identity, tradition, social and gender equity of local communities that provide healthy, diversified, seasonally and culturally appropriate diets.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Fairness', checked('Fairness'), id: 'principle' %> Fairness
+        <div class="tip-explanation">Support dignified and robust livelihoods for all actors engaged in food systems, especially small-scale food producers, based on fair trade, fair employment and fair treatment of intellectual property rights</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Connectivity', checked('Connectivity'), id: 'principle' %> Connectivity
+        <div class="tip-explanation">Ensure proximity and confidence between producers and consumers through promotion of fair and short distribution networks and by re-embedding food systems into local economies.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Land and natural resource governance', checked('Land and natural resource governance'), id: 'principle' %> Land and natural resource governance
+        <div class="tip-explanation">Recognize and support the needs and interests of family farmers, smallholders and peasant food producers as sustainable managers and guardians of natural and genetic resources.</div>
+        <br>
+        <%= check_box_tag 'one_million_voice[principles][]', 'Participation', checked('Participation'), id: 'principle' %> Participation
+        <div class="tip-explanation">Encourage social organization and greater participation in decision-making by food producers and consumers to support decentralized governance and local adaptive management of agricultural and food systems.</div>
+        <br>
+      </div>
+      <div class="tip">Which agroecological principles are addressed or engaged through the practice?</div>
+    </div>
+  </div>
+
+  <br>
   <div class="actions">
     <%= f.submit t(:submit), class: "btn btn-primary" %>
   </div>
