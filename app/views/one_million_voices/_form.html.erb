@@ -24,30 +24,29 @@
     <div class="col-sm-10">
       <% if params[:local_id] %>
         <%= f.hidden_field :local_id, id: "local_id", :value => Local.friendly.find(params[:local_id]).id %>
-        <%#= params[:local_id] %>
       <% else %>
         <%= f.collection_select(:local_id, @locais, :id, :nome, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
       <% end %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label t(:summary_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+  <div class="form-group row required">
+    <%= f.label t(:summary_description), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
     <div class="col-sm-10">
       <%= f.text_area :description, class: "form-control", :rows => "6" %>
       <div class="tip">
-        * Please describe the practice that you want to map: What is the practice about; What do you use and do; When did you start; For how long have you practiced etc.?
+       Please describe the practice that you want to map: What is the practice about; What do you use and do; When did you start; For how long have you practiced etc.?
       </div>
     </div>
   </div>
 
   <br>
-  <div class="form-group row">
+  <div class="form-group row ">
     <%= f.label t(:problem_it_address), class: "col-sm-2 col-form-label col-form-label-lg" %>
     <div class="col-sm-10">
       <%= f.text_area :problem_it_address, class: "form-control", :rows => "6" %>
       <div class="tip">
-        * Which problem does the practice address; Which challenges does it tackle?
+       Which problem does the practice address; Which challenges does it tackle?
       </div>
     </div>
   </div>
@@ -58,7 +57,7 @@
     <div class="col-sm-10">
       <%= f.text_area :how_it_is_done, class: "form-control", :rows => "6" %>
       <div class="tip">
-        * How is it done; What are the details of how it is applied; What is the process that needs to be followed?
+       How is it done; What are the details of how it is applied; What is the process that needs to be followed?
       </div>
     </div>
   </div>
@@ -69,7 +68,7 @@
     <div class="col-sm-10">
       <%= f.text_area :expected_function_effects, class: "form-control", :rows => "6" %>
       <div class="tip">
-        * What does the practice do; What is the function of the practice; Which result to you expect from using the practice?
+        What does the practice do; What is the function of the practice; Which result to you expect from using the practice?
       </div>
     </div>
   </div>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddQuestionsToOneMillionVoices < ActiveRecord::Migration[7.0]
   def change
     add_column :one_million_voices, :problem_it_address, :text

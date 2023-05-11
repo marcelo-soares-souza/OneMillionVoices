@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OneMillionVoicesController < ApplicationController
   before_action :set_one_million_voice, only: %i[ show edit update destroy ]
   before_action :authenticate_usuario!, only: %i[new edit update destroy]
@@ -73,28 +75,28 @@ class OneMillionVoicesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_one_million_voice
-    if params[:local_id]
-      local_id = Local.friendly.find(params[:local_id])
-      @one_million_voice = OneMillionVoice.where(local_id: local_id).load_async.sort_by(&:updated_at).reverse.first
-      puts @one_million_voice
-    else
-      @one_million_voice = OneMillionVoice.find(params[:id])
+    # Use callbacks to share common setup or constraints between actions.
+    def set_one_million_voice
+      if params[:local_id]
+        local_id = Local.friendly.find(params[:local_id])
+        @one_million_voice = OneMillionVoice.where(local_id: local_id).load_async.sort_by(&:updated_at).reverse.first
+        puts @one_million_voice
+      else
+        @one_million_voice = OneMillionVoice.find(params[:id])
+      end
     end
-  end
 
-  # Only allow a list of trusted parameters through.
-  def one_million_voice_params
-    params.require(:one_million_voice).permit(:description, :problem_it_address, :how_it_is_done, :expected_function_effects, :local_id, :usuario_id)
-  end
+    # Only allow a list of trusted parameters through.
+    def one_million_voice_params
+      params.require(:one_million_voice).permit(:description, :problem_it_address, :how_it_is_done, :expected_function_effects, :local_id, :usuario_id)
+    end
 
 
-  def load_local
-    @local = Local.friendly.find(params[:local_id]) if params[:local_id]
-  end
+    def load_local
+      @local = Local.friendly.find(params[:local_id]) if params[:local_id]
+    end
 
-  def load_usuario
-    @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
-  end
+    def load_usuario
+      @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
+    end
 end
