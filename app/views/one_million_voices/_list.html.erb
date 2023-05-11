@@ -25,7 +25,6 @@
         <th><%= t("summary_description") %></th>
         <th><%= t(:principles) %></th>
         <th><%= t(:gallery) %></th>
-        <th><%= t("experiences") %></th>
         <% if usuario_signed_in? %>
           <th class="list-control"></th>
           <th class="list-control"></th>
@@ -40,9 +39,8 @@
           <td><%= link_to truncate(one_million_voice.local.nome, length: 100), local_one_million_voice_path(one_million_voice.local, '') %></td>
           <td><%= truncate(one_million_voice.description, length: 100) %></td>
           <td><%= one_million_voice.principles if one_million_voice.principles %></td>
-          <% total_midia = Midia.where(experiencia_agroecologica: one_million_voice.local.experiencia_agroecologicas).count %>
+          <% total_midia = Midia.where(experiencia_agroecologica: one_million_voice.local.experiencia_agroecologicas).count + Midia.where(one_million_voice: one_million_voice).count%>
           <td><%= link_to total_midia, local_gallery_path(one_million_voice.local.id) %></td>
-          <td><%= link_to one_million_voice.local.experiencia_agroecologicas.count, local_experiencia_agroecologicas_path(one_million_voice.local) %></td>
 
           <% if usuario_signed_in? %>
             <% if current_usuario.admin? or one_million_voice.local.usuario.id == current_usuario.id %>

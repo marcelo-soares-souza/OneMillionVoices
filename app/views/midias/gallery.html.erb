@@ -43,15 +43,15 @@
     <% end %>
   </li>
 
-  <li class="nav-item">
-    <% if params[:saf_id] %>
-      <%= link_to t(:photos) + " (#{@saf.midias.count})", saf_midias_path, :class => "nav-link" %>
-    <% elsif params[:experiencia_agroecologica_id] %>
-      <%= link_to t(:photos) + " (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_midias_path, :class => "nav-link" %>
-    <% elsif params[:one_million_voice_id] %>
-      <%= link_to t(:photos) + " (#{@one_million_voice.midias.count})", one_million_voice_midias_path, :class => "nav-link" %>
-    <% end %>
-  </li>
+<!--  <li class="nav-item">-->
+    <%# if params[:saf_id] %>
+      <%#= link_to t(:photos) + " (#{@saf.midias.count})", saf_midias_path, :class => "nav-link" %>
+    <%# elsif params[:experiencia_agroecologica_id] %>
+      <%#= link_to t(:photos) + " (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_midias_path, :class => "nav-link" %>
+    <%# elsif params[:one_million_voice_id] %>
+      <%#= link_to t(:photos) + " (#{@one_million_voice.midias.count})", one_million_voice_midias_path, :class => "nav-link" %>
+    <%# end %>
+<!--  </li>-->
 </ul>
 
 <% if @midias.empty? %>
@@ -77,9 +77,23 @@
     <div class="col-md-8">
       <div class="row">
         <% @midias.each do |midia| %>
-          <a href="<%= midia.imagem.url(:original) %>>" data-toggle="lightbox" data-gallery="midia-gallery" class="col-sm-4 gallery-image" data-max-width="900">
-            <img src="<%= midia.imagem.url(:medium) %>" alt="Photo <%= midia.descricao %>" title="Photo <%= midia.descricao %>" class="img-fluid">
-          </a>
+          <div class="gallery-image">
+            <a href="<%= midia.imagem.url(:original) %>>" data-toggle="lightbox" data-gallery="midia-gallery" class="col-sm-4" data-max-width="900">
+              <img src="<%= midia.imagem.url(:medium) %>" alt="Photo <%= midia.descricao %>" title="Photo <%= midia.descricao %>" class="img-fluid">
+            </a>
+          </div>
+          <% if usuario_signed_in? %>
+            <% if @one_million_voice %>
+              <% if current_usuario.admin? or current_usuario.id == @one_million_voice.usuario.id %>
+                <div class="midia-control">
+                  <%= link_to " &nbsp; Edit &nbsp; ".html_safe, edit_one_million_voice_midia_path(@one_million_voice, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>
+                  <br>
+                  <%= link_to t(:destroy), one_million_voice_midia_path(@one_million_voice, midia), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you Sure?')) }, :class => 'btn btn-danger btn-sm', :style => 'font-size: 10px;' %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+
         <% end %>
       </div>
     </div>

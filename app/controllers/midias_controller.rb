@@ -81,8 +81,7 @@ class MidiasController < ApplicationController
           end
         elsif params[:one_million_voice_id]
           format.html do
-            redirect_to one_million_voice_midia_path(@one_million_voice, @midia),
-                        notice: "Midia foi cadastrada."
+            redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Photo Added."
           end
         end
         format.json { render :show, status: :created, location: @midia }
@@ -107,8 +106,7 @@ class MidiasController < ApplicationController
           end
         elsif params[:one_million_voice_id]
           format.html do
-            redirect_to one_million_voice_midia_path(@one_million_voice, @midia),
-                        notice: "Media has been updated."
+            redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Media has been updated."
           end
         end
         format.json { render :show, status: :ok, location: @midia }
@@ -133,7 +131,7 @@ class MidiasController < ApplicationController
         end
       elsif params[:one_million_voice_id]
         format.html do
-          redirect_to one_million_voice_midias_path(@one_million_voice), notice: "Media has been removed."
+          redirect_to one_million_voice_gallery_path(@one_million_voice), notice: "Media has been removed."
         end
       end
       format.json { head :no_content }
@@ -175,7 +173,7 @@ class MidiasController < ApplicationController
     end
 
     def default_media_name
-      if current_usuario && current_usuario.admin?
+      # if current_usuario && current_usuario.admin?
         @default_media_name = ""
         if @experiencia_agroecologica
           @default_media_name = @experiencia_agroecologica.nome + " "
@@ -184,6 +182,6 @@ class MidiasController < ApplicationController
         elsif @one_million_voice
           @default_media_name = @one_million_voice.local.nome + " "
         end
-      end
+      # end
     end
 end

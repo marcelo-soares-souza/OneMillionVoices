@@ -52,15 +52,22 @@
 }
 .gallery-image {
     max-width: 250px !important;
-    max-height: 140px !important;
+    max-height: 150px !important;
     min-width: 250px !important;
-    min-height: 140px !important;
+    min-height: 150px !important;
     padding-top: 8px;
     padding-bottom: 8px;
     overflow: hidden;
     margin-bottom: auto;
     margin-top: auto;
     position: relative;
+}
+
+.midia-control {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 6px;
+
 }
 
 .sign_in_up {
