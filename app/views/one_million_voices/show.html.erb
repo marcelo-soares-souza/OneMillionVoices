@@ -25,6 +25,8 @@
     <%= "<br><strong>#{t(:problem_it_address)}:</strong><br><div class='text-box'>#{simple_format (h @one_million_voice.problem_it_address).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @one_million_voice.problem_it_address .length() > 0%>
     <%= "<br><strong>#{t(:how_it_is_done)}:</strong><br><div class='text-box'>#{simple_format (h @one_million_voice.how_it_is_done).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @one_million_voice.how_it_is_done .length() > 0%>
     <%= "<br><strong>#{t(:expected_function_effects)}:</strong><br><div class='text-box'>#{simple_format (h @one_million_voice.expected_function_effects).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @one_million_voice.expected_function_effects .length() > 0%>
+    <%= "<br><strong>#{t(:principles)}:</strong><br><div class='text-box'> #{@one_million_voice.principles}</div>".html_safe if @one_million_voice.principles .length() > 0 %>
+
 
     <%= "<br><strong>#{t(:locations)}</strong><br>#{link_to @one_million_voice.local.nome, local_path(@one_million_voice.local)}&nbsp;".html_safe if @one_million_voice.local.nome? %>
     <%= "<br><br><strong>#{t(:responsible_for_information)}:</strong><br>#{link_to @one_million_voice.usuario.nome, usuario_path(@one_million_voice.usuario)}&nbsp;".html_safe if @one_million_voice.usuario.nome? %>
