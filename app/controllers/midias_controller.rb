@@ -15,6 +15,8 @@ class MidiasController < ApplicationController
       @midias = Midia.where(saf_id: @saf.id).load_async
     elsif params[:experiencia_agroecologica_id]
       @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
+    elsif params[:one_million_voice_id]
+      @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     end
   end
 
@@ -25,12 +27,19 @@ class MidiasController < ApplicationController
       @midias = Midia.where(saf_id: @saf.id).load_async
     elsif params[:experiencia_agroecologica_id]
       @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
+    elsif params[:one_million_voice_id]
+      @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
       @local = Local.where(id: params[:local_id]).load_async
+
       experiencia_agroecologica = ExperienciaAgroecologica.where(local_id: params[:local_id]).load_async
       saf = Saf.where(local_id: params[:local_id]).load_async
+      one_million_voice = OneMillionVoice.where(local_id: params[:local_id]).load_async
+
       @midias = Midia.where(experiencia_agroecologica: experiencia_agroecologica).load_async
       @midias += Midia.where(saf: saf).load_async
+      @midias += Midia.where(one_million_voice: one_million_voice).load_async
+
     end
   end
 
@@ -57,6 +66,8 @@ class MidiasController < ApplicationController
       @midia.saf_id = @saf.id
     elsif params[:experiencia_agroecologica_id]
       @midia.experiencia_agroecologica_id = @experiencia_agroecologica.id
+    elsif params[:one_million_voice_id]
+      @midia.one_million_voice_id = @one_million_voice.id
     end
 
     respond_to do |format|
@@ -66,6 +77,11 @@ class MidiasController < ApplicationController
         elsif params[:experiencia_agroecologica_id]
           format.html do
             redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
+                        notice: "Midia foi cadastrada."
+          end
+        elsif params[:one_million_voice_id]
+          format.html do
+            redirect_to one_million_voice_midia_path(@one_million_voice, @midia),
                         notice: "Midia foi cadastrada."
           end
         end
@@ -83,11 +99,16 @@ class MidiasController < ApplicationController
     respond_to do |format|
       if @midia.update(midia_params)
         if params[:saf_id]
-          format.html { redirect_to saf_midia_path(@saf, @midia), notice: "Midia foi atualizada." }
+          format.html { redirect_to saf_midia_path(@saf, @midia), notice: "Media has been updated." }
         elsif params[:experiencia_agroecologica_id]
           format.html do
             redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
-                        notice: "Midia foi atualizada"
+                        notice: "Media has been updated."
+          end
+        elsif params[:one_million_voice_id]
+          format.html do
+            redirect_to one_million_voice_midia_path(@one_million_voice, @midia),
+                        notice: "Media has been updated."
           end
         end
         format.json { render :show, status: :ok, location: @midia }
@@ -105,10 +126,14 @@ class MidiasController < ApplicationController
 
     respond_to do |format|
       if params[:saf_id]
-        format.html { redirect_to saf_midias_path(@saf), notice: "Midia foi removida." }
+        format.html { redirect_to saf_midias_path(@saf), notice: "Media has been removed." }
       elsif params[:experiencia_agroecologica_id]
         format.html do
-          redirect_to experiencia_agroecologica_midias_path(@experiencia_agroecologica), notice: "Midia foi removida."
+          redirect_to experiencia_agroecologica_midias_path(@experiencia_agroecologica), notice: "Media has been removed."
+        end
+      elsif params[:one_million_voice_id]
+        format.html do
+          redirect_to one_million_voice_midias_path(@one_million_voice), notice: "Media has been removed."
         end
       end
       format.json { head :no_content }
@@ -131,6 +156,8 @@ class MidiasController < ApplicationController
         @saf = Saf.friendly.find(params[:saf_id])
       elsif params[:experiencia_agroecologica_id]
         @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
+      elsif params[:one_million_voice_id]
+        @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
       end
     end
 
@@ -141,6 +168,8 @@ class MidiasController < ApplicationController
           @selected_id = @experiencia_agroecologica.usuario.id
         elsif @saf
           @selected_id = @saf.usuario.id
+        elsif @one_million_voice
+          @selected_id = @one_million_voice.usuario.id
         end
       end
     end
@@ -152,6 +181,8 @@ class MidiasController < ApplicationController
           @default_media_name = @experiencia_agroecologica.nome + " "
         elsif @saf
           @default_media_name = @saf.nome + " "
+        elsif @one_million_voice
+          @default_media_name = @one_million_voice.local.nome + " "
         end
       end
     end

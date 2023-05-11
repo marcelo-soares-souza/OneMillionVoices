@@ -1,11 +1,17 @@
 <% title @one_million_voice.local.nome %>
-<br>
-<br>
-<br>
+
+<%= link_to t(:send_photo), new_one_million_voice_midia_path(@one_million_voice), :class => "btn btn-warning", :style => "float:right;" %>
+<br><br><br>
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <%= link_to t(:one_million_voices) + " on " + @one_million_voice.local.nome, local_path(@one_million_voice.local), :class => "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:gallery)} (#{@one_million_voice.midias.count})", one_million_voice_gallery_path(@one_million_voice), :class => "nav-link", :style => "color: red !important" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:photos)} (#{@one_million_voice.midias.count})", one_million_voice_midias_path(@one_million_voice), :class => "nav-link" %>
   </li>
 </ul>
 
@@ -18,6 +24,7 @@
         <%= image_tag(@one_million_voice.local.imagem.url(:medium)) %>
       </div>
     <% end %>
+
     <br><br>
     <div class='<%= (@one_million_voice.local.nome.length() > 90 ? 'text-box' : '') %>'><h3><%= @one_million_voice.local.nome %></h3></div>
 

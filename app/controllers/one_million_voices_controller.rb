@@ -32,7 +32,6 @@ class OneMillionVoicesController < ApplicationController
 
   # GET /one_million_voices/1/edit
   def edit
-
   end
 
   # POST /one_million_voices or /one_million_voices.json

@@ -4,6 +4,8 @@
   <% title t(:gallery) + " #{@saf.nome}" %>
 <% elsif params[:experiencia_agroecologica_id] %>
   <% title t(:gallery) + " #{@experiencia_agroecologica.nome}" %>
+<% elsif params[:one_million_voice_id] %>
+  <% title t(:gallery) + " #{@one_million_voice.local.nome}" %>
 <% end %>
 
 <% if usuario_signed_in? %>
@@ -11,6 +13,8 @@
     <%= link_to t(:send_picture), new_saf_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @saf.usuario_id == current_usuario.id %>
   <% elsif params[:experiencia_agroecologica_id] %>
     <%= link_to t(:send_picture), new_experiencia_agroecologica_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
+  <% elsif params[:one_million_voice_id] %>
+    <%= link_to t(:send_picture), new_one_million_voice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
   <% end %>
 <% end %>
 
@@ -22,6 +26,8 @@
       <%= link_to truncate(@saf.nome, length: 16), saf_path(@saf), :class => "nav-link" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to truncate(@experiencia_agroecologica.nome, length: 16), experiencia_agroecologica_path(@experiencia_agroecologica), :class => "nav-link" %>
+    <% elsif params[:one_million_voice_id] %>
+      <%= link_to "One Million Voices on " + truncate(@one_million_voice.local.nome, length: 10), one_million_voice_path(@one_million_voice), :class => "nav-link" %>
     <% elsif params[:local_id] %>
       <%= link_to truncate(@local[0].nome, length: 16), local_path(@local[0]), :class => "nav-link active" %>
     <% end %>
@@ -32,6 +38,8 @@
       <%= link_to t(:gallery) + " (#{@saf.midias.count})", saf_gallery_path, :class => "nav-link active" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to t(:gallery) + " (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_gallery_path, :class => "nav-link active" %>
+    <% elsif params[:one_million_voice_id] %>
+      <%= link_to t(:gallery) + " (#{@one_million_voice.midias.count})", one_million_voice_gallery_path, :class => "nav-link active" %>
     <% end %>
   </li>
 
@@ -40,6 +48,8 @@
       <%= link_to t(:photos) + " (#{@saf.midias.count})", saf_midias_path, :class => "nav-link" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to t(:photos) + " (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_midias_path, :class => "nav-link" %>
+    <% elsif params[:one_million_voice_id] %>
+      <%= link_to t(:photos) + " (#{@one_million_voice.midias.count})", one_million_voice_midias_path, :class => "nav-link" %>
     <% end %>
   </li>
 </ul>
@@ -53,6 +63,8 @@
         <%= link_to t(:send_picture), new_saf_midia_path(@saf) if current_usuario.admin? or @saf.usuario_id == current_usuario.id %>
       <% elsif params[:experiencia_agroecologica_id] %>
         <%= link_to t(:send_picture), new_experiencia_agroecologica_midia_path(@experiencia_agroecologica) if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
+      <% elsif params[:one_million_voice_id] %>
+        <%= link_to t(:send_picture), new_one_million_voice_midia_path(@one_million_voice) if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
       <% end %>
     <% end %>
   </h3>

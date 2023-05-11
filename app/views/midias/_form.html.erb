@@ -1,4 +1,4 @@
-<%= form_for_midia @saf do |f| %>
+<%= form_for_midia params do |f| %>
   <% if midia.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(midia.errors.count, "error") %> encontrado(s):</h2>
@@ -40,5 +40,5 @@
     <%= f.submit t(:submit), class: "btn btn-primary" %>
   </div>
   <br>
-  
+
 <% end %>

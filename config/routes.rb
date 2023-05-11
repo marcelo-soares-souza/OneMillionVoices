@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :one_million_voices
+  resources :one_million_voices do
+    get "/gallery" => "midias#gallery"
+    resources :midias
+  end
+
   scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
     root to: "home#index"
     get "home/index"
@@ -55,7 +59,10 @@ Rails.application.routes.draw do
     resources :experiencia_agroecologicas
     resources :safs
     resources :blogs, path: "blog"
-    resources :one_million_voices
+    resources :one_million_voices do
+      get "/gallery" => "midias#gallery"
+      resources :midias
+    end
   end
 
   resources :organizacoes

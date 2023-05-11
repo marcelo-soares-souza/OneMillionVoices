@@ -2,10 +2,15 @@
 
 module ApplicationHelper
   def form_for_midia(condition, &block)
-    if condition
+    puts "----------------------------------------------"
+    puts condition
+    puts "----------------------------------------------"
+    if condition["saf_id"]
       form_for [@saf, @midia], html: { multipart: true }, &block
-    else
+    elsif condition["experiencia_agroecologica_id"]
       form_for [@experiencia_agroecologica, @midia], html: { multipart: true }, &block
+    elsif condition["one_million_voice_id"]
+      form_for [@one_million_voice, @midia], html: { multipart: true }, &block
     end
   end
 
