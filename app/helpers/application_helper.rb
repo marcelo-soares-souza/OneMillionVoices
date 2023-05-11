@@ -2,9 +2,6 @@
 
 module ApplicationHelper
   def form_for_midia(condition, &block)
-    puts "----------------------------------------------"
-    puts condition
-    puts "----------------------------------------------"
     if condition["saf_id"]
       form_for [@saf, @midia], html: { multipart: true }, &block
     elsif condition["experiencia_agroecologica_id"]
