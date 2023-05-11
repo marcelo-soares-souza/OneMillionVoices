@@ -19,36 +19,36 @@
   <% end %>
 
   <div class="form-group row required">
-    <%= f.label t(:name), class: "col-sm-1 col-form-label col-form-label-lg control-label" %>
-    <div class="col-sm-6">
+    <%= f.label t(:name), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
+    <div class="col-sm-10">
       <%= f.text_field :nome, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group required row ">
-    <%= f.label t(:type), class: "col-sm-1 col-form-label col-form-label-lg control-label" %>
-    <div class="col-sm-4">
+    <%= f.label t(:type), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
+    <div class="col-sm-10">
       <%= f.collection_select(:tipo, @tipos, :last, :first, { :include_blank => t(:select_location_type) }, { class: "form-control selectpicker", "data-live-search": true }) %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label t(:photo), class: "col-sm-1 col-form-label col-form-label-lg" %>
-    <div class="col-sm-2">
+    <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-8">
       <%= f.file_field :imagem, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label t(:description), class: "col-sm-1 col-form-label col-form-label-lg" %>
-    <div class="col-sm-6">
-      <%= f.text_area :observacao, class: "form-control", :rows => "6" %>
+    <%= f.label t(:description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-10">
+      <%= f.text_area :observacao, class: "form-control", :rows => "5" %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label t(:accommodation), class: "col-sm-1 col-form-label col-form-label-lg" %>
-    <div class="col-sm-4">
+    <%= f.label t(:accommodation), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-10">
       <%= f.collection_select(:hospedagem, @hospedagens, :last, :first, { :include_blank => t(:accept_hosting) }, { class: "form-control selectpicker", "data-live-search": true }) %>
     </div>
   </div>
@@ -67,8 +67,8 @@
   </div>
 -->
   <div class="form-group row">
-    <%= f.label t(:localization), class: "col-sm-1 col-form-label col-form-label-lg" %>
-    <div class="col-sm-8">
+    <%= f.label t(:localization), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-10">
     <div id="map-sistema"></div>
   </div>
   </div>
