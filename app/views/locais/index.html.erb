@@ -25,7 +25,7 @@
         <th><%= t("location.data") %></th>
         <th><%= t("type") %></th>
         <th><%= t(:gallery) %></th>
-        <th><%= t("experiences") %></th>
+<!--        <th><%#= t("experiences") %></th>-->
         <th><%= t("one_million_voices") %></th>
 <!--        <th><%#= t(:safs) %></th>-->
         <% if usuario_signed_in? %>
@@ -42,8 +42,10 @@
           <td><%= link_to truncate(local.nome, length: 100), local_path(local) %></td>
           <td><%= @tipos.key(local.tipo) %></td>
           <% total_midia = Midia.where(experiencia_agroecologica: local.experiencia_agroecologicas).count + Midia.where(saf: local.safs).count%>
+          <% total_midia = Midia.where(experiencia_agroecologica: local.experiencia_agroecologicas).count + Midia.where(one_million_voice: local.one_million_voice).count%>
+
           <td><%= link_to total_midia, local_gallery_path(local.id) %></td>
-          <td><%= link_to local.experiencia_agroecologicas.count, local_experiencia_agroecologicas_path(local) %></td>
+<!--          <td><%#= link_to local.experiencia_agroecologicas.count, local_experiencia_agroecologicas_path(local) %></td>-->
 
           <td>
           <% if  local.one_million_voice %>
