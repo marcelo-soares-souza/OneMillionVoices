@@ -14,7 +14,7 @@ class Local < ApplicationRecord
 
   has_many :local_usuarios, dependent: :destroy
   has_many :usuarios, through: :local_usuarios
-  has_many :midias, through: :experiencia_agroecologicas
+  has_many :midias, through: :experiencia_agroecologicas, strict_loading: true
 
   has_one :one_million_voice
 
