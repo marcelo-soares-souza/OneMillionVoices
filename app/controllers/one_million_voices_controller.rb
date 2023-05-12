@@ -80,7 +80,6 @@ class OneMillionVoicesController < ApplicationController
       if params[:local_id]
         local_id = Local.friendly.find(params[:local_id])
         @one_million_voice = OneMillionVoice.where(local_id: local_id).load_async.sort_by(&:updated_at).reverse.first
-        puts @one_million_voice
       else
         @one_million_voice = OneMillionVoice.find(params[:id])
       end
