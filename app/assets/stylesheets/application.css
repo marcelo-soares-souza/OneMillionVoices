@@ -634,3 +634,9 @@ input::file-selector-button {
     border-radius: 3px;
     font-size: 14px;
 }
+
+.about {
+    margin-top: 32px;
+    text-align: left;
+    font-size: 18px;
+}

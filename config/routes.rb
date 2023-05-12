@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/map", to: "home#index"
 
   resources :friends
+  resources :about
   resources :manual
   resources :comentarios
 
