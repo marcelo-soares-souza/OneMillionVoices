@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_11_135129) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_140334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_135129) do
     t.text "how_it_is_done"
     t.text "expected_function_effects"
     t.text "principles"
+    t.text "general_evaluate"
     t.index ["local_id"], name: "index_one_million_voices_on_local_id"
     t.index ["usuario_id"], name: "index_one_million_voices_on_usuario_id"
   end

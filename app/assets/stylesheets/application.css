@@ -215,6 +215,8 @@ b, strong {
 
 .form-group {
     margin-bottom: 0.5rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 .form-group.required .control-label:after {
     color: #d00;

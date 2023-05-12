@@ -88,7 +88,7 @@ class OneMillionVoicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def one_million_voice_params
-      params.require(:one_million_voice).permit(:description, :problem_it_address, :how_it_is_done, :expected_function_effects, :local_id, :usuario_id, principles: [])
+      params.require(:one_million_voice).permit(:description, :problem_it_address, :how_it_is_done, :expected_function_effects, :general_evaluate, :local_id, :usuario_id, principles: [])
     end
 
 
