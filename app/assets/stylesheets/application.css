@@ -218,6 +218,7 @@ b, strong {
     padding-top: 16px;
     padding-bottom: 16px;
 }
+
 .form-group.required .control-label:after {
     color: #d00;
     content: "*";
@@ -641,4 +642,9 @@ input::file-selector-button {
     margin-top: 32px;
     text-align: left;
     font-size: 18px;
+}
+
+.forms .form-group{
+    border-radius: 1px;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.2);
 }
