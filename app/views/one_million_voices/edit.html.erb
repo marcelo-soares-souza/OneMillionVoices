@@ -4,11 +4,11 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:one_million_voices) + " on " + @one_million_voice.local.nome, one_million_voice_path(@one_million_voice), :class => "nav-link" %>
+    <%= link_to t(:one_million_voices) + " on " + truncate(@one_million_voice.local.nome, length: 15), one_million_voice_path(@one_million_voice), :class => "nav-link" %>
   </li>
 
   <li class="nav-item">
-    <%= link_to "Editing " + @one_million_voice.local.nome, local_path(@one_million_voice.local), :class => "nav-link active" %>
+    <%= link_to "Editing " + truncate(@one_million_voice.local.nome, length: 16), local_path(@one_million_voice.local), :class => "nav-link active" %>
   </li>
 </ul>
 
