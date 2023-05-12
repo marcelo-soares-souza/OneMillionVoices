@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :friends
   resources :about
+  resources :who_we_are
   resources :manual
   resources :comentarios
 

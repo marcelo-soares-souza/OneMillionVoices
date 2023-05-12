@@ -444,3 +444,7 @@ es:
   accounts: "Accounts"
   short_description: "Short Description"
   i_agree_with_the_term_of_use: "I agree to the Terms and Conditions"
+  location_has_been_registered: "Location has been registered"
+  who_we_are: "Who we are"
+  developers: "Developers"
+  researchers: "Researchers"
