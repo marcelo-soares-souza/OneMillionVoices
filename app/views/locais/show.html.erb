@@ -38,8 +38,17 @@
     </div>
     <br><br>
     <div class='<%= (@local.nome.length() > 100 ? 'text-box' : '') %>'><h3><%= @local.nome %></h3></div>
-    <%= "<strong>#{t(:type)}:</strong><br>#{@tipos.key(@local.tipo)}&nbsp;<br>".html_safe if @local.tipo? %>
+    <br>
+    <% geo = Geocoder.search("#{@local.latitude},#{@local.longitude}") %>
+    <% if geo and geo[0] and geo[0].country %>
+      <strong><%= t(:'location.data') %></strong><br>
+      <%= "#{geo[0].city}," if geo[0].city %>
+      <%= "#{geo[0].state}," if geo[0].state%>
+      <%= "#{geo[0].country}" if geo[0].country %>
+    <br><br>
+    <% end %>
 
+    <%= "<strong>#{t(:type)}:</strong><br>#{@tipos.key(@local.tipo)}&nbsp;<br>".html_safe if @local.tipo? %>
     <br><strong><%= t(:one_million_voices) %></strong><br>
     <% if @local.one_million_voice %>
       <%= link_to "Yes".html_safe, local_one_million_voice_path(@local) %>

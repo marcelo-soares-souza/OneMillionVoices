@@ -142,7 +142,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.14.3-x86_64-linux)
+    nokogiri (1.14.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
@@ -238,7 +238,7 @@ GEM
       sprockets (>= 3.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    thor (1.2.1)
+    thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -291,4 +291,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   2.3.26
+   2.4.13
