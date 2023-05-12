@@ -174,14 +174,14 @@ class MidiasController < ApplicationController
 
     def default_media_name
       # if current_usuario && current_usuario.admin?
-        @default_media_name = ""
-        if @experiencia_agroecologica
-          @default_media_name = @experiencia_agroecologica.nome + " "
-        elsif @saf
-          @default_media_name = @saf.nome + " "
-        elsif @one_million_voice
-          @default_media_name = @one_million_voice.local.nome + " "
-        end
+      @default_media_name = ""
+      if @experiencia_agroecologica
+        @default_media_name = @experiencia_agroecologica.nome + " "
+      elsif @saf
+        @default_media_name = @saf.nome + " "
+      elsif @one_million_voice
+        @default_media_name = @one_million_voice.local.nome + " "
+      end
       # end
     end
 end

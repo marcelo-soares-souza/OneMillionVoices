@@ -41,7 +41,7 @@
     </div>
     <br>
     <div class="form-group row">
-      <%= f.label t(:description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :observacao, class: "form-control", :rows => "5" %>
       </div>
@@ -68,8 +68,8 @@
   </div>
 -->
     <br>
-    <div class="form-group row bg-light">
-      <%= f.label t(:localization), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="form-group row bg-light required">
+      <%= f.label t(:localization), class: "col-sm-2 col-form-label col-form-label-lg  control-label" %>
       <div class="col-sm-10">
         <div id="map-sistema"></div>
       </div>
@@ -92,12 +92,12 @@
 
             <% if request.location %>
             lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309%>
-                lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297%>
-                    <% end %>
+              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297%>
+                <% end %>
 
-                    <% elsif params[:action] != 'new' %>
-                    <% if f.object.latitude? %>
-                    lat = <%= f.object.latitude %>;
+                <% elsif params[:action] != 'new' %>
+                <% if f.object.latitude? %>
+                lat = <%= f.object.latitude %>;
             <% else %>
             lat = -15.77835833463309;
             <% end %>

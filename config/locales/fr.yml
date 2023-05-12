@@ -520,3 +520,6 @@ fr:
   register_new_one_million_voices: "Register a One Million Voices"
   evaluate: "Evaluate"
   general_evaluate: "General Evaluate (Is the practice effective)"
+  account: "Account"
+  accounts: "Accounts"
+  short_description: "Short Description"
