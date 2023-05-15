@@ -405,7 +405,7 @@ label {
 }
 
 .dropdown-menu {
-    width: 150px !important;
+    width: 170px !important;
     text-align: center;
 }
 
@@ -647,4 +647,15 @@ input::file-selector-button {
 .forms .form-group{
     border-radius: 1px;
     box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.2);
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link
+{
+    color: rgb(221, 122, 0);
+}
+
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link:hover
+{
+    color: black;
 }
