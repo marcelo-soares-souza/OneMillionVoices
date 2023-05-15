@@ -15,6 +15,8 @@
     <%= link_to t(:send_picture), new_experiencia_agroecologica_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
   <% elsif params[:one_million_voice_id] %>
     <%= link_to t(:send_picture), new_one_million_voice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
+  <% elsif params[:local_id] %>
+    <%= link_to t(:send_picture), new_local_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @local.usuario_id == current_usuario.id %>
   <% end %>
 <% end %>
 

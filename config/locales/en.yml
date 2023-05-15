@@ -116,7 +116,7 @@ en:
   area: "Area"
   send_picture: "Send a Photo"
   scientific_name: "Scientific name"
-  no_photo_submitted: "No Photo Submitted"
+  no_photo_submitted: "No Photo uploaded"
   search_using_location_name: "Search using location name"
   sign_in_to_comment: "Sign-in to comment"
   friend: "Friend"
@@ -331,7 +331,7 @@ en:
       year: Year
   helpers:
     links:
-      confirm: Você tem Certeza
+      confirm: Are you Sure?
     select:
       prompt: Please select
     submit:
@@ -446,3 +446,6 @@ en:
   researchers: "Researchers"
   location: "Location"
   add_more_information: "Add more information"
+  no_data_has_been_registered_so_far: "No data has been registered so far."
+  location_has_been_updated: "Location has been updated"
+  are_you_sure: "Are you sure?"

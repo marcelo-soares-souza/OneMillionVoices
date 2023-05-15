@@ -66,7 +66,7 @@ class LocaisController < ApplicationController
   def update
     respond_to do |format|
       if @local.update(local_params)
-        format.html { redirect_to @local, notice: "Local foi atualizado." }
+        format.html { redirect_to @local, notice: t(:location_has_been_updated) }
         format.json { render :show, status: :ok, location: @local }
       else
         format.html { render :edit }

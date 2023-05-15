@@ -442,3 +442,6 @@ gl:
   researchers: "Researchers"
   location: "Location"
   add_more_information: "Add more information"
+  no_data_has_been_registered_so_far: "No data has been registered so far."
+  location_has_been_updated: "Location has been updated"
+  are_you_sure: "Are you sure?"

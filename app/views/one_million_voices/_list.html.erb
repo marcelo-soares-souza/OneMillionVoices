@@ -2,6 +2,8 @@
 
 <% title t(:one_million_voices) %>
 
+<%= link_to t("location.register_new_location"), new_local_path, :class => "btn btn-primary", :style => "float:right;" %>
+
 <br><br><br>
 
 <ul class="nav nav-tabs">
@@ -12,7 +14,7 @@
 
 <% if @one_million_voices.empty? %>
   <br>
-  <h3>No record</h3>
+  <h2><%= t(:no_data_has_been_registered_so_far) %></h2>
 <% else %>
 
   <br>
