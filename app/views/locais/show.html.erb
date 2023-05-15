@@ -4,16 +4,11 @@
 <%#= link_to t(:register_new_experience), new_local_experiencia_agroecologica_path(@local), :class => "btn btn-warning", :style => "float:right; margin-left: 16px;" %>
 <%= link_to t(:register_new_one_million_voices), new_local_one_million_voice_path(@local), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" unless @local.one_million_voice%>
 
-<br><br><br><br>
+<br><br><br>
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <%= link_to truncate(@local.nome, length: 13), local_path(@local.id), :class => "nav-link active" %>
-  </li>
-
-  <li class="nav-item">
-    <% total_midia = Midia.where(experiencia_agroecologica: @local.experiencia_agroecologicas).count + Midia.where(one_million_voice: @local.one_million_voice).count%>
-    <%= link_to t(:gallery) + " (#{total_midia})", local_gallery_path(@local.id), :class => "nav-link", :style => "color: red !important" %>
   </li>
 
   <% if @local.one_million_voice %>
@@ -21,6 +16,11 @@
       <%= link_to t(:one_million_voices), local_one_million_voice_path(@local, ''), :class => "nav-link", :style => "color: red !important" %>
     </li>
   <% end %>
+
+  <li class="nav-item">
+    <% total_midia = Midia.where(experiencia_agroecologica: @local.experiencia_agroecologicas).count + Midia.where(one_million_voice: @local.one_million_voice).count%>
+    <%= link_to t(:gallery) + " (#{total_midia})", local_gallery_path(@local.id), :class => "nav-link", :style => "color: red !important" %>
+  </li>
 
   <!--
   <li class="nav-item">

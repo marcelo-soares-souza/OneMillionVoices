@@ -8,6 +8,4 @@ class OneMillionVoice < ApplicationRecord
   before_save do
     self.principles.gsub!(/[\[\]"]/, "") if attribute_present?("principles")
   end
-
-  validates :description, presence: true
 end
