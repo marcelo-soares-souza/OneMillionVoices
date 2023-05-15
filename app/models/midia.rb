@@ -5,7 +5,7 @@ class Midia < ApplicationRecord
   belongs_to :saf, required: false
   belongs_to :experiencia_agroecologica, required: false
   belongs_to :one_million_voice, required: false
-  has_one :local, through: :experiencia_agroecologica
+  belongs_to :local, required: false
 
   extend FriendlyId
   friendly_id :descricao, use: :slugged

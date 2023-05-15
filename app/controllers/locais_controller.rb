@@ -8,6 +8,7 @@ class LocaisController < ApplicationController
   before_action :load_hospedagens
   before_action :load_usuario
   before_action :load_colaboradores, except: %i[index show]
+  before_action :load_total_midias, only: %i[show]
 
   # GET /locais
   # GET /locais.json
@@ -42,14 +43,14 @@ class LocaisController < ApplicationController
 
     respond_to do |format|
       if @local.save
-        @onemillionvoice = OneMillionVoice.new
-        @onemillionvoice.local_id = @local.id
-        @onemillionvoice.usuario_id = @local.usuario_id
-        @onemillionvoice.description = ''
-        @onemillionvoice.problem_it_address = ''
-        @onemillionvoice.how_it_is_done = ''
-        @onemillionvoice.expected_function_effects = ''
-        @onemillionvoice.save
+        # @onemillionvoice = OneMillionVoice.new
+        # @onemillionvoice.local_id = @local.id
+        # @onemillionvoice.usuario_id = @local.usuario_id
+        # @onemillionvoice.description = ''
+        # @onemillionvoice.problem_it_address = ''
+        # @onemillionvoice.how_it_is_done = ''
+        # @onemillionvoice.expected_function_effects = ''
+        # @onemillionvoice.save
 
         format.html { redirect_to @local, notice: t(:location_has_been_registered) }
         format.json { render :show, status: :created, location: @local }
@@ -119,5 +120,9 @@ class LocaisController < ApplicationController
 
     def load_usuario
       @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
+    end
+
+    def load_total_midias
+      @total_midia = Midia.where(local_id: @local.id).count
     end
 end

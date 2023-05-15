@@ -17,6 +17,7 @@ class Local < ApplicationRecord
   has_many :midias, through: :experiencia_agroecologicas, strict_loading: true
 
   has_one :one_million_voice, dependent: :destroy
+  has_many :midias, dependent: :destroy
 
   accepts_nested_attributes_for :local_usuarios, allow_destroy: true
 

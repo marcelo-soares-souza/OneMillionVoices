@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_12_140334) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_171036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,7 +121,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_140334) do
     t.datetime "imagem_updated_at", precision: nil
     t.bigint "usuario_id"
     t.bigint "one_million_voice_id"
+    t.bigint "local_id", null: false
     t.index ["experiencia_agroecologica_id"], name: "index_midias_on_experiencia_agroecologica_id"
+    t.index ["local_id"], name: "index_midias_on_local_id"
     t.index ["one_million_voice_id"], name: "index_midias_on_one_million_voice_id"
     t.index ["saf_id"], name: "index_midias_on_saf_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
@@ -317,6 +319,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_12_140334) do
   add_foreign_key "local_usuarios", "locais"
   add_foreign_key "local_usuarios", "usuarios"
   add_foreign_key "midias", "experiencia_agroecologicas"
+  add_foreign_key "midias", "locais"
   add_foreign_key "midias", "one_million_voices"
   add_foreign_key "midias", "safs"
   add_foreign_key "midias", "usuarios"

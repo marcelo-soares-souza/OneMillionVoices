@@ -4,6 +4,8 @@
   <% title "Add Photo to #{@experiencia_agroecologica.nome}" %>
 <% elsif params[:one_million_voice_id] %>
   <% title "Add Photo to #{@one_million_voice.local.nome}" %>
+<% elsif params[:local_id] %>
+  <% title "Add Photo to #{@local.nome}" %>
 <% end %>
 
 <br><br>
@@ -24,6 +26,8 @@
       <%= link_to @experiencia_agroecologica.nome, experiencia_agroecologica_path(@experiencia_agroecologica), :class => "nav-link" %>
     <% elsif params[:one_million_voice_id] %>
       <%= link_to "One Million Voices on " + truncate(@one_million_voice.local.nome, length: 10), one_million_voice_path(@one_million_voice), :class => "nav-link" %>
+    <% elsif params[:local_id] %>
+      <%= link_to truncate(@local.nome, length: 10), local_path(@local), :class => "nav-link" %>
     <% end %>
   </li>
 
@@ -45,6 +49,8 @@
         <%= link_to "Send Photo", new_experiencia_agroecologica_midia_path, :class => "nav-link active" %>
       <% elsif params[:one_million_voice_id] %>
         <%= link_to "Send Photo", new_one_million_voice_midia_path, :class => "nav-link active" %>
+      <% elsif params[:local_id] %>
+        <%= link_to "Send Photo", new_local_midia_path, :class => "nav-link active" %>
       <% end %>
     </li>
   <% end %>

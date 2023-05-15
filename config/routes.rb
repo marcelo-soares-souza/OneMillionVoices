@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       get "/gallery" => "midias#gallery"
       resources :midias
     end
+    resources :midias
   end
 
   resources :organizacoes

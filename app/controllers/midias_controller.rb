@@ -17,6 +17,8 @@ class MidiasController < ApplicationController
       @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
     elsif params[:one_million_voice_id]
       @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
+    elsif params[:local_id]
+      @midias = Midia.where(local_id: @local.id).load_async
     end
   end
 
@@ -30,15 +32,19 @@ class MidiasController < ApplicationController
     elsif params[:one_million_voice_id]
       @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
-      @local = Local.where(id: params[:local_id]).load_async
+      @local = Local.friendly.find(params[:local_id])
 
       experiencia_agroecologica = ExperienciaAgroecologica.where(local_id: params[:local_id]).load_async
       saf = Saf.where(local_id: params[:local_id]).load_async
       one_million_voice = OneMillionVoice.where(local_id: params[:local_id]).load_async
+      local = Local.friendly.find(params[:local_id])
 
       @midias = Midia.where(experiencia_agroecologica: experiencia_agroecologica).load_async
       @midias += Midia.where(saf: saf).load_async
       @midias += Midia.where(one_million_voice: one_million_voice).load_async
+      @midias += Midia.where(local: local).load_async
+      puts "---------------"
+      puts @local
 
     end
   end
@@ -68,6 +74,8 @@ class MidiasController < ApplicationController
       @midia.experiencia_agroecologica_id = @experiencia_agroecologica.id
     elsif params[:one_million_voice_id]
       @midia.one_million_voice_id = @one_million_voice.id
+    elsif params[:local_id]
+      @midia.local_id = @local.id
     end
 
     respond_to do |format|
@@ -82,6 +90,10 @@ class MidiasController < ApplicationController
         elsif params[:one_million_voice_id]
           format.html do
             redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Photo Added."
+          end
+        elsif params[:local_id]
+          format.html do
+            redirect_to local_gallery_path(@local),  notice: "Photo Added."
           end
         end
         format.json { render :show, status: :created, location: @midia }
@@ -108,6 +120,10 @@ class MidiasController < ApplicationController
           format.html do
             redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Media has been updated."
           end
+        elsif params[:local_id]
+          format.html do
+            redirect_to local_gallery_path(@local),  notice: "Media has been updated."
+          end
         end
         format.json { render :show, status: :ok, location: @midia }
       else
@@ -133,6 +149,10 @@ class MidiasController < ApplicationController
         format.html do
           redirect_to one_million_voice_gallery_path(@one_million_voice), notice: "Media has been removed."
         end
+      elsif params[:local_id]
+        format.html do
+          redirect_to local_gallery_path(@local), notice: "Media has been removed."
+        end
       end
       format.json { head :no_content }
     end
@@ -156,6 +176,8 @@ class MidiasController < ApplicationController
         @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
       elsif params[:one_million_voice_id]
         @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
+      elsif params[:local_id]
+        @local = Local.friendly.find(params[:local_id])
       end
     end
 
@@ -168,6 +190,8 @@ class MidiasController < ApplicationController
           @selected_id = @saf.usuario.id
         elsif @one_million_voice
           @selected_id = @one_million_voice.usuario.id
+        elsif @local
+          @selected_id = @local.usuario.id
         end
       end
     end
@@ -181,6 +205,8 @@ class MidiasController < ApplicationController
         @default_media_name = @saf.nome + " "
       elsif @one_million_voice
         @default_media_name = @one_million_voice.local.nome + " "
+      elsif @local
+        @default_media_name = @local.nome + " "
       end
       # end
     end
