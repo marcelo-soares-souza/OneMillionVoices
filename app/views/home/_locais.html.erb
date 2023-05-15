@@ -1,28 +1,24 @@
 <% if @locais %>
   var markers = L.markerClusterGroup({ disableClusteringAtZoom: 12, maxClusterRadius: 20 });
   var Icon = L.icon({
-    iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
-    shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
-    iconSize:     [38, 95],
-    shadowSize:   [50, 64],
-    iconAnchor:   [22, 94],
-    shadowAnchor: [4, 62],
-    popupAnchor:  [-3, -76]
+  iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
+  shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+  iconSize:     [38, 95],
+  shadowSize:   [50, 64],
+  iconAnchor:   [22, 94],
+  shadowAnchor: [4, 62],
+  popupAnchor:  [-3, -76]
   });
 
   <% @locais.each do |local| %>
     <% if local.latitude and local.longitude %>
-      var popup = '<h4><%= "#{link_to local.nome, local_path(local), target: '_blank'}".html_safe %></h4><b>';
-          popup += '<%= "#{t(:one_million_voices)}<br>".html_safe %>';
-          <% if local.one_million_voice %>
-            popup += '<%= local.one_million_voice ? "#{link_to "Yes", local_one_million_voice_path(local, ''), target: '_blank', style: "font-size: 21px;" }<br>".html_safe : ""%>';
-          <% else %>
-            popup += 'No<br>';
-          <% end %>
-
-          <% total_midia = Midia.where(one_million_voice: local.one_million_voice).count%>
-          popup += '<div class="popup-gallery"><%= total_midia > 0 ? "<br>#{ link_to (t(:gallery) + " (" + total_midia.to_s + " " + t(:photos) + ")"), local_gallery_path(local.id), target: '_blank'}".html_safe : "".html_safe %></div>';
-          popup += '</b>';
+      <% total_midia = Midia.where(local: local).count%>
+      var popup = '';
+      popup += '<div class="thumbnail"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local) %></div><br>'
+      popup += '<h4><%= "#{link_to local.nome, local_path(local), target: '_blank'}".html_safe %></h4>';
+      popup += '<b>';
+      popup += '<div class="popup-gallery"><%= total_midia > 0 ? "#{ link_to (t(:gallery) + " (" + total_midia.to_s + " " + t(:photos) + ")"), local_gallery_path(local.id), target: '_blank'}".html_safe : "".html_safe %></div>';
+      popup += '</b>';
 
       var marker = new L.marker(new L.latLng([<%= local.latitude %>, <%= local.longitude %>]), { icon: Icon, title: '<%= local.nome %>' });
       marker.bindPopup(popup);
