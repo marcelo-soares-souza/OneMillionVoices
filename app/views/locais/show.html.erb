@@ -14,15 +14,15 @@
     <%= link_to truncate(@local.nome, length: 12), local_path(@local.id), :class => "nav-link active" %>
   </li>
 
+  <li class="nav-item">
+    <%= link_to t(:gallery) + " (#{@total_midia})", local_gallery_path(@local.id), :class => "nav-link", :style => "color: red !important" %>
+  </li>
+
   <% if @local.one_million_voice %>
     <li class="nav-item">
       <%= link_to t(:one_million_voices), local_one_million_voice_path(@local, ''), :class => "nav-link", :style => "color: red !important" %>
     </li>
   <% end %>
-
-  <li class="nav-item">
-    <%= link_to t(:gallery) + " (#{@total_midia})", local_gallery_path(@local.id), :class => "nav-link", :style => "color: red !important" %>
-  </li>
 
   <!--
   <li class="nav-item">

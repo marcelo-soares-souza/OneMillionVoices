@@ -22,9 +22,9 @@
         <%= link_to(t(:locations), locais_path, :class => "nav-link") %>
       </li>
 
-      <li class="nav-item">
-        <%= link_to(t(:one_million_voices), one_million_voices_path, :class => "nav-link") %>
-      </li>
+<!--      <li class="nav-item">-->
+        <%#= link_to(t(:one_million_voices), one_million_voices_path, :class => "nav-link") %>
+<!--      </li>-->
 
 <!--      <li class="nav-item">-->
         <%#= link_to(t(:experiences_in_agroecology), experiencia_agroecologicas_path, :class => "nav-link") %>
@@ -38,9 +38,6 @@
           <%#= link_to(t(:animals), animais_path, :class => "nav-link") %>
 <!--        </div>-->
 <!--      </li>-->
-      <li class="nav-item">
-        <%= link_to(t(:accounts), usuarios_path, :class => "nav-link") %>
-      </li>
       <li class="nav-item">
         <%= link_to("Manual", manual_index_path, :class => "nav-link") %>
       </li>
@@ -60,6 +57,9 @@
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <%= link_to(t(:accounts), usuarios_path, :class => "nav-link") %>
+      </li>
       <% if current_usuario %>
         <li class="nav-item">
           <%= link_to("#{t(:logout)}", destroy_usuario_session_path, :method => :delete, :class => "nav-link") %>

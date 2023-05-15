@@ -32,20 +32,19 @@ class MidiasController < ApplicationController
     elsif params[:one_million_voice_id]
       @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
-      @local = Local.friendly.find(params[:local_id])
+      @midias = Midia.where(local_id: @local.id).load_async
 
-      experiencia_agroecologica = ExperienciaAgroecologica.where(local_id: params[:local_id]).load_async
-      saf = Saf.where(local_id: params[:local_id]).load_async
-      one_million_voice = OneMillionVoice.where(local_id: params[:local_id]).load_async
-      local = Local.friendly.find(params[:local_id])
-
-      @midias = Midia.where(experiencia_agroecologica: experiencia_agroecologica).load_async
-      @midias += Midia.where(saf: saf).load_async
-      @midias += Midia.where(one_million_voice: one_million_voice).load_async
-      @midias += Midia.where(local: local).load_async
-      puts "---------------"
-      puts @local
-
+      # @local = Local.friendly.find(params[:local_id])
+      #
+      # experiencia_agroecologica = ExperienciaAgroecologica.where(local_id: params[:local_id]).load_async
+      # saf = Saf.where(local_id: params[:local_id]).load_async
+      # one_million_voice = OneMillionVoice.where(local_id: params[:local_id]).load_async
+      # local = Local.friendly.find(params[:local_id])
+      #
+      # @midias = Midia.where(experiencia_agroecologica: experiencia_agroecologica).load_async
+      # @midias += Midia.where(saf: saf).load_async
+      # @midias += Midia.where(one_million_voice: one_million_voice).load_async
+      # @midias += Midia.where(local: local).load_async
     end
   end
 
@@ -65,7 +64,6 @@ class MidiasController < ApplicationController
   # POST /midias.json
   def create
     @midia = Midia.new(midia_params)
-
     @midia.usuario_id = current_usuario.id unless current_usuario.admin?
 
     if params[:saf_id]
@@ -74,6 +72,7 @@ class MidiasController < ApplicationController
       @midia.experiencia_agroecologica_id = @experiencia_agroecologica.id
     elsif params[:one_million_voice_id]
       @midia.one_million_voice_id = @one_million_voice.id
+      @midia.local_id = @one_million_voice.local_id
     elsif params[:local_id]
       @midia.local_id = @local.id
     end

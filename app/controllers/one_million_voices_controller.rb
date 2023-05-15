@@ -69,7 +69,7 @@ class OneMillionVoicesController < ApplicationController
     @one_million_voice.destroy
 
     respond_to do |format|
-      format.html { redirect_to one_million_voices_url, notice: "One million voice was successfully destroyed." }
+      format.html { redirect_to locais_url, notice: "One million voice was successfully destroyed." }
       format.json { head :no_content }
     end
   end
