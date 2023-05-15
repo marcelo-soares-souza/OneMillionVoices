@@ -43,7 +43,7 @@ class LocaisController < ApplicationController
 
     respond_to do |format|
       if @local.save
-        format.html { redirect_to new_local_one_million_voice_path(@local), notice: t(:location_has_been_registered) }
+        format.html { redirect_to @local, notice: t(:location_has_been_registered) }
         format.json { render :show, status: :created, location: @local }
       else
         format.html { render :new }
