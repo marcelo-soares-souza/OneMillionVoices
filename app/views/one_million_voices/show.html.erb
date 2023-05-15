@@ -1,6 +1,11 @@
 <% title @one_million_voice.local.nome %>
 
-<%= link_to t(:send_photo), new_one_million_voice_midia_path(@one_million_voice), :class => "btn btn-warning", :style => "float:right;" %>
+<% if usuario_signed_in? %>
+  <% if current_usuario.admin? or current_usuario.id == @one_million_voice.usuario.id %>
+    <%= link_to t(:send_photo), new_one_million_voice_midia_path(@one_million_voice), :class => "btn btn-warning", :style => "float:right;" %>
+  <% end %>
+<% end %>
+
 <br><br><br>
 
 <ul class="nav nav-tabs">

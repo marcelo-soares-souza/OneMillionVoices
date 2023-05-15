@@ -10,13 +10,13 @@
 
 <% if usuario_signed_in? %>
   <% if params[:saf_id] %>
-    <%= link_to t(:send_picture), new_saf_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @saf.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_photo), new_saf_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @saf.usuario_id == current_usuario.id %>
   <% elsif params[:experiencia_agroecologica_id] %>
-    <%= link_to t(:send_picture), new_experiencia_agroecologica_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_photo), new_experiencia_agroecologica_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
   <% elsif params[:one_million_voice_id] %>
-    <%= link_to t(:send_picture), new_one_million_voice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_photo), new_one_million_voice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
   <% elsif params[:local_id] %>
-    <%= link_to t(:send_picture), new_local_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @local.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_photo), new_local_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @local.usuario_id == current_usuario.id %>
   <% end %>
 <% end %>
 
