@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   resources :tipo_organizacoes
 
   scope(usuarios: {}) do
+    resources :usuarios, path: "accounts"
     resources :usuarios, path: "contributors"
   end
 
