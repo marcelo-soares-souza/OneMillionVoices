@@ -16,7 +16,7 @@ class LocaisController < ApplicationController
     @locais = if params[:usuario_id]
       Local.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
     else
-      Local.all.load_async.sort_by(&:updated_at).reverse
+      Local.page(params[:page])
     end
   end
 

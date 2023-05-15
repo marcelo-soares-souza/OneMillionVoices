@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Local < ApplicationRecord
+  paginates_per 6
+  max_paginates_per 6
+
   belongs_to :usuario
 
   has_many :organizacao_locais, dependent: :nullify

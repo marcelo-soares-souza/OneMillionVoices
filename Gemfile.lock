@@ -108,6 +108,18 @@ GEM
     js_cookie_rails (2.2.0)
       railties (>= 3.1)
     json (2.6.3)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     kt-paperclip (7.1.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -271,6 +283,7 @@ DEPENDENCIES
   geocoder
   invisible_captcha
   jbuilder (>= 2.11.5)
+  kaminari
   kt-paperclip (>= 7.1.1)
   listen (>= 3.0.5, < 3.2)
   nokogiri (>= 1.13.9)
