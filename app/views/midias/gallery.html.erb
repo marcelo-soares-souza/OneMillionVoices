@@ -16,9 +16,9 @@
 
 <ul class="nav nav-tabs">
   <% if params[:local_id] %>
-      <li class="nav-item">
-        <%= link_to truncate(@local.nome, length: 12), local_path(@local), :class => "nav-link" %>
-      </li>
+    <li class="nav-item">
+      <%= link_to truncate(@local.nome, length: 12), local_path(@local), :class => "nav-link" %>
+    </li>
   <% end %>
 
   <li class="nav-item">
@@ -33,6 +33,9 @@
     <% if params[:agroecological_practice_id] %>
       <%= link_to t(:gallery) + " (#{@agroecological_practice.midias.count})", agroecological_practice_gallery_path, :class => "nav-link active" %>
     <% end %>
+    <% if params[:local_id] %>
+      <%= link_to t(:practices) + " (#{@local.agroecological_practices.count})", local_agroecological_practices_path(@local), :class => "nav-link" %>
+  <%end %>
   </li>
 </ul>
 
