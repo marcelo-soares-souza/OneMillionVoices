@@ -8,7 +8,6 @@ class Usuario < ApplicationRecord
   has_many :locais
   has_many :local_usuarios, dependent: :destroy
   has_many :colaboracoes, through: :local_usuarios, source: :local
-  has_many :one_million_voices
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

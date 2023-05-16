@@ -6,32 +6,24 @@
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to t(:agroecological_practices), agroecological_practices_path, :class => "nav-link" %>
-    <% elsif params[:one_million_voice_id] %>
-      <%= link_to "One Million Voices", one_million_voices_path, :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to @agroecological_practice.local.nome, agroecological_practice_path(@agroecological_practice), :class => "nav-link" %>
-    <% elsif params[:one_million_voice_id] %>
-      <%= link_to @one_million_voice.local.nome, one_million_voice_path(@one_million_voice), :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to "Fotos (#{@agroecological_practice.midias.count})", agroecological_practice_midias_path, :class => "nav-link" %>
-    <% elsif params[:one_million_voice_id] %>
-      <%= link_to "Fotos (#{@one_million_voice.midias.count})", one_million_voice_midias_path, :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_agroecological_practice_midia_path, :class => "nav-link active" %>
-    <% elsif params[:one_million_voice_id] %>
-      <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_one_million_voice_midia_path, :class => "nav-link active" %>
     <% end %>
   </li>
 </ul>

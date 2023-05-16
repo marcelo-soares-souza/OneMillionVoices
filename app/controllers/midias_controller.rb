@@ -13,8 +13,6 @@ class MidiasController < ApplicationController
   def index
     if params[:agroecological_practice_id]
       @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
-    elsif params[:one_million_voice_id]
-      @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
       @midias = Midia.where(local_id: @local.id).load_async
     end
@@ -25,8 +23,6 @@ class MidiasController < ApplicationController
   def gallery
     if params[:agroecological_practice_id]
       @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
-    elsif params[:one_million_voice_id]
-      @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
       @midias = Midia.where(local_id: @local.id).load_async
     end
@@ -53,9 +49,6 @@ class MidiasController < ApplicationController
     if params[:agroecological_practice_id]
       @midia.agroecological_practice_id = @agroecological_practice.id
       @midia.local_id = @agroecological_practice.local.id
-    elsif params[:one_million_voice_id]
-      @midia.one_million_voice_id = @one_million_voice.id
-      @midia.local_id = @one_million_voice.local_id
     elsif params[:local_id]
       @midia.local_id = @local.id
     end
@@ -64,10 +57,6 @@ class MidiasController < ApplicationController
       if @midia.save
         if params[:agroecological_practice_id]
           format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Photo has been sent" }
-        elsif params[:one_million_voice_id]
-          format.html do
-            redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Photo has been sent"
-          end
         elsif params[:local_id]
           format.html do
             redirect_to local_gallery_path(@local),  notice: "Photo has been sent"
@@ -88,10 +77,6 @@ class MidiasController < ApplicationController
       if @midia.update(midia_params)
         if params[:agroecological_practice_id]
           format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Media has been updated." }
-        elsif params[:one_million_voice_id]
-          format.html do
-            redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Media has been updated."
-          end
         elsif params[:local_id]
           format.html do
             redirect_to local_gallery_path(@local),  notice: "Media has been updated."
@@ -113,10 +98,6 @@ class MidiasController < ApplicationController
     respond_to do |format|
       if params[:agroecological_practice_id]
         format.html { redirect_to agroecological_practice_path(@agroecological_practice), notice: "Media has been removed." }
-      elsif params[:one_million_voice_id]
-        format.html do
-          redirect_to one_million_voice_gallery_path(@one_million_voice), notice: "Media has been removed."
-        end
       elsif params[:local_id]
         format.html do
           redirect_to local_gallery_path(@local), notice: "Media has been removed."
@@ -140,8 +121,6 @@ class MidiasController < ApplicationController
     def load_dados
       if params[:agroecological_practice_id]
         @agroecological_practice = AgroecologicalPractice.find(params[:agroecological_practice_id])
-      elsif params[:one_million_voice_id]
-        @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
       elsif params[:local_id]
         @local = Local.friendly.find(params[:local_id])
       end
@@ -152,8 +131,6 @@ class MidiasController < ApplicationController
         @selected_id = current_usuario.id
         if @agroecological_practice
           @selected_id = @agroecological_practice.usuario.id
-        elsif @one_million_voice
-          @selected_id = @one_million_voice.usuario.id
         elsif @local
           @selected_id = @local.usuario.id
         end
@@ -165,8 +142,6 @@ class MidiasController < ApplicationController
 
       if @agroecological_practice
         @default_media_name = "Agroecological Practice in " + @agroecological_practice.local.nome + " "
-      elsif @one_million_voice
-        @default_media_name = @one_million_voice.local.nome + " "
       elsif @local
         @default_media_name = "Location " + @local.nome + " "
       end

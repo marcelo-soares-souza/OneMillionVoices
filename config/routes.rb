@@ -7,11 +7,6 @@ Rails.application.routes.draw do
   resources :manual
   resources :agroecological_practices
 
-  resources :one_million_voices do
-    get "/gallery" => "midias#gallery"
-    resources :midias
-  end
-
   scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
     root to: "home#index"
     get "home/index"
@@ -31,10 +26,6 @@ Rails.application.routes.draw do
   resources :locais do
     get "/gallery" => "midias#gallery"
     resources :agroecological_practices
-    resources :one_million_voices do
-      get "/gallery" => "midias#gallery"
-      resources :midias
-    end
     resources :midias
   end
 

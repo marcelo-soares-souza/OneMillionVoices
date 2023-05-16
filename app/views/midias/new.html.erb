@@ -1,7 +1,5 @@
 <% if params[:agroecological_practice_id] %>
   <% title "Add Photo To#{@agroecological_practice.local.nome}" %>
-<% elsif params[:one_million_voice_id] %>
-  <% title "Add Photo to #{@one_million_voice.local.nome}" %>
 <% elsif params[:local_id] %>
   <% title "Add Photo to #{@local.nome}" %>
 <% end %>
@@ -18,8 +16,6 @@
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to @agroecological_practice.local.nome.truncate(10), agroecological_practice_path(@agroecological_practice), :class => "nav-link" %>
-    <% elsif params[:one_million_voice_id] %>
-      <%= link_to "One Million Voices on " + truncate(@one_million_voice.local.nome, length: 10), one_million_voice_path(@one_million_voice), :class => "nav-link" %>
     <% elsif params[:local_id] %>
       <%= link_to truncate(@local.nome, length: 10), local_path(@local), :class => "nav-link" %>
     <% end %>
@@ -29,8 +25,6 @@
     <li class="nav-item">
       <% if params[:agroecological_practice_id] %>
         <%= link_to "Send Photo", new_agroecological_practice_midia_path, :class => "nav-link active" %>
-      <% elsif params[:one_million_voice_id] %>
-        <%= link_to "Send Photo", new_one_million_voice_midia_path, :class => "nav-link active" %>
       <% elsif params[:local_id] %>
         <%= link_to "Send Photo", new_local_midia_path, :class => "nav-link active" %>
       <% end %>

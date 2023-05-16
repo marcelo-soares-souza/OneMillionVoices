@@ -5,8 +5,6 @@ class Local < ApplicationRecord
   max_paginates_per 6
   belongs_to :usuario
 
-  has_one :one_million_voice, dependent: :destroy
-
   has_many :local_usuarios, dependent: :destroy
   has_many :usuarios, through: :local_usuarios
   has_many :midias, dependent: :destroy

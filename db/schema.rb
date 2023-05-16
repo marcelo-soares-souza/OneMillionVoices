@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -69,29 +67,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124127) do
     t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.bigint "usuario_id"
-    t.bigint "one_million_voice_id"
     t.bigint "local_id"
     t.bigint "agroecological_practice_id"
     t.index ["agroecological_practice_id"], name: "index_midias_on_agroecological_practice_id"
     t.index ["local_id"], name: "index_midias_on_local_id"
-    t.index ["one_million_voice_id"], name: "index_midias_on_one_million_voice_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
     t.index ["usuario_id"], name: "index_midias_on_usuario_id"
-  end
-
-  create_table "one_million_voices", force: :cascade do |t|
-    t.text "description"
-    t.bigint "local_id", null: false
-    t.bigint "usuario_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "problem_it_address"
-    t.text "how_it_is_done"
-    t.text "expected_function_effects"
-    t.text "principles"
-    t.text "general_evaluate"
-    t.index ["local_id"], name: "index_one_million_voices_on_local_id"
-    t.index ["usuario_id"], name: "index_one_million_voices_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -131,8 +112,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124127) do
   add_foreign_key "local_usuarios", "usuarios"
   add_foreign_key "midias", "agroecological_practices"
   add_foreign_key "midias", "locais"
-  add_foreign_key "midias", "one_million_voices"
   add_foreign_key "midias", "usuarios"
-  add_foreign_key "one_million_voices", "locais"
-  add_foreign_key "one_million_voices", "usuarios"
 end
