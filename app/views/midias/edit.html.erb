@@ -4,8 +4,8 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <% if params[:saf_id] %>
-      <%= link_to t(:safs), safs_path, :class => "nav-link" %>
+    <% if params[:agroecological_practice_id] %>
+      <%= link_to t(:agroecological_practices), agroecological_practices_path, :class => "nav-link" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to "Experiências em Agroecologia", experiencia_agroecologicas_path, :class => "nav-link" %>
     <% elsif params[:one_million_voice_id] %>
@@ -14,8 +14,8 @@
   </li>
 
   <li class="nav-item">
-    <% if params[:saf_id] %>
-      <%= link_to @saf.nome, saf_path(@saf), :class => "nav-link" %>
+    <% if params[:agroecological_practice_id] %>
+      <%= link_to @agroecological_practice.local.nome, agroecological_practice_path(@agroecological_practice), :class => "nav-link" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to @experiencia_agroecologica.nome, experiencia_agroecologica_path(@experiencia_agroecologica), :class => "nav-link" %>
     <% elsif params[:one_million_voice_id] %>
@@ -24,8 +24,8 @@
   </li>
 
   <li class="nav-item">
-    <% if params[:saf_id] %>
-      <%= link_to "Fotos (#{@saf.midias.count})", saf_midias_path, :class => "nav-link" %>
+    <% if params[:agroecological_practice_id] %>
+      <%= link_to "Fotos (#{@agroecological_practice.midias.count})", agroecological_practice_midias_path, :class => "nav-link" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to "Fotos (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_midias_path, :class => "nav-link" %>
     <% elsif params[:one_million_voice_id] %>
@@ -34,8 +34,8 @@
   </li>
 
   <li class="nav-item">
-    <% if params[:saf_id] %>
-      <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_saf_midia_path, :class => "nav-link active" %>
+    <% if params[:agroecological_practice_id] %>
+      <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_agroecological_practice_midia_path, :class => "nav-link active" %>
     <% elsif params[:experiencia_agroecologica_id] %>
       <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_experiencia_agroecologica_midia_path, :class => "nav-link active" %>
     <% elsif params[:one_million_voice_id] %>

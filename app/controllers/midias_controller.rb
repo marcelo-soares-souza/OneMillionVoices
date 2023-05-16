@@ -146,53 +146,53 @@ class MidiasController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_midia
-    @midia = Midia.friendly.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def midia_params
-    params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :experiencia_agroecologica_id, :imagem, :usuario_id)
-  end
-
-  def load_dados
-    if params[:agroecological_practice_id]
-      @agroecological_practice = AgroecologicalPractice.find(params[:agroecological_practice_id])
-    elsif params[:experiencia_agroecologica_id]
-      @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
-    elsif params[:one_million_voice_id]
-      @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
-    elsif params[:local_id]
-      @local = Local.friendly.find(params[:local_id])
+    # Use callbacks to share common setup or constraints between actions.
+    def set_midia
+      @midia = Midia.friendly.find(params[:id])
     end
-  end
 
-  def selected_id
-    if current_usuario && current_usuario.admin?
-      @selected_id = current_usuario.id
-      if @experiencia_agroecologica
-        @selected_id = @experiencia_agroecologica.usuario.id
-      elsif @agroecological_practice
-        @selected_id = @agroecological_practice.usuario.id
-      elsif @one_million_voice
-        @selected_id = @one_million_voice.usuario.id
-      elsif @local
-        @selected_id = @local.usuario.id
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def midia_params
+      params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :experiencia_agroecologica_id, :imagem, :usuario_id)
+    end
+
+    def load_dados
+      if params[:agroecological_practice_id]
+        @agroecological_practice = AgroecologicalPractice.find(params[:agroecological_practice_id])
+      elsif params[:experiencia_agroecologica_id]
+        @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
+      elsif params[:one_million_voice_id]
+        @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
+      elsif params[:local_id]
+        @local = Local.friendly.find(params[:local_id])
       end
     end
-  end
 
-  def default_media_name
-    @default_media_name = ""
-    if @experiencia_agroecologica
-      @default_media_name = @experiencia_agroecologica.nome + " "
-    elsif @agroecological_practice
-      @default_media_name = @agroecological_practice.local.nome + " "
-    elsif @one_million_voice
-      @default_media_name = @one_million_voice.local.nome + " "
-    elsif @local
-      @default_media_name = @local.nome + " "
+    def selected_id
+      if current_usuario && current_usuario.admin?
+        @selected_id = current_usuario.id
+        if @experiencia_agroecologica
+          @selected_id = @experiencia_agroecologica.usuario.id
+        elsif @agroecological_practice
+          @selected_id = @agroecological_practice.usuario.id
+        elsif @one_million_voice
+          @selected_id = @one_million_voice.usuario.id
+        elsif @local
+          @selected_id = @local.usuario.id
+        end
+      end
     end
-  end
+
+    def default_media_name
+      @default_media_name = ""
+      if @experiencia_agroecologica
+        @default_media_name = @experiencia_agroecologica.nome + " "
+      elsif @agroecological_practice
+        @default_media_name = "Agroecological Practice in " + @agroecological_practice.local.nome + " "
+      elsif @one_million_voice
+        @default_media_name = @one_million_voice.local.nome + " "
+      elsif @local
+        @default_media_name = @local.nome + " "
+      end
+    end
 end

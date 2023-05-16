@@ -14,12 +14,12 @@ class AgroecologicalPracticesController < ApplicationController
   # GET /agroecological_practices.json
   def index
     @agroecological_practices = if params[:local_id]
-                                  AgroecologicalPractice.where(local_id: @local.id).load_async.sort_by(&:updated_at).reverse
-                                elsif params[:usuario_id]
-                                  AgroecologicalPractice.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
-                                else
-                                  AgroecologicalPractice.order("updated_at DESC").page(params[:page])
-                                end
+      AgroecologicalPractice.where(local_id: @local.id).load_async.sort_by(&:updated_at).reverse
+    elsif params[:usuario_id]
+      AgroecologicalPractice.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
+    else
+      AgroecologicalPractice.order("updated_at DESC").page(params[:page])
+    end
   end
 
   # GET /agroecological_practices/1
@@ -41,8 +41,6 @@ class AgroecologicalPracticesController < ApplicationController
   def create
     @agroecological_practice = AgroecologicalPractice.new(agroecological_practice_params)
     @agroecological_practice.usuario_id = current_usuario.id unless current_usuario.admin?
-    puts '-------------------'
-    puts @agroecological_practice
 
     respond_to do |format|
       if @agroecological_practice.save
@@ -80,21 +78,21 @@ class AgroecologicalPracticesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_agroecological_practice
-    @agroecological_practice = AgroecologicalPractice.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_agroecological_practice
+      @agroecological_practice = AgroecologicalPractice.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def agroecological_practice_params
-    params.require(:agroecological_practice).permit(:summary_description, :problem_it_address, :how_it_is_done, :expected_function_effects, :general_evaluate, :local_id, :usuario_id, principles: [])
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def agroecological_practice_params
+      params.require(:agroecological_practice).permit(:summary_description, :problem_it_address, :how_it_is_done, :expected_function_effects, :general_evaluate, :local_id, :usuario_id, principles: [])
+    end
 
-  def load_local
-    @local = Local.friendly.find(params[:local_id]) if params[:local_id]
-  end
+    def load_local
+      @local = Local.friendly.find(params[:local_id]) if params[:local_id]
+    end
 
-  def load_usuario
-    @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
-  end
+    def load_usuario
+      @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
+    end
 end
