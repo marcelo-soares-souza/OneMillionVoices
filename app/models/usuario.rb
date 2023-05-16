@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Usuario < ApplicationRecord
+  paginates_per 6
+  max_paginates_per 6
+
   has_many :tema_experiencia_agroecologicas
   has_many :tipo_organizacoes
   has_many :usuarios

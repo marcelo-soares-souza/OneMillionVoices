@@ -6,7 +6,7 @@ class UsuariosController < ApplicationController
   before_action -> { check_owner Usuario.friendly.find(params[:id]).id }, only: %i[edit update destroy]
 
   def index
-    @usuarios = Usuario.all.load_async.sort_by(&:updated_at).reverse
+    @usuarios = Usuario.order("updated_at DESC").page(params[:page])
   end
 
   def show; end

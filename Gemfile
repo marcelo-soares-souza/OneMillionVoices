@@ -44,4 +44,4 @@ gem "sprockets-rails", ">= 3.4.2"
 gem "cookies_eu", ">= 1.7.8"
 gem "babel-transpiler"
 gem "geocoder"
-gem 'kaminari'
+gem "kaminari"

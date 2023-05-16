@@ -22,9 +22,9 @@
     <% @locais.each do |local| %>
 
       <div class="col-sm-6">
-        <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local) %></div>
-        <br>
         <div class="card">
+          <br>
+          <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local), alt: local.nome, title: local.nome %></div>
           <div class="card-body">
             <h5 class="card-title"><%= link_to local.nome, local_path(local) %></h5>
             <p class="card-text" style="text-align: center;"><%= @tipos.key(local.tipo) %></p>
