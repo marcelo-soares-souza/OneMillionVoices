@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
@@ -9,11 +9,6 @@ class ApplicationController < ActionController::Base
   protected
     def set_locale
       default_locale = "en"
-
-      if request.host == "agroecologymap.org"
-        default_locale = "en"
-      end
-
       I18n.default_locale = default_locale
       I18n.locale = params[:locale] || I18n.default_locale
       Rails.application.routes.default_url_options[:locale] = I18n.locale

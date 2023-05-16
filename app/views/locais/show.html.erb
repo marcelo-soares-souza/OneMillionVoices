@@ -38,15 +38,6 @@
     <div class='<%= (@local.nome.length() > 100 ? 'text-box' : '') %>'><h3><%= @local.nome %></h3></div>
     <br>
 
-    <%# geo = Geocoder.search("#{@local.latitude},#{@local.longitude}") %>
-    <%# if geo and geo[0] and geo[0].country %>
-    <!--      <strong><%#= t(:location) %></strong><br>-->
-    <%#= "#{geo[0].city}," if geo[0].city %>
-    <%#= "#{geo[0].state}," if geo[0].state%>
-    <%#= "#{geo[0].country}" if geo[0].country %>
-    <!--      <br><br>-->
-    <%# end %>
-
     <%= "<strong>#{t(:type)}:</strong><br>#{@tipos.key(@local.tipo)}&nbsp;<br>".html_safe if @local.tipo? %>
     <%= "<br><strong>#{t(:short_description)}:</strong><br><div class='text-box'>#{simple_format (h @local.observacao).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @local.observacao? %>
     <%= "<br><strong>#{t(:responsible_for_information)}:</strong><br>#{link_to @local.usuario.nome, usuario_path(@local.usuario)}&nbsp;<br>".html_safe if @local.usuario.nome? %>

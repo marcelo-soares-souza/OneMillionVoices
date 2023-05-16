@@ -46,27 +46,6 @@
         <%= f.text_area :observacao, class: "form-control", :rows => "5" %>
       </div>
     </div>
-
-    <!--  <div class="form-group row">-->
-    <%#= f.label t(:accommodation), class: "col-sm-2 col-form-label col-form-label-lg" %>
-    <!--    <div class="col-sm-10">-->
-    <%#= f.collection_select(:hospedagem, @hospedagens, :last, :first, { :include_blank => t(:accept_hosting) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-    <!--    </div>-->
-    <!--  </div>-->
-
-    <!--
-  <div class="form-group row">
-    <%= f.label t(:partner_collaborators), class: "col-sm-2 col-form-label col-form-label-lg" %>
-    <div class="col-sm-10">
-      <% if !@usuarios.empty? %>
-        <%= f.collection_select(:usuario_ids, @usuarios, :id, :nome, { include_hidden: true }, { class: "form-control selectpicker show-tick", multiple: true, "data-live-search": true }) %>
-      <% else %>
-        <b>Não há Colaboradores Registrados.
-          Deseja <%= link_to "Cadastrar?", new_usuario_path, :target => "blank" %></b>
-      <% end %>
-    </div>
-  </div>
--->
     <br>
     <div class="form-group row bg-light required">
       <%= f.label t(:localization), class: "col-sm-2 col-form-label col-form-label-lg  control-label" %>
@@ -90,10 +69,10 @@
             lat = -15.77835833463309;
             lon = -47.88219451904297;
 
-            <%# if request.location %>
-<!--              lat = <%#= request.location.latitude ? request.location.latitude : -15.77835833463309%>-->
-<!--              lon = <%#= request.location.longitude ? request.location.longitude : -47.88219451904297%>-->
-            <%# end %>
+            <% if request.location %>
+              lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
+              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
+            <% end %>
 
                 <% elsif params[:action] != 'new' %>
                 <% if f.object.latitude? %>
@@ -133,7 +112,6 @@
             L.control.layers(baseMaps).addTo(map);
 
             map.addControl(new L.control.zoom({position: 'topright'}));
-            map.addControl(new L.Control.OSMGeocoder({ placeholder: '<%= t(:search_by_address) %>', text: '<%= t(:locate) %>', collapsed: true}));
             L.control.locate().addTo(map);
 
             var Icon = L.icon({
