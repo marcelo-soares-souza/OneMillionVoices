@@ -1,5 +1,3 @@
-<%= render 'layouts/dataTable' %>
-
 <% if params[:agroecological_practice_id] %>
   <% title t(:photo) + " #{@agroecological_practice.local.nome}" %>
 <% end %>
@@ -47,7 +45,7 @@
 
   <br>
   <div>
-    <table id="dataTable-agroecologia" class="table table-striped table-bordered" width="100%" cellspacing="0">
+    <table class="table table-striped table-bordered" width="100%" cellspacing="0">
       <thead>
       <tr>
         <th></th>
@@ -83,8 +81,4 @@
       </tbody>
     </table>
   </div>
-
-  <script>$(document).ready(function () {
-      dataTables();
-  });</script>
 <% end %>

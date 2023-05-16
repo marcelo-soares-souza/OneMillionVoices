@@ -33,8 +33,6 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise", "~> 4.9.0"
 gem "friendly_id"
 gem "invisible_captcha"
-gem "dalli"
-gem "redis", ">= 5.0.5"
 gem "kt-paperclip", ">= 7.1.1"
 
 gem "sass-rails", ">= 6.0.0"
