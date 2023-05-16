@@ -658,3 +658,7 @@ input::file-selector-button {
 {
     color: black;
 }
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    width: 300px;
+}

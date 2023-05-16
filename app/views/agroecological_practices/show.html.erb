@@ -24,11 +24,13 @@
 
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
-    <% if @agroecological_practice.local.imagem %>
-      <div  class="thumbnail">
+    <div  class="thumbnail">
+      <% if  @agroecological_practice.midias and @agroecological_practice.midias[0]%>
+        <%= image_tag(@agroecological_practice.midias[0].imagem.url(:medium)) %>
+      <% else %>
         <%= image_tag(@agroecological_practice.local.imagem.url(:medium)) %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <br>
     <div class='<%= (@agroecological_practice.local.nome.length() > 90 ? 'text-box' : '') %>'><h3><%= @agroecological_practice.local.nome %></h3></div>
