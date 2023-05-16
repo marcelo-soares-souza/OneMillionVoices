@@ -55,7 +55,5 @@ Rails.application.routes.draw do
     resources :agroecological_practices
   end
 
-  resources :novidades, only: [:index]
-
   put "/agroecological-experiences/:id/like", to: "agroecological_practices#like", as: "like"
 end

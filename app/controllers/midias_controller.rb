@@ -56,8 +56,10 @@ class MidiasController < ApplicationController
 
     if params[:agroecological_practice_id]
       @midia.agroecological_practice_id = @agroecological_practice.id
+      @midia.local_id = @agroecological_practice.local.id
     elsif params[:experiencia_agroecologica_id]
       @midia.experiencia_agroecologica_id = @experiencia_agroecologica.id
+      @midia.local_id = @experiencia_agroecologica.local.id
     elsif params[:one_million_voice_id]
       @midia.one_million_voice_id = @one_million_voice.id
       @midia.local_id = @one_million_voice.local_id
@@ -68,19 +70,19 @@ class MidiasController < ApplicationController
     respond_to do |format|
       if @midia.save
         if params[:agroecological_practice_id]
-          format.html { redirect_to agroecological_practice_midia_path(@agroecological_practice, @midia), notice: "Midia foi cadastrada." }
+          format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Photo has been sent" }
         elsif params[:experiencia_agroecologica_id]
           format.html do
             redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
-                        notice: "Midia foi cadastrada."
+                        notice: "Photo has been sent"
           end
         elsif params[:one_million_voice_id]
           format.html do
-            redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Photo Added."
+            redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Photo has been sent"
           end
         elsif params[:local_id]
           format.html do
-            redirect_to local_gallery_path(@local),  notice: "Photo Added."
+            redirect_to local_gallery_path(@local),  notice: "Photo has been sent"
           end
         end
         format.json { render :show, status: :created, location: @midia }

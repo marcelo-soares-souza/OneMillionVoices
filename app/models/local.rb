@@ -3,25 +3,15 @@
 class Local < ApplicationRecord
   paginates_per 6
   max_paginates_per 6
-
   belongs_to :usuario
 
-  has_many :organizacao_locais, dependent: :nullify
-  has_many :organizacoes, through: :organizacao_locais
-  accepts_nested_attributes_for :organizacao_locais, allow_destroy: true
+  has_one :one_million_voice, dependent: :destroy
 
-  has_many :safs, dependent: :destroy
   has_many :experiencia_agroecologicas, dependent: :destroy
-
-  has_many :blogs, dependent: :delete_all
-
   has_many :local_usuarios, dependent: :destroy
   has_many :usuarios, through: :local_usuarios
   has_many :midias, through: :experiencia_agroecologicas, strict_loading: true
-
-  has_one :one_million_voice, dependent: :destroy
   has_many :midias, dependent: :destroy
-
   has_many :agroecological_practices, dependent: :destroy
 
   accepts_nested_attributes_for :local_usuarios, allow_destroy: true

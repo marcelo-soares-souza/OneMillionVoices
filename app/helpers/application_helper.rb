@@ -13,10 +13,6 @@ module ApplicationHelper
     end
   end
 
-  def form_for_blog(condition, &block)
-    form_for [@local, @blog], html: { multipart: true }, &block if condition
-  end
-
   def title(*parts)
     content_for(:title) { (parts << t(:site_name)).join(" | ") } unless parts.empty?
   end

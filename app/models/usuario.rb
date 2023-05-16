@@ -5,14 +5,9 @@ class Usuario < ApplicationRecord
   max_paginates_per 6
 
   has_many :tema_experiencia_agroecologicas
-  has_many :tipo_organizacoes
   has_many :usuarios
   has_many :locais
-  has_many :organizacoes
-  has_many :safs
   has_many :experiencia_agroecologicas
-  has_many :plantas
-  has_many :animais
   has_many :local_usuarios, dependent: :destroy
   has_many :colaboracoes, through: :local_usuarios, source: :local
   has_many :likes

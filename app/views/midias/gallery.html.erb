@@ -54,16 +54,6 @@
       <%= link_to t(:gallery) + " (#{@one_million_voice.midias.count})", one_million_voice_gallery_path, :class => "nav-link active" %>
     <% end %>
   </li>
-
-  <!--  <li class="nav-item">-->
-  <%# if params[:agroecological_practice_id] %>
-  <%#= link_to t(:photos) + " (#{@agroecological_practice.midias.count})", agroecological_practice_midias_path, :class => "nav-link" %>
-  <%# elsif params[:experiencia_agroecologica_id] %>
-  <%#= link_to t(:photos) + " (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_midias_path, :class => "nav-link" %>
-  <%# elsif params[:one_million_voice_id] %>
-  <%#= link_to t(:photos) + " (#{@one_million_voice.midias.count})", one_million_voice_midias_path, :class => "nav-link" %>
-  <%# end %>
-  <!--  </li>-->
 </ul>
 
 <% if @midias.empty? %>
@@ -95,19 +85,25 @@
             </a>
           </div>
           <% if usuario_signed_in? %>
-            <% if @one_million_voice or @local %>
-              <% if current_usuario.admin? or current_usuario.id == (@one_million_voice ? @one_million_voice.usuario.id : nil) or current_usuario.id == (@local ? @local.usuario.id : nil)%>
+            <% if @one_million_voice or @local or @agroecological_practice %>
+              <% if current_usuario.admin? or current_usuario.id == (@one_million_voice ? @one_million_voice.usuario.id : nil) or current_usuario.id == (@local ? @local.usuario.id : nil) or current_usuario.id == (@agroecological_practice ? @agroecological_practice.usuario.id : nil)%>
                 <div class="midia-control">
                   <% if @one_million_voice %>
-                    <%= link_to " &nbsp; Edit &nbsp; ".html_agroecological_practicee, edit_one_million_voice_midia_path(@one_million_voice, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>
+                    <%= link_to " &nbsp; Edit &nbsp; ".html_safe, edit_one_million_voice_midia_path(@one_million_voice, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>
                     <br>
                     <%= link_to t(:destroy), one_million_voice_midia_path(@one_million_voice, midia), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you Sure?')) }, :class => 'btn btn-danger btn-sm', :style => 'font-size: 10px;' %>
                   <% end %>
 
                   <% if @local %>
-                    <%= link_to " &nbsp; Edit &nbsp; ".html_agroecological_practicee, edit_local_midia_path(@local, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>
+                    <%= link_to " &nbsp; Edit &nbsp; ".html_safe, edit_local_midia_path(@local, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>
                     <br>
                     <%= link_to t(:destroy), local_midia_path(@local, midia), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you Sure?')) }, :class => 'btn btn-danger btn-sm', :style => 'font-size: 10px;' %>
+                  <% end %>
+
+                  <% if @agroecological_practice %>
+                    <%= link_to " &nbsp; Edit &nbsp; ".html_safe, edit_agroecological_practice_midia_path(@agroecological_practice, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>
+                    <br>
+                    <%= link_to t(:destroy), agroecological_practice_midia_path(@agroecological_practice, midia), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you Sure?')) }, :class => 'btn btn-danger btn-sm', :style => 'font-size: 10px;' %>
                   <% end %>
                 </div>
               <% end %>
