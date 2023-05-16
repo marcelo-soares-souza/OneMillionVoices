@@ -39,7 +39,7 @@
           <td><%= link_to truncate(one_million_voice.local.nome, length: 100), local_one_million_voice_path(one_million_voice.local, '') %></td>
           <td><%= truncate(one_million_voice.description, length: 100) %></td>
           <td><%= one_million_voice.principles if one_million_voice.principles %></td>
-          <% total_midia = Midia.where(experiencia_agroecologica: one_million_voice.local.experiencia_agroecologicas).count + Midia.where(one_million_voice: one_million_voice).count%>
+          <% total_midia = Midia.where(one_million_voice: one_million_voice).count%>
           <td><%= link_to total_midia, local_gallery_path(one_million_voice.local.id) %></td>
 
           <% if usuario_signed_in? %>

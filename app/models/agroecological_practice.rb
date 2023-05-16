@@ -7,7 +7,6 @@ class AgroecologicalPractice < ApplicationRecord
   belongs_to :usuario
   belongs_to :local
 
-  has_many :comentarios
   has_many :midias, dependent: :delete_all
 
   before_save do

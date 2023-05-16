@@ -13,8 +13,6 @@ class MidiasController < ApplicationController
   def index
     if params[:agroecological_practice_id]
       @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
-    elsif params[:experiencia_agroecologica_id]
-      @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
     elsif params[:one_million_voice_id]
       @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
@@ -27,8 +25,6 @@ class MidiasController < ApplicationController
   def gallery
     if params[:agroecological_practice_id]
       @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
-    elsif params[:experiencia_agroecologica_id]
-      @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
     elsif params[:one_million_voice_id]
       @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
@@ -57,9 +53,6 @@ class MidiasController < ApplicationController
     if params[:agroecological_practice_id]
       @midia.agroecological_practice_id = @agroecological_practice.id
       @midia.local_id = @agroecological_practice.local.id
-    elsif params[:experiencia_agroecologica_id]
-      @midia.experiencia_agroecologica_id = @experiencia_agroecologica.id
-      @midia.local_id = @experiencia_agroecologica.local.id
     elsif params[:one_million_voice_id]
       @midia.one_million_voice_id = @one_million_voice.id
       @midia.local_id = @one_million_voice.local_id
@@ -71,11 +64,6 @@ class MidiasController < ApplicationController
       if @midia.save
         if params[:agroecological_practice_id]
           format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Photo has been sent" }
-        elsif params[:experiencia_agroecologica_id]
-          format.html do
-            redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
-                        notice: "Photo has been sent"
-          end
         elsif params[:one_million_voice_id]
           format.html do
             redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Photo has been sent"
@@ -100,11 +88,6 @@ class MidiasController < ApplicationController
       if @midia.update(midia_params)
         if params[:agroecological_practice_id]
           format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Media has been updated." }
-        elsif params[:experiencia_agroecologica_id]
-          format.html do
-            redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
-                        notice: "Media has been updated."
-          end
         elsif params[:one_million_voice_id]
           format.html do
             redirect_to one_million_voice_gallery_path(@one_million_voice),  notice: "Media has been updated."
@@ -130,10 +113,6 @@ class MidiasController < ApplicationController
     respond_to do |format|
       if params[:agroecological_practice_id]
         format.html { redirect_to agroecological_practice_path(@agroecological_practice), notice: "Media has been removed." }
-      elsif params[:experiencia_agroecologica_id]
-        format.html do
-          redirect_to experiencia_agroecologica_midias_path(@experiencia_agroecologica), notice: "Media has been removed."
-        end
       elsif params[:one_million_voice_id]
         format.html do
           redirect_to one_million_voice_gallery_path(@one_million_voice), notice: "Media has been removed."
@@ -155,14 +134,12 @@ class MidiasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def midia_params
-      params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :experiencia_agroecologica_id, :local_id, :imagem, :usuario_id)
+      params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :local_id, :imagem, :usuario_id)
     end
 
     def load_dados
       if params[:agroecological_practice_id]
         @agroecological_practice = AgroecologicalPractice.find(params[:agroecological_practice_id])
-      elsif params[:experiencia_agroecologica_id]
-        @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
       elsif params[:one_million_voice_id]
         @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
       elsif params[:local_id]
@@ -173,9 +150,7 @@ class MidiasController < ApplicationController
     def selected_id
       if current_usuario && current_usuario.admin?
         @selected_id = current_usuario.id
-        if @experiencia_agroecologica
-          @selected_id = @experiencia_agroecologica.usuario.id
-        elsif @agroecological_practice
+        if @agroecological_practice
           @selected_id = @agroecological_practice.usuario.id
         elsif @one_million_voice
           @selected_id = @one_million_voice.usuario.id
@@ -187,9 +162,8 @@ class MidiasController < ApplicationController
 
     def default_media_name
       @default_media_name = ""
-      if @experiencia_agroecologica
-        @default_media_name = @experiencia_agroecologica.nome + " "
-      elsif @agroecological_practice
+
+      if @agroecological_practice
         @default_media_name = "Agroecological Practice in " + @agroecological_practice.local.nome + " "
       elsif @one_million_voice
         @default_media_name = @one_million_voice.local.nome + " "

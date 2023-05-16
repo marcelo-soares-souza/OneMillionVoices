@@ -25,7 +25,6 @@ class AgroecologicalPracticesController < ApplicationController
   # GET /agroecological_practices/1
   # GET /agroecological_practices/1.json
   def show
-    @comentar = Comentario.new
   end
 
   # GET /agroecological_practices/new

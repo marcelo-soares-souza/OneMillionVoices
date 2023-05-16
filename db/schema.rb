@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_124127) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,44 +29,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
     t.datetime "updated_at", null: false
     t.index ["local_id"], name: "index_agroecological_practices_on_local_id"
     t.index ["usuario_id"], name: "index_agroecological_practices_on_usuario_id"
-  end
-
-  create_table "comentarios", force: :cascade do |t|
-    t.string "texto"
-    t.string "slug"
-    t.bigint "experiencia_agroecologica_id"
-    t.bigint "usuario_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.bigint "agroecological_practice_id", null: false
-    t.index ["agroecological_practice_id"], name: "index_comentarios_on_agroecological_practice_id"
-    t.index ["experiencia_agroecologica_id"], name: "index_comentarios_on_experiencia_agroecologica_id"
-    t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
-  end
-
-  create_table "experiencia_agroecologicas", force: :cascade do |t|
-    t.string "nome"
-    t.string "slug"
-    t.bigint "usuario_id"
-    t.bigint "local_id"
-    t.bigint "tema_experiencia_agroecologica_id"
-    t.text "resumo"
-    t.text "observacao"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["local_id"], name: "index_experiencia_agroecologicas_on_local_id"
-    t.index ["slug"], name: "index_experiencia_agroecologicas_on_slug", unique: true
-    t.index ["tema_experiencia_agroecologica_id"], name: "idx_exp_agroecologicas_on_tema_exp_agroecologica_id"
-    t.index ["usuario_id"], name: "index_experiencia_agroecologicas_on_usuario_id"
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.bigint "usuario_id"
-    t.bigint "experiencia_agroecologica_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["experiencia_agroecologica_id"], name: "index_likes_on_experiencia_agroecologica_id"
-    t.index ["usuario_id"], name: "index_likes_on_usuario_id"
   end
 
   create_table "locais", force: :cascade do |t|
@@ -100,7 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
   create_table "midias", force: :cascade do |t|
     t.string "descricao"
     t.string "slug"
-    t.bigint "experiencia_agroecologica_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "imagem_file_name"
@@ -112,7 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
     t.bigint "local_id"
     t.bigint "agroecological_practice_id"
     t.index ["agroecological_practice_id"], name: "index_midias_on_agroecological_practice_id"
-    t.index ["experiencia_agroecologica_id"], name: "index_midias_on_experiencia_agroecologica_id"
     t.index ["local_id"], name: "index_midias_on_local_id"
     t.index ["one_million_voice_id"], name: "index_midias_on_one_million_voice_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
@@ -132,16 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
     t.text "general_evaluate"
     t.index ["local_id"], name: "index_one_million_voices_on_local_id"
     t.index ["usuario_id"], name: "index_one_million_voices_on_usuario_id"
-  end
-
-  create_table "tema_experiencia_agroecologicas", force: :cascade do |t|
-    t.string "nome"
-    t.string "slug"
-    t.bigint "usuario_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["slug"], name: "index_tema_experiencia_agroecologicas_on_slug", unique: true
-    t.index ["usuario_id"], name: "index_tema_experiencia_agroecologicas_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -176,23 +126,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
 
   add_foreign_key "agroecological_practices", "locais"
   add_foreign_key "agroecological_practices", "usuarios"
-  add_foreign_key "comentarios", "agroecological_practices"
-  add_foreign_key "comentarios", "experiencia_agroecologicas"
-  add_foreign_key "comentarios", "usuarios"
-  add_foreign_key "experiencia_agroecologicas", "locais"
-  add_foreign_key "experiencia_agroecologicas", "tema_experiencia_agroecologicas"
-  add_foreign_key "experiencia_agroecologicas", "usuarios"
-  add_foreign_key "likes", "experiencia_agroecologicas"
-  add_foreign_key "likes", "usuarios"
   add_foreign_key "locais", "usuarios"
   add_foreign_key "local_usuarios", "locais"
   add_foreign_key "local_usuarios", "usuarios"
   add_foreign_key "midias", "agroecological_practices"
-  add_foreign_key "midias", "experiencia_agroecologicas"
   add_foreign_key "midias", "locais"
   add_foreign_key "midias", "one_million_voices"
   add_foreign_key "midias", "usuarios"
   add_foreign_key "one_million_voices", "locais"
   add_foreign_key "one_million_voices", "usuarios"
-  add_foreign_key "tema_experiencia_agroecologicas", "usuarios"
 end

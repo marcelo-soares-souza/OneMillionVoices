@@ -7,10 +7,8 @@ class Local < ApplicationRecord
 
   has_one :one_million_voice, dependent: :destroy
 
-  has_many :experiencia_agroecologicas, dependent: :destroy
   has_many :local_usuarios, dependent: :destroy
   has_many :usuarios, through: :local_usuarios
-  has_many :midias, through: :experiencia_agroecologicas, strict_loading: true
   has_many :midias, dependent: :destroy
   has_many :agroecological_practices, dependent: :destroy
 

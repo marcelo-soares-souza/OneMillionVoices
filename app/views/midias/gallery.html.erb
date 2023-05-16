@@ -2,8 +2,6 @@
 
 <% if params[:agroecological_practice_id] %>
   <% title t(:gallery) + " #{@agroecological_practice.local.nome}" %>
-<% elsif params[:experiencia_agroecologica_id] %>
-  <% title t(:gallery) + " #{@experiencia_agroecologica.nome}" %>
 <% elsif params[:one_million_voice_id] %>
   <% title t(:gallery) + " #{@one_million_voice.local.nome}" %>
 <% end %>
@@ -11,8 +9,6 @@
 <% if usuario_signed_in? %>
   <% if params[:agroecological_practice_id] %>
     <%= link_to t(:send_photo), new_agroecological_practice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @agroecological_practice.usuario_id == current_usuario.id %>
-  <% elsif params[:experiencia_agroecologica_id] %>
-    <%= link_to t(:send_photo), new_experiencia_agroecologica_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
   <% elsif params[:one_million_voice_id] %>
     <%= link_to t(:send_photo), new_one_million_voice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
   <% elsif params[:local_id] %>
@@ -36,8 +32,6 @@
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to truncate(@agroecological_practice.local.nome, length: 12), agroecological_practice_path(@agroecological_practice), :class => "nav-link" %>
-    <% elsif params[:experiencia_agroecologica_id] %>
-      <%= link_to truncate(@experiencia_agroecologica.nome, length: 12), experiencia_agroecologica_path(@experiencia_agroecologica), :class => "nav-link" %>
     <% elsif params[:one_million_voice_id] %>
       <%= link_to "One Million Voices", one_million_voice_path(@one_million_voice), :class => "nav-link" %>
     <% elsif params[:local_id] %>
@@ -48,8 +42,6 @@
   <li class="nav-item">
     <% if params[:agroecological_practice_id] %>
       <%= link_to t(:gallery) + " (#{@agroecological_practice.midias.count})", agroecological_practice_gallery_path, :class => "nav-link active" %>
-    <% elsif params[:experiencia_agroecologica_id] %>
-      <%= link_to t(:gallery) + " (#{@experiencia_agroecologica.midias.count})", experiencia_agroecologica_gallery_path, :class => "nav-link active" %>
     <% elsif params[:one_million_voice_id] %>
       <%= link_to t(:gallery) + " (#{@one_million_voice.midias.count})", one_million_voice_gallery_path, :class => "nav-link active" %>
     <% end %>
@@ -63,8 +55,6 @@
     <% if usuario_signed_in? %>
       <% if params[:agroecological_practice_id] %>
         <%= link_to t(:send_picture), new_agroecological_practice_midia_path(@agroecological_practice) if current_usuario.admin? or @agroecological_practice.usuario_id == current_usuario.id %>
-      <% elsif params[:experiencia_agroecologica_id] %>
-        <%= link_to t(:send_picture), new_experiencia_agroecologica_midia_path(@experiencia_agroecologica) if current_usuario.admin? or @experiencia_agroecologica.usuario_id == current_usuario.id %>
       <% elsif params[:one_million_voice_id] %>
         <%= link_to t(:send_picture), new_one_million_voice_midia_path(@one_million_voice) if current_usuario.admin? or @one_million_voice.usuario_id == current_usuario.id %>
       <% end %>

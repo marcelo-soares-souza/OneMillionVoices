@@ -4,13 +4,10 @@ class Usuario < ApplicationRecord
   paginates_per 6
   max_paginates_per 6
 
-  has_many :tema_experiencia_agroecologicas
   has_many :usuarios
   has_many :locais
-  has_many :experiencia_agroecologicas
   has_many :local_usuarios, dependent: :destroy
   has_many :colaboracoes, through: :local_usuarios, source: :local
-  has_many :likes
   has_many :one_million_voices
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :about
   resources :who_we_are
   resources :manual
-  resources :comentarios
   resources :agroecological_practices
 
   resources :one_million_voices do
@@ -23,7 +22,6 @@ Rails.application.routes.draw do
   resources :agroecological_practices do
     get "/gallery" => "midias#gallery"
     resources :midias
-    resources :comentarios
   end
 
   scope(locais: {}) do
@@ -54,6 +52,4 @@ Rails.application.routes.draw do
     resources :locais
     resources :agroecological_practices
   end
-
-  put "/agroecological-experiences/:id/like", to: "agroecological_practices#like", as: "like"
 end
