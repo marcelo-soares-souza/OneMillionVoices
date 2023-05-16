@@ -1,0 +1,62 @@
+<% title @agroecological_practice.local.nome %>
+
+<% if usuario_signed_in? %>
+  <% if current_usuario.admin? or current_usuario.id == @agroecological_practice.usuario.id %>
+    <%= link_to t(:send_photo), new_agroecological_practice_midia_path(@agroecological_practice), :class => "btn btn-warning", :style => "float:right;" %>
+  <% end %>
+<% end %>
+
+<br><br><br>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to truncate(@agroecological_practice.local.nome, length: 8), local_path(@agroecological_practice.local), :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:agroecological_practices) , local_path(@agroecological_practice.local), :class => "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:gallery)} (#{@agroecological_practice.midias.count})", agroecological_practice_gallery_path(@agroecological_practice), :class => "nav-link", :style => "color: red !important" %>
+  </li>
+</ul>
+
+<br>
+
+<div class="tab-content" style="min-height: 64px;">
+  <div class="tab-pane active">
+    <% if @agroecological_practice.local.imagem %>
+      <div  class="thumbnail">
+        <%= image_tag(@agroecological_practice.local.imagem.url(:medium)) %>
+      </div>
+    <% end %>
+
+    <br>
+    <div class='<%= (@agroecological_practice.local.nome.length() > 90 ? 'text-box' : '') %>'><h3><%= @agroecological_practice.local.nome %></h3></div>
+
+    <%= "<br><strong>#{t(:summary_description)}:</strong><br><div class='text-box'>#{simple_format (h @agroecological_practice.summary_description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @agroecological_practice.summary_description and @agroecological_practice.summary_description.length > 0 %>
+    <%= "<br><strong>#{t(:problem_it_address)}:</strong><br><div class='text-box'>#{simple_format (h @agroecological_practice.problem_it_address).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @agroecological_practice.problem_it_address and @agroecological_practice.problem_it_address .length() > 0%>
+    <%= "<br><strong>#{t(:how_it_is_done)}:</strong><br><div class='text-box'>#{simple_format (h @agroecological_practice.how_it_is_done).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @agroecological_practice.how_it_is_done and @agroecological_practice.how_it_is_done .length() > 0%>
+    <%= "<br><strong>#{t(:expected_function_effects)}:</strong><br><div class='text-box'>#{simple_format (h @agroecological_practice.expected_function_effects).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @agroecological_practice.expected_function_effects and @agroecological_practice.expected_function_effects .length() > 0%>
+    <%= "<br><strong>#{t(:principles)}:</strong><br><div class='text-box'> #{@agroecological_practice.principles}</div>".html_safe if @agroecological_practice.principles and @agroecological_practice.principles.length() > 0 %>
+    <%= "<br><strong>#{t(:general_evaluate)}:</strong><br><div class='text-box'> #{@agroecological_practice.general_evaluate}</div>".html_safe if @agroecological_practice.general_evaluate and @agroecological_practice.general_evaluate.length() > 0 %>
+
+
+    <%= "<br><strong>#{t(:location)}</strong><br>#{link_to @agroecological_practice.local.nome, local_path(@agroecological_practice.local)}&nbsp;".html_safe if @agroecological_practice.local.nome? %>
+    <%= "<br><br><strong>#{t(:responsible_for_information)}:</strong><br>#{link_to @agroecological_practice.usuario.nome, usuario_path(@agroecological_practice.usuario)}&nbsp;".html_safe if @agroecological_practice.usuario.nome? %>
+
+    <% if usuario_signed_in? %>
+      <% if current_usuario.admin? or current_usuario.id == @agroecological_practice.usuario.id %>
+        <br><br>
+        <div id="agroecological_practice-footer">
+          <div class="form-actions">
+            <%= link_to t(:edit), edit_local_agroecological_practice_path(@agroecological_practice.local, @agroecological_practice.id), :class => 'btn btn-success' %>
+            <%= link_to t(:destroy), agroecological_practice_path(@agroecological_practice), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <br><br>
+  </div>
+</div>
+

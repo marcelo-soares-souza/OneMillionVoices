@@ -10,7 +10,7 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to truncate(@one_million_voice.local.nome, length: 12), local_path(@one_million_voice.local), :class => "nav-link" %>
+    <%= link_to truncate(@one_million_voice.local.nome, length: 8), local_path(@one_million_voice.local), :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to t(:one_million_voices) , local_path(@one_million_voice.local), :class => "nav-link active" %>

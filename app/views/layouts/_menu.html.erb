@@ -23,37 +23,15 @@
       <li class="nav-item">
         <%= link_to(t(:map), '/', :class => "nav-link") %>
       </li>
+
       <li class="nav-item">
         <%= link_to(t(:locations), locais_path, :class => "nav-link") %>
       </li>
 
-<!--      <li class="nav-item">-->
-        <%#= link_to(t(:one_million_voices), one_million_voices_path, :class => "nav-link") %>
-<!--      </li>-->
+      <li class="nav-item">
+        <%= link_to(t(:agroecological_practices), agroecological_practices_path, :class => "nav-link") %>
+      </li>
 
-<!--      <li class="nav-item">-->
-        <%#= link_to(t(:experiences_in_agroecology), experiencia_agroecologicas_path, :class => "nav-link") %>
-<!--      </li>-->
-
-      <!--      <li class="nav-item dropdown">-->
-<!--        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%#= t(:agroforestry_systems) %></a>-->
-<!--        <div class="dropdown-menu">-->
-          <%#= link_to(t(:systems), safs_path, :class => "nav-link") %>
-          <%#= link_to(t(:plants), plantas_path, :class => "nav-link") %>
-          <%#= link_to(t(:animals), animais_path, :class => "nav-link") %>
-<!--        </div>-->
-<!--      </li>-->
-      <% if current_usuario %>
-        <% if current_usuario.admin? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Adminstrar</a>
-            <div class="dropdown-menu">
-              <%= link_to("Tipo de Organizações", tipo_organizacoes_path, :class => "nav-link") %>
-              <%= link_to("Temas de Agroecologia", tema_experiencia_agroecologicas_path, :class => "nav-link") %>
-            </div>
-          </li>
-        <% end %>
-      <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item">
@@ -75,9 +53,6 @@
           <strong><%= link_to t(:sign_up), new_usuario_registration_path, :class => "nav-link text-danger" %></strong>
         </li>
       <% end %>
-<!--      <li>-->
-<!--        <strong><%#= link_to t(:donate), "https://ko-fi.com/agroecologymap ", :target => "blank", :class => "nav-link text-danger", :style => "color: #e24d6f !important;"%></strong>-->
-<!--      </li>-->
 
       <li>
         <select id="locale" onchange="if (this.value) window.location.href='<%= request.path %>?locale=' + this.value" class="form-control">
@@ -85,7 +60,6 @@
           <option value="es">Español</option>
           <option value="en">English</option>
           <option value="fr">Français</option>
-          <!-- <option value="gl">Gallego</option> -->
         </select>
       </li>
     </ul>

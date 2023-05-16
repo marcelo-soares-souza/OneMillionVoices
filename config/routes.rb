@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :friends
+  resources :about
+  resources :who_we_are
+  resources :manual
+  resources :comentarios
+  resources :agroecological_practices
+
   resources :one_million_voices do
     get "/gallery" => "midias#gallery"
     resources :midias
@@ -13,44 +20,11 @@ Rails.application.routes.draw do
 
   get "/map", to: "home#index"
 
-  resources :friends
-  resources :about
-  resources :who_we_are
-  resources :manual
-  resources :comentarios
-
-  scope(animais: {}) do
-    resources :animais, path: "animals"
-  end
-
-  resources :animais
-
-  scope(plantas: {}) do
-    resources :plantas, path: "plants"
-  end
-
-  resources :plantas
-
-  scope(experiencia_agroecologicas: {}) do
-    resources :experiencia_agroecologicas, path: "agroecological-experiences"
-  end
-
-  resources :experiencia_agroecologicas do
+  resources :agroecological_practices do
     get "/gallery" => "midias#gallery"
     resources :midias
     resources :comentarios
   end
-
-  scope(safs: {}) do
-    resources :safs, path: "agroforestry"
-  end
-
-  resources :safs do
-    get "/gallery" => "midias#gallery"
-    resources :midias
-  end
-
-  resources :tema_experiencia_agroecologicas
 
   scope(locais: {}) do
     resources :locais, path: "locations"
@@ -58,19 +32,13 @@ Rails.application.routes.draw do
 
   resources :locais do
     get "/gallery" => "midias#gallery"
-    resources :experiencia_agroecologicas
-    resources :safs
-    resources :blogs, path: "blog"
+    resources :agroecological_practices
     resources :one_million_voices do
       get "/gallery" => "midias#gallery"
       resources :midias
     end
     resources :midias
   end
-
-  resources :organizacoes
-
-  resources :tipo_organizacoes
 
   scope(usuarios: {}) do
     resources :usuarios, path: "accounts"
@@ -84,10 +52,10 @@ Rails.application.routes.draw do
 
   resources :usuarios do
     resources :locais
-    resources :experiencia_agroecologicas
+    resources :agroecological_practices
   end
 
   resources :novidades, only: [:index]
 
-  put "/agroecological-experiences/:id/like", to: "experiencia_agroecologicas#like", as: "like"
+  put "/agroecological-experiences/:id/like", to: "agroecological_practices#like", as: "like"
 end

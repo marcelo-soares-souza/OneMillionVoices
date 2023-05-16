@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+json.id agroecological_practices.id
+json.name agroecological_practices.nome
+json.location agroecological_practices.local.nome
+json.central_theme @tema_agroecological_practices.key(agroecological_practices.tema_agroecological_practice.id)
+json.resume agroecological_practices.resumo
+json.responsible_for_information agroecological_practices.usuario.nome
+json.url agroecological_practice_url(agroecological_practices)
+json.created_at agroecological_practices.created_at
+json.updated_at agroecological_practices.updated_at

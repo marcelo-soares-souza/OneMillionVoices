@@ -37,7 +37,6 @@ class OneMillionVoicesController < ApplicationController
   # POST /one_million_voices or /one_million_voices.json
   def create
     @one_million_voice = OneMillionVoice.new(one_million_voice_params)
-
     @one_million_voice.usuario_id = current_usuario.id unless current_usuario.admin?
 
     respond_to do |format|

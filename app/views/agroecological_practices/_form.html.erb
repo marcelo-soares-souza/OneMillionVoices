@@ -1,0 +1,154 @@
+<%= form_for(agroecological_practice, html: { multipart: true }) do |f| %>
+  <% if agroecological_practice.errors.any? %>
+    <div id="error_explanation">
+      <b><%= agroecological_practice.errors.count.to_s + " Error(s)" %></b>
+      <br><br>
+      <% agroecological_practice.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %><br>
+    </div>
+
+  <% end %>
+
+  <% if current_usuario.admin? %>
+    <div class="form-group row">
+      <%= f.label t(:responsible_for_information), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.collection_select(:usuario_id, Usuario.all, :id, :nome, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="form-group row">
+    <%#= f.label t(:localization), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="col-sm-10">
+      <% if params[:local_id] %>
+        <%= f.hidden_field :local_id, id: "local_id", :value => Local.friendly.find(params[:local_id]).id %>
+      <% else %>
+        <%= f.hidden_field :local_id, id: "local_id", :value => @agroecological_practice.local.id %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-group row bg-light">
+      <%= f.label t(:summary_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :summary_description, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Please describe the practice that you want to map: What is the practice about; What do you use and do; When did you start; For how long have you practiced etc.?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row ">
+      <%= f.label t(:problem_it_address), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :problem_it_address, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Which problem does the practice address; Which challenges does it tackle?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row  bg-light">
+      <%= f.label t(:how_it_is_done), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :how_it_is_done, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          How is it done; What are the details of how it is applied; What is the process that needs to be followed?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row  bg-light">
+      <%= f.label t(:expected_function_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :expected_function_effects, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Which agroecological principles are addressed or engaged through the practice?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row">
+      <%= f.label t(:principles), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <div style="text-align: left;">
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Recycling', checked_agroecological_practices('Recycling'), id: 'principle' %> Recycling
+          <div class="tip-explanation">Preferentially use local renewable resources and close as far as possible resource cycles of nutrients and biomass.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Input reduction', checked_agroecological_practices('Input reduction'), id: 'principle' %> Input reduction
+          <div class="tip-explanation">Reduce or eliminate dependency on purchased inputs.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Soil heath', checked_agroecological_practices('Soil heath'), id: 'principle' %> Soil heath
+          <div class="tip-explanation">Secure and enhance soil health and functioning for improved plant growth, particularly by managing organic matter and by enhancing soil biological activity.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Animal health', checked_agroecological_practices('Animal health'), id: 'principle' %> Animal health
+          <div class="tip-explanation">Ensure animal health and welfare.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Biodiversity', checked_agroecological_practices('Biodiversity'), id: 'principle' %> Biodiversity
+          <div class="tip-explanation">Maintain and enhance diversity of species, functional diversity and genetic resources and maintain biodiversity in the agroecosystem over time and space at field, farm and landscape scales.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Synergy', checked_agroecological_practices('Synergy'), id: 'principle' %> Synergy
+          <div class="tip-explanation">Enhance positive ecological interaction, synergy, integration, and complementarity amongst the elements of agroecosystems (plants, animals, trees, soil, water).</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Economic diversification', checked_agroecological_practices('Economic diversification'), id: 'principle' %> Economic diversification
+          <div class="tip-explanation">Diversify on-farm incomes by ensuring small-scale farmers have greater financial independence and value addition opportunities while enabling them to respond to demand from consumers.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Co-creation of knowledge', checked_agroecological_practices('Co-creation of knowledge'), id: 'principle' %> Co-creation of knowledge
+          <div class="tip-explanation">Enhance co-creation and horizontal sharing of knowledge including local and scientific innovation, especially through farmer-to-farmer exchange.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Social values and diets', checked_agroecological_practices('Social values and diets'), id: 'principle' %> Social values and diets
+          <div class="tip-explanation">Build food systems based on the culture, identity, tradition, social and gender equity of local communities that provide healthy, diversified, seasonally and culturally appropriate diets.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Fairness', checked_agroecological_practices('Fairness'), id: 'principle' %> Fairness
+          <div class="tip-explanation">Support dignified and robust livelihoods for all actors engaged in food systems, especially small-scale food producers, based on fair trade, fair employment and fair treatment of intellectual property rights</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Connectivity', checked_agroecological_practices('Connectivity'), id: 'principle' %> Connectivity
+          <div class="tip-explanation">Ensure proximity and confidence between producers and consumers through promotion of fair and short distribution networks and by re-embedding food systems into local economies.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Land and natural resource governance', checked_agroecological_practices('Land and natural resource governance'), id: 'principle' %> Land and natural resource governance
+          <div class="tip-explanation">Recognize and support the needs and interests of family farmers, smallholders and peasant food producers as sustainable managers and guardians of natural and genetic resources.</div>
+          <br>
+          <%= check_box_tag 'agroecological_practice[principles][]', 'Participation', checked_agroecological_practices('Participation'), id: 'principle' %> Participation
+          <div class="tip-explanation">Encourage social organization and greater participation in decision-making by food producers and consumers to support decentralized governance and local adaptive management of agricultural and food systems.</div>
+          <br>
+        </div>
+        <div class="tip">Which agroecological principles are addressed or engaged through the practice?</div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row bg-light">
+      <%= f.label t(:evaluate), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <div style="text-align: left;">
+          <%= f.radio_button :general_evaluate, 'Strongly disagree' %> Strongly disagree
+          <br>
+          <%= f.radio_button :general_evaluate, 'Disagree' %> Disagree
+          <br>
+          <%= f.radio_button :general_evaluate, 'Neither agree nor disagree' %> Neither agree nor disagree
+          <br>
+          <%= f.radio_button :general_evaluate, 'Agree' %> Agree
+          <br>
+          <%= f.radio_button :general_evaluate, 'Strongly agree' %> Strongly agree
+        </div>
+        <div class="tip">
+          Is the practice effective; Does the practice work as you expected; Does the practice work as intended?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit t(:submit), class: "btn btn-primary" %>
+    </div>
+    <br>
+  </div>
+<% end %>

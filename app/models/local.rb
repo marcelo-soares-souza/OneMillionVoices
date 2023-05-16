@@ -22,6 +22,8 @@ class Local < ApplicationRecord
   has_one :one_million_voice, dependent: :destroy
   has_many :midias, dependent: :destroy
 
+  has_many :agroecological_practices, dependent: :destroy
+
   accepts_nested_attributes_for :local_usuarios, allow_destroy: true
 
   extend FriendlyId

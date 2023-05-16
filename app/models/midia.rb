@@ -2,10 +2,10 @@
 
 class Midia < ApplicationRecord
   before_save :concatenate_details
-  belongs_to :saf, required: false
   belongs_to :experiencia_agroecologica, required: false
   belongs_to :one_million_voice, required: false
   belongs_to :local, required: false
+  belongs_to :agroecological_practice, required: false
 
   extend FriendlyId
   friendly_id :descricao, use: :slugged

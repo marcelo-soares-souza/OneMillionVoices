@@ -11,8 +11,8 @@ class MidiasController < ApplicationController
   # GET /midias
   # GET /midias.json
   def index
-    if params[:saf_id]
-      @midias = Midia.where(saf_id: @saf.id).load_async
+    if params[:agroecological_practice_id]
+      @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
     elsif params[:experiencia_agroecologica_id]
       @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
     elsif params[:one_million_voice_id]
@@ -25,26 +25,14 @@ class MidiasController < ApplicationController
   # GET /gallery
   # GET /gallery.json
   def gallery
-    if params[:saf_id]
-      @midias = Midia.where(saf_id: @saf.id).load_async
+    if params[:agroecological_practice_id]
+      @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
     elsif params[:experiencia_agroecologica_id]
       @midias = Midia.where(experiencia_agroecologica_id: @experiencia_agroecologica.id).load_async
     elsif params[:one_million_voice_id]
       @midias = Midia.where(one_million_voice_id: @one_million_voice.id).load_async
     elsif params[:local_id]
       @midias = Midia.where(local_id: @local.id).load_async
-
-      # @local = Local.friendly.find(params[:local_id])
-      #
-      # experiencia_agroecologica = ExperienciaAgroecologica.where(local_id: params[:local_id]).load_async
-      # saf = Saf.where(local_id: params[:local_id]).load_async
-      # one_million_voice = OneMillionVoice.where(local_id: params[:local_id]).load_async
-      # local = Local.friendly.find(params[:local_id])
-      #
-      # @midias = Midia.where(experiencia_agroecologica: experiencia_agroecologica).load_async
-      # @midias += Midia.where(saf: saf).load_async
-      # @midias += Midia.where(one_million_voice: one_million_voice).load_async
-      # @midias += Midia.where(local: local).load_async
     end
   end
 
@@ -66,8 +54,8 @@ class MidiasController < ApplicationController
     @midia = Midia.new(midia_params)
     @midia.usuario_id = current_usuario.id unless current_usuario.admin?
 
-    if params[:saf_id]
-      @midia.saf_id = @saf.id
+    if params[:agroecological_practice_id]
+      @midia.agroecological_practice_id = @agroecological_practice.id
     elsif params[:experiencia_agroecologica_id]
       @midia.experiencia_agroecologica_id = @experiencia_agroecologica.id
     elsif params[:one_million_voice_id]
@@ -79,8 +67,8 @@ class MidiasController < ApplicationController
 
     respond_to do |format|
       if @midia.save
-        if params[:saf_id]
-          format.html { redirect_to saf_midia_path(@saf, @midia), notice: "Midia foi cadastrada." }
+        if params[:agroecological_practice_id]
+          format.html { redirect_to agroecological_practice_midia_path(@agroecological_practice, @midia), notice: "Midia foi cadastrada." }
         elsif params[:experiencia_agroecologica_id]
           format.html do
             redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
@@ -108,8 +96,8 @@ class MidiasController < ApplicationController
   def update
     respond_to do |format|
       if @midia.update(midia_params)
-        if params[:saf_id]
-          format.html { redirect_to saf_midia_path(@saf, @midia), notice: "Media has been updated." }
+        if params[:agroecological_practice_id]
+          format.html { redirect_to agroecological_practice_midia_path(@agroecological_practice, @midia), notice: "Media has been updated." }
         elsif params[:experiencia_agroecologica_id]
           format.html do
             redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
@@ -138,8 +126,8 @@ class MidiasController < ApplicationController
     @midia.destroy
 
     respond_to do |format|
-      if params[:saf_id]
-        format.html { redirect_to saf_midias_path(@saf), notice: "Media has been removed." }
+      if params[:agroecological_practice_id]
+        format.html { redirect_to agroecological_practice_midias_path(@agroecological_practice), notice: "Media has been removed." }
       elsif params[:experiencia_agroecologica_id]
         format.html do
           redirect_to experiencia_agroecologica_midias_path(@experiencia_agroecologica), notice: "Media has been removed."
@@ -158,55 +146,53 @@ class MidiasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_midia
-      @midia = Midia.friendly.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_midia
+    @midia = Midia.friendly.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def midia_params
-      params.require(:midia).permit(:descricao, :slug, :saf_id, :experiencia_agroecologica_id, :imagem, :usuario_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def midia_params
+    params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :experiencia_agroecologica_id, :imagem, :usuario_id)
+  end
 
-    def load_dados
-      if params[:saf_id]
-        @saf = Saf.friendly.find(params[:saf_id])
-      elsif params[:experiencia_agroecologica_id]
-        @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
-      elsif params[:one_million_voice_id]
-        @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
-      elsif params[:local_id]
-        @local = Local.friendly.find(params[:local_id])
-      end
+  def load_dados
+    if params[:agroecological_practice_id]
+      @agroecological_practice = AgroecologicalPractice.find(params[:agroecological_practice_id])
+    elsif params[:experiencia_agroecologica_id]
+      @experiencia_agroecologica = ExperienciaAgroecologica.friendly.find(params[:experiencia_agroecologica_id])
+    elsif params[:one_million_voice_id]
+      @one_million_voice = OneMillionVoice.find(params[:one_million_voice_id])
+    elsif params[:local_id]
+      @local = Local.friendly.find(params[:local_id])
     end
+  end
 
-    def selected_id
-      if current_usuario && current_usuario.admin?
-        @selected_id = current_usuario.id
-        if @experiencia_agroecologica
-          @selected_id = @experiencia_agroecologica.usuario.id
-        elsif @saf
-          @selected_id = @saf.usuario.id
-        elsif @one_million_voice
-          @selected_id = @one_million_voice.usuario.id
-        elsif @local
-          @selected_id = @local.usuario.id
-        end
-      end
-    end
-
-    def default_media_name
-      # if current_usuario && current_usuario.admin?
-      @default_media_name = ""
+  def selected_id
+    if current_usuario && current_usuario.admin?
+      @selected_id = current_usuario.id
       if @experiencia_agroecologica
-        @default_media_name = @experiencia_agroecologica.nome + " "
-      elsif @saf
-        @default_media_name = @saf.nome + " "
+        @selected_id = @experiencia_agroecologica.usuario.id
+      elsif @agroecological_practice
+        @selected_id = @agroecological_practice.usuario.id
       elsif @one_million_voice
-        @default_media_name = @one_million_voice.local.nome + " "
+        @selected_id = @one_million_voice.usuario.id
       elsif @local
-        @default_media_name = @local.nome + " "
+        @selected_id = @local.usuario.id
       end
-      # end
     end
+  end
+
+  def default_media_name
+    @default_media_name = ""
+    if @experiencia_agroecologica
+      @default_media_name = @experiencia_agroecologica.nome + " "
+    elsif @agroecological_practice
+      @default_media_name = @agroecological_practice.local.nome + " "
+    elsif @one_million_voice
+      @default_media_name = @one_million_voice.local.nome + " "
+    elsif @local
+      @default_media_name = @local.nome + " "
+    end
+  end
 end

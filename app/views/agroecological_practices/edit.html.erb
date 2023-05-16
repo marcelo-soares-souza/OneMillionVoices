@@ -1,0 +1,18 @@
+<% title t(:register_new_agroecological_practice) %>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:agroecological_practice), agroecological_practices_path, :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:edit)}", edit_agroecological_practice_path(@agroecological_practice), :class => "nav-link active" %>
+  </li>
+</ul>
+<br>
+
+<% if !@locais.empty? %>
+  <%= render 'form', agroecological_practice: @agroecological_practice %>
+<% else %>
+  <br>
+  <h3>Nenhum Local Cadastrado. Deseja <%= link_to "Cadastrar um Local Agora?", new_local_url %></h3>
+<% end %>

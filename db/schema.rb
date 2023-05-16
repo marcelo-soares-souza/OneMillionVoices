@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_171036) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_124455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agroecological_practices", force: :cascade do |t|
+    t.bigint "usuario_id", null: false
+    t.bigint "local_id", null: false
+    t.text "summary_description"
+    t.text "problem_it_address"
+    t.text "how_it_is_done"
+    t.text "expected_function_effects"
+    t.text "principles"
+    t.text "general_evaluate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["local_id"], name: "index_agroecological_practices_on_local_id"
+    t.index ["usuario_id"], name: "index_agroecological_practices_on_usuario_id"
+  end
 
   create_table "animais", force: :cascade do |t|
     t.string "nome"
@@ -51,6 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_171036) do
     t.bigint "usuario_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "agroecological_practice_id", null: false
+    t.index ["agroecological_practice_id"], name: "index_comentarios_on_agroecological_practice_id"
     t.index ["experiencia_agroecologica_id"], name: "index_comentarios_on_experiencia_agroecologica_id"
     t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
   end
@@ -121,7 +136,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_171036) do
     t.datetime "imagem_updated_at", precision: nil
     t.bigint "usuario_id"
     t.bigint "one_million_voice_id"
-    t.bigint "local_id", null: false
+    t.bigint "local_id"
+    t.bigint "agroecological_practice_id"
+    t.index ["agroecological_practice_id"], name: "index_midias_on_agroecological_practice_id"
     t.index ["experiencia_agroecologica_id"], name: "index_midias_on_experiencia_agroecologica_id"
     t.index ["local_id"], name: "index_midias_on_local_id"
     t.index ["one_million_voice_id"], name: "index_midias_on_one_million_voice_id"
@@ -305,9 +322,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_171036) do
     t.index ["slug"], name: "index_usuarios_on_slug", unique: true
   end
 
+  add_foreign_key "agroecological_practices", "locais"
+  add_foreign_key "agroecological_practices", "usuarios"
   add_foreign_key "animais", "usuarios"
   add_foreign_key "blogs", "locais"
   add_foreign_key "blogs", "usuarios"
+  add_foreign_key "comentarios", "agroecological_practices"
   add_foreign_key "comentarios", "experiencia_agroecologicas"
   add_foreign_key "comentarios", "usuarios"
   add_foreign_key "experiencia_agroecologicas", "locais"
@@ -318,6 +338,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_171036) do
   add_foreign_key "locais", "usuarios"
   add_foreign_key "local_usuarios", "locais"
   add_foreign_key "local_usuarios", "usuarios"
+  add_foreign_key "midias", "agroecological_practices"
   add_foreign_key "midias", "experiencia_agroecologicas"
   add_foreign_key "midias", "locais"
   add_foreign_key "midias", "one_million_voices"
