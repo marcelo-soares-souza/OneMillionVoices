@@ -14,7 +14,7 @@
     <% if local.latitude and local.longitude %>
       <% total_midia = Midia.where(local: local).count%>
       var popup = '';
-      popup += '<div class="thumbnail"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local) %></div><br>'
+      popup += '<div class="thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local) %></div><br>'
       popup += '<h4><%= "#{link_to local.nome, local_path(local), target: '_blank'}".html_safe %></h4>';
       popup += '<b>';
       popup += '<div class="popup-gallery"><%= total_midia > 0 ? "#{ link_to (t(:gallery) + " (" + total_midia.to_s + " " + t(:photos) + ")"), local_gallery_path(local.id), target: '_blank'}".html_safe : "".html_safe %></div>';

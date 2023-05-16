@@ -20,7 +20,11 @@
       <div class="col-sm-6">
         <div class="card"  style="min-height: 300px;">
           <br>
-          <div class="card-img-top thumbnail-mini"><%= link_to image_tag(agroecological_practice.local.imagem.url(:medium)), agroecological_practice_path(agroecological_practice), alt: agroecological_practice.local.nome, title: agroecological_practice.local.nome %></div>
+          <% if  agroecological_practice.midias and agroecological_practice.midias[0]%>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(agroecological_practice.midias[0].imagem.url(:medium)), agroecological_practice_path(agroecological_practice), alt: agroecological_practice.local.nome, title: agroecological_practice.local.nome %></div>
+          <% else %>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(agroecological_practice.local.imagem.url(:medium)), agroecological_practice_path(agroecological_practice), alt: agroecological_practice.local.nome, title: agroecological_practice.local.nome %></div>
+          <% end %>
           <div class="card-body">
             <p class="card-text text-box"><%= agroecological_practice.summary_description.truncate(160) %></p>
             <% if usuario_signed_in? %>

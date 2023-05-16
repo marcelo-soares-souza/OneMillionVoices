@@ -72,7 +72,7 @@ class AgroecologicalPracticesController < ApplicationController
   def destroy
     @agroecological_practice.destroy
     respond_to do |format|
-      format.html { redirect_to agroecological_practices_url, notice: "Experiência em Agroecologia foi removida." }
+      format.html { redirect_to locais_url, notice: "Agroecological Practice has been Removed." }
       format.json { head :no_content }
     end
   end

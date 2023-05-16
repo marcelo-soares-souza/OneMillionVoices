@@ -99,7 +99,7 @@ class MidiasController < ApplicationController
     respond_to do |format|
       if @midia.update(midia_params)
         if params[:agroecological_practice_id]
-          format.html { redirect_to agroecological_practice_midia_path(@agroecological_practice, @midia), notice: "Media has been updated." }
+          format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Media has been updated." }
         elsif params[:experiencia_agroecologica_id]
           format.html do
             redirect_to experiencia_agroecologica_midia_path(@experiencia_agroecologica, @midia),
@@ -129,7 +129,7 @@ class MidiasController < ApplicationController
 
     respond_to do |format|
       if params[:agroecological_practice_id]
-        format.html { redirect_to agroecological_practice_midias_path(@agroecological_practice), notice: "Media has been removed." }
+        format.html { redirect_to agroecological_practice_path(@agroecological_practice), notice: "Media has been removed." }
       elsif params[:experiencia_agroecologica_id]
         format.html do
           redirect_to experiencia_agroecologica_midias_path(@experiencia_agroecologica), notice: "Media has been removed."
@@ -155,7 +155,7 @@ class MidiasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def midia_params
-      params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :experiencia_agroecologica_id, :imagem, :usuario_id)
+      params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :experiencia_agroecologica_id, :local_id, :imagem, :usuario_id)
     end
 
     def load_dados
@@ -194,7 +194,7 @@ class MidiasController < ApplicationController
       elsif @one_million_voice
         @default_media_name = @one_million_voice.local.nome + " "
       elsif @local
-        @default_media_name = @local.nome + " "
+        @default_media_name = "Location " + @local.nome + " "
       end
     end
 end

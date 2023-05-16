@@ -10,10 +10,6 @@ usuario_agroecologia.password_confirmation = "agroecology"
 usuario_agroecologia.skip_confirmation!
 usuario_agroecologia.save!
 
-TipoOrganizacao.new(nome: "Organização Não Governamental", usuario_id: 1).save!
-TipoOrganizacao.new(nome: "Governamental", usuario_id: 1).save!
-TipoOrganizacao.new(nome: "Privada", usuario_id: 1).save!
-
 TemaExperienciaAgroecologica.new(nome: "Agricultura Urbana", usuario_id: 1).save!
 TemaExperienciaAgroecologica.new(nome: "Alimentação", usuario_id: 1).save!
 TemaExperienciaAgroecologica.new(nome: "Saúde e plantas medicinais", usuario_id: 1).save!
@@ -36,5 +32,3 @@ TemaExperienciaAgroecologica.new(nome: "Manejo dos solos", usuario_id: 1).save!
 TemaExperienciaAgroecologica.new(nome: "Acesso a terra, reforma agrária e Agroecologia", usuario_id: 1).save!
 TemaExperienciaAgroecologica.new(nome: "Relação com os mercados", usuario_id: 1).save!
 TemaExperienciaAgroecologica.new(nome: "Outros", usuario_id: 1).save!
-
-# Local.new(nome: "Mapa da Agroecologia", usuario_id: 1, tipo: "Outro").save!
