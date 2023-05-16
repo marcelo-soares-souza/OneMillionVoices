@@ -5,8 +5,13 @@
 <br><br><br>
 
 <ul class="nav nav-tabs">
+  <% if params[:local_id] %>
+    <li class="nav-item">
+      <%= link_to @local.nome.truncate(10), local_path(@local), title: @local.nome, :class => "nav-link" %>
+    </li>
+  <% end %>
   <li class="nav-item">
-    <%= link_to t(:agroecological_practices), "#", :class => "nav-link active" %>
+    <%= link_to t(:practices) + " (#{@agroecological_practices.count})", "#", :class => "nav-link active" %>
   </li>
 </ul>
 

@@ -18,8 +18,7 @@
   <br>
   <div class="row">
     <% @usuarios.each do |usuario| %>
-
-      <div class="col-sm-6">
+      <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= usuario_path(usuario) %>';">
         <div class="card">
           <br>
           <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(usuario.imagem.url(:medium)), usuario_path(usuario), alt: usuario.nome, title: usuario.nome %></div>

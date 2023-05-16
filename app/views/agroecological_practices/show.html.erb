@@ -10,10 +10,10 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to truncate(@agroecological_practice.local.nome, length: 8), local_path(@agroecological_practice.local), :class => "nav-link" %>
+    <%= link_to truncate(@agroecological_practice.local.nome, length: 8), local_path(@agroecological_practice.local), title: @agroecological_practice.local.nome,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to t(:agroecological_practices) , local_path(@agroecological_practice.local), :class => "nav-link active" %>
+    <%= link_to t(:practice) , local_path(@agroecological_practice.local), :class => "nav-link active" %>
   </li>
   <li class="nav-item">
     <%= link_to "#{t(:gallery)} (#{@agroecological_practice.midias.count})", agroecological_practice_gallery_path(@agroecological_practice), :class => "nav-link", :style => "color: red !important" %>
