@@ -74,13 +74,13 @@ class WhatYouDosController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_what_you_do
-    @what_you_do = WhatYouDo.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_what_you_do
+      @what_you_do = WhatYouDo.find(params[:id])
+    end
 
-  # Only allow a list of trusted parameters through.
-  def what_you_do_params
-    params.require(:what_you_do).permit(:practice_id, :summary_description_of_agroecological_practice, :type_of_agroecological_practice, :problem_that_practice_addresses, :practical_implementation_of_the_practice, :expected_function_or_effects_of_practice)
-  end
+    # Only allow a list of trusted parameters through.
+    def what_you_do_params
+      params.require(:what_you_do).permit(:practice_id, :summary_description_of_agroecological_practice, :type_of_agroecological_practice, :problem_that_practice_addresses, :practical_implementation_of_the_practice, :expected_function_or_effects_of_practice)
+    end
 end

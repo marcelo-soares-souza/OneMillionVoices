@@ -1,4 +1,5 @@
 <%= form_for(acknowledge, html: { multipart: true }) do |f| %>
+  <%= link_to t(:back), "javascript:history.back()", class: "btn btn-danger btn-lg", style: "float: left; margin-bottom: 16px;" %>
   <% button_name = t(:save) %>
   <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
 

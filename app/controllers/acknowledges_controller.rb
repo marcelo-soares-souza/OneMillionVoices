@@ -72,13 +72,13 @@ class AcknowledgesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_acknowledge
-    @acknowledge = Acknowledge.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_acknowledge
+      @acknowledge = Acknowledge.find(params[:id])
+    end
 
-  # Only allow a list of trusted parameters through.
-  def acknowledge_params
-    params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
-  end
+    # Only allow a list of trusted parameters through.
+    def acknowledge_params
+      params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
+    end
 end

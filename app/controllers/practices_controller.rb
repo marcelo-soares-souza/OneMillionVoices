@@ -14,12 +14,12 @@ class PracticesController < ApplicationController
   # GET /practices.json
   def index
     @practices = if params[:local_id]
-                   Practice.where(local_id: @local.id).load_async.sort_by(&:updated_at).reverse
-                 elsif params[:usuario_id]
-                   Practice.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
-                 else
-                   Practice.order("updated_at DESC").page(params[:page])
-                 end
+      Practice.where(local_id: @local.id).load_async.sort_by(&:updated_at).reverse
+    elsif params[:usuario_id]
+      Practice.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
+    else
+      Practice.order("updated_at DESC").page(params[:page])
+    end
   end
 
   # GET /practices/1
@@ -82,21 +82,21 @@ class PracticesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_practice
-    @practice = Practice.friendly.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_practice
+      @practice = Practice.friendly.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def practice_params
-    params.require(:practice).permit(:name, :slug, :local_id, :usuario_id)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def practice_params
+      params.require(:practice).permit(:name, :slug, :local_id, :usuario_id)
+    end
 
-  def load_local
-    @local = Local.friendly.find(params[:local_id]) if params[:local_id]
-  end
+    def load_local
+      @local = Local.friendly.find(params[:local_id]) if params[:local_id]
+    end
 
-  def load_usuario
-    @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
-  end
+    def load_usuario
+      @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
+    end
 end

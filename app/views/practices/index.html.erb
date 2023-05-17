@@ -21,7 +21,7 @@
   <div class="row">
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= local_practice_path(practice.local, practice) %>';">
-        <div class="card" style="min-height: 380px;">
+        <div class="card" style="min-height: 410px;">
           <br>
           <% if  practice.midias and practice.midias[0]%>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.local.nome, title: practice.local.nome %></div>
@@ -29,6 +29,7 @@
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.local.imagem.url(:medium)), practice_path(practice), alt: practice.local.nome, title: practice.local.nome %></div>
           <% end %>
           <div class="card-body">
+            <h3><%= practice.name %></h3>
             <%= "<b>Summary</b>".html_safe if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice and practice.what_you_do.summary_description_of_agroecological_practice.length > 0 %>
             <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(160) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p>
             <b>Location</b>
