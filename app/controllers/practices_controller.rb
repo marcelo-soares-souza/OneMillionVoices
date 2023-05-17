@@ -43,6 +43,11 @@ class PracticesController < ApplicationController
 
     respond_to do |format|
       if @practice.save
+        @what_you_do = WhatYouDo.new(practice_id: @practice.id).save!
+        @characterise = Characterise.new(practice_id: @practice.id).save!
+        @evaluate = Evaluate.new(practice_id: @practice.id).save!
+        @acknowledge = Acknowledge.new(practice_id: @practice.id).save!
+
         format.html { redirect_to new_practice_what_you_do_path(@practice), notice: "Practice Registered" }
         format.json { render :show, status: :created, location: @practice }
       else

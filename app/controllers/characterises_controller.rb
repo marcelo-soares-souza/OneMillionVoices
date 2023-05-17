@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CharacterisesController < ApplicationController
   before_action :set_characterise, only: %i[ show edit update destroy ]
 
@@ -14,16 +16,11 @@ class CharacterisesController < ApplicationController
   def new
     begin
       @practice_id = Practice.friendly.find(params[:practice_id])
-    rescue ActiveRecord::RecordNotFound => e
-    end
-
-    @characterise = Characterise.where(practice_id: @practice_id).first
-
-    if @characterise.blank?
-      @characterise = Characterise.new
-    else
+    rescue ActiveRecord::RecordNotFound
       redirect_to locais_path, notice: "This Practice doesn't exist."
     end
+
+    @characterise = Characterise.new
   end
 
   # GET /characterises/1/edit

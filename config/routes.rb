@@ -27,19 +27,12 @@ Rails.application.routes.draw do
 
   get "/map", to: "home#index"
 
-  resources :agroecological_practices
-  resources :agroecological_practices do
-    get "/gallery" => "midias#gallery"
-    resources :midias
-  end
-
   scope(locais: {}) do
     resources :locais, path: "locations"
   end
 
   resources :locais do
     get "/gallery" => "midias#gallery"
-    resources :agroecological_practices
     resources :practices
     resources :midias
   end
@@ -56,7 +49,6 @@ Rails.application.routes.draw do
 
   resources :usuarios do
     resources :locais
-    resources :agroecological_practices
     resources :practices
   end
 end

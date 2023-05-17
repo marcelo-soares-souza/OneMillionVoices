@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AcknowledgesController < ApplicationController
   before_action :set_acknowledge, only: %i[ show edit update destroy ]
 
@@ -14,16 +16,11 @@ class AcknowledgesController < ApplicationController
   def new
     begin
       @practice_id = Practice.friendly.find(params[:practice_id])
-    rescue ActiveRecord::RecordNotFound => e
-    end
-
-    @acknowledge = Acknowledge.where(practice_id: @practice_id).first
-
-    if @acknowledge.blank?
-      @acknowledge = Acknowledge.new
-    else
+    rescue ActiveRecord::RecordNotFound
       redirect_to locais_path, notice: "This Practice doesn't exist."
     end
+
+    @acknowledge = Acknowledge.new
   end
 
   # GET /acknowledges/1/edit

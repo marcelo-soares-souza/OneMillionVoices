@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Practice < ApplicationRecord
   paginates_per 6
   max_paginates_per 6
@@ -18,7 +20,7 @@ class Practice < ApplicationRecord
   friendly_id :name, use: :slugged
 
   protected
-  def should_generate_new_friendly_id?
-    name_changed?
-  end
+    def should_generate_new_friendly_id?
+      name_changed?
+    end
 end

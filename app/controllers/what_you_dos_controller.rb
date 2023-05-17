@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WhatYouDosController < ApplicationController
   before_action :set_what_you_do, only: %i[ show edit update destroy ]
   before_action :authenticate_usuario!, only: %i[new edit update destroy]
@@ -15,16 +17,11 @@ class WhatYouDosController < ApplicationController
   def new
     begin
       @practice_id = Practice.friendly.find(params[:practice_id])
-    rescue ActiveRecord::RecordNotFound => e
-    end
-
-    @what_you_do = WhatYouDo.where(practice_id: @practice_id).first
-
-    if @what_you_do.blank?
-      @what_you_do = WhatYouDo.new
-    else
+    rescue ActiveRecord::RecordNotFound
       redirect_to locais_path, notice: "This Practice doesn't exist."
     end
+
+    @what_you_do = WhatYouDo.new
   end
 
   # GET /what_you_dos/1/edit
@@ -86,4 +83,3 @@ end
 def what_you_do_params
   params.require(:what_you_do).permit(:practice_id, :summary_description_of_agroecological_practice, :type_of_agroecological_practice, :problem_that_practice_addresses, :practical_implementation_of_the_practice, :expected_function_or_effects_of_practice)
 end
-

@@ -24,21 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
     t.index ["practice_id"], name: "index_acknowledges_on_practice_id"
   end
 
-  create_table "agroecological_practices", force: :cascade do |t|
-    t.bigint "usuario_id", null: false
-    t.bigint "local_id", null: false
-    t.text "summary_description"
-    t.text "problem_it_address"
-    t.text "how_it_is_done"
-    t.text "expected_function_effects"
-    t.text "principles"
-    t.text "general_evaluate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["local_id"], name: "index_agroecological_practices_on_local_id"
-    t.index ["usuario_id"], name: "index_agroecological_practices_on_usuario_id"
-  end
-
   create_table "characterises", force: :cascade do |t|
     t.bigint "practice_id", null: false
     t.text "agroecology_principles_addressed"
@@ -104,9 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
     t.datetime "imagem_updated_at", precision: nil
     t.bigint "usuario_id"
     t.bigint "local_id"
-    t.bigint "agroecological_practice_id"
-    t.bigint "practice_id", null: false
-    t.index ["agroecological_practice_id"], name: "index_midias_on_agroecological_practice_id"
+    t.bigint "practice_id"
     t.index ["local_id"], name: "index_midias_on_local_id"
     t.index ["practice_id"], name: "index_midias_on_practice_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
@@ -168,14 +151,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
   end
 
   add_foreign_key "acknowledges", "practices"
-  add_foreign_key "agroecological_practices", "locais"
-  add_foreign_key "agroecological_practices", "usuarios"
   add_foreign_key "characterises", "practices"
   add_foreign_key "evaluates", "practices"
   add_foreign_key "locais", "usuarios"
   add_foreign_key "local_usuarios", "locais"
   add_foreign_key "local_usuarios", "usuarios"
-  add_foreign_key "midias", "agroecological_practices"
   add_foreign_key "midias", "locais"
   add_foreign_key "midias", "practices"
   add_foreign_key "midias", "usuarios"

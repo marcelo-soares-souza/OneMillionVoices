@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EvaluatesController < ApplicationController
   before_action :set_evaluate, only: %i[ show edit update destroy ]
 
@@ -14,16 +16,11 @@ class EvaluatesController < ApplicationController
   def new
     begin
       @practice_id = Practice.friendly.find(params[:practice_id])
-    rescue ActiveRecord::RecordNotFound => e
-    end
-
-    @evaluate = Evaluate.where(practice_id: @practice_id).first
-
-    if @evaluate.blank?
-      @evaluate = Evaluate.new
-    else
+    rescue ActiveRecord::RecordNotFound
       redirect_to locais_path, notice: "This Practice doesn't exist."
     end
+
+    @evaluate = Evaluate.new
   end
 
   # GET /evaluates/1/edit

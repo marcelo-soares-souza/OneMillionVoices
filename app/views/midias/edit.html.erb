@@ -4,26 +4,26 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <% if params[:agroecological_practice_id] %>
-      <%= link_to t(:agroecological_practices), agroecological_practices_path, :class => "nav-link" %>
+    <% if params[:practice_id] %>
+      <%= link_to t(:practices), practices_path, :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
-    <% if params[:agroecological_practice_id] %>
-      <%= link_to @agroecological_practice.local.nome, agroecological_practice_path(@agroecological_practice), :class => "nav-link" %>
+    <% if params[:practice_id] %>
+      <%= link_to @practice.local.nome, practice_path(@practice), :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
-    <% if params[:agroecological_practice_id] %>
-      <%= link_to "Fotos (#{@agroecological_practice.midias.count})", agroecological_practice_midias_path, :class => "nav-link" %>
+    <% if params[:practice_id] %>
+      <%= link_to "Fotos (#{@practice.midias.count})", practice_midias_path, :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
-    <% if params[:agroecological_practice_id] %>
-      <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_agroecological_practice_midia_path, :class => "nav-link active" %>
+    <% if params[:practice_id] %>
+      <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_practice_midia_path, :class => "nav-link active" %>
     <% end %>
   </li>
 </ul>

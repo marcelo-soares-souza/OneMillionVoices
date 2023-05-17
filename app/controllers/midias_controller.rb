@@ -108,42 +108,42 @@ class MidiasController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_midia
-    @midia = Midia.friendly.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def midia_params
-    params.require(:midia).permit(:descricao, :slug, :practice_id, :local_id, :imagem, :usuario_id)
-  end
-
-  def load_dados
-    if params[:practice_id]
-      @practice = AgroecologicalPractice.find(params[:practice_id])
-    elsif params[:local_id]
-      @local = Local.friendly.find(params[:local_id])
+    # Use callbacks to share common setup or constraints between actions.
+    def set_midia
+      @midia = Midia.friendly.find(params[:id])
     end
-  end
 
-  def selected_id
-    if current_usuario && current_usuario.admin?
-      @selected_id = current_usuario.id
-      if @practice
-        @selected_id = @practice.usuario.id
-      elsif @local
-        @selected_id = @local.usuario.id
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def midia_params
+      params.require(:midia).permit(:descricao, :slug, :practice_id, :local_id, :imagem, :usuario_id)
+    end
+
+    def load_dados
+      if params[:practice_id]
+        @practice = AgroecologicalPractice.find(params[:practice_id])
+      elsif params[:local_id]
+        @local = Local.friendly.find(params[:local_id])
       end
     end
-  end
 
-  def default_media_name
-    @default_media_name = ""
-
-    if @practice
-      @default_media_name = "Agroecological Practice in " + @practice.local.nome + " "
-    elsif @local
-      @default_media_name = "Location " + @local.nome + " "
+    def selected_id
+      if current_usuario && current_usuario.admin?
+        @selected_id = current_usuario.id
+        if @practice
+          @selected_id = @practice.usuario.id
+        elsif @local
+          @selected_id = @local.usuario.id
+        end
+      end
     end
-  end
+
+    def default_media_name
+      @default_media_name = ""
+
+      if @practice
+        @default_media_name = "Agroecological Practice in " + @practice.local.nome + " "
+      elsif @local
+        @default_media_name = "Location " + @local.nome + " "
+      end
+    end
 end
