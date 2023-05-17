@@ -1,0 +1,33 @@
+<% title t(:what_you_do) %>
+
+<br><br><br><br>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:practices), practices_path, :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:practice), practices_path, :class => "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:what_you_do), "#", :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:characterise), "#", :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:evaluate), "#", :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:acknowledge), "#", :class => "nav-link" %>
+  </li>
+</ul>
+
+<br>
+
+<% if !@locais.empty? %>
+  <%= render 'form', practice: @practice %>
+<% else %>
+  <br>
+  <h3>Nenhum Local Cadastrado. Deseja <%= link_to "Cadastrar um Local Agora?", new_local_url %></h3>
+<% end %>

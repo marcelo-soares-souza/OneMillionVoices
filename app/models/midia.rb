@@ -5,6 +5,7 @@ class Midia < ApplicationRecord
 
   belongs_to :local, required: false
   belongs_to :agroecological_practice, required: false
+  belongs_to :practice, required: false
 
   extend FriendlyId
   friendly_id :descricao, use: :slugged

@@ -1,0 +1,142 @@
+<%= form_for(evaluate, html: { multipart: true }) do |f| %>
+  <%= f.submit t(:next), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <br><br>
+
+  <% if evaluate.errors.any? %>
+    <div id="error_explanation">
+      <b><%= evaluate.errors.count.to_s + " Error(s)" %></b>
+      <br><br>
+      <% evaluate.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %><br>
+    </div>
+
+  <% end %>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <% if params[:practice_id] %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => Practice.friendly.find(params[:practice_id]).id %>
+      <% else %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => @evaluate.practice.id %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-group row bg-light">
+      <%= f.label t(:general_performance_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :general_performance_of_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice work as intended - does it have the effect you expected?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:unintended_positive_side_effects_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :unintended_positive_side_effects_of_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does using the practice have any positive side effects that you did not expect?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:unintended_negative_side_effect_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :unintended_negative_side_effect_of_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does using the practice have any negative side effects that you did not expect?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:knowledge_and_skills_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :knowledge_and_skills_required_for_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practive require a lot of formal knowledge and training?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:labour_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :labour_required_for_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice require a lot of work?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:cost_associated_with_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :cost_associated_with_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice require a lot of money?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:system_integrity_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :system_integrity_requirements, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice work when the environment, land and soil are depleted?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:system_integrity_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :system_integrity_effects, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice help to restore the health of your farm and/or its surrounding?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:climate_change_vulnerability_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :climate_change_vulnerability_effects, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice help to reduce climate change effects that you experienced previously?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light">
+      <%= f.label t(:time_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :time_requirements, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Does the practice require time to work as expected (as the system heals)?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="actions">
+      <%= f.submit t(:save), class: "btn btn-primary btn-block" %>
+    </div>
+    <br>
+  </div>
+<% end %>

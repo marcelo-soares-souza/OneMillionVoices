@@ -1,0 +1,25 @@
+<% title t(:what_you_do) %>
+
+<br><br><br><br>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to t(:practices), practices_path, :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:what_you_do), "#", :class => "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:characterise), "#", :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:evaluate), "#", :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:acknowledge), "#", :class => "nav-link" %>
+  </li>
+</ul>
+
+<br>
+
+<%= render 'form', what_you_do: @what_you_do %>

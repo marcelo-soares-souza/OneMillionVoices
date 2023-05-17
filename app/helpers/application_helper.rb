@@ -4,6 +4,8 @@ module ApplicationHelper
   def form_for_midia(condition, &block)
     if condition["agroecological_practice_id"]
       form_for [@agroecological_practice, @midia], html: { multipart: true }, &block
+    elsif condition["practice_id"]
+      form_for [@practice, @midia], html: { multipart: true }, &block
     elsif condition["local_id"]
       form_for [@local, @midia], html: { multipart: true }, &block
     end

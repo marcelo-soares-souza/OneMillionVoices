@@ -1,0 +1,48 @@
+<%= form_for(practice, html: { multipart: true }) do |f| %>
+  <%= f.submit t(:start), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <br><br>
+
+  <% if practice.errors.any? %>
+    <div id="error_explanation">
+      <b><%= practice.errors.count.to_s + " Error(s)" %></b>
+      <br><br>
+      <% practice.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %><br>
+    </div>
+
+  <% end %>
+
+  <% if current_usuario.admin? %>
+    <div class="form-group row">
+      <%= f.label t(:responsible_for_information), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.collection_select(:usuario_id, Usuario.all, :id, :nome, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <% if params[:local_id] %>
+        <%= f.hidden_field :local_id, id: "local_id", :value => Local.friendly.find(params[:local_id]).id %>
+      <% else %>
+        <%= f.hidden_field :local_id, id: "local_id", :value => @practice.local.id %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-group row bg-light">
+      <%= f.label t(:name), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :name, class: "form-control", :rows => "1" %>
+        <div class="tip">
+          Name this Practice
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+<% end %>

@@ -1,0 +1,54 @@
+<%= form_for(characterise, html: { multipart: true }) do |f| %>
+  <%= f.submit t(:next), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <br><br>
+
+  <% if characterise.errors.any? %>
+    <div id="error_explanation">
+      <b><%= characterise.errors.count.to_s + " Error(s)" %></b>
+      <br><br>
+      <% characterise.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %><br>
+    </div>
+
+  <% end %>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <% if params[:practice_id] %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => Practice.friendly.find(params[:practice_id]).id %>
+      <% else %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => @characterise.practice.id %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-group row bg-light">
+      <%= f.label t(:agroecology_principles_addressed), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :agroecology_principles_addressed, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Which agroecological principles are addressed or engaged through the practice?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row bg-light">
+      <%= f.label t(:food_system_components_addressed), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :food_system_components_addressed, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Which parts of the food system are concerned or engaged through the practice?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit t(:save), class: "btn btn-primary btn-block" %>
+    </div>
+    <br>
+  </div>
+<% end %>

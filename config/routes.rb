@@ -1,10 +1,24 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :practices
+  resources :acknowledges
+  resources :evaluates
+  resources :characterises
+  resources :what_you_dos
+
+  resources :practices do
+    resources :acknowledges
+    resources :evaluates
+    resources :characterises
+    resources :what_you_dos
+    resources :midias
+    get "/gallery" => "midias#gallery"
+  end
+
   resources :about
   resources :who_we_are
   resources :manual
-  resources :agroecological_practices
 
   scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
     root to: "home#index"
@@ -13,6 +27,7 @@ Rails.application.routes.draw do
 
   get "/map", to: "home#index"
 
+  resources :agroecological_practices
   resources :agroecological_practices do
     get "/gallery" => "midias#gallery"
     resources :midias
@@ -25,6 +40,7 @@ Rails.application.routes.draw do
   resources :locais do
     get "/gallery" => "midias#gallery"
     resources :agroecological_practices
+    resources :practices
     resources :midias
   end
 
@@ -41,5 +57,6 @@ Rails.application.routes.draw do
   resources :usuarios do
     resources :locais
     resources :agroecological_practices
+    resources :practices
   end
 end

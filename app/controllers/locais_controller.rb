@@ -43,15 +43,6 @@ class LocaisController < ApplicationController
 
     respond_to do |format|
       if @local.save
-        # @onemillionvoice = OneMillionVoice.new
-        # @onemillionvoice.local_id = @local.id
-        # @onemillionvoice.usuario_id = @local.usuario_id
-        # @onemillionvoice.description = ''
-        # @onemillionvoice.problem_it_address = ''
-        # @onemillionvoice.how_it_is_done = ''
-        # @onemillionvoice.expected_function_effects = ''
-        # @onemillionvoice.save
-
         format.html { redirect_to @local, notice: t(:location_has_been_registered) }
         format.json { render :show, status: :created, location: @local }
       else

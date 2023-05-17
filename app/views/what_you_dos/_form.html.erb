@@ -1,0 +1,87 @@
+<%= form_for(what_you_do, html: { multipart: true }) do |f| %>
+  <%= f.submit t(:next), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <br><br>
+
+  <% if what_you_do.errors.any? %>
+    <div id="error_explanation">
+      <b><%= what_you_do.errors.count.to_s + " Error(s)" %></b>
+      <br><br>
+      <% what_you_do.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %><br>
+    </div>
+
+  <% end %>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <% if params[:practice_id] %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => Practice.friendly.find(params[:practice_id]).id %>
+      <% else %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => @what_you_do.practice.id %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-group row bg-light">
+      <%= f.label t(:summary_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :summary_description_of_agroecological_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          In short, what is the practice that you want to map?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row bg-light">
+      <%= f.label t(:type_of_agroecological_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :type_of_agroecological_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          What kind of practice is it?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row ">
+      <%= f.label t(:problem_it_address), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :problem_that_practice_addresses, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Which problem/s does the practice address?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row  bg-light">
+      <%= f.label t(:how_it_is_done), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :practical_implementation_of_the_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          How do you do it?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group row  bg-light">
+      <%= f.label t(:expected_function_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :expected_function_or_effects_of_practice, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          Which effect do you expect the practice to have?
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit t(:save), class: "btn btn-primary btn-block" %>
+    </div>
+    <br>
+  </div>
+<% end %>
