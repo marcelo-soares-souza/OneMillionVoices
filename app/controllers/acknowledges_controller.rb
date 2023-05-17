@@ -25,7 +25,7 @@ class AcknowledgesController < ApplicationController
 
     respond_to do |format|
       if @acknowledge.save
-        format.html { redirect_to acknowledge_url(@acknowledge), notice: "Acknowledge was successfully created." }
+        format.html { redirect_to local_path(@acknowledge.practice.local), notice: "Acknowledge was successfully created." }
         format.json { render :show, status: :created, location: @acknowledge }
       else
         format.html { render :new, status: :unprocessable_entity }

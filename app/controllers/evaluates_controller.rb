@@ -25,7 +25,7 @@ class EvaluatesController < ApplicationController
 
     respond_to do |format|
       if @evaluate.save
-        format.html { redirect_to evaluate_url(@evaluate), notice: "Evaluate was successfully created." }
+        format.html { redirect_to new_practice_acknowledge_path(@evaluate.practice), notice: "Evaluate was successfully created." }
         format.json { render :show, status: :created, location: @evaluate }
       else
         format.html { render :new, status: :unprocessable_entity }

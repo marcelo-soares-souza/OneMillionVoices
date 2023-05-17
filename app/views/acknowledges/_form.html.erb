@@ -1,0 +1,67 @@
+<%= form_for(acknowledge, html: { multipart: true }) do |f| %>
+  <%= f.submit t(:next), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <br><br>
+
+  <% if acknowledge.errors.any? %>
+    <div id="error_explanation">
+      <b><%= acknowledge.errors.count.to_s + " Error(s)" %></b>
+      <br><br>
+      <% acknowledge.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %><br>
+    </div>
+
+  <% end %>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <% if params[:practice_id] %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => Practice.friendly.find(params[:practice_id]).id %>
+      <% else %>
+        <%= f.hidden_field :practice_id, id: "practice_id", :value => @acknowledge.practice.id %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="form-group row bg-light">
+      <%= f.label t(:knowledge_source), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :knowledge_source, class: "form-control", :rows => "6" %>
+        <div class="tip">
+          How did you learn about the practice?
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="forms">
+      <div class="form-group row bg-light">
+        <%= f.label t(:knowledge_timing), class: "col-sm-2 col-form-label col-form-label-lg" %>
+        <div class="col-sm-10">
+          <%= f.text_area :knowledge_timing, class: "form-control", :rows => "6" %>
+          <div class="tip">
+            How long ago did you learn about the practice?
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="forms">
+        <div class="form-group row bg-light">
+          <%= f.label t(:knowledge_products), class: "col-sm-2 col-form-label col-form-label-lg" %>
+          <div class="col-sm-10">
+            <%= f.text_area :knowledge_products, class: "form-control", :rows => "6" %>
+            <div class="tip">
+              Are there any resources (books, manuals, websites, videos etc.) about the practice that you use and would like to share?
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="actions">
+          <%= f.submit t(:save), class: "btn btn-primary btn-block" %>
+        </div>
+        <br>
+      </div>
+<% end %>
