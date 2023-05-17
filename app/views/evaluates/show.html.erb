@@ -51,7 +51,6 @@
         <div id="practice-footer">
           <div class="form-actions">
             <%= link_to t(:edit), edit_practice_evaluate_path(@evaluate.practice, @evaluate), :class => 'btn btn-success' %>
-            <%= link_to t(:destroy), practice_evaluate_path(@evaluate.practice, @evaluate), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
           </div>
         </div>
       <% end %>

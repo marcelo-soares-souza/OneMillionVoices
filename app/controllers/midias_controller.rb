@@ -11,8 +11,8 @@ class MidiasController < ApplicationController
   # GET /midias
   # GET /midias.json
   def index
-    if params[:agroecological_practice_id]
-      @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
+    if params[:practice_id]
+      @midias = Midia.where(practice_id: @practice.id).load_async
     elsif params[:local_id]
       @midias = Midia.where(local_id: @local.id).load_async
     end
@@ -21,8 +21,8 @@ class MidiasController < ApplicationController
   # GET /gallery
   # GET /gallery.json
   def gallery
-    if params[:agroecological_practice_id]
-      @midias = Midia.where(agroecological_practice_id: @agroecological_practice.id).load_async
+    if params[:practice_id]
+      @midias = Midia.where(practice_id: @practice.id).load_async
     elsif params[:local_id]
       @midias = Midia.where(local_id: @local.id).load_async
     end
@@ -46,17 +46,17 @@ class MidiasController < ApplicationController
     @midia = Midia.new(midia_params)
     @midia.usuario_id = current_usuario.id unless current_usuario.admin?
 
-    if params[:agroecological_practice_id]
-      @midia.agroecological_practice_id = @agroecological_practice.id
-      @midia.local_id = @agroecological_practice.local.id
+    if params[:practice_id]
+      @midia.practice_id = @practice.id
+      @midia.local_id = @practice.local.id
     elsif params[:local_id]
       @midia.local_id = @local.id
     end
 
     respond_to do |format|
       if @midia.save
-        if params[:agroecological_practice_id]
-          format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Photo has been sent" }
+        if params[:practice_id]
+          format.html { redirect_to practice_gallery_path(@practice, @midia), notice: "Photo has been sent" }
         elsif params[:local_id]
           format.html do
             redirect_to local_gallery_path(@local),  notice: "Photo has been sent"
@@ -75,8 +75,8 @@ class MidiasController < ApplicationController
   def update
     respond_to do |format|
       if @midia.update(midia_params)
-        if params[:agroecological_practice_id]
-          format.html { redirect_to agroecological_practice_gallery_path(@agroecological_practice, @midia), notice: "Media has been updated." }
+        if params[:practice_id]
+          format.html { redirect_to practice_gallery_path(@practice, @midia), notice: "Media has been updated." }
         elsif params[:local_id]
           format.html do
             redirect_to local_gallery_path(@local),  notice: "Media has been updated."
@@ -96,8 +96,8 @@ class MidiasController < ApplicationController
     @midia.destroy
 
     respond_to do |format|
-      if params[:agroecological_practice_id]
-        format.html { redirect_to agroecological_practice_path(@agroecological_practice), notice: "Media has been removed." }
+      if params[:practice_id]
+        format.html { redirect_to practice_path(@practice), notice: "Media has been removed." }
       elsif params[:local_id]
         format.html do
           redirect_to local_gallery_path(@local), notice: "Media has been removed."
@@ -108,42 +108,42 @@ class MidiasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_midia
-      @midia = Midia.friendly.find(params[:id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_midia
+    @midia = Midia.friendly.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def midia_params
+    params.require(:midia).permit(:descricao, :slug, :practice_id, :local_id, :imagem, :usuario_id)
+  end
+
+  def load_dados
+    if params[:practice_id]
+      @practice = AgroecologicalPractice.find(params[:practice_id])
+    elsif params[:local_id]
+      @local = Local.friendly.find(params[:local_id])
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def midia_params
-      params.require(:midia).permit(:descricao, :slug, :agroecological_practice_id, :local_id, :imagem, :usuario_id)
-    end
-
-    def load_dados
-      if params[:agroecological_practice_id]
-        @agroecological_practice = AgroecologicalPractice.find(params[:agroecological_practice_id])
-      elsif params[:local_id]
-        @local = Local.friendly.find(params[:local_id])
-      end
-    end
-
-    def selected_id
-      if current_usuario && current_usuario.admin?
-        @selected_id = current_usuario.id
-        if @agroecological_practice
-          @selected_id = @agroecological_practice.usuario.id
-        elsif @local
-          @selected_id = @local.usuario.id
-        end
-      end
-    end
-
-    def default_media_name
-      @default_media_name = ""
-
-      if @agroecological_practice
-        @default_media_name = "Agroecological Practice in " + @agroecological_practice.local.nome + " "
+  def selected_id
+    if current_usuario && current_usuario.admin?
+      @selected_id = current_usuario.id
+      if @practice
+        @selected_id = @practice.usuario.id
       elsif @local
-        @default_media_name = "Location " + @local.nome + " "
+        @selected_id = @local.usuario.id
       end
     end
+  end
+
+  def default_media_name
+    @default_media_name = ""
+
+    if @practice
+      @default_media_name = "Agroecological Practice in " + @practice.local.nome + " "
+    elsif @local
+      @default_media_name = "Location " + @local.nome + " "
+    end
+  end
 end

@@ -19,9 +19,9 @@
     <%= link_to t(:gallery) + " (#{@total_midia})", local_gallery_path(@local.id), :class => "nav-link", :style => "color: red !important" %>
   </li>
 
-  <% if @local.agroecological_practices.count > 0 %>
+  <% if @local.practices.count > 0 %>
     <li class="nav-item">
-      <%= link_to t(:practices) + " (#{@local.agroecological_practices.count})", local_agroecological_practices_path(@local, ''), :class => "nav-link", :style => "color: red !important" %>
+      <%= link_to t(:practices) + " (#{@local.practices.count})", local_practices_path(@local, ''), :class => "nav-link", :style => "color: red !important" %>
     </li>
   <% end %>
 

@@ -9,6 +9,7 @@ class Local < ApplicationRecord
   has_many :usuarios, through: :local_usuarios
   has_many :midias, dependent: :destroy
   has_many :agroecological_practices, dependent: :destroy
+  has_many :practices, dependent: :destroy
 
   accepts_nested_attributes_for :local_usuarios, allow_destroy: true
 

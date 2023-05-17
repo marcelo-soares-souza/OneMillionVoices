@@ -4,7 +4,6 @@ class Midia < ApplicationRecord
   before_save :concatenate_details
 
   belongs_to :local, required: false
-  belongs_to :agroecological_practice, required: false
   belongs_to :practice, required: false
 
   extend FriendlyId
@@ -19,11 +18,11 @@ class Midia < ApplicationRecord
   validates_attachment_content_type :imagem, content_type: %r{\Aimage/.*\z}
 
   protected
-    def should_generate_new_friendly_id?
-      descricao_changed?
-    end
-    def concatenate_details
-      instant = Time.now.strftime("%Y-%m-%d %T")
-      self.descricao = "#{descricao} (#{instant})"
-    end
+  def should_generate_new_friendly_id?
+    descricao_changed?
+  end
+  def concatenate_details
+    instant = Time.now.strftime("%Y-%m-%d %T")
+    self.descricao = "#{descricao} (#{instant})"
+  end
 end
