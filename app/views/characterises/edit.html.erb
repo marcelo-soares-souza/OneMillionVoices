@@ -1,18 +1,13 @@
-<% title t(:register_new_practice) %>
+<% title t(:characterise) %>
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to t(:practice), practices_path, :class => "nav-link" %>
+    <%= link_to @characterise.practice.name.truncate(10), practice_path(@characterise.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:edit)}", edit_practice_path(@practice), :class => "nav-link active" %>
+    <%= link_to "#{t(:edit)}", "#", :class => "nav-link active" %>
   </li>
 </ul>
 <br>
 
-<% if !@locais.empty? %>
-  <%= render 'form', practice: @practice %>
-<% else %>
-  <br>
-  <h3>Nenhum Local Cadastrado. Deseja <%= link_to "Cadastrar um Local Agora?", new_local_url %></h3>
-<% end %>
+<%= render 'form', characterise: @characterise %>

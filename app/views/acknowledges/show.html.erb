@@ -34,21 +34,22 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-
+    <%= "<h2>#{t(:knowledge_source)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0%>
     <br>
+    <%= "<h2>#{t(:knowledge_timing)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0%>
+    <br>
+    <%= "<h2>#{t(:knowledge_products)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0%>
 
     <% if usuario_signed_in? %>
       <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
         <br><br>
         <div id="practice-footer">
           <div class="form-actions">
-            <%= link_to t(:edit), edit_local_practice_path(@acknowledge.practice.local, @acknowledge.practice.id), :class => 'btn btn-success' %>
-            <%= link_to t(:destroy), practice_path(@acknowledge), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
+            <%= link_to t(:edit), edit_practice_acknowledge_path(@acknowledge.practice, @acknowledge), :class => 'btn btn-success' %>
+            <%= link_to t(:destroy), practice_acknowledge_path(@acknowledge.practice, @acknowledge), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
           </div>
         </div>
       <% end %>
     <% end %>
     <br><br>
   </div>
-</div>
-
