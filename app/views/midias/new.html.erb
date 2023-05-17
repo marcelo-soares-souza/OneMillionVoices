@@ -1,5 +1,5 @@
 <% if params[:practice_id] %>
-  <% title "Add Photo To#{@practice.local.nome}" %>
+  <% title "Add Photo To #{@practice.name}" %>
 <% elsif params[:local_id] %>
   <% title "Add Photo to #{@local.nome}" %>
 <% end %>
@@ -15,7 +15,7 @@
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to @practice.local.nome.truncate(10), practice_path(@practice), :class => "nav-link" %>
+      <%= link_to @practice.name.truncate(10), practice_path(@practice), :class => "nav-link" %>
     <% elsif params[:local_id] %>
       <%= link_to truncate(@local.nome, length: 10), local_path(@local), :class => "nav-link" %>
     <% end %>

@@ -60,7 +60,7 @@
     <%= f.hidden_field :longitude, id: "longitude" %>
 
     <div class="actions">
-      <%= f.submit t(:submit), class: "btn btn-primary" %>
+      <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
     </div>
 
     <script>
@@ -70,9 +70,9 @@
             lon = -47.88219451904297;
 
             <% if request.location %>
-              lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
+            lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
               lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
-            <% end %>
+                <% end %>
 
                 <% elsif params[:action] != 'new' %>
                 <% if f.object.latitude? %>

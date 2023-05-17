@@ -1,5 +1,5 @@
 <% if params[:practice_id] %>
-  <% title "#{@midia.descricao} | #{@practice.local.nome}" %>
+  <% title "#{@midia.descricao} | #{@practice.name}" %>
 <% end %>
 
 <% if usuario_signed_in? %>
@@ -13,7 +13,7 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to truncate(@practice.local.nome, length: 16), practice_path(@practice), :class => "nav-link" %>
+      <%= link_to truncate(@practice.name, length: 16), practice_path(@practice), :class => "nav-link" %>
     <% end %>
   </li>
 

@@ -1,5 +1,7 @@
 <%= form_for(acknowledge, html: { multipart: true }) do |f| %>
-  <%= f.submit t(:next), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <% button_name = params["action"] == 'edit' ? t(:save) :  t(:next ) %>
+  <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+
   <br><br>
 
   <% if acknowledge.errors.any? %>
@@ -57,11 +59,10 @@
             </div>
           </div>
         </div>
-        <br>
 
-        <div class="actions">
-          <%= f.submit t(:save), class: "btn btn-primary btn-block" %>
-        </div>
+
         <br>
       </div>
+    </div>
+  </div>
 <% end %>

@@ -120,7 +120,7 @@ class MidiasController < ApplicationController
 
     def load_dados
       if params[:practice_id]
-        @practice = AgroecologicalPractice.find(params[:practice_id])
+        @practice = Practice.friendly.find(params[:practice_id])
       elsif params[:local_id]
         @local = Local.friendly.find(params[:local_id])
       end

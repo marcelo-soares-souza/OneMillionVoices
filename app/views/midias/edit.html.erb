@@ -11,7 +11,7 @@
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to @practice.local.nome, practice_path(@practice), :class => "nav-link" %>
+      <%= link_to @practice.name, practice_path(@practice), :class => "nav-link" %>
     <% end %>
   </li>
 
