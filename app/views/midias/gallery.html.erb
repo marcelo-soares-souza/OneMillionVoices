@@ -15,13 +15,13 @@
 <ul class="nav nav-tabs">
   <% if params[:local_id] %>
     <li class="nav-item">
-      <%= link_to truncate(@local.nome, length: 12), local_path(@local), :class => "nav-link" %>
+      <%= link_to truncate(@local.nome, length: 10), local_path(@local), :class => "nav-link" %>
     </li>
   <% end %>
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to truncate(@practice.name, length: 12), practice_path(@practice), :class => "nav-link" %>
+      <%= link_to truncate(@practice.name, length: 10), practice_path(@practice), :class => "nav-link" %>
     <% elsif params[:local_id] %>
       <%= link_to t(:gallery)+ " (#{@local.midias.count})", local_path(@local), :class => "nav-link active" %>
     <% end %>
