@@ -12,7 +12,18 @@ class EvaluatesController < ApplicationController
 
   # GET /evaluates/new
   def new
-    @evaluate = Evaluate.new
+    begin
+      @practice_id = Practice.friendly.find(params[:practice_id])
+    rescue ActiveRecord::RecordNotFound => e
+    end
+
+    @evaluate = Evaluate.where(practice_id: @practice_id).first
+
+    if @evaluate.blank?
+      @evaluate = Evaluate.new
+    else
+      redirect_to locais_path, notice: "This Practice doesn't exist."
+    end
   end
 
   # GET /evaluates/1/edit
@@ -21,15 +32,21 @@ class EvaluatesController < ApplicationController
 
   # POST /evaluates or /evaluates.json
   def create
-    @evaluate = Evaluate.new(evaluate_params)
+    @evaluate = Evaluate.where(practice_id: params[:evaluate][:practice_id]).first
 
     respond_to do |format|
-      if @evaluate.save
-        format.html { redirect_to new_practice_acknowledge_path(@evaluate.practice), notice: "Evaluate was successfully created." }
-        format.json { render :show, status: :created, location: @evaluate }
+      if @evaluate
+        @evaluate.update(evaluate_params)
+        format.html { redirect_to new_practice_acknowledge_path(@evaluate.practice), notice: "Evaluate was successfully Updated." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @evaluate.errors, status: :unprocessable_entity }
+        @evaluate = Evaluate.new(evaluate_params)
+        if @evaluate.save
+          format.html { redirect_to new_practice_acknowledge_path(@evaluate.practice), notice: "Evaluate was successfully created." }
+          format.json { render :show, status: :created, location: @evaluate }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @evaluate.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

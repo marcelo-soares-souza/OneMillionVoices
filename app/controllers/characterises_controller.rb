@@ -12,7 +12,18 @@ class CharacterisesController < ApplicationController
 
   # GET /characterises/new
   def new
-    @characterise = Characterise.new
+    begin
+      @practice_id = Practice.friendly.find(params[:practice_id])
+    rescue ActiveRecord::RecordNotFound => e
+    end
+
+    @characterise = Characterise.where(practice_id: @practice_id).first
+
+    if @characterise.blank?
+      @characterise = Characterise.new
+    else
+      redirect_to locais_path, notice: "This Practice doesn't exist."
+    end
   end
 
   # GET /characterises/1/edit
@@ -21,15 +32,21 @@ class CharacterisesController < ApplicationController
 
   # POST /characterises or /characterises.json
   def create
-    @characterise = Characterise.new(characterise_params)
+    @characterise = Characterise.where(practice_id: params[:characterise][:practice_id]).first
 
     respond_to do |format|
-      if @characterise.save
-        format.html { redirect_to new_practice_evaluate_path(@characterise.practice), notice: "Characterise was successfully created." }
-        format.json { render :show, status: :created, location: @characterise }
+      if @characterise
+        @characterise.update(characterise_params)
+        format.html { redirect_to new_practice_evaluate_path(@characterise.practice), notice: "Characterise was successfully Updated." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @characterise.errors, status: :unprocessable_entity }
+        @characterise = Characterise.new(characterise_params)
+        if @characterise.save
+          format.html { redirect_to new_practice_evaluate_path(@characterise.practice), notice: "Characterise was successfully created." }
+          format.json { render :show, status: :created, location: @characterise }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @characterise.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -58,13 +75,13 @@ class CharacterisesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_characterise
-      @characterise = Characterise.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_characterise
+    @characterise = Characterise.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def characterise_params
-      params.require(:characterise).permit(:practice_id, :agroecology_principles_addressed, :food_system_components_addressed)
-    end
+  # Only allow a list of trusted parameters through.
+  def characterise_params
+    params.require(:characterise).permit(:practice_id, :agroecology_principles_addressed, :food_system_components_addressed)
+  end
 end

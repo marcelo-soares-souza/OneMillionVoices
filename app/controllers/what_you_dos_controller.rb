@@ -13,7 +13,18 @@ class WhatYouDosController < ApplicationController
 
   # GET /what_you_dos/new
   def new
-    @what_you_do = WhatYouDo.new
+    begin
+      @practice_id = Practice.friendly.find(params[:practice_id])
+    rescue ActiveRecord::RecordNotFound => e
+    end
+
+    @what_you_do = WhatYouDo.where(practice_id: @practice_id).first
+
+    if @what_you_do.blank?
+      @what_you_do = WhatYouDo.new
+    else
+      redirect_to locais_path, notice: "This Practice doesn't exist."
+    end
   end
 
   # GET /what_you_dos/1/edit

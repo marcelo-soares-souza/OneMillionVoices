@@ -12,7 +12,18 @@ class AcknowledgesController < ApplicationController
 
   # GET /acknowledges/new
   def new
-    @acknowledge = Acknowledge.new
+    begin
+      @practice_id = Practice.friendly.find(params[:practice_id])
+    rescue ActiveRecord::RecordNotFound => e
+    end
+
+    @acknowledge = Acknowledge.where(practice_id: @practice_id).first
+
+    if @acknowledge.blank?
+      @acknowledge = Acknowledge.new
+    else
+      redirect_to locais_path, notice: "This Practice doesn't exist."
+    end
   end
 
   # GET /acknowledges/1/edit
@@ -21,15 +32,21 @@ class AcknowledgesController < ApplicationController
 
   # POST /acknowledges or /acknowledges.json
   def create
-    @acknowledge = Acknowledge.new(acknowledge_params)
+    @acknowledge = Acknowledge.where(practice_id: params[:acknowledge][:practice_id]).first
 
     respond_to do |format|
-      if @acknowledge.save
-        format.html { redirect_to local_path(@acknowledge.practice.local), notice: "Acknowledge was successfully created." }
-        format.json { render :show, status: :created, location: @acknowledge }
+      if @acknowledge
+        @acknowledge.update(acknowledge_params)
+        format.html { redirect_to local_practice_path(@acknowledge.practice.local, @acknowledge.practice), notice: "Acknowledges was successfully Updated." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @acknowledge.errors, status: :unprocessable_entity }
+        @acknowledge = Acknowledge.new(acknowledge_params)
+        if @acknowledge.save
+          format.html { redirect_to local_practice_path(@acknowledge.practice.local, @acknowledge.practice), notice: "Acknowledges was successfully created." }
+          format.json { render :show, status: :created, location: @acknowledge }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @acknowledge.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -58,13 +75,13 @@ class AcknowledgesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_acknowledge
-      @acknowledge = Acknowledge.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_acknowledge
+    @acknowledge = Acknowledge.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def acknowledge_params
-      params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
-    end
+  # Only allow a list of trusted parameters through.
+  def acknowledge_params
+    params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
+  end
 end
