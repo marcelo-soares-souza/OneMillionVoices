@@ -34,21 +34,31 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <%= "<h2>#{t(:agroecology_principles_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.agroecology_principles_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @characterise.agroecology_principles_addressed and @characterise.agroecology_principles_addressed .length() > 0%>
-    <br>
-    <%= "<h2>#{t(:food_system_components_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.food_system_components_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0%>
+    <% if @characterise.agroecology_principles_addressed.empty? and @characterise.food_system_components_addressed.empty? %>
+      <h3><%= t(:no_data_has_been_registered_so_far) %>
+        <% if usuario_signed_in? %>
+          <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
+            <%= link_to t(:register), edit_practice_characterise_path(@characterise.practice, @characterise) %>
+          <% end %>
+        <% end %>
+      </h3>
+    <% else %>
+      <%= "<h2>#{t(:agroecology_principles_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.agroecology_principles_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @characterise.agroecology_principles_addressed and @characterise.agroecology_principles_addressed .length() > 0%>
+      <br>
+      <%= "<h2>#{t(:food_system_components_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.food_system_components_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0%>
 
-    <% if usuario_signed_in? %>
-      <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
-        <br><br>
-        <div id="practice-footer">
-          <div class="form-actions">
-            <%= link_to t(:edit), edit_practice_characterise_path(@characterise.practice, @characterise), :class => 'btn btn-success' %>
+      <% if usuario_signed_in? %>
+        <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
+          <br><br>
+          <div id="practice-footer">
+            <div class="form-actions">
+              <%= link_to t(:edit), edit_practice_characterise_path(@characterise.practice, @characterise), :class => 'btn btn-success' %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+      <br><br>
     <% end %>
-    <br><br>
   </div>
 </div>
 

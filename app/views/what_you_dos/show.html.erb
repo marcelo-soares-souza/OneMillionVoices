@@ -34,25 +34,41 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <%= "<h2>#{t(:summary_description)}</h2><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
-    <br>
-    <%= "<h2>#{t(:problem_it_address)}</h2><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
-    <br>
-    <%= "<h2>#{t(:how_it_is_done)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
-    <br>
-    <%= "<h2>#{t(:expected_function_effects)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
+    <% if @what_you_do.summary_description_of_agroecological_practice.empty? and
+      @what_you_do.type_of_agroecological_practice.empty? and
+      @what_you_do.problem_that_practice_addresses.empty? and
+      @what_you_do.practical_implementation_of_the_practice.empty? and
+      @what_you_do.expected_function_or_effects_of_practice.empty? %>
+      <h3><%= t(:no_data_has_been_registered_so_far) %>
+        <% if usuario_signed_in? %>
+          <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
+            <%= link_to t(:register), edit_practice_what_you_do_path(@what_you_do.practice, @what_you_do) %>
+          <% end %>
+        <% end %>
+      </h3>
+    <% else %>
+      <%= "<h2>#{t(:summary_description_of_agroecological_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
+      <br>
+      <%= "<h2>#{t(:type_of_agroecological_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.type_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.type_of_agroecological_practice and @what_you_do.type_of_agroecological_practice .length() > 0%>
+      <br>
+      <%= "<h2>#{t(:problem_that_practice_addresses)}</h2><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
+      <br>
+      <%= "<h2>#{t(:practical_implementation_of_the_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
+      <br>
+      <%= "<h2>#{t(:expected_function_or_effects_of_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
 
-    <% if usuario_signed_in? %>
-      <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
-        <br><br>
-        <div id="practice-footer">
-          <div class="form-actions">
-            <%= link_to t(:edit), edit_practice_what_you_do_path(@what_you_do.practice, @what_you_do), :class => 'btn btn-success' %>
+      <% if usuario_signed_in? %>
+        <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
+          <br><br>
+          <div id="practice-footer">
+            <div class="form-actions">
+              <%= link_to t(:edit), edit_practice_what_you_do_path(@what_you_do.practice, @what_you_do), :class => 'btn btn-success' %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+      <br><br>
     <% end %>
-    <br><br>
   </div>
 </div>
 

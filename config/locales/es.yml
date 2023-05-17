@@ -480,3 +480,9 @@ es:
   knowledge_source: "Knowledge Source"
   knowledge_timing: "Knowledge Timing"
   knowledge_products: "Knowledge Products"
+  summary_description_of_agroecological_practice: "Summary Description of Agroecological Practice"
+  type_of_agroecological_practice: "Type of Agroecological Practice"
+  problem_that_practice_addresses: "Problem that Practice Addresses"
+  practical_implementation_of_the_practice: "Practical implementation of the practice"
+  expected_function_or_effects_of_practice: "Expected function or effects of practice"
+

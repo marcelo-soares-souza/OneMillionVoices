@@ -34,22 +34,36 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <%= "<h2>#{t(:knowledge_source)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0%>
-    <br>
-    <%= "<h2>#{t(:knowledge_timing)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0%>
-    <br>
-    <%= "<h2>#{t(:knowledge_products)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0%>
+    <% if @acknowledge.knowledge_source.empty? and
+      @acknowledge.knowledge_timing.empty? and
+      @acknowledge.knowledge_products.empty?
+    %>
+      <h3><%= t(:no_data_has_been_registered_so_far) %>
+        <% if usuario_signed_in? %>
+          <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
+            <%= link_to t(:register), edit_practice_acknowledge_path(@acknowledge.practice, @acknowledge) %>
+          <% end %>
+        <% end %>
+      </h3>
+    <% else %>
 
-    <% if usuario_signed_in? %>
-      <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
-        <br><br>
-        <div id="practice-footer">
-          <div class="form-actions">
-            <%= link_to t(:edit), edit_practice_acknowledge_path(@acknowledge.practice, @acknowledge), :class => 'btn btn-success' %>
+      <%= "<h2>#{t(:knowledge_source)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0%>
+      <br>
+      <%= "<h2>#{t(:knowledge_timing)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0%>
+      <br>
+      <%= "<h2>#{t(:knowledge_products)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0%>
+
+      <% if usuario_signed_in? %>
+        <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
+          <br><br>
+          <div id="practice-footer">
+            <div class="form-actions">
+              <%= link_to t(:edit), edit_practice_acknowledge_path(@acknowledge.practice, @acknowledge), :class => 'btn btn-success' %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+      <br><br>
     <% end %>
-    <br><br>
   </div>
 </div>
