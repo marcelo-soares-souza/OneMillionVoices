@@ -10,13 +10,22 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to truncate(@what_you_do.practice.name, length: 8), local_path(@what_you_do.practice.local), title: @what_you_do.practice.name,  :class => "nav-link" %>
+    <%= link_to truncate(@what_you_do.practice.local.nome, length: 8), local_path(@what_you_do.practice.local), title: @what_you_do.practice.local.nome,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to t(:what_you_do) , local_path(@what_you_do.practice.local), :class => "nav-link active" %>
+    <%= link_to @what_you_do.practice.name.truncate(10) , practice_path(@what_you_do.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:gallery)} (#{@what_you_do.practice.midias.count})", practice_gallery_path(@what_you_do.practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to t(:what_you_do), practice_what_you_do_path(@what_you_do.practice, @what_you_do.practice.what_you_do), :class => "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:characterise), practice_characterise_path(@what_you_do.practice, @what_you_do.practice.characterise), :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:evaluate), practice_evaluate_path(@what_you_do.practice, @what_you_do.practice.evaluate), :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:acknowledge), practice_acknowledge_path(@what_you_do.practice, @what_you_do.practice.acknowledge), :class => "nav-link" %>
   </li>
 </ul>
 
@@ -24,21 +33,14 @@
 
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
-    <div  class="thumbnail">
-      <% if  @what_you_do.practice.midias and @what_you_do.practice.midias[0]%>
-        <%= image_tag(@what_you_do.practice.midias[0].imagem.url(:medium)) %>
-      <% else %>
-        <%= image_tag(@what_you_do.practice.local.imagem.url(:medium)) %>
-      <% end %>
-    </div>
-
     <br>
-    <div class='<%= (@what_you_do.practice.name.length() > 90 ? 'text-box' : '') %>'><h3><%= @what_you_do.practice.name %></h3></div>
-
-    <%= "<br><strong>#{t(:summary_description)}:</strong><br><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
-    <%= "<br><strong>#{t(:problem_it_address)}:</strong><br><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
-    <%= "<br><strong>#{t(:how_it_is_done)}:</strong><br><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
-    <%= "<br><strong>#{t(:expected_function_effects)}:</strong><br><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
+    <%= "<h2>#{t(:summary_description)}</h2><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
+    <br>
+    <%= "<h2>#{t(:problem_it_address)}</h2><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
+    <br>
+    <%= "<h2>#{t(:how_it_is_done)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
+    <br>
+    <%= "<h2>#{t(:expected_function_effects)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
 
     <% if usuario_signed_in? %>
       <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>

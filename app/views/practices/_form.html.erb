@@ -1,5 +1,5 @@
 <%= form_for(practice, html: { multipart: true }) do |f| %>
-  <%= f.submit t(:start), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <%= f.submit t(:save), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
   <br><br>
 
   <% if practice.errors.any? %>

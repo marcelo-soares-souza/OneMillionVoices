@@ -1,8 +1,8 @@
-<% title @practice.local.nome %>
+<% title @acknowledge.practice.name %>
 
 <% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
-    <%= link_to t(:send_photo), new_practice_midia_path(@practice), :class => "btn btn-warning", :style => "float:right;" %>
+  <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
+    <%= link_to t(:send_photo), new_practice_midia_path(@acknowledge), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
 
@@ -10,13 +10,22 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <%= link_to truncate(@practice.local.nome, length: 8), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
+    <%= link_to truncate(@acknowledge.practice.local.nome, length: 8), local_path(@acknowledge.practice.local), title: @acknowledge.practice.local.nome,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to t(:what_you_do) , local_path(@practice.local), :class => "nav-link active" %>
+    <%= link_to @acknowledge.practice.name.truncate(10) , practice_path(@acknowledge.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:gallery)} (#{@practice.midias.count})", practice_gallery_path(@practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to t(:what_you_do), practice_what_you_do_path(@acknowledge.practice, @acknowledge.practice.what_you_do), :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:characterise), practice_characterise_path(@acknowledge.practice, @acknowledge.practice.characterise), :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:evaluate), practice_evaluate_path(@acknowledge.practice, @acknowledge.practice.evaluate), :class => "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:acknowledge), practice_acknowledge_path(@acknowledge.practice, @acknowledge.practice.acknowledge), :class => "nav-link active" %>
   </li>
 </ul>
 
@@ -24,37 +33,21 @@
 
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
-    <div  class="thumbnail">
-      <% if  @practice.midias and @practice.midias[0]%>
-        <%= image_tag(@practice.midias[0].imagem.url(:medium)) %>
-      <% else %>
-        <%= image_tag(@practice.local.imagem.url(:medium)) %>
-      <% end %>
-    </div>
+    <br>
 
     <br>
-    <div class='<%= (@practice.local.nome.length() > 90 ? 'text-box' : '') %>'><h3><%= @practice.local.nome %></h3></div>
-
-    <%= "<br><strong>#{t(:summary_description)}:</strong><br><div class='text-box'>#{simple_format (h @practice.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @practice.summary_description_of_agroecological_practice and @practice.summary_description_of_agroecological_practice.length > 0 %>
-    <%= "<br><strong>#{t(:problem_it_address)}:</strong><br><div class='text-box'>#{simple_format (h @practice.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @practice.problem_that_practice_addresses and @practice.problem_that_practice_addresses .length() > 0%>
-    <%= "<br><strong>#{t(:how_it_is_done)}:</strong><br><div class='text-box'>#{simple_format (h @practice.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @practice.practical_implementation_of_the_practice and @practice.practical_implementation_of_the_practice .length() > 0%>
-    <%= "<br><strong>#{t(:expected_function_effects)}:</strong><br><div class='text-box'>#{simple_format (h @practice.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @practice.practical_implementation_of_the_practice and @practice.practical_implementation_of_the_practice .length() > 0%>
-
-    <%= "<br><strong>#{t(:location)}</strong><br>#{link_to @practice.local.nome, local_path(@practice.local)}&nbsp;".html_safe if @practice.local.nome? %>
-    <%= "<br><br><strong>#{t(:responsible_for_information)}:</strong><br>#{link_to @practice.usuario.nome, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.nome? %>
 
     <% if usuario_signed_in? %>
-      <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
+      <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
         <br><br>
         <div id="practice-footer">
           <div class="form-actions">
-            <%= link_to t(:edit), edit_local_practice_path(@practice.local, @practice.id), :class => 'btn btn-success' %>
-            <%= link_to t(:destroy), practice_path(@practice), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
+            <%= link_to t(:edit), edit_local_practice_path(@acknowledge.practice.local, @acknowledge.practice.id), :class => 'btn btn-success' %>
+            <%= link_to t(:destroy), practice_path(@acknowledge), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
           </div>
         </div>
       <% end %>
     <% end %>
-
     <br><br>
   </div>
 </div>
