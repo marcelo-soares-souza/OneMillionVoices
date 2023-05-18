@@ -24,7 +24,7 @@
   <div class="row">
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= local_practice_path(practice.local, practice) %>';">
-        <div class="card" style="min-height: 410px;">
+        <div class="card" style="min-height: 360px;">
           <% if  practice.midias and practice.midias[0]%>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.local.nome, title: practice.local.nome %></div>
           <% else %>
@@ -35,16 +35,9 @@
             <%= "<b>Summary</b>".html_safe if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice and practice.what_you_do.summary_description_of_agroecological_practice.length > 0 %>
             <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(160) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p>
             <p class="card-text" style="text-align: center;">
-
             <p class="card-text text-box"><b>Location</b>: <%= link_to practice.local.nome.truncate(160), local_path(practice.local) %></p></p>
-            <% if usuario_signed_in? %>
-              <% if current_usuario.admin? or practice.usuario.id == current_usuario.id %>
-                <td><%= link_to t(:edit), edit_practice_path(practice), :class => 'btn btn-sm btn-success' %></td>
-                <td><%= link_to t(:destroy), practice_path(practice), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-sm btn-danger' %></td>
-              <% end %>
-            <% end %>
           </div>
-        </div><br>
+        </div>
       </div>
     <% end %>
   </div>
