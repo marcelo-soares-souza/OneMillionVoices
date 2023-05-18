@@ -668,12 +668,12 @@ input::file-selector-button {
 .practices-box {
     border:1px solid #dedee0;
     max-width: 800px;
-    padding-top:16px;
-    padding-bottom:16px;
+    padding-top:18px;
+    padding-bottom:18px;
     padding-left: 8px;
     padding-right: 8px;
     margin-top: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
 }

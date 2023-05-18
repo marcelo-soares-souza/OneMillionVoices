@@ -50,17 +50,25 @@
         <% end %>
       </h3>
     <% else %>
-      <div class="practices-box bg-light">
-        <%= "<h2>#{t(:summary_description_of_agroecological_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
-      </div>
-      <%= "<h2>#{t(:type_of_agroecological_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.type_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.type_of_agroecological_practice and @what_you_do.type_of_agroecological_practice .length() > 0%>
-      <div class="practices-box bg-light">
-        <%= "<h2>#{t(:problem_that_practice_addresses)}</h2><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
-      </div>
-      <%= "<h2>#{t(:practical_implementation_of_the_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
-      <div class="practices-box bg-light">
-        <%= "<h2>#{t(:expected_function_or_effects_of_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
-      </div>
+      <% if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
+        <div class="practices-box bg-light"><%= "<h2>#{t(:summary_description_of_agroecological_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
+
+      <%  if @what_you_do.type_of_agroecological_practice and @what_you_do.type_of_agroecological_practice .length() > 0 %>
+        <%= "<h2>#{t(:type_of_agroecological_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.type_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+      <% end %>
+
+      <% if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
+        <div class="practices-box bg-light"><%= "<h2>#{t(:problem_that_practice_addresses)}</h2><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
+
+      <% if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
+        <%= "<h2>#{t(:practical_implementation_of_the_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+      <% end %>
+
+      <% if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
+        <div class="practices-box bg-light"><%= "<h2>#{t(:expected_function_or_effects_of_practice)}</h2><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
       <% if usuario_signed_in? %>
         <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
           <br><br>
