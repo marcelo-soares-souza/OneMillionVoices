@@ -27,10 +27,11 @@
   </div>
 
   <div class="forms">
-    <div class="form-group row bg-light">
-      <%= f.label t(:general_performance_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="form-group row bg-light required">
+      <%= f.label t(:general_performance_of_practice), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
-        <%= f.text_area :general_performance_of_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:general_performance_of_practice, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice work as intended - does it have the effect you expected?
         </div>
@@ -41,7 +42,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:unintended_positive_side_effects_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :unintended_positive_side_effects_of_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:unintended_positive_side_effects_of_practice, @yes_no_i_am_not_sure_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does using the practice have any positive side effects that you did not expect?
         </div>
@@ -52,7 +54,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:unintended_negative_side_effect_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :unintended_negative_side_effect_of_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:unintended_negative_side_effect_of_practice, @yes_no_i_am_not_sure_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does using the practice have any negative side effects that you did not expect?
         </div>
@@ -107,7 +110,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:system_integrity_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :system_integrity_effects, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:system_integrity_effects, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice help to restore the health of your farm and/or its surrounding?
         </div>
@@ -118,7 +122,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:climate_change_vulnerability_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :climate_change_vulnerability_effects, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:climate_change_vulnerability_effects, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice help to reduce climate change effects that you experienced previously?
         </div>

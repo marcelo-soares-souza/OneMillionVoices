@@ -2,6 +2,8 @@
 
 class EvaluatesController < ApplicationController
   before_action :set_evaluate, only: %i[ show edit update destroy ]
+  before_action :load_effective_options
+  before_action :load_yes_no_i_am_not_sure_options
 
   # GET /evaluates or /evaluates.json
   def index
@@ -72,13 +74,13 @@ class EvaluatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_evaluate
-      @evaluate = Evaluate.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_evaluate
+    @evaluate = Evaluate.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def evaluate_params
-      params.require(:evaluate).permit(:practice_id, :general_performance_of_practice, :unintended_positive_side_effects_of_practice, :unintended_negative_side_effect_of_practice, :knowledge_and_skills_required_for_practice, :labour_required_for_practice, :cost_associated_with_practice, :system_integrity_requirements, :system_integrity_effects, :climate_change_vulnerability_effects, :time_requirements)
-    end
+  # Only allow a list of trusted parameters through.
+  def evaluate_params
+    params.require(:evaluate).permit(:practice_id, :general_performance_of_practice, :unintended_positive_side_effects_of_practice, :unintended_negative_side_effect_of_practice, :knowledge_and_skills_required_for_practice, :labour_required_for_practice, :cost_associated_with_practice, :system_integrity_requirements, :system_integrity_effects, :climate_change_vulnerability_effects, :time_requirements)
+  end
 end

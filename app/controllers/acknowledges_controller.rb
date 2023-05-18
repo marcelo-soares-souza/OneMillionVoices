@@ -2,6 +2,7 @@
 
 class AcknowledgesController < ApplicationController
   before_action :set_acknowledge, only: %i[ show edit update destroy ]
+  before_action :load_knowledge_sources
 
   # GET /acknowledges or /acknowledges.json
   def index
@@ -72,13 +73,24 @@ class AcknowledgesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_acknowledge
-      @acknowledge = Acknowledge.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_acknowledge
+    @acknowledge = Acknowledge.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def acknowledge_params
-      params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
-    end
+  # Only allow a list of trusted parameters through.
+  def acknowledge_params
+    params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
+  end
+
+  def load_knowledge_sources
+    @knowledge_source_options = {
+      t(:formal_knowledge) => "Formal knowledge",
+      t(:indigenous_knowledge) => "Indigenous knowledge",
+      t(:local_knowledge) => "Local knowledge",
+      t(:personal_experimentation) => "Personal experimentation",
+      t(:other) => "Other",
+      t(:i_am_not_sure) => "I am not sure"
+    }
+  end
 end
