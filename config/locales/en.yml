@@ -1,9 +1,9 @@
 # yamllint disable rule:line-length
 ---
 en:
-  site_description: "Agroecology Map Knowledge and Practices is a Free (Open) Platform for Mapping Initiatives in Agroecology, Permaculture and Agroforestry Systems"
-  site: "Agroecology Map"
-  site_name: "Agroecology Map"
+  site_description: "One Million Voices"
+  site: "One Million Voices"
+  site_name: "One Million Voices"
   true_value: "Yes"
   false_value: "No"
   users: "Users"
