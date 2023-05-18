@@ -1,6 +1,6 @@
 <% title t(:what_you_do) %>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
     <%= link_to @what_you_do.practice.name.truncate(10), practice_path(@what_you_do.practice), :class => "nav-link" %>
   </li>

@@ -27,7 +27,6 @@
   <% end %>
 
   map.addLayer(markers);
-  map.addControl(new L.Control.Search({layer: markers, zoom: 15, textPlaceholder: "<%= t(:search_using_location_name) %>", autoCollapse: true, position: 'topright' }) );
   map.addControl(new L.control.zoom({ position: 'topright' }));
 
 <% end %>

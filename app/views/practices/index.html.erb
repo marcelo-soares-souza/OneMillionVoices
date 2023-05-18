@@ -2,7 +2,7 @@
 
 <br><br><br>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs flex-column flex-sm-row">
   <% if params[:local_id] %>
     <li class="nav-item">
       <%= link_to @local.nome.truncate(10), local_path(@local), title: @local.nome, :class => "nav-link" %>

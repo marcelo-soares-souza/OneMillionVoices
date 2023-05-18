@@ -1,6 +1,6 @@
 <% title t(:characterise) %>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
     <%= link_to @characterise.practice.name.truncate(10), practice_path(@characterise.practice), :class => "nav-link" %>
   </li>
