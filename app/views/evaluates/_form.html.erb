@@ -66,7 +66,8 @@
     <div class="form-group row">
       <%= f.label t(:knowledge_and_skills_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :knowledge_and_skills_required_for_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:knowledge_and_skills_required_for_practice, @knowledge_and_skills_required_for_practice_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practive require a lot of formal knowledge and training?
         </div>
@@ -77,7 +78,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:labour_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :labour_required_for_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:labour_required_for_practice, @labour_required_for_practice_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice require a lot of work?
         </div>
@@ -88,7 +90,8 @@
     <div class="form-group row">
       <%= f.label t(:cost_associated_with_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :cost_associated_with_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:cost_associated_with_practice, @cost_associated_with_practice_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice require a lot of money?
         </div>
@@ -99,7 +102,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:system_integrity_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :system_integrity_requirements, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:system_integrity_requirements, @system_integrity_requirements_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice work when the environment, land and soil are depleted?
         </div>
@@ -134,7 +138,8 @@
     <div class="form-group row">
       <%= f.label t(:time_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :time_requirements, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:time_requirements, @time_requirements_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
         <div class="tip">
           Does the practice require time to work as expected (as the system heals)?
         </div>
