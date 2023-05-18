@@ -13,7 +13,7 @@
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to truncate(@practice.name, length: 16), practice_path(@practice), :class => "nav-link" %>
+      <%= link_to truncate(@practice.name, length: 25), practice_path(@practice), :class => "nav-link" %>
     <% end %>
   </li>
 

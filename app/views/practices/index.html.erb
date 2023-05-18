@@ -5,7 +5,7 @@
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <% if params[:local_id] %>
     <li class="nav-item">
-      <%= link_to @local.nome.truncate(10), local_path(@local), title: @local.nome, :class => "nav-link" %>
+      <%= link_to @local.nome.truncate(25), local_path(@local), title: @local.nome, :class => "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to t(:gallery) + " (#{@local.midias.count})", local_gallery_path(@local.id), :class => "nav-link" %>
@@ -25,18 +25,18 @@
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= local_practice_path(practice.local, practice) %>';">
         <div class="card" style="min-height: 410px;">
-          <br>
           <% if  practice.midias and practice.midias[0]%>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.local.nome, title: practice.local.nome %></div>
           <% else %>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.local.imagem.url(:medium)), practice_path(practice), alt: practice.local.nome, title: practice.local.nome %></div>
           <% end %>
           <div class="card-body">
-            <h3><%= practice.name %></h3>
+            <h3 class="card-title"><%= link_to practice.name, local_practice_path(practice.local, practice) %></h3>
             <%= "<b>Summary</b>".html_safe if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice and practice.what_you_do.summary_description_of_agroecological_practice.length > 0 %>
             <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(160) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p>
-            <b>Location</b>
-            <p class="card-text text-box"><%= link_to practice.local.nome.truncate(160), local_path(practice.local) %></p>
+            <p class="card-text" style="text-align: center;">
+
+            <p class="card-text text-box"><b>Location</b>: <%= link_to practice.local.nome.truncate(160), local_path(practice.local) %></p></p>
             <% if usuario_signed_in? %>
               <% if current_usuario.admin? or practice.usuario.id == current_usuario.id %>
                 <td><%= link_to t(:edit), edit_practice_path(practice), :class => 'btn btn-sm btn-success' %></td>

@@ -15,9 +15,9 @@
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to @practice.name.truncate(10), practice_path(@practice), :class => "nav-link" %>
+      <%= link_to @practice.name.truncate(25), practice_path(@practice), :class => "nav-link" %>
     <% elsif params[:local_id] %>
-      <%= link_to truncate(@local.nome, length: 10), local_path(@local), :class => "nav-link" %>
+      <%= link_to truncate(@local.nome, length: 25), local_path(@local), :class => "nav-link" %>
     <% end %>
   </li>
 

@@ -10,10 +10,10 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to truncate(@characterise.practice.local.nome, length: 8), local_path(@characterise.practice.local), title: @characterise.practice.local.nome,  :class => "nav-link" %>
+    <%= link_to truncate(@characterise.practice.local.nome, length: 25), local_path(@characterise.practice.local), title: @characterise.practice.local.nome,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to @characterise.practice.name.truncate(10) , practice_path(@characterise.practice), :class => "nav-link" %>
+    <%= link_to @characterise.practice.name.truncate(25) , practice_path(@characterise.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to t(:what_you_do), practice_what_you_do_path(@characterise.practice, @characterise.practice.what_you_do), :class => "nav-link" %>
@@ -48,11 +48,11 @@
     <% else %>
 
       <% if @characterise.agroecology_principles_addressed and @characterise.agroecology_principles_addressed .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h2>#{t(:agroecology_principles_addressed)}</h2><div class='text-box'>#{@characterise.agroecology_principles_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:agroecology_principles_addressed)}</h4><div class='text-box'>#{@characterise.agroecology_principles_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
       <% end %>
 
       <% if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0 %>
-        <%= "<h2>#{t(:food_system_components_addressed)}</h2><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %>
+        <%= "<h4>#{t(:food_system_components_addressed)}</h4><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %>
       <% end %>
 
       <% if usuario_signed_in? %>

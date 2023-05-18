@@ -2,7 +2,7 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to @evaluate.practice.name.truncate(10), practice_path(@evaluate.practice), :class => "nav-link" %>
+    <%= link_to @evaluate.practice.name.truncate(25), practice_path(@evaluate.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to "#{t(:edit)}", "#", :class => "nav-link active" %>

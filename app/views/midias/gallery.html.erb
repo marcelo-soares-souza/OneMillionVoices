@@ -15,7 +15,7 @@
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <% if params[:local_id] %>
     <li class="nav-item">
-      <%= link_to truncate(@local.nome, length: 10), local_path(@local), :class => "nav-link" %>
+      <%= link_to truncate(@local.nome, length: 25), local_path(@local), :class => "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to t(:gallery)+ " (#{@local.midias.count})", local_path(@local), :class => "nav-link active" %>
@@ -27,10 +27,10 @@
 
   <% if params[:practice_id] %>
     <li class="nav-item">
-      <%= link_to truncate(@practice.local.nome, length: 8), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
+      <%= link_to truncate(@practice.local.nome, length: 25), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to @practice.name.truncate(10) , practice_path(@practice), :class => "nav-link" %>
+      <%= link_to @practice.name.truncate(25) , practice_path(@practice), :class => "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to t(:what_you_do), practice_what_you_do_path(@practice, @practice.what_you_do), :class => "nav-link" if @practice.what_you_do %>

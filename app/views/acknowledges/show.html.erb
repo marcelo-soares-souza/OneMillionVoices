@@ -10,10 +10,10 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to truncate(@acknowledge.practice.local.nome, length: 8), local_path(@acknowledge.practice.local), title: @acknowledge.practice.local.nome,  :class => "nav-link" %>
+    <%= link_to truncate(@acknowledge.practice.local.nome, length: 25), local_path(@acknowledge.practice.local), title: @acknowledge.practice.local.nome,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to @acknowledge.practice.name.truncate(10) , practice_path(@acknowledge.practice), :class => "nav-link" %>
+    <%= link_to @acknowledge.practice.name.truncate(25) , practice_path(@acknowledge.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to t(:what_you_do), practice_what_you_do_path(@acknowledge.practice, @acknowledge.practice.what_you_do), :class => "nav-link" %>
@@ -51,15 +51,15 @@
     <% else %>
 
       <% if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h2>#{t(:knowledge_source)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_source)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
       <% if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0 %>
-        <%= "<h2>#{t(:knowledge_timing)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <%= "<h4>#{t(:knowledge_timing)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
       <% end %>
 
       <% if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h2>#{t(:knowledge_products)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_products)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
       <% if usuario_signed_in? %>

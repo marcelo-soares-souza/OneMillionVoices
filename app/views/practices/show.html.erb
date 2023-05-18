@@ -10,10 +10,10 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to truncate(@practice.local.nome, length: 8), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
+    <%= link_to truncate(@practice.local.nome, length: 25), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to @practice.name.truncate(10) , practice_path(@practice), :class => "nav-link active" %>
+    <%= link_to @practice.name.truncate(25) , practice_path(@practice), :class => "nav-link active" %>
   </li>
   <li class="nav-item">
     <%= link_to t(:what_you_do), practice_what_you_do_path(@practice, @practice.what_you_do), :class => "nav-link" if @practice.what_you_do %>
@@ -46,6 +46,7 @@
 
     <br>
     <div class='<%= (@practice.name.length() > 90 ? 'text-box' : '') %>'><h1><%= @practice.name %></h1></div>
+    <br>
     <div class="text-box"><%= @practice.local.observacao.truncate(512) %></div>
     <br><br>
     <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.nome, local_path(@practice.local)}&nbsp;".html_safe if @practice.local.nome? %>

@@ -5,7 +5,7 @@
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <% if params[:local_id] %>
     <li class="nav-item">
-      <%= link_to @local.nome.truncate(10), local_path(@local), title: @local.nome, :class => "nav-link" %>
+      <%= link_to @local.nome.truncate(25), local_path(@local), title: @local.nome, :class => "nav-link" %>
     </li>
   <% end %>
   <li class="nav-item">

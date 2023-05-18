@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class PracticesController < ApplicationController
-  before_action :set_practice, only: %i[show edit update destroy]
   before_action :authenticate_usuario!, only: %i[new edit update destroy]
-  before_action lambda {
-    check_owner Practice.friendly.find(params[:id]).usuario_id
-  }, only: %i[edit update destroy]
+  before_action lambda { check_owner Practice.friendly.find(params[:id]).usuario_id }, only: %i[edit update destroy]
+
+  before_action :set_practice, only: %i[show edit update destroy]
   before_action :load_locais, except: %i[index show]
   before_action :load_local
   before_action :load_usuario
