@@ -16,7 +16,14 @@ class Local < ApplicationRecord
   friendly_id :nome, use: :slugged
 
   validates :nome, presence: true, uniqueness: true
+  validates_length_of :nome, minimum: 4
+  validates_length_of :nome, maximum: 256
+
   validates :tipo, presence: true
+
+  before_save do
+    self.nome = nome.titleize
+  end
 
   def default_image_number
     rand(0..5)

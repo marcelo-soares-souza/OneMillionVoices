@@ -1,9 +1,5 @@
 <%= form_for(usuario, html: { multipart: true }) do |f| %>
-  <% button_name = t(:save) %>
-  <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
-
   <br><br>
-
   <% if usuario.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(usuario.errors.count, "error") %> encontrado(s):</h2>

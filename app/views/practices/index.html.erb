@@ -35,9 +35,10 @@
             <%= "<b>Summary</b>".html_safe if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice and practice.what_you_do.summary_description_of_agroecological_practice.length > 0 %>
             <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(160) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p>
             <p class="card-text" style="text-align: center;">
-            <p class="card-text text-box"><b>Location</b>: <%= link_to practice.local.nome.truncate(160), local_path(practice.local) %></p></p>
+            <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.local.nome.truncate(160), local_path(practice.local) %></p></p>
           </div>
         </div>
+        <br>
       </div>
     <% end %>
   </div>

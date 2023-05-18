@@ -15,7 +15,14 @@ class Usuario < ApplicationRecord
   friendly_id :nome, use: :slugged
 
   validates :nome, presence: true
+  validates_length_of :nome, minimum: 2
+  validates_length_of :nome, maximum: 256
   validates :email, presence: true, uniqueness: true
+
+  before_save do
+    self.nome = nome.titleize
+    self.email = email.strip.downcase
+  end
 
   def default_image_number
     # rand(1..9)

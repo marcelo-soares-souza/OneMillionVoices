@@ -15,9 +15,15 @@ class Practice < ApplicationRecord
   belongs_to :local
 
   validates :name, presence: true
+  validates_length_of :name, minimum: 4
+  validates_length_of :name, maximum: 256
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  before_save do
+    self.name = name.titleize
+  end
 
   protected
     def should_generate_new_friendly_id?
