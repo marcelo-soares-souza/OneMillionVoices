@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    @locais = Local.all.load_async
+    @locais = Local.where(hide_my_location: false).load_async
   end
 end

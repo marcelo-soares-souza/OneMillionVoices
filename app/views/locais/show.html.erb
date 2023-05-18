@@ -4,6 +4,7 @@
   <% if current_usuario.admin? or current_usuario.id == @local.usuario.id %>
     <%= link_to t(:register_new_practice), new_local_practice_path(@local), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" %>
     <%= link_to t(:send_photo), new_local_midia_path(@local), :class => "btn btn-warning", :style => "float:right;" %>
+    <br><br>
   <% end %>
 <% end %>
 
@@ -36,9 +37,12 @@
     <%= "<strong>#{t(:type)}:</strong><br>#{@property_types.key(@local.property_type)}&nbsp;<br>".html_safe if @local.property_type? %>
     <%= "<br><strong>#{t(:short_description)}:</strong><br><div class='text-box'>#{simple_format (h @local.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @local.description? %>
     <%= "<br><strong>#{t(:responsible_for_information)}:</strong><br>#{link_to @local.usuario.name, usuario_path(@local.usuario)}&nbsp;<br>".html_safe if @local.usuario.name? %>
-    <% if @local.latitude and @local.longitude %>
-      <br>
-      <div id="map-show"></div>
+
+    <% if @local.hide_my_location == false %>
+      <% if @local.latitude and @local.longitude %>
+        <br>
+        <div id="map-show"></div>
+      <% end %>
     <% end %>
   </div>
 </div>

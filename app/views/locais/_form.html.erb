@@ -47,8 +47,16 @@
       </div>
     </div>
     <br>
-    <div class="form-group row bg-light required">
-      <%= f.label t(:localization), class: "col-sm-2 col-form-label col-form-label-lg  control-label" %>
+    <div class="form-group row bg-light">
+      <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @local.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group row bg-light required" id="location">
+      <%= f.label t(:location), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
         <div id="map-sistema"></div>
       </div>
@@ -65,22 +73,38 @@
 
     <script>
         $(document).ready(function () {
+            if ($("#hide_my_location_on_map option:selected").val() == 'true') {
+                $("#location").hide();
+            }
+            else {
+                $("#location").show();
+            }
+
+            $("#hide_my_location_on_map").change(function() {
+                hide_my_location_on_map = $("#hide_my_location_on_map option:selected").val();
+
+                if(hide_my_location_on_map == 'true') {
+                    $("#location").hide();
+                } else {
+                    $("#location").show();
+                }
+            });
+
             <% if params[:action] == 'new' %>
             lat = -15.77835833463309;
             lon = -47.88219451904297;
 
             <% if request.location %>
             lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
-              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
-                <% end %>
+                lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
+                    <% end %>
 
-                <% elsif params[:action] != 'new' %>
-                <% if f.object.latitude? %>
-                lat = <%= f.object.latitude %>;
+                    <% elsif params[:action] != 'new' %>
+                    <% if f.object.latitude? %>
+                    lat = <%= f.object.latitude %>;
             <% else %>
             lat = -15.77835833463309;
             <% end %>
-
             <% if f.object.longitude? %>
             lon = <%= f.object.longitude %>;
             <% else %>
