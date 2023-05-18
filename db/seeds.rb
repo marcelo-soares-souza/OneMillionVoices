@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-usuario_admin = Usuario.new(nome: "Admin", email: "admin@agroecologymap.org", password: "agroecology", admin: "t")
+usuario_admin = Usuario.new(nome: "Admin Agroecology Map", email: "admin@agroecologymap.org", password: "agroecology", admin: "t")
 usuario_admin.password_confirmation = "agroecology"
 usuario_admin.skip_confirmation!
 usuario_admin.save!

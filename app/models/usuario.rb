@@ -17,6 +17,7 @@ class Usuario < ApplicationRecord
   validates :nome, presence: true
   validates_length_of :nome, minimum: 2
   validates_length_of :nome, maximum: 256
+  validates :nome, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
   validates :email, presence: true, uniqueness: true
 
   before_save do
@@ -35,7 +36,7 @@ class Usuario < ApplicationRecord
   validates_attachment_content_type :imagem, content_type: %r{\Aimage/.*\z}
 
   protected
-    def should_generate_new_friendly_id?
-      nome_changed?
-    end
+  def should_generate_new_friendly_id?
+    nome_changed?
+  end
 end
