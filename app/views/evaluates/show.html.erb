@@ -36,15 +36,15 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <% if @evaluate.general_performance_of_practice.empty? and
-      @evaluate.unintended_positive_side_effects_of_practice.empty? and
-      @evaluate.unintended_negative_side_effect_of_practice.empty? and
-      @evaluate.knowledge_and_skills_required_for_practice.empty? and
-      @evaluate.labour_required_for_practice.empty? and
-      @evaluate.cost_associated_with_practice.empty? and
-      @evaluate.system_integrity_requirements.empty? and
-      @evaluate.system_integrity_effects.empty? and
-      @evaluate.climate_change_vulnerability_effects.empty? and
+    <% if @evaluate.general_performance_of_practice.blank? and
+      @evaluate.unintended_positive_side_effects_of_practice.blank? and
+      @evaluate.unintended_negative_side_effect_of_practice.blank? and
+      @evaluate.knowledge_and_skills_required_for_practice.blank? and
+      @evaluate.labour_required_for_practice.blank? and
+      @evaluate.cost_associated_with_practice.blank? and
+      @evaluate.system_integrity_requirements.blank? and
+      @evaluate.system_integrity_effects.blank? and
+      @evaluate.climate_change_vulnerability_effects.blank? and
       @evaluate.time_requirements %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if usuario_signed_in? %>

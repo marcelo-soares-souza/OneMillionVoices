@@ -37,11 +37,11 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <% if @what_you_do.summary_description_of_agroecological_practice.empty? and
-      @what_you_do.type_of_agroecological_practice.empty? and
-      @what_you_do.problem_that_practice_addresses.empty? and
-      @what_you_do.practical_implementation_of_the_practice.empty? and
-      @what_you_do.expected_function_or_effects_of_practice.empty? %>
+    <% if @what_you_do.summary_description_of_agroecological_practice.blank? and
+      @what_you_do.type_of_agroecological_practice.blank? and
+      @what_you_do.problem_that_practice_addresses.blank? and
+      @what_you_do.practical_implementation_of_the_practice.blank? and
+      @what_you_do.expected_function_or_effects_of_practice.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if usuario_signed_in? %>
           <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>

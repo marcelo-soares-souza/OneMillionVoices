@@ -37,9 +37,9 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <% if @acknowledge.knowledge_source.empty? and
-      @acknowledge.knowledge_timing.empty? and
-      @acknowledge.knowledge_products.empty?
+    <% if @acknowledge.knowledge_source.blank? and
+      @acknowledge.knowledge_timing.blank? and
+      @acknowledge.knowledge_products.blank?
     %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if usuario_signed_in? %>
