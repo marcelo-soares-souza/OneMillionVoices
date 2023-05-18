@@ -37,7 +37,7 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <% if @characterise.agroecology_principles_addressed.empty? and @characterise.food_system_components_addressed.empty? %>
+    <% if @characterise.agroecology_principles_addressed.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if usuario_signed_in? %>
           <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
