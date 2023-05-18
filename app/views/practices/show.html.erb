@@ -46,14 +46,14 @@
 
     <br>
     <div class='<%= (@practice.name.length() > 90 ? 'text-box' : '') %>'><h1><%= @practice.name %></h1></div>
-    <br>
+    <div class="text-box"><%= @practice.local.observacao.truncate(512) %></div>
+    <br><br>
     <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.nome, local_path(@practice.local)}&nbsp;".html_safe if @practice.local.nome? %>
     <br><br>
-    <%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.nome, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.nome? %>
-    <br>
+    <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.nome, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.nome? %></div>
     <% if usuario_signed_in? %>
       <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
-        <br><br>
+        <br>
         <div id="practice-footer">
           <div class="form-actions">
             <%= link_to t(:edit), edit_local_practice_path(@practice.local, @practice.id), :class => 'btn btn-success' %>

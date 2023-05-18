@@ -188,6 +188,7 @@ b, strong {
 }
 
 .text-box {
+    font-size: 18px;
     margin-right: auto;
     margin-left: auto;
     max-width: 600px;
@@ -662,4 +663,17 @@ input::file-selector-button {
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
     width: 300px;
+}
+
+.practices-box {
+    border:1px solid #dedee0;
+    max-width: 800px;
+    padding-top:16px;
+    padding-bottom:16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
 }

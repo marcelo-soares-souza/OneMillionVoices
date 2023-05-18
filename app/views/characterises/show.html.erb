@@ -46,10 +46,10 @@
         <% end %>
       </h3>
     <% else %>
-      <%= "<h2>#{t(:agroecology_principles_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.agroecology_principles_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @characterise.agroecology_principles_addressed and @characterise.agroecology_principles_addressed .length() > 0%>
-      <br>
+      <div class="practices-box bg-light">
+        <%= "<h2>#{t(:agroecology_principles_addressed)}</h2><div class='text-box'>#{@characterise.agroecology_principles_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe if @characterise.agroecology_principles_addressed and @characterise.agroecology_principles_addressed .length() > 0%>
+      </div>
       <%= "<h2>#{t(:food_system_components_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.food_system_components_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0%>
-
       <% if usuario_signed_in? %>
         <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
           <br><br>

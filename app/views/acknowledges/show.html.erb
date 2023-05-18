@@ -50,11 +50,11 @@
       </h3>
     <% else %>
 
-      <%= "<h2>#{t(:knowledge_source)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0%>
+      <div class="practices-box bg-light"><%= "<h2>#{t(:knowledge_source)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0%></div>
       <br>
       <%= "<h2>#{t(:knowledge_timing)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0%>
       <br>
-      <%= "<h2>#{t(:knowledge_products)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0%>
+      <div class="practices-box bg-light"><%= "<h2>#{t(:knowledge_products)}</h2><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0%></div>
 
       <% if usuario_signed_in? %>
         <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
