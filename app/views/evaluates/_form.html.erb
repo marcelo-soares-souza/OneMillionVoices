@@ -39,7 +39,7 @@
     </div>
     <br>
 
-    <div class="form-group row bg-light">
+    <div class="form-group row">
       <%= f.label t(:unintended_positive_side_effects_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:unintended_positive_side_effects_of_practice, @yes_no_i_am_not_sure_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
@@ -63,7 +63,7 @@
     </div>
     <br>
 
-    <div class="form-group row bg-light">
+    <div class="form-group row">
       <%= f.label t(:knowledge_and_skills_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :knowledge_and_skills_required_for_practice, class: "form-control", :rows => "6" %>
@@ -85,7 +85,7 @@
     </div>
     <br>
 
-    <div class="form-group row bg-light">
+    <div class="form-group row">
       <%= f.label t(:cost_associated_with_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :cost_associated_with_practice, class: "form-control", :rows => "6" %>
@@ -107,7 +107,7 @@
     </div>
     <br>
 
-    <div class="form-group row bg-light">
+    <div class="form-group row">
       <%= f.label t(:system_integrity_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:system_integrity_effects, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
@@ -131,7 +131,7 @@
     </div>
     <br>
 
-    <div class="form-group row bg-light">
+    <div class="form-group row">
       <%= f.label t(:time_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :time_requirements, class: "form-control", :rows => "6" %>
