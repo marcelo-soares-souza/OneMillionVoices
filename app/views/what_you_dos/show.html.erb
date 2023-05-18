@@ -27,6 +27,9 @@
   <li class="nav-item">
     <%= link_to t(:acknowledge), practice_acknowledge_path(@what_you_do.practice, @what_you_do.practice.acknowledge), :class => "nav-link" %>
   </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:gallery)} (#{@what_you_do.practice.midias.count})", practice_gallery_path(@what_you_do.practice), :class => "nav-link", :style => "color: red !important" %>
+  </li>
 </ul>
 
 <br>
