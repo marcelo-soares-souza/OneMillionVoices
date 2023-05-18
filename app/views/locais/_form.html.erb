@@ -13,7 +13,7 @@
     <div class="form-group row">
       <%= f.label 'Responsável', class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:usuario_id, Usuario.all, :id, :nome, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.collection_select(:usuario_id, Usuario.all, :id, :name, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
       </div>
     </div>
   <% end %>
@@ -22,14 +22,14 @@
     <div class="form-group row required bg-light">
       <%= f.label t(:name), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
-        <%= f.text_field :nome, class: "form-control" %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
     </div>
     <br>
     <div class="form-group required row ">
       <%= f.label t(:type), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:tipo, @tipos, :last, :first, { :include_blank => t(:select_location_type) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.collection_select(:property_type, @property_types, :last, :first, { :include_blank => t(:select_location_type) }, { class: "form-control selectpicker", "data-live-search": true }) %>
       </div>
     </div>
     <br>
@@ -43,7 +43,7 @@
     <div class="form-group row">
       <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.text_area :observacao, class: "form-control", :rows => "5" %>
+        <%= f.text_area :description, class: "form-control", :rows => "5" %>
       </div>
     </div>
     <br>

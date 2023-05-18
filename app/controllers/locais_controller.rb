@@ -4,7 +4,7 @@ class LocaisController < ApplicationController
   before_action :set_local, only: %i[show edit update destroy]
   before_action :authenticate_usuario!, only: %i[new edit update destroy]
   before_action -> { check_owner Local.friendly.find(params[:id]).usuario_id }, only: %i[edit update destroy]
-  before_action :load_tipos
+  before_action :load_property_types
   before_action :load_hospedagens
   before_action :load_usuario
   before_action :load_colaboradores, except: %i[index show]
@@ -84,12 +84,12 @@ class LocaisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def local_params
-      params.require(:local).permit(:nome, :slug, :observacao, :latitude, :longitude, :usuario_id, :imagem, :tipo,
+      params.require(:local).permit(:name, :slug, :description, :latitude, :longitude, :usuario_id, :imagem, :property_type,
                                     :hospedagem, usuario_ids: [])
     end
 
-    def load_tipos
-      @tipos = {
+    def load_property_types
+      @property_types = {
         t(:settlement) => "Assentamento",
         t(:collective_property) => "Propriedade Coletiva",
         t(:public_property) => "Propriedade Pública (Governo)",

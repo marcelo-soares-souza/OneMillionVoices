@@ -3,7 +3,7 @@
 class CreateMidias < ActiveRecord::Migration[5.1]
   def change
     create_table :midias do |t|
-      t.string :descricao
+      t.string :description
       t.string :slug
 
       t.timestamps

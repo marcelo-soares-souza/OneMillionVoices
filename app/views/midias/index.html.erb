@@ -62,7 +62,7 @@
         <tr>
           <% if params[:practice_id] %>
             <td scope="row"><div class="thumbnail-mini"><%= link_to image_tag(midia.imagem.url(:medium)), practice_midia_path(@practice, midia) %></div></td>
-            <td><%= link_to midia.descricao, practice_midia_path(@practice, midia) %></td>
+            <td><%= link_to midia.description, practice_midia_path(@practice, midia) %></td>
           <% end %>
 
           <% if usuario_signed_in? %>

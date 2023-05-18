@@ -5,7 +5,7 @@
     <%= link_to t(:contributors), usuarios_path, :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to @usuario.nome, usuario_path(@usuario.id), :class => "nav-link active" %>
+    <%= link_to @usuario.name, usuario_path(@usuario.id), :class => "nav-link active" %>
   </li>
 </ul>
 
@@ -24,14 +24,14 @@
     </div>
 
     <br><br>
-    <h3><%= @usuario.nome %></h3>
+    <h3><%= @usuario.name %></h3>
 
     <br>
     <% if usuario_signed_in? %>
       <%= "<strong>E-Mail:</strong><br>#{@usuario.email}&nbsp;".html_safe if @usuario.email? %>
       <br><br>
     <% end %>
-    <%= "<strong>#{t(:registered_locations)}:</strong><br>#{@usuario.locais.map { |local| link_to local.nome, local_path(local) }.join(", ").html_safe}&nbsp;".html_safe if @usuario.locais.count > 0 %>
+    <%= "<strong>#{t(:registered_locations)}:</strong><br>#{@usuario.locais.map { |local| link_to local.name, local_path(local) }.join(", ").html_safe}&nbsp;".html_safe if @usuario.locais.count > 0 %>
   </div>
 </div>
 

@@ -15,7 +15,7 @@
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <% if params[:local_id] %>
     <li class="nav-item">
-      <%= link_to truncate(@local.nome, length: 25), local_path(@local), :class => "nav-link" %>
+      <%= link_to truncate(@local.name, length: 25), local_path(@local), :class => "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to t(:gallery)+ " (#{@local.midias.count})", local_path(@local), :class => "nav-link active" %>
@@ -27,7 +27,7 @@
 
   <% if params[:practice_id] %>
     <li class="nav-item">
-      <%= link_to truncate(@practice.local.nome, length: 25), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
+      <%= link_to truncate(@practice.local.name, length: 25), local_path(@practice.local), title: @practice.local.name,  :class => "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to @practice.name.truncate(25) , practice_path(@practice), :class => "nav-link" %>
@@ -52,7 +52,7 @@
 </ul>
 
 <% if @midias.empty? %>
-  <br>
+  <br><br>
 
   <h3><%= t(:no_photo_submitted) %>
     <% if usuario_signed_in? %>
@@ -72,7 +72,7 @@
         <% @midias.each do |midia| %>
           <div class="gallery-image">
             <a href="<%= midia.imagem.url(:original) %>>" data-toggle="lightbox" data-gallery="midia-gallery" class="col-sm-4" data-max-width="900">
-              <img src="<%= midia.imagem.url(:medium) %>" alt="Photo <%= midia.descricao %>" title="Photo <%= midia.descricao %>" class="img-fluid">
+              <img src="<%= midia.imagem.url(:medium) %>" alt="Photo <%= midia.description %>" title="Photo <%= midia.description %>" class="img-fluid">
             </a>
           </div>
           <% if usuario_signed_in? %>

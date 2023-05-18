@@ -1,4 +1,4 @@
-<% title "Editing #{@midia.descricao}" %>
+<% title "Editing #{@midia.description}" %>
 
 <br><br><br><br>
 
@@ -23,7 +23,7 @@
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to "#{t(:edit)} #{@midia.descricao}", edit_practice_midia_path, :class => "nav-link active" %>
+      <%= link_to "#{t(:edit)} #{@midia.description}", edit_practice_midia_path, :class => "nav-link active" %>
     <% end %>
   </li>
 </ul>

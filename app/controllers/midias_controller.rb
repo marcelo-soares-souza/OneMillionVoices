@@ -115,7 +115,7 @@ class MidiasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def midia_params
-      params.require(:midia).permit(:descricao, :slug, :practice_id, :local_id, :imagem, :usuario_id)
+      params.require(:midia).permit(:description, :slug, :practice_id, :local_id, :imagem, :usuario_id)
     end
 
     def load_dados
@@ -141,9 +141,9 @@ class MidiasController < ApplicationController
       @default_media_name = ""
 
       if @practice
-        @default_media_name = "Agroecological Practice in " + @practice.local.nome + " "
+        @default_media_name = "Agroecological Practice in " + @practice.local.name + " "
       elsif @local
-        @default_media_name = "Location " + @local.nome + " "
+        @default_media_name = "Location " + @local.name + " "
       end
     end
 end

@@ -1,4 +1,4 @@
-<% title @practice.local.nome %>
+<% title @practice.local.name %>
 
 <% if usuario_signed_in? %>
   <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
@@ -10,7 +10,7 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to truncate(@practice.local.nome, length: 25), local_path(@practice.local), title: @practice.local.nome,  :class => "nav-link" %>
+    <%= link_to truncate(@practice.local.name, length: 25), local_path(@practice.local), title: @practice.local.name,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to @practice.name.truncate(25) , practice_path(@practice), :class => "nav-link active" %>
@@ -47,11 +47,11 @@
     <br>
     <div class='<%= (@practice.name.length() > 90 ? 'text-box' : '') %>'><h1><%= @practice.name %></h1></div>
     <br>
-    <div class="text-box"><%= @practice.local.observacao.truncate(512) %></div>
+    <div class="text-box"><%= @practice.local.description.truncate(512) %></div>
     <br><br>
-    <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.nome, local_path(@practice.local)}&nbsp;".html_safe if @practice.local.nome? %>
+    <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.name, local_path(@practice.local)}&nbsp;".html_safe if @practice.local.name? %>
     <br><br>
-    <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.nome, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.nome? %></div>
+    <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.name, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.name? %></div>
     <% if usuario_signed_in? %>
       <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
         <br>

@@ -7,10 +7,10 @@ class Midia < ApplicationRecord
   belongs_to :practice, required: false
 
   extend FriendlyId
-  friendly_id :descricao, use: :slugged
+  friendly_id :description, use: :slugged
 
-  validates :descricao, presence: true, uniqueness: true
-  validates_length_of :descricao, minimum: 3
+  validates :description, presence: true, uniqueness: true
+  validates_length_of :description, minimum: 3
 
   validates :imagem, presence: true
 
@@ -19,10 +19,10 @@ class Midia < ApplicationRecord
 
   protected
     def should_generate_new_friendly_id?
-      descricao_changed?
+      description_changed?
     end
     def concatenate_details
       instant = Time.now.strftime("%Y-%m-%d %T")
-      self.descricao = "#{descricao} (#{instant})"
+      self.description = "#{description} (#{instant})"
     end
 end

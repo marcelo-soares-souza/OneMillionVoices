@@ -15,12 +15,12 @@
       <% total_midia = Midia.where(local: local).count%>
       var popup = '';
       popup += '<div class="thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local) %></div><br>'
-      popup += '<h4><%= "#{link_to local.nome, local_path(local), target: '_blank'}".html_safe %></h4>';
+      popup += '<h4><%= "#{link_to local.name, local_path(local), target: '_blank'}".html_safe %></h4>';
       popup += '<b>';
       popup += '<div class="popup-gallery"><%= total_midia > 0 ? "#{ link_to (t(:gallery) + " (" + total_midia.to_s + " " + t(:photos) + ")"), local_gallery_path(local.id), target: '_blank'}".html_safe : "".html_safe %></div>';
       popup += '</b>';
 
-      var marker = new L.marker(new L.latLng([<%= local.latitude %>, <%= local.longitude %>]), { icon: Icon, title: '<%= local.nome %>' });
+      var marker = new L.marker(new L.latLng([<%= local.latitude %>, <%= local.longitude %>]), { icon: Icon, title: '<%= local.name %>' });
       marker.bindPopup(popup);
       markers.addLayer(marker);
     <% end %>

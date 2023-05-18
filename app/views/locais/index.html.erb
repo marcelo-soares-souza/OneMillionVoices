@@ -6,7 +6,7 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to t(:locations) + " #{ @usuario.blank? ? '' : '(' + @usuario.nome.truncate(25) + ')' }", "#", :class => "nav-link active" %>
+    <%= link_to t(:locations) + " #{ @usuario.blank? ? '' : '(' + @usuario.name.truncate(25) + ')' }", "#", :class => "nav-link active" %>
   </li>
 </ul>
 
@@ -20,10 +20,10 @@
     <% @locais.each do |local| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= local_url(local) %>';">
         <div class="card">
-          <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local), alt: local.nome, title: local.nome %></div>
+          <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local), alt: local.name, title: local.name %></div>
           <div class="card-body"  style="min-height: 190px;">
-            <h3 class="card-title"><%= link_to local.nome, local_path(local) %></h3>
-            <p class="card-text" style="text-align: center;"><b><%= @tipos.key(local.tipo) %></b></p>
+            <h3 class="card-title"><%= link_to local.name, local_path(local) %></h3>
+            <p class="card-text" style="text-align: center;"><b><%= @property_types.key(local.property_type) %></b></p>
             <p class="card-text" style="text-align: center;"><%= link_to "See all Practices", local_practices_path(local) if local.practices and local.practices.count > 0 %></p>
             <% if usuario_signed_in? %>
               <% if current_usuario.admin? or local.usuario.id == current_usuario.id %>

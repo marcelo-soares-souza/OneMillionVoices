@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -51,9 +53,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
   end
 
   create_table "locais", force: :cascade do |t|
-    t.string "nome"
+    t.string "name"
     t.string "slug"
-    t.string "observacao"
+    t.string "description"
     t.float "latitude"
     t.float "longitude"
     t.bigint "usuario_id"
@@ -63,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
     t.string "imagem_content_type"
     t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
-    t.string "tipo"
+    t.string "property_type"
     t.string "hospedagem"
     t.index ["slug"], name: "index_locais_on_slug", unique: true
     t.index ["usuario_id"], name: "index_locais_on_usuario_id"
@@ -79,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
   end
 
   create_table "midias", force: :cascade do |t|
-    t.string "descricao"
+    t.string "description"
     t.string "slug"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -126,7 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_132734) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.boolean "admin", default: false
-    t.string "nome"
+    t.string "name"
     t.string "slug"
     t.string "imagem_file_name"
     t.string "imagem_content_type"

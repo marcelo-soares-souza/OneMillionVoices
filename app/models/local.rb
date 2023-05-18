@@ -13,16 +13,16 @@ class Local < ApplicationRecord
   accepts_nested_attributes_for :local_usuarios, allow_destroy: true
 
   extend FriendlyId
-  friendly_id :nome, use: :slugged
+  friendly_id :name, use: :slugged
 
-  validates :nome, presence: true, uniqueness: true
-  validates_length_of :nome, minimum: 4
-  validates_length_of :nome, maximum: 256
+  validates :name, presence: true, uniqueness: true
+  validates_length_of :name, minimum: 4
+  validates_length_of :name, maximum: 256
 
-  validates :tipo, presence: true
+  validates :property_type, presence: true
 
   before_save do
-    self.nome = nome.titleize
+    self.name = name.titleize
   end
 
   def default_image_number
@@ -36,6 +36,6 @@ class Local < ApplicationRecord
 
   protected
     def should_generate_new_friendly_id?
-      nome_changed?
+      name_changed?
     end
 end

@@ -19,9 +19,9 @@
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= usuario_path(usuario) %>';">
         <div class="card">
           <br>
-          <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(usuario.imagem.url(:medium)), usuario_path(usuario), alt: usuario.nome, title: usuario.nome %></div>
+          <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(usuario.imagem.url(:medium)), usuario_path(usuario), alt: usuario.name, title: usuario.name %></div>
           <div class="card-body">
-            <h5 class="card-title"><%= link_to usuario.nome, usuario_path(usuario) %></h5>
+            <h5 class="card-title"><%= link_to usuario.name, usuario_path(usuario) %></h5>
             <% if usuario_signed_in? %>
               <% if current_usuario.admin? or usuario.id == current_usuario.id %>
                 <td><%= link_to t(:edit), edit_usuario_path(usuario), :class => 'btn btn-sm btn-success' %></td>
