@@ -26,6 +26,14 @@
       </div>
     </div>
     <br>
+    <div class="forms">
+      <div class="form-group row required bg-light">
+        <%= f.label t(:country), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
+        <div class="col-sm-10">
+          <%= f.country_select :country, { }, { class: "form-control selectpicker" }, required: true %>
+        </div>
+      </div>
+      <br>
     <div class="form-group required row ">
       <%= f.label t(:type), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">

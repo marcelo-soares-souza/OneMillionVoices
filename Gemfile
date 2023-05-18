@@ -38,6 +38,7 @@ gem "kt-paperclip", ">= 7.1.1"
 gem "cookies_eu", ">= 1.7.8"
 gem "geocoder"
 gem "kaminari"
+gem "country_select"
 
 # gem "sprockets", ">= 4.1.1"
 # gem "sprockets-rails", ">= 3.4.2"

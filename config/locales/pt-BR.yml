@@ -520,3 +520,4 @@ pt-BR:
   does_rather_not_work_in_depleted_environment: "Does rather not work in depleted environment"
   does_not_work_at_all_in_depleted_environment: "Does not work at all in depleted environment"
   hide_my_location: "Hide My Location on Map"
+  country: "Country"

@@ -74,6 +74,10 @@ GEM
     concurrent-ruby (1.2.2)
     cookies_eu (1.7.8)
       js_cookie_rails (~> 2.2.0)
+    countries (5.4.0)
+      unaccent (~> 0.3)
+    country_select (8.0.1)
+      countries (~> 5.0)
     crass (1.0.6)
     date (3.3.3)
     devise (4.9.2)
@@ -245,6 +249,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unaccent (0.4.0)
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -263,6 +268,7 @@ PLATFORMS
 
 DEPENDENCIES
   cookies_eu (>= 1.7.8)
+  country_select
   devise (~> 4.9.2)
   friendly_id
   geocoder
