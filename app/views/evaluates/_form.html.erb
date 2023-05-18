@@ -1,5 +1,5 @@
 <%= form_for(evaluate, html: { multipart: true }) do |f| %>
-  <%= link_to t(:back), "javascript:history.back()", class: "btn btn-danger btn-lg", style: "float: left; margin-bottom: 16px;" %>
+  <%= link_to t(:back), "javascript:history.back()", class: "btn btn-danger btn-lg", style: "float: left; margin-bottom: 16px;" unless params["action"] == 'edit' %>
   <% button_name = params["action"] == 'edit' ? t(:save) :  t(:next ) %>
   <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
 

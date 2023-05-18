@@ -79,6 +79,6 @@ class CharacterisesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def characterise_params
-      params.require(:characterise).permit(:practice_id, :agroecology_principles_addressed, :food_system_components_addressed)
+      params.require(:characterise).permit(:practice_id, :food_system_components_addressed, agroecology_principles_addressed: [])
     end
 end
