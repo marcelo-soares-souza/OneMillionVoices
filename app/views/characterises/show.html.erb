@@ -52,7 +52,7 @@
       <% end %>
 
       <% if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0 %>
-        <%= "<h2>#{t(:food_system_components_addressed)}</h2><div class='text-box'>#{simple_format (h @characterise.food_system_components_addressed).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <%= "<h2>#{t(:food_system_components_addressed)}</h2><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %>
       <% end %>
 
       <% if usuario_signed_in? %>

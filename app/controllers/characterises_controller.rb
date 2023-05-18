@@ -72,13 +72,13 @@ class CharacterisesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_characterise
-      @characterise = Characterise.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_characterise
+    @characterise = Characterise.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def characterise_params
-      params.require(:characterise).permit(:practice_id, :food_system_components_addressed, agroecology_principles_addressed: [])
-    end
+  # Only allow a list of trusted parameters through.
+  def characterise_params
+    params.require(:characterise).permit(:practice_id, food_system_components_addressed: [], agroecology_principles_addressed: [])
+  end
 end
