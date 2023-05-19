@@ -9,6 +9,7 @@ class LocaisController < ApplicationController
   before_action :load_usuario
   before_action :load_colaboradores, except: %i[index show]
   before_action :load_total_midias, only: %i[show]
+  before_action :load_options
 
   # GET /locais
   # GET /locais.json
@@ -84,7 +85,7 @@ class LocaisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def local_params
-      params.require(:local).permit(:name, :slug, :country, :description, :latitude, :longitude, :usuario_id, :imagem, :property_type, :hide_my_location, :hospedagem, usuario_ids: [])
+      params.require(:local).permit(:name, :slug, :country, :description, :farm_and_farming_system,  :latitude, :longitude, :usuario_id, :imagem, :property_type, :hide_my_location, :hospedagem, usuario_ids: [])
     end
 
     def load_property_types
@@ -114,5 +115,15 @@ class LocaisController < ApplicationController
 
     def load_total_midias
       @total_midia = Midia.where(local_id: @local.id).count
+    end
+
+    def load_options
+      @farm_and_farming_system_options = {
+        t(:mainly_subsistence) => "Mainly subsistence",
+        t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
+        t(:mainly_commercial) => "Mixed subsistence and commercial",
+        t(:other) => "Other",
+        t(:i_am_not_sure) => "I am not sure"
+      }
     end
 end

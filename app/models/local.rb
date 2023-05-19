@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Local < ApplicationRecord
-  paginates_per 6
-  max_paginates_per 6
+  paginates_per 4
   belongs_to :usuario
 
   has_many :local_usuarios, dependent: :destroy
@@ -17,9 +16,7 @@ class Local < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates_length_of :name, minimum: 4
-  validates_length_of :name, maximum: 256
-
-  validates :property_type, presence: true
+  validates_length_of :name, maximum: 150
 
   before_save do
     self.name = name.titleize

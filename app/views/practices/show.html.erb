@@ -36,7 +36,7 @@
 
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
-    <div  class="thumbnail">
+    <div class="thumbnail">
       <% if  @practice.midias and @practice.midias[0]%>
         <%= image_tag(@practice.midias[0].imagem.url(:medium)) %>
       <% else %>
@@ -47,9 +47,14 @@
     <br>
     <div class='<%= (@practice.name.length() > 90 ? 'text-box' : '') %>'><h1><%= @practice.name %></h1></div>
     <br>
-    <div class="text-box"><%= @practice.local.description.truncate(512) %></div>
-    <br><br>
-    <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.name, local_path(@practice.local)}&nbsp;".html_safe if @practice.local.name? %>
+
+    <% if ! @practice.local.description.blank? %>
+      <%= "<h4>#{t(:description)}</h4>".html_safe  %>
+      <div class="text-box"><%= @practice.local.description.truncate(510) %></div>
+      <br>
+    <% end %>
+
+    <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.name.truncate(40), local_path(@practice.local)}&nbsp;".html_safe if @practice.local.name? %>
     <br><br>
     <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.name, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.name? %></div>
     <% if usuario_signed_in? %>

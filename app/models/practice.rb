@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Practice < ApplicationRecord
-  paginates_per 6
-  max_paginates_per 6
+  paginates_per 4
 
   has_one :what_you_do, dependent: :delete
   has_one :characterise, dependent: :delete

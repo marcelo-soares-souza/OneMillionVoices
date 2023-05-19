@@ -31,11 +31,11 @@
     <div class="thumbnail">
       <%= image_tag(@local.imagem.url(:medium)) %>
     </div>
-    <br><br>
-    <div class='<%= (@local.name.length() > 100 ? 'text-box' : '') %>'><h3><%= @local.name %></h3></div>
     <br>
-    <%= "<strong>#{t(:country)}</strong><br>#{ISO3166::Country[@local.country]}<br>".html_safe if @local.property_type? %>
-    <%= "<br><strong>#{t(:type)}</strong><br>#{@property_types.key(@local.property_type)}&nbsp;<br>".html_safe if @local.property_type? %>
+    <div class='<%= (@local.name.length() > 100 ? 'text-box' : '') %>'><h3><%= @local.name.truncate(44) %></h3></div>
+    <%= "<strong>#{t(:country)}</strong><br>#{ISO3166::Country[@local.country]}<br>".html_safe if @local.country? %>
+    <%= "<br><strong>#{t(:farm_and_farming_system)}</strong><br>#{@farm_and_farming_system_options.key(@local.farm_and_farming_system)}&nbsp;<br>".html_safe if @local.farm_and_farming_system? %>
+    <!-- <%= "<br><strong>#{t(:type)}</strong><br>#{@property_types.key(@local.property_type)}&nbsp;<br>".html_safe if @local.property_type? %> -->
     <%= "<br><strong>#{t(:short_description)}</strong><br><div class='text-box'>#{simple_format (h @local.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @local.description? %>
     <%= "<br><strong>#{t(:responsible_for_information)}</strong><br>#{link_to @local.usuario.name, usuario_path(@local.usuario)}&nbsp;<br>".html_safe if @local.usuario.name? %>
 
