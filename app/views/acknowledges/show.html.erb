@@ -64,7 +64,7 @@
 
       <% if usuario_signed_in? %>
         <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
-          <br><br>
+          <hr>
           <div id="practice-footer">
             <div class="form-actions">
               <%= link_to t(:edit), edit_practice_acknowledge_path(@acknowledge.practice, @acknowledge), :class => 'btn btn-success' %>

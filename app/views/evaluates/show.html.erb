@@ -45,7 +45,7 @@
       @evaluate.system_integrity_requirements.blank? and
       @evaluate.system_integrity_effects.blank? and
       @evaluate.climate_change_vulnerability_effects.blank? and
-      @evaluate.time_requirements %>
+      @evaluate.time_requirements.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if usuario_signed_in? %>
           <% if current_usuario.admin? or current_usuario.id == @evaluate.practice.usuario.id %>
@@ -96,7 +96,7 @@
 
       <% if usuario_signed_in? %>
         <% if current_usuario.admin? or current_usuario.id == @evaluate.practice.usuario.id %>
-          <br><br>
+          <hr>
           <div id="practice-footer">
             <div class="form-actions">
               <%= link_to t(:edit), edit_practice_evaluate_path(@evaluate.practice, @evaluate), :class => 'btn btn-success' %>

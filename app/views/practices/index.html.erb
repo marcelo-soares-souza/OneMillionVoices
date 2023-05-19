@@ -24,7 +24,7 @@
   <div class="row">
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= local_practice_path(practice.local, practice) %>';">
-        <div class="card" style="min-height: 360px;">
+        <div class="card" style="min-height: 375px;">
           <% if  practice.midias and practice.midias[0]%>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.local.name, title: practice.local.name %></div>
           <% else %>

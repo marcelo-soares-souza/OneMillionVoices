@@ -17,7 +17,7 @@ class PracticesController < ApplicationController
     elsif params[:usuario_id]
       Practice.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
     else
-      Practice.order("updated_at DESC").page(params[:page])
+      Practice.order("updated_at DESC").load_async.page(params[:page])
     end
   end
 
@@ -75,7 +75,7 @@ class PracticesController < ApplicationController
   def destroy
     @practice.destroy
     respond_to do |format|
-      format.html { redirect_to locais_url, notice: "Agroecological Practice has been Removed." }
+      format.html { redirect_to practices_url, notice: "Agroecological Practice has been Removed." }
       format.json { head :no_content }
     end
   end

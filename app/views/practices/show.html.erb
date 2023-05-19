@@ -54,7 +54,7 @@
     <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.name, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.name? %></div>
     <% if usuario_signed_in? %>
       <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
-        <br>
+        <hr>
         <div id="practice-footer">
           <div class="form-actions">
             <%= link_to t(:edit), edit_local_practice_path(@practice.local, @practice.id), :class => 'btn btn-success' %>

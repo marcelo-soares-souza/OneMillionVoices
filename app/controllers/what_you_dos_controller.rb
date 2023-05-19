@@ -19,12 +19,15 @@ class WhatYouDosController < ApplicationController
   # GET /what_you_dos/new
   def new
     begin
-      @practice_id = Practice.friendly.find(params[:practice_id])
+      @practice = Practice.friendly.find(params[:practice_id])
     rescue ActiveRecord::RecordNotFound
       redirect_to locais_path, notice: "This Practice doesn't exist."
     end
 
+    # ToDo: Recover Data Between Navigation
+    # @what_you_do_prev = WhatYouDo.where(practice_id: @practice.id).first
     @what_you_do = WhatYouDo.new
+    # @what_you_do.summary_description_of_agroecological_practice = @what_you_do_prev.summary_description_of_agroecological_practice
   end
 
   # GET /what_you_dos/1/edit

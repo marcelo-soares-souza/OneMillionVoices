@@ -44,7 +44,7 @@
 
 <% if usuario_signed_in? %>
   <% if current_usuario.admin? or current_usuario.id == @usuario.id %>
-    <br><br>
+    <hr>
     <div class="form-actions">
       <%= link_to t("location.register_new_location"), new_local_path, :class => "btn btn-primary" %>
       <%= link_to t('.edit', :default => "Editar"), edit_usuario_path(@usuario), :class => 'btn btn-success' %>

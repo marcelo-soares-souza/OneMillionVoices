@@ -50,7 +50,7 @@
 
 <% if usuario_signed_in? %>
   <% if current_usuario.admin? or current_usuario.id == @local.usuario.id %>
-    <br><br>
+    <hr>
     <div class="form-actions">
       <%= link_to t(:edit), edit_local_path(@local), :class => 'btn btn-success' %>
       <%= link_to t(:destroy), local_path(@local), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t(:are_you_sure))) }, :class => 'btn btn-danger' %>

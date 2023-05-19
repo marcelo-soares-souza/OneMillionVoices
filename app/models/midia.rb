@@ -9,8 +9,9 @@ class Midia < ApplicationRecord
   extend FriendlyId
   friendly_id :description, use: :slugged
 
-  validates :description, presence: true, uniqueness: true
-  validates_length_of :description, minimum: 3
+  validates :description, presence: true
+  validates_length_of :description, minimum: 2
+  validates_length_of :description, maximum: 256
 
   validates :imagem, presence: true
 

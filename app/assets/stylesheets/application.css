@@ -16,8 +16,10 @@
 */
 
 .btn {
-    font-size: 19px;
+    font-size: 21px;
     font-weight: bold;
+    padding-left: 21px;
+    padding-right: 21px;
 }
 
 .btn-warning {

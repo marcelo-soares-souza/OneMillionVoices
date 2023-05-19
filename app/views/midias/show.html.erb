@@ -43,7 +43,7 @@
 
 <% if usuario_signed_in? %>
   <% if current_usuario.admin? or current_usuario.id == @midia.usuario_id %>
-    <br><br>
+    <hr>
     <div class="form-actions">
       <% if params[:practice_id] %>
         <%= link_to t(:edit), edit_practice_midia_path(@practice, @midia), :class => 'btn btn-mini btn-success' %>

@@ -37,7 +37,8 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <% if @characterise.agroecology_principles_addressed.blank? %>
+    <% if @characterise.agroecology_principles_addressed.blank? and
+          @characterise.food_system_components_addressed.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if usuario_signed_in? %>
           <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
@@ -57,7 +58,7 @@
 
       <% if usuario_signed_in? %>
         <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
-          <br><br>
+          <hr>
           <div id="practice-footer">
             <div class="form-actions">
               <%= link_to t(:edit), edit_practice_characterise_path(@characterise.practice, @characterise), :class => 'btn btn-success' %>
