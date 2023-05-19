@@ -14,7 +14,7 @@ class LocaisController < ApplicationController
   # GET /locais.json
   def index
     @locais = if params[:usuario_id]
-      Local.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
+      Local.where(usuario_id: @usuario.id).includes(:midias, :practices).load_async.sort_by(&:updated_at).reverse
     else
       Local.order("updated_at DESC").page(params[:page])
     end

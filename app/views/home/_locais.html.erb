@@ -12,12 +12,12 @@
 
   <% @locais.each do |local| %>
     <% if local.latitude and local.longitude %>
-      <% total_midia = Midia.where(local: local).count%>
       var popup = '';
       popup += '<div class="thumbnail-mini"><%= link_to image_tag(local.imagem.url(:medium)), local_path(local) %></div><br>'
       popup += '<h4><%= "#{link_to local.name, local_path(local), target: '_blank'}".html_safe %></h4>';
       popup += '<b>';
-      popup += '<div class="popup-gallery"><%= total_midia > 0 ? "#{ link_to (t(:gallery) + " (" + total_midia.to_s + " " + t(:photos) + ")"), local_gallery_path(local.id), target: '_blank'}".html_safe : "".html_safe %></div>';
+      popup += '<div><%= link_to "See all Practices", local_practices_path(local) if ! local.practices.blank? %></div>';
+      popup += '<div class="popup-gallery"><%= local.midias.blank? ? "".html_safe : "#{ link_to (t(:gallery)), local_gallery_path(local.id), target: '_blank'}".html_safe %></div>';
       popup += '</b>';
 
       var marker = new L.marker(new L.latLng([<%= local.latitude %>, <%= local.longitude %>]), { icon: Icon, title: '<%= local.name %>' });

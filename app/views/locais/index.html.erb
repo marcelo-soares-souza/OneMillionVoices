@@ -24,7 +24,7 @@
           <div class="card-body"  style="min-height: 190px;">
             <h3 class="card-title"><%= link_to local.name, local_path(local) %></h3>
             <p class="card-text" style="text-align: center;"><b><%= @property_types.key(local.property_type) %></b></p>
-            <p class="card-text" style="text-align: center;"><%= link_to "See all Practices", local_practices_path(local) if local.practices and local.practices.count > 0 %></p>
+            <p class="card-text" style="text-align: center;"><%= link_to "See all Practices", local_practices_path(local) if !local.practices.blank? %></p>
             <% if usuario_signed_in? %>
               <% if current_usuario.admin? or local.usuario.id == current_usuario.id %>
                 <td><%= link_to t(:edit), edit_local_path(local), :class => 'btn btn-sm btn-success' %></td>
