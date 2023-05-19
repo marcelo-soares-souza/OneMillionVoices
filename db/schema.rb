@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_211308) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_142613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_211308) do
     t.string "imagem_content_type"
     t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
+    t.text "about"
+    t.string "website"
     t.index ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true

@@ -23,15 +23,22 @@
      <% end %>
     </div>
 
-    <br><br>
     <h3><%= @usuario.name %></h3>
-
     <br>
     <% if usuario_signed_in? %>
-      <%= "<strong>E-Mail:</strong><br>#{@usuario.email}&nbsp;".html_safe if @usuario.email? %>
+      <%= "<strong>E-Mail</strong><br>#{@usuario.email}&nbsp;".html_safe if @usuario.email? %>
       <br><br>
     <% end %>
-    <%= "<strong>#{t(:registered_locations)}:</strong><br>#{@usuario.locais.map { |local| link_to local.name, local_path(local) }.join(", ").html_safe}&nbsp;".html_safe if @usuario.locais.count > 0 %>
+
+    <% if @usuario.about and @usuario.about .length() > 0 %>
+      <%= "<strong>Bio</strong><br><div class='text-box'>#{simple_format (h @usuario.about).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @usuario.about %>
+    <% end %>
+
+    <% if @usuario.website and @usuario.website .length() > 0 %>
+      <%= "<strong>Website</strong><br><div class='text-box'>#{simple_format (h @usuario.website).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @usuario.website %>
+    <% end %>
+
+    <%= "<strong>#{t(:registered_locations)}</strong><br>#{@usuario.locais.map { |local| link_to local.name, local_path(local) }.join(", ").html_safe}&nbsp;".html_safe if @usuario.locais.count > 0 %>
   </div>
 </div>
 
