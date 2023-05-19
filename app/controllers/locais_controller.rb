@@ -121,7 +121,7 @@ class LocaisController < ApplicationController
       @farm_and_farming_system_options = {
         t(:mainly_subsistence) => "Mainly subsistence",
         t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
-        t(:mainly_commercial) => "Mixed subsistence and commercial",
+        t(:mainly_commercial) => "Mainly commercial",
         t(:other) => "Other",
         t(:i_am_not_sure) => "I am not sure"
       }
