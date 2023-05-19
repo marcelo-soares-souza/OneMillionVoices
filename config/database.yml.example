@@ -10,12 +10,12 @@ default: &default
 
 development:
   <<: *default
-  database: agroecologia_development
+  database: onemillionvoices_development
 
 test:
   <<: *default
-  database: agroecologia_test
+  database: onemillionvoices_test
 
 production:
   <<: *default
-  database: agroecologia_production
+  database: onemillionvoices_production
