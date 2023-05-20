@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
+    root to: "home#index"
+    get "home/index"
+  end
+
+  get "/map", to: "home#index"
+  get "/about", to: "about#index"
+  get "/who_we_are", to: "about#who_we_are"
+  get "/manual", to: "about#manual"
+  get "license", to: "about#license"
+
   resources :practices
   resources :acknowledges
   resources :evaluates
@@ -15,17 +26,6 @@ Rails.application.routes.draw do
     resources :midias
     get "/gallery" => "midias#gallery"
   end
-
-  resources :about
-  resources :who_we_are
-  resources :manual
-
-  scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
-    root to: "home#index"
-    get "home/index"
-  end
-
-  get "/map", to: "home#index"
 
   scope(locais: {}) do
     resources :locais, path: "locations"
