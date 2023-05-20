@@ -2,10 +2,10 @@
 
 class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
-  before_action :authenticate_usuario!, only: %i[new edit update destroy]
-  before_action -> { check_owner Location.friendly.find(params[:id]).usuario_id }, only: %i[edit update destroy]
+  before_action :authenticate_account!, only: %i[new edit update destroy]
+  before_action -> { check_owner Location.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
   before_action :load_property_types
-  before_action :load_usuario
+  before_action :load_account
   before_action :load_colaboradores, except: %i[index show]
   before_action :load_total_midias, only: %i[show]
   before_action :load_options
@@ -13,8 +13,8 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = if params[:usuario_id]
-      Location.where(usuario_id: @usuario.id).includes(:midias, :practices).load_async.sort_by(&:updated_at).reverse
+    @locations = if params[:account_id]
+      Location.where(account_id: @account.id).includes(:midias, :practices).load_async.sort_by(&:updated_at).reverse
     else
       Location.order("updated_at DESC").load_async.page(params[:page])
     end
@@ -27,19 +27,19 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
-    @location.location_usuarios.build
+    @location.location_accounts.build
   end
 
   # GET /locations/1/edit
   def edit
-    @location.location_usuarios.build
+    @location.location_accounts.build
   end
 
   # POST /locations
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-    @location.usuario_id = current_usuario.id unless current_usuario.admin?
+    @location.account_id = current_account.id unless current_account.admin?
 
     respond_to do |format|
       if @location.save
@@ -84,7 +84,7 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system,  :latitude, :longitude, :usuario_id, :imagem, :property_type, :hide_my_location, usuario_ids: [])
+      params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system,  :latitude, :longitude, :account_id, :imagem, :property_type, :hide_my_location, account_ids: [])
     end
 
     def load_property_types
@@ -99,11 +99,11 @@ class LocationsController < ApplicationController
     end
 
     def load_colaboradores
-      @usuarios = Usuario.all.load_async
+      @accounts = Account.all.load_async
     end
 
-    def load_usuario
-      @usuario = Usuario.friendly.find(params[:usuario_id]) if params[:usuario_id]
+    def load_account
+      @account = Account.friendly.find(params[:account_id]) if params[:account_id]
     end
 
     def load_total_midias

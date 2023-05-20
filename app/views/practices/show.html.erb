@@ -1,7 +1,7 @@
 <% title @practice.location.name %>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @practice.account.id %>
     <%= link_to t(:send_photo), new_practice_midia_path(@practice), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
@@ -56,9 +56,9 @@
 
     <%= "<h4>#{t(:location)}</h4>#{link_to @practice.location.name.truncate(40), location_path(@practice.location)}&nbsp;".html_safe if @practice.location.name? %>
     <br><br>
-    <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.name, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.name? %></div>
-    <% if usuario_signed_in? %>
-      <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
+    <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.account.name, account_path(@practice.account)}&nbsp;".html_safe if @practice.account.name? %></div>
+    <% if account_signed_in? %>
+      <% if current_account.admin? or current_account.id == @practice.account.id %>
         <hr>
         <div id="practice-footer">
           <div class="form-actions">

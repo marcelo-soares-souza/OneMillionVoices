@@ -21,7 +21,7 @@
     <% end %>
   </li>
 
-  <% if usuario_signed_in? %>
+  <% if account_signed_in? %>
     <li class="nav-item">
       <% if params[:practice_id] %>
         <%= link_to "Send Photo", new_practice_midia_path, :class => "nav-link active" %>

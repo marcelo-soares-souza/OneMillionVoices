@@ -2,8 +2,8 @@
 
 class MidiasController < ApplicationController
   before_action :set_midia, only: %i[show edit update destroy]
-  before_action :authenticate_usuario!, only: %i[new edit update destroy]
-  before_action -> { check_owner Midia.friendly.find(params[:id]).usuario_id }, only: %i[edit update destroy]
+  before_action :authenticate_account!, only: %i[new edit update destroy]
+  before_action -> { check_owner Midia.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
   before_action :load_dados
   before_action :selected_id
   before_action :default_media_name
@@ -44,7 +44,7 @@ class MidiasController < ApplicationController
   # POST /midias.json
   def create
     @midia = Midia.new(midia_params)
-    @midia.usuario_id = current_usuario.id unless current_usuario.admin?
+    @midia.account_id = current_account.id unless current_account.admin?
 
     if params[:practice_id]
       @midia.practice_id = @practice.id
@@ -115,7 +115,7 @@ class MidiasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def midia_params
-      params.require(:midia).permit(:description, :slug, :practice_id, :location_id, :imagem, :usuario_id)
+      params.require(:midia).permit(:description, :slug, :practice_id, :location_id, :imagem, :account_id)
     end
 
     def load_dados
@@ -127,12 +127,12 @@ class MidiasController < ApplicationController
     end
 
     def selected_id
-      if current_usuario && current_usuario.admin?
-        @selected_id = current_usuario.id
+      if current_account && current_account.admin?
+        @selected_id = current_account.id
         if @practice
-          @selected_id = @practice.usuario.id
+          @selected_id = @practice.account.id
         elsif @location
-          @selected_id = @location.usuario.id
+          @selected_id = @location.account.id
         end
       end
     end

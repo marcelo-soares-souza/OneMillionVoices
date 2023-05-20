@@ -9,11 +9,11 @@
     </div>
   <% end %>
 
-  <% if current_usuario.admin? %>
+  <% if current_account.admin? %>
     <div class="form-group row">
       <%= f.label 'Responsável', class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:usuario_id, Usuario.all, :id, :name, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.collection_select(:account_id, Account.all, :id, :name, {}, { class: "form-control selectpicker", "data-live-search": true }) %>
       </div>
     </div>
   <% end %>

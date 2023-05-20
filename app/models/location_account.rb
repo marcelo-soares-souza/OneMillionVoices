@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class LocationUsuario < ApplicationRecord
+class LocationAccount < ApplicationRecord
   belongs_to :location
-  belongs_to :usuario
+  belongs_to :account
   accepts_nested_attributes_for :location, allow_destroy: true
 end

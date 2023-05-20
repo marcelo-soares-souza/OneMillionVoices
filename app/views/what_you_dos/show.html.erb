@@ -1,7 +1,7 @@
 <% title @what_you_do.practice.name %>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @what_you_do.practice.account.id %>
     <%= link_to t(:send_photo), new_practice_midia_path(@what_you_do), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
@@ -43,8 +43,8 @@
       @what_you_do.practical_implementation_of_the_practice.blank? and
       @what_you_do.expected_function_or_effects_of_practice.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
-        <% if usuario_signed_in? %>
-          <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
+        <% if account_signed_in? %>
+          <% if current_account.admin? or current_account.id == @what_you_do.practice.account.id %>
             <%= link_to t(:register), edit_practice_what_you_do_path(@what_you_do.practice, @what_you_do) %>
           <% end %>
         <% end %>
@@ -69,8 +69,8 @@
       <% if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
         <div class="practices-box bg-light"><%= "<h4>#{t(:expected_function_or_effects_of_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
-      <% if usuario_signed_in? %>
-        <% if current_usuario.admin? or current_usuario.id == @what_you_do.practice.usuario.id %>
+      <% if account_signed_in? %>
+        <% if current_account.admin? or current_account.id == @what_you_do.practice.account.id %>
           <hr>
           <div id="practice-footer">
             <div class="form-actions">

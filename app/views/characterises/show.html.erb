@@ -1,7 +1,7 @@
 <% title @characterise.practice.name %>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @characterise.practice.account.id %>
     <%= link_to t(:send_photo), new_practice_midia_path(@characterise), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
@@ -40,8 +40,8 @@
     <% if @characterise.agroecology_principles_addressed.blank? and
           @characterise.food_system_components_addressed.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
-        <% if usuario_signed_in? %>
-          <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
+        <% if account_signed_in? %>
+          <% if current_account.admin? or current_account.id == @characterise.practice.account.id %>
             <%= link_to t(:register), edit_practice_characterise_path(@characterise.practice, @characterise) %>
           <% end %>
         <% end %>
@@ -56,8 +56,8 @@
         <%= "<h4>#{t(:food_system_components_addressed)}</h4><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %>
       <% end %>
 
-      <% if usuario_signed_in? %>
-        <% if current_usuario.admin? or current_usuario.id == @characterise.practice.usuario.id %>
+      <% if account_signed_in? %>
+        <% if current_account.admin? or current_account.id == @characterise.practice.account.id %>
           <hr>
           <div id="practice-footer">
             <div class="form-actions">

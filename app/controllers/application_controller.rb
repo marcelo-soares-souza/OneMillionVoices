@@ -20,27 +20,27 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     end
 
-    def check_owner(usuario_id)
-      if signed_in? && (!current_usuario.admin? && current_usuario.id != (usuario_id))
+    def check_owner(account_id)
+      if signed_in? && (!current_account.admin? && current_account.id != (account_id))
         redirect_to root_url, alert: t(:permission_denied)
       end
     end
 
-    def check_owner_or_collaborator(usuario_id, collaborators)
-      if signed_in? && (!current_usuario.admin? && current_usuario.id != usuario_id && !collaborators.collect(&:usuario_id).include?(current_usuario.id))
+    def check_owner_or_collaborator(account_id, collaborators)
+      if signed_in? && (!current_account.admin? && current_account.id != account_id && !collaborators.collect(&:account_id).include?(current_account.id))
         redirect_to root_url, alert: t(:permission_denied)
       end
     end
 
     def check_if_admin
-      redirect_to root_url, alert: t(:permission_denied) if signed_in? && !current_usuario.admin?
+      redirect_to root_url, alert: t(:permission_denied) if signed_in? && !current_account.admin?
     end
 
     def load_locations
-      @locations = if current_usuario.admin?
+      @locations = if current_account.admin?
         Location.all.load_async
       else
-        Location.where(usuario_id: current_usuario.id).load_async
+        Location.where(account_id: current_account.id).load_async
       end
     end
 
@@ -69,6 +69,6 @@ class ApplicationController < ActionController::Base
     end
 
     def store_user_location!
-      store_location_for(:usuario, request.fullpath)
+      store_location_for(:account, request.fullpath)
     end
 end

@@ -1,7 +1,7 @@
 <% title @evaluate.practice.name %>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @evaluate.practice.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @evaluate.practice.account.id %>
     <%= link_to t(:send_photo), new_practice_midia_path(@evaluate), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
@@ -47,8 +47,8 @@
       @evaluate.climate_change_vulnerability_effects.blank? and
       @evaluate.time_requirements.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
-        <% if usuario_signed_in? %>
-          <% if current_usuario.admin? or current_usuario.id == @evaluate.practice.usuario.id %>
+        <% if account_signed_in? %>
+          <% if current_account.admin? or current_account.id == @evaluate.practice.account.id %>
             <%= link_to t(:register), edit_practice_evaluate_path(@evaluate.practice, @evaluate) %>
           <% end %>
         <% end %>
@@ -94,8 +94,8 @@
         <%= "<h4>#{t(:time_requirements)}</h4><div class='text-box'>#{simple_format (h @evaluate.time_requirements).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
       <% end %>
 
-      <% if usuario_signed_in? %>
-        <% if current_usuario.admin? or current_usuario.id == @evaluate.practice.usuario.id %>
+      <% if account_signed_in? %>
+        <% if current_account.admin? or current_account.id == @evaluate.practice.account.id %>
           <hr>
           <div id="practice-footer">
             <div class="form-actions">

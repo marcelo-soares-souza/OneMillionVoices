@@ -10,7 +10,7 @@ class Practice < ApplicationRecord
 
   has_many :midias, dependent: :delete_all
 
-  belongs_to :usuario
+  belongs_to :account
   belongs_to :location
 
   validates :name, presence: true

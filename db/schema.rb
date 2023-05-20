@@ -16,6 +16,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "accounts", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
+    t.string "unconfirmed_email"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.boolean "admin", default: false
+    t.string "name"
+    t.string "slug"
+    t.string "imagem_file_name"
+    t.string "imagem_content_type"
+    t.bigint "imagem_file_size"
+    t.datetime "imagem_updated_at", precision: nil
+    t.text "about"
+    t.string "website"
+    t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_accounts_on_slug", unique: true
+  end
+
   create_table "acknowledges", force: :cascade do |t|
     t.bigint "practice_id", null: false
     t.text "knowledge_source"
@@ -52,13 +84,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.index ["practice_id"], name: "index_evaluates_on_practice_id"
   end
 
-  create_table "location_usuarios", force: :cascade do |t|
+  create_table "location_accounts", force: :cascade do |t|
     t.bigint "location_id"
-    t.bigint "usuario_id"
+    t.bigint "account_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["location_id"], name: "index_location_usuarios_on_location_id"
-    t.index ["usuario_id"], name: "index_location_usuarios_on_usuario_id"
+    t.index ["account_id"], name: "index_location_accounts_on_account_id"
+    t.index ["location_id"], name: "index_location_accounts_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -67,7 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.string "description"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "usuario_id"
+    t.bigint "account_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "imagem_file_name"
@@ -78,8 +110,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.boolean "hide_my_location"
     t.string "country"
     t.string "farm_and_farming_system"
+    t.index ["account_id"], name: "index_locations_on_account_id"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
-    t.index ["usuario_id"], name: "index_locations_on_usuario_id"
   end
 
   create_table "midias", force: :cascade do |t|
@@ -91,57 +123,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.string "imagem_content_type"
     t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
-    t.bigint "usuario_id"
+    t.bigint "account_id"
     t.bigint "location_id"
     t.bigint "practice_id"
+    t.index ["account_id"], name: "index_midias_on_account_id"
     t.index ["location_id"], name: "index_midias_on_location_id"
     t.index ["practice_id"], name: "index_midias_on_practice_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
-    t.index ["usuario_id"], name: "index_midias_on_usuario_id"
   end
 
   create_table "practices", force: :cascade do |t|
-    t.bigint "usuario_id", null: false
+    t.bigint "account_id", null: false
     t.bigint "location_id", null: false
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.index ["account_id"], name: "index_practices_on_account_id"
     t.index ["location_id"], name: "index_practices_on_location_id"
     t.index ["slug"], name: "index_practices_on_slug", unique: true
-    t.index ["usuario_id"], name: "index_practices_on_usuario_id"
-  end
-
-  create_table "usuarios", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at", precision: nil
-    t.datetime "confirmation_sent_at", precision: nil
-    t.string "unconfirmed_email"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.boolean "admin", default: false
-    t.string "name"
-    t.string "slug"
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.bigint "imagem_file_size"
-    t.datetime "imagem_updated_at", precision: nil
-    t.text "about"
-    t.string "website"
-    t.index ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_usuarios_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
-    t.index ["slug"], name: "index_usuarios_on_slug", unique: true
   end
 
   create_table "what_you_dos", force: :cascade do |t|
@@ -159,13 +159,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
   add_foreign_key "acknowledges", "practices"
   add_foreign_key "characterises", "practices"
   add_foreign_key "evaluates", "practices"
-  add_foreign_key "location_usuarios", "locations"
-  add_foreign_key "location_usuarios", "usuarios"
-  add_foreign_key "locations", "usuarios"
+  add_foreign_key "location_accounts", "accounts"
+  add_foreign_key "location_accounts", "locations"
+  add_foreign_key "locations", "accounts"
+  add_foreign_key "midias", "accounts"
   add_foreign_key "midias", "locations"
   add_foreign_key "midias", "practices"
-  add_foreign_key "midias", "usuarios"
+  add_foreign_key "practices", "accounts"
   add_foreign_key "practices", "locations"
-  add_foreign_key "practices", "usuarios"
   add_foreign_key "what_you_dos", "practices"
 end

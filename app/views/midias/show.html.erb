@@ -2,9 +2,9 @@
   <% title "#{@midia.description} | #{@practice.name}" %>
 <% end %>
 
-<% if usuario_signed_in? %>
+<% if account_signed_in? %>
   <% if params[:practice_id] %>
-    <%= link_to t(:send_picture), new_practice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @practice.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_picture), new_practice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_account.admin? or @practice.account_id == current_account.id %>
   <% end %>
 <% end %>
 
@@ -41,8 +41,8 @@
   </div>
 </div>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @midia.usuario_id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @midia.account_id %>
     <hr>
     <div class="form-actions">
       <% if params[:practice_id] %>

@@ -33,17 +33,11 @@ Rails.application.routes.draw do
     resources :midias
   end
 
-  scope(usuarios: {}) do
-    resources :usuarios, path: "accounts"
-    resources :usuarios, path: "contributors"
-  end
-
-  #  devise_for :usuarios
-  devise_for :usuarios, controllers: {
-    registrations: "usuarios/registrations"
+  devise_for :accounts, controllers: {
+    registrations: "accounts/registrations"
   }
 
-  resources :usuarios do
+  resources :accounts do
     resources :locations
     resources :practices
   end

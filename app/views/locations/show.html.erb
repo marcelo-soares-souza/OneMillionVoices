@@ -1,7 +1,7 @@
 <% title @location.name %>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @location.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @location.account.id %>
     <%= link_to t(:register_new_practice), new_location_practice_path(@location), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" %>
     <%= link_to t(:send_photo), new_location_midia_path(@location), :class => "btn btn-warning", :style => "float:right;" %>
     <br><br>
@@ -37,7 +37,7 @@
     <%= "<br><strong>#{t(:farm_and_farming_system)}</strong><br>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br>".html_safe if @location.farm_and_farming_system? %>
     <!-- <%= "<br><strong>#{t(:type)}</strong><br>#{@property_types.key(@location.property_type)}&nbsp;<br>".html_safe if @location.property_type? %> -->
     <%= "<br><strong>#{t(:short_description)}</strong><br><div class='text-box'>#{simple_format (h @location.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @location.description? %>
-    <%= "<br><strong>#{t(:responsible_for_information)}</strong><br>#{link_to @location.usuario.name, usuario_path(@location.usuario)}&nbsp;<br>".html_safe if @location.usuario.name? %>
+    <%= "<br><strong>#{t(:responsible_for_information)}</strong><br>#{link_to @location.account.name, account_path(@location.account)}&nbsp;<br>".html_safe if @location.account.name? %>
 
     <% if @location.hide_my_location == false %>
       <% if @location.latitude and @location.longitude %>
@@ -48,8 +48,8 @@
   </div>
 </div>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @location.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @location.account.id %>
     <hr>
     <div class="form-actions">
       <%= link_to t(:edit), edit_location_path(@location), :class => 'btn btn-success' %>

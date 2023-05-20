@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class Usuario < ApplicationRecord
+class Account < ApplicationRecord
   paginates_per 6
   max_paginates_per 6
 
-  has_many :usuarios
+  has_many :accounts
   has_many :locations
-  has_many :location_usuarios, dependent: :destroy
-  has_many :colaboracoes, through: :location_usuarios, source: :location
+  has_many :location_accounts, dependent: :destroy
+  has_many :colaboracoes, through: :location_accounts, source: :location
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

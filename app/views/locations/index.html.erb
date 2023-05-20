@@ -6,7 +6,7 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to t(:locations) + " #{ @usuario.blank? ? '' : '(' + @usuario.name.truncate(25) + ')' }", "#", :class => "nav-link active" %>
+    <%= link_to t(:locations) + " #{ @account.blank? ? '' : '(' + @account.name.truncate(25) + ')' }", "#", :class => "nav-link active" %>
   </li>
 </ul>
 
@@ -26,8 +26,8 @@
             <!-- <p class="card-text" style="text-align: center;"><b><%= @property_types.key(location.property_type) %></b></p> -->
             <p class="card-text" style="text-align: center;"><%= link_to "See all Practices", location_practices_path(location) if !location.practices.blank? %></p>
             <!--
-            <% if usuario_signed_in? %>
-              <% if current_usuario.admin? or location.usuario.id == current_usuario.id %>
+            <% if account_signed_in? %>
+              <% if current_account.admin? or location.account.id == current_account.id %>
                 <td><%= link_to t(:edit), edit_location_path(location), :class => 'btn btn-sm btn-success' %></td>
                 <td><%= link_to t(:destroy), location_path(location), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-sm btn-danger' %></td>
               <% else %>
@@ -42,7 +42,7 @@
     <% end %>
   </div>
 
-  <% if not params[:usuario_id] %>
+  <% if not params[:account_id] %>
     <div>
       <%= paginate @locations %>
     </div>

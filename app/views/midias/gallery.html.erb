@@ -2,11 +2,11 @@
   <% title t(:gallery) + " #{@practice.name}" %>
 <% end %>
 
-<% if usuario_signed_in? %>
+<% if account_signed_in? %>
   <% if params[:practice_id] %>
-    <%= link_to t(:send_photo), new_practice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @practice.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_photo), new_practice_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_account.admin? or @practice.account_id == current_account.id %>
   <% elsif params[:location_id] %>
-    <%= link_to t(:send_photo), new_location_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_usuario.admin? or @location.usuario_id == current_usuario.id %>
+    <%= link_to t(:send_photo), new_location_midia_path, :class => "btn btn-warning", :style => "float:right;" if current_account.admin? or @location.account_id == current_account.id %>
   <% end %>
 <% end %>
 
@@ -55,9 +55,9 @@
   <br><br>
 
   <h3><%= t(:no_photo_submitted) %>
-    <% if usuario_signed_in? %>
+    <% if account_signed_in? %>
       <% if params[:practice_id] %>
-        <%= link_to t(:send_picture), new_practice_midia_path(@practice) if current_usuario.admin? or @practice.usuario_id == current_usuario.id %>
+        <%= link_to t(:send_picture), new_practice_midia_path(@practice) if current_account.admin? or @practice.account_id == current_account.id %>
       <% end %>
     <% end %>
   </h3>
@@ -75,9 +75,9 @@
               <img src="<%= midia.imagem.url(:medium) %>" alt="Photo <%= midia.description %>" title="Photo <%= midia.description %>" class="img-fluid">
             </a>
           </div>
-          <% if usuario_signed_in? %>
+          <% if account_signed_in? %>
             <% if @location or @practice %>
-              <% if current_usuario.admin? or current_usuario.id == (@location ? @location.usuario.id : nil) or current_usuario.id == (@practice ? @practice.usuario.id : nil)%>
+              <% if current_account.admin? or current_account.id == (@location ? @location.account.id : nil) or current_account.id == (@practice ? @practice.account.id : nil)%>
                 <div class="midia-control">
                   <% if @location %>
                     <%= link_to " &nbsp; Edit &nbsp; ".html_safe, edit_location_midia_path(@location, midia), :class => 'btn btn-success btn-sm', :style => 'font-size: 10px;'%>

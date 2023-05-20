@@ -8,7 +8,7 @@ class CreateLocations < ActiveRecord::Migration[5.1]
       t.string :description
       t.float :latitude
       t.float :longitude
-      t.references :usuario, foreign_key: true
+      t.references :account, foreign_key: true
 
       t.timestamps
     end

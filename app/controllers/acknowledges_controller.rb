@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class AcknowledgesController < ApplicationController
-  before_action :authenticate_usuario!, only: %i[new edit update destroy]
-  before_action -> { check_owner Acknowledge.find(params[:id]).practice.usuario_id }, only: %i[edit update destroy]
+  before_action :authenticate_account!, only: %i[new edit update destroy]
+  before_action -> { check_owner Acknowledge.find(params[:id]).practice.account_id }, only: %i[edit update destroy]
 
   before_action :set_acknowledge, only: %i[ show edit update destroy ]
   before_action :load_options

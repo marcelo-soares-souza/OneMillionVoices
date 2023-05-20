@@ -1,7 +1,7 @@
 <% title @acknowledge.practice.name %>
 
-<% if usuario_signed_in? %>
-  <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
+<% if account_signed_in? %>
+  <% if current_account.admin? or current_account.id == @acknowledge.practice.account.id %>
     <%= link_to t(:send_photo), new_practice_midia_path(@acknowledge), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
@@ -42,8 +42,8 @@
       @acknowledge.knowledge_products.blank?
     %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
-        <% if usuario_signed_in? %>
-          <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
+        <% if account_signed_in? %>
+          <% if current_account.admin? or current_account.id == @acknowledge.practice.account.id %>
             <%= link_to t(:register), edit_practice_acknowledge_path(@acknowledge.practice, @acknowledge) %>
           <% end %>
         <% end %>
@@ -62,8 +62,8 @@
         <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_products)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if usuario_signed_in? %>
-        <% if current_usuario.admin? or current_usuario.id == @acknowledge.practice.usuario.id %>
+      <% if account_signed_in? %>
+        <% if current_account.admin? or current_account.id == @acknowledge.practice.account.id %>
           <hr>
           <div id="practice-footer">
             <div class="form-actions">
