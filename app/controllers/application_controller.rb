@@ -22,25 +22,25 @@ class ApplicationController < ActionController::Base
 
     def check_owner(usuario_id)
       if signed_in? && (!current_usuario.admin? && current_usuario.id != (usuario_id))
-        redirect_to root_url, alert: "Permissão Negada"
+        redirect_to root_url, alert: t(:permission_denied)
       end
     end
 
     def check_owner_or_collaborator(usuario_id, collaborators)
       if signed_in? && (!current_usuario.admin? && current_usuario.id != usuario_id && !collaborators.collect(&:usuario_id).include?(current_usuario.id))
-        redirect_to root_url, alert: "Permissão Negada"
+        redirect_to root_url, alert: t(:permission_denied)
       end
     end
 
     def check_if_admin
-      redirect_to root_url, alert: "Permissão Negada" if signed_in? && !current_usuario.admin?
+      redirect_to root_url, alert: t(:permission_denied) if signed_in? && !current_usuario.admin?
     end
 
-    def load_locais
-      @locais = if current_usuario.admin?
-        Local.all.load_async
+    def load_locations
+      @locations = if current_usuario.admin?
+        Location.all.load_async
       else
-        Local.where(usuario_id: current_usuario.id).load_async
+        Location.where(usuario_id: current_usuario.id).load_async
       end
     end
 

@@ -21,7 +21,7 @@ class AcknowledgesController < ApplicationController
     begin
       @practice_id = Practice.friendly.find(params[:practice_id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to locais_path, notice: "This Practice doesn't exist."
+      redirect_to locations_path, notice: "This Practice doesn't exist."
     end
 
     @acknowledge = Acknowledge.new
@@ -38,11 +38,11 @@ class AcknowledgesController < ApplicationController
     respond_to do |format|
       if @acknowledge
         @acknowledge.update(acknowledge_params)
-        format.html { redirect_to local_practice_path(@acknowledge.practice.local, @acknowledge.practice), notice: "Acknowledges was successfully Updated." }
+        format.html { redirect_to location_practice_path(@acknowledge.practice.location, @acknowledge.practice), notice: "Acknowledges was successfully Updated." }
       else
         @acknowledge = Acknowledge.new(acknowledge_params)
         if @acknowledge.save
-          format.html { redirect_to local_practice_path(@acknowledge.practice.local, @acknowledge.practice), notice: "Acknowledges was successfully created." }
+          format.html { redirect_to location_practice_path(@acknowledge.practice.location, @acknowledge.practice), notice: "Acknowledges was successfully created." }
           format.json { render :show, status: :created, location: @acknowledge }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -90,7 +90,7 @@ class AcknowledgesController < ApplicationController
       @knowledge_source_options = {
         t(:formal_knowledge) => "Formal knowledge",
         t(:indigenous_knowledge) => "Indigenous knowledge",
-        t(:local_knowledge) => "Local knowledge",
+        t(:location_knowledge) => "Location knowledge",
         t(:personal_experimentation) => "Personal experimentation",
         t(:other) => "Other",
         t(:i_am_not_sure) => "I am not sure"

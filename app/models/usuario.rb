@@ -5,9 +5,9 @@ class Usuario < ApplicationRecord
   max_paginates_per 6
 
   has_many :usuarios
-  has_many :locais
-  has_many :local_usuarios, dependent: :destroy
-  has_many :colaboracoes, through: :local_usuarios, source: :local
+  has_many :locations
+  has_many :location_usuarios, dependent: :destroy
+  has_many :colaboracoes, through: :location_usuarios, source: :location
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

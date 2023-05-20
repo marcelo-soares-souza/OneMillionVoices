@@ -1,9 +1,9 @@
-<%= form_for(local, html: { multipart: true }) do |f| %>
-  <% if local.errors.any? %>
+<%= form_for(location, html: { multipart: true }) do |f| %>
+  <% if location.errors.any? %>
     <div id="error_explanation">
-      <b><%= local.errors.count.to_s + " Error(s)" %></b>
+      <b><%= location.errors.count.to_s + " Error(s)" %></b>
       <br><br>
-      <% local.errors.full_messages.each do |message| %>
+      <% location.errors.full_messages.each do |message| %>
         <%= message %><br>
       <% end %><br>
     </div>
@@ -30,7 +30,7 @@
       <div class="form-group row">
         <%= f.label t(:country), class: "col-sm-2 col-form-label col-form-label-lg" %>
         <div class="col-sm-10">
-          <% country = @local.country ? @local.country : '' if params["action"] == 'edit' %>
+          <% country = @location.country ? @location.country : '' if params["action"] == 'edit' %>
           <% country = request.location.country_code ? request.location.country_code : '' if params["action"] == 'new' %>
           <%= f.country_select :country, { selected: country, :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }, required: true %>
         </div>
@@ -69,7 +69,7 @@
       <div class="form-group row">
         <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
         <div class="col-sm-10">
-          <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @local.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
+          <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
         </div>
       </div>
       <br>

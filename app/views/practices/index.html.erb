@@ -3,12 +3,12 @@
 <br><br><br>
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
-  <% if params[:local_id] %>
+  <% if params[:location_id] %>
     <li class="nav-item">
-      <%= link_to @local.name.truncate(25), local_path(@local), title: @local.name, :class => "nav-link" %>
+      <%= link_to @location.name.truncate(25), location_path(@location), title: @location.name, :class => "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to t(:gallery) + " (#{@local.midias.count})", local_gallery_path(@local.id), :class => "nav-link" %>
+      <%= link_to t(:gallery) + " (#{@location.midias.count})", location_gallery_path(@location.id), :class => "nav-link" %>
     </li>
   <% end %>
   <li class="nav-item">
@@ -23,19 +23,19 @@
   <br>
   <div class="row">
     <% @practices.each do |practice| %>
-      <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= local_practice_path(practice.local, practice) %>';">
+      <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_practice_path(practice.location, practice) %>';">
         <div class="card" style="min-height: 340px;">
           <% if  practice.midias and practice.midias[0]%>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.local.name, title: practice.local.name %></div>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% else %>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.local.imagem.url(:medium)), practice_path(practice), alt: practice.local.name, title: practice.local.name %></div>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% end %>
           <div class="card-body">
-            <h3 class="card-title"><%= link_to practice.name.truncate(40), local_practice_path(practice.local, practice) %></h3>
+            <h3 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h3>
             <%= "<b>Summary</b>".html_safe if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice and practice.what_you_do.summary_description_of_agroecological_practice.length > 0 %>
             <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(75) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p>
             <p class="card-text" style="text-align: center;">
-            <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.local.name.truncate(40), local_path(practice.local) %></p></p>
+            <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.location.name.truncate(40), location_path(practice.location) %></p></p>
           </div>
         </div>
         <br>
@@ -43,7 +43,7 @@
     <% end %>
   </div>
 
-  <% if not params[:usuario_id] and not params[:local_id] %>
+  <% if not params[:usuario_id] and not params[:location_id] %>
     <div>
       <%= paginate @practices %>
     </div>

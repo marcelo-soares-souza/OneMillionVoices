@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-class Local < ApplicationRecord
+class Location < ApplicationRecord
   paginates_per 4
   belongs_to :usuario
 
-  has_many :local_usuarios, dependent: :destroy
-  has_many :usuarios, through: :local_usuarios
+  has_many :location_usuarios, dependent: :destroy
+  has_many :usuarios, through: :location_usuarios
   has_many :midias, dependent: :destroy
   has_many :practices, dependent: :destroy
 
-  accepts_nested_attributes_for :local_usuarios, allow_destroy: true
+  accepts_nested_attributes_for :location_usuarios, allow_destroy: true
 
   extend FriendlyId
   friendly_id :name, use: :slugged

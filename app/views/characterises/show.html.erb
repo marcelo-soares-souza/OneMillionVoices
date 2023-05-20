@@ -10,7 +10,7 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to truncate(@characterise.practice.local.name, length: 25), local_path(@characterise.practice.local), title: @characterise.practice.local.name,  :class => "nav-link" %>
+    <%= link_to truncate(@characterise.practice.location.name, length: 25), location_path(@characterise.practice.location), title: @characterise.practice.location.name,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to @characterise.practice.name.truncate(25) , practice_path(@characterise.practice), :class => "nav-link" %>

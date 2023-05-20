@@ -27,11 +27,7 @@ Rails.application.routes.draw do
     get "/gallery" => "midias#gallery"
   end
 
-  scope(locais: {}) do
-    resources :locais, path: "locations"
-  end
-
-  resources :locais do
+  resources :locations do
     get "/gallery" => "midias#gallery"
     resources :practices
     resources :midias
@@ -48,7 +44,7 @@ Rails.application.routes.draw do
   }
 
   resources :usuarios do
-    resources :locais
+    resources :locations
     resources :practices
   end
 end

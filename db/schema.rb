@@ -52,7 +52,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.index ["practice_id"], name: "index_evaluates_on_practice_id"
   end
 
-  create_table "locais", force: :cascade do |t|
+  create_table "location_usuarios", force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "usuario_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["location_id"], name: "index_location_usuarios_on_location_id"
+    t.index ["usuario_id"], name: "index_location_usuarios_on_usuario_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.string "description"
@@ -66,21 +75,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.string "property_type"
-    t.string "hospedagem"
     t.boolean "hide_my_location"
     t.string "country"
     t.string "farm_and_farming_system"
-    t.index ["slug"], name: "index_locais_on_slug", unique: true
-    t.index ["usuario_id"], name: "index_locais_on_usuario_id"
-  end
-
-  create_table "local_usuarios", force: :cascade do |t|
-    t.bigint "local_id"
-    t.bigint "usuario_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["local_id"], name: "index_local_usuarios_on_local_id"
-    t.index ["usuario_id"], name: "index_local_usuarios_on_usuario_id"
+    t.index ["slug"], name: "index_locations_on_slug", unique: true
+    t.index ["usuario_id"], name: "index_locations_on_usuario_id"
   end
 
   create_table "midias", force: :cascade do |t|
@@ -93,9 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.bigint "imagem_file_size"
     t.datetime "imagem_updated_at", precision: nil
     t.bigint "usuario_id"
-    t.bigint "local_id"
+    t.bigint "location_id"
     t.bigint "practice_id"
-    t.index ["local_id"], name: "index_midias_on_local_id"
+    t.index ["location_id"], name: "index_midias_on_location_id"
     t.index ["practice_id"], name: "index_midias_on_practice_id"
     t.index ["slug"], name: "index_midias_on_slug", unique: true
     t.index ["usuario_id"], name: "index_midias_on_usuario_id"
@@ -103,12 +102,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
 
   create_table "practices", force: :cascade do |t|
     t.bigint "usuario_id", null: false
-    t.bigint "local_id", null: false
+    t.bigint "location_id", null: false
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.index ["local_id"], name: "index_practices_on_local_id"
+    t.index ["location_id"], name: "index_practices_on_location_id"
     t.index ["slug"], name: "index_practices_on_slug", unique: true
     t.index ["usuario_id"], name: "index_practices_on_usuario_id"
   end
@@ -160,13 +159,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
   add_foreign_key "acknowledges", "practices"
   add_foreign_key "characterises", "practices"
   add_foreign_key "evaluates", "practices"
-  add_foreign_key "locais", "usuarios"
-  add_foreign_key "local_usuarios", "locais"
-  add_foreign_key "local_usuarios", "usuarios"
-  add_foreign_key "midias", "locais"
+  add_foreign_key "location_usuarios", "locations"
+  add_foreign_key "location_usuarios", "usuarios"
+  add_foreign_key "locations", "usuarios"
+  add_foreign_key "midias", "locations"
   add_foreign_key "midias", "practices"
   add_foreign_key "midias", "usuarios"
-  add_foreign_key "practices", "locais"
+  add_foreign_key "practices", "locations"
   add_foreign_key "practices", "usuarios"
   add_foreign_key "what_you_dos", "practices"
 end

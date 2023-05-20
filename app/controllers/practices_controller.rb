@@ -5,15 +5,15 @@ class PracticesController < ApplicationController
   before_action lambda { check_owner Practice.friendly.find(params[:id]).usuario_id }, only: %i[edit update destroy]
 
   before_action :set_practice, only: %i[show edit update destroy]
-  before_action :load_locais, except: %i[index show]
-  before_action :load_local
+  before_action :load_locations, except: %i[index show]
+  before_action :load_location
   before_action :load_usuario
 
   # GET /practices
   # GET /practices.json
   def index
-    @practices = if params[:local_id]
-      Practice.where(local_id: @local.id).load_async.sort_by(&:updated_at).reverse
+    @practices = if params[:location_id]
+      Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
     elsif params[:usuario_id]
       Practice.where(usuario_id: @usuario.id).load_async.sort_by(&:updated_at).reverse
     else
@@ -88,11 +88,11 @@ class PracticesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def practice_params
-      params.require(:practice).permit(:name, :slug, :local_id, :usuario_id)
+      params.require(:practice).permit(:name, :slug, :location_id, :usuario_id)
     end
 
-    def load_local
-      @local = Local.friendly.find(params[:local_id]) if params[:local_id]
+    def load_location
+      @location = Location.friendly.find(params[:location_id]) if params[:location_id]
     end
 
     def load_usuario

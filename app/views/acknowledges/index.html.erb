@@ -3,9 +3,9 @@
 <br><br><br>
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
-  <% if params[:local_id] %>
+  <% if params[:location_id] %>
     <li class="nav-item">
-      <%= link_to @local.name.truncate(10), local_path(@local), title: @local.name, :class => "nav-link" %>
+      <%= link_to @location.name.truncate(10), location_path(@location), title: @location.name, :class => "nav-link" %>
     </li>
   <% end %>
   <li class="nav-item">
@@ -24,15 +24,15 @@
         <div class="card" style="min-height: 380px;">
           <br>
           <% if  practice.midias and practice.midias[0]%>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.local.name, title: practice.local.name %></div>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% else %>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.local.imagem.url(:medium)), practice_path(practice), alt: practice.local.name, title: practice.local.name %></div>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% end %>
           <div class="card-body">
             <%= "<b>Summary</b>".html_safe if practice.summary_description_of_agroecological_practice and practice.summary_description_of_agroecological_practice.length > 0 %>
             <p class="card-text text-box"><%= practice.summary_description_of_agroecological_practice.truncate(160) %></p>
             <b>Location</b>
-            <p class="card-text text-box"><%= link_to practice.local.name.truncate(160), local_path(practice.local) %></p>
+            <p class="card-text text-box"><%= link_to practice.location.name.truncate(160), location_path(practice.location) %></p>
             <% if usuario_signed_in? %>
               <% if current_usuario.admin? or practice.usuario.id == current_usuario.id %>
                 <td><%= link_to t(:edit), edit_practice_path(practice), :class => 'btn btn-sm btn-success' %></td>
@@ -45,7 +45,7 @@
     <% end %>
   </div>
 
-  <% if not params[:usuario_id] and not params[:local_id] %>
+  <% if not params[:usuario_id] and not params[:location_id] %>
     <div>
       <%= paginate @practices %>
     </div>

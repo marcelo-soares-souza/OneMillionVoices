@@ -12,9 +12,9 @@
 </ul>
 <br>
 
-<% if !@locais.empty? %>
+<% if !@locations.empty? %>
   <%= render 'form', practice: @practice %>
 <% else %>
   <br>
-  <h3>Nenhum Local Cadastrado. Deseja <%= link_to "Cadastrar um Local Agora?", new_local_url %></h3>
+  <h3>Nenhum Location Cadastrado. Deseja <%= link_to "Cadastrar um Location Agora?", new_location_url %></h3>
 <% end %>

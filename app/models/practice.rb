@@ -11,7 +11,7 @@ class Practice < ApplicationRecord
   has_many :midias, dependent: :delete_all
 
   belongs_to :usuario
-  belongs_to :local
+  belongs_to :location
 
   validates :name, presence: true
   validates_length_of :name, minimum: 4

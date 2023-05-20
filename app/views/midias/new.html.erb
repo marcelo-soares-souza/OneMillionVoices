@@ -1,7 +1,7 @@
 <% if params[:practice_id] %>
   <% title "Add Photo To #{@practice.name}" %>
-<% elsif params[:local_id] %>
-  <% title "Add Photo to #{@local.name}" %>
+<% elsif params[:location_id] %>
+  <% title "Add Photo to #{@location.name}" %>
 <% end %>
 
 <br><br><br><br>
@@ -16,8 +16,8 @@
   <li class="nav-item">
     <% if params[:practice_id] %>
       <%= link_to @practice.name.truncate(25), practice_path(@practice), :class => "nav-link" %>
-    <% elsif params[:local_id] %>
-      <%= link_to truncate(@local.name, length: 25), local_path(@local), :class => "nav-link" %>
+    <% elsif params[:location_id] %>
+      <%= link_to truncate(@location.name, length: 25), location_path(@location), :class => "nav-link" %>
     <% end %>
   </li>
 
@@ -25,8 +25,8 @@
     <li class="nav-item">
       <% if params[:practice_id] %>
         <%= link_to "Send Photo", new_practice_midia_path, :class => "nav-link active" %>
-      <% elsif params[:local_id] %>
-        <%= link_to "Send Photo", new_local_midia_path, :class => "nav-link active" %>
+      <% elsif params[:location_id] %>
+        <%= link_to "Send Photo", new_location_midia_path, :class => "nav-link active" %>
       <% end %>
     </li>
   <% end %>

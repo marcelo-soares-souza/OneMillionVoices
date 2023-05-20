@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateLocais < ActiveRecord::Migration[5.1]
+class CreateLocations < ActiveRecord::Migration[5.1]
   def change
-    create_table :locais do |t|
+    create_table :locations do |t|
       t.string :name
       t.string :slug
       t.string :description
@@ -12,6 +12,6 @@ class CreateLocais < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :locais, :slug, unique: true
+    add_index :locations, :slug, unique: true
   end
 end

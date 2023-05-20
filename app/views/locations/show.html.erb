@@ -1,0 +1,102 @@
+<% title @location.name %>
+
+<% if usuario_signed_in? %>
+  <% if current_usuario.admin? or current_usuario.id == @location.usuario.id %>
+    <%= link_to t(:register_new_practice), new_location_practice_path(@location), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" %>
+    <%= link_to t(:send_photo), new_location_midia_path(@location), :class => "btn btn-warning", :style => "float:right;" %>
+    <br><br>
+  <% end %>
+<% end %>
+
+<br><br><br>
+
+<ul class="nav nav-tabs flex-column flex-sm-row">
+  <li class="nav-item">
+    <%= link_to truncate(@location.name, length: 25), location_path(@location.id), :class => "nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t(:gallery) + " (#{@total_midia})", location_gallery_path(@location.id), :class => "nav-link" %>
+  </li>
+  <% if @location.practices.count > 0 %>
+    <li class="nav-item">
+      <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location, ''), :class => "nav-link" %>
+    </li>
+  <% end %>
+</ul>
+
+<br>
+
+<div class="tab-content" style="min-height: 64px;">
+  <div class="tab-pane active">
+    <div class="thumbnail">
+      <%= image_tag(@location.imagem.url(:medium)) %>
+    </div>
+    <br>
+    <div class='<%= (@location.name.length() > 100 ? 'text-box' : '') %>'><h3><%= @location.name.truncate(44) %></h3></div>
+    <%= "<strong>#{t(:country)}</strong><br>#{ISO3166::Country[@location.country]}<br>".html_safe if @location.country? %>
+    <%= "<br><strong>#{t(:farm_and_farming_system)}</strong><br>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br>".html_safe if @location.farm_and_farming_system? %>
+    <!-- <%= "<br><strong>#{t(:type)}</strong><br>#{@property_types.key(@location.property_type)}&nbsp;<br>".html_safe if @location.property_type? %> -->
+    <%= "<br><strong>#{t(:short_description)}</strong><br><div class='text-box'>#{simple_format (h @location.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @location.description? %>
+    <%= "<br><strong>#{t(:responsible_for_information)}</strong><br>#{link_to @location.usuario.name, usuario_path(@location.usuario)}&nbsp;<br>".html_safe if @location.usuario.name? %>
+
+    <% if @location.hide_my_location == false %>
+      <% if @location.latitude and @location.longitude %>
+        <br>
+        <div id="map-show"></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% if usuario_signed_in? %>
+  <% if current_usuario.admin? or current_usuario.id == @location.usuario.id %>
+    <hr>
+    <div class="form-actions">
+      <%= link_to t(:edit), edit_location_path(@location), :class => 'btn btn-success' %>
+      <%= link_to t(:destroy), location_path(@location), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t(:are_you_sure))) }, :class => 'btn btn-danger' %>
+      <%= link_to t(:send_photo), new_location_midia_path(@location), :class => "btn btn-warning" %>
+      <%= link_to t(:register_new_practice), new_location_practice_path(@location), :class => "btn btn-info" %>
+    </div>
+    <br><br>
+  <% end %>
+<% end %>
+
+<% if @location.latitude and @location.longitude %>
+  <script>
+      $(document).ready(function () {
+          var map = L.map('map-show').setView([<%= @location.latitude %>, <%= @location.longitude %>], 10);
+          var attributions = '<a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> | <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY-NC-SA</a>'
+          var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              attribution: attributions,
+              maxZoom: 18,
+          }).addTo(map);
+          var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
+              attribution: 'Mapa da Agroecologia | MapBox',
+              maxZoom: 18,
+          });
+          var baseMaps = {"OpenStreetMap": osm, "Satélite (MapBox)": mapbox};
+
+          L.control.layers(baseMaps).addTo(map);
+
+          var Icon = L.icon({
+              iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
+              shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+              iconSize: [38, 95],
+              shadowSize: [50, 64],
+              iconAnchor: [22, 94],
+              shadowAnchor: [4, 62],
+              popupAnchor: [-3, -76]
+          });
+          $(window).on("resize", function () {
+              $("#map-show").width($(window).width() - 30);
+              map.invalidateSize();
+          }).trigger("resize");
+          $(window).on("resize", function () {
+              $("#map-show").height($(window).height());
+              map.invalidateSize();
+          }).trigger("resize");
+
+          L.marker([<%= @location.latitude %>, <%= @location.longitude %>], {icon: Icon}).addTo(map);
+      });
+  </script>
+<% end %>

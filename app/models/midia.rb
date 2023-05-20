@@ -3,7 +3,7 @@
 class Midia < ApplicationRecord
   before_save :concatenate_details
 
-  belongs_to :local, required: false
+  belongs_to :location, required: false
   belongs_to :practice, required: false
 
   extend FriendlyId

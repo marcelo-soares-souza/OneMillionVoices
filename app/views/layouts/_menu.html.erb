@@ -22,7 +22,7 @@
       </li>
 
       <li class="nav-item">
-        <%= link_to(t(:locations), locais_path, :class => "nav-link") %>
+        <%= link_to(t(:locations), locations_path, :class => "nav-link") %>
       </li>
 
       <li class="nav-item">
@@ -51,7 +51,7 @@
       <% end %>
 
       <li>
-        <select id="locale" onchange="if (this.value) window.location.href='<%= request.path %>?locale=' + this.value" class="form-control">
+        <select id="locatione" onchange="if (this.value) window.location.href='<%= request.path %>?locatione=' + this.value" class="form-control">
           <option value="pt-BR">Português</option>
           <option value="es">Español</option>
           <option value="en">English</option>

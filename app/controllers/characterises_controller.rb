@@ -17,7 +17,7 @@ class CharacterisesController < ApplicationController
     begin
       @practice_id = Practice.friendly.find(params[:practice_id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to locais_path, notice: "This Practice doesn't exist."
+      redirect_to locations_path, notice: "This Practice doesn't exist."
     end
 
     @characterise = Characterise.new

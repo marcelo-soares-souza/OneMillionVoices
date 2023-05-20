@@ -26,10 +26,10 @@
 
   <div class="form-group row">
     <div class="col-sm-10">
-      <% if params[:local_id] %>
-        <%= f.hidden_field :local_id, id: "local_id", :value => Local.friendly.find(params[:local_id]).id %>
+      <% if params[:location_id] %>
+        <%= f.hidden_field :location_id, id: "location_id", :value => Location.friendly.find(params[:location_id]).id %>
       <% else %>
-        <%= f.hidden_field :local_id, id: "local_id", :value => @practice.local.id %>
+        <%= f.hidden_field :location_id, id: "location_id", :value => @practice.location.id %>
       <% end %>
     </div>
   </div>

@@ -13,8 +13,8 @@ class MidiasController < ApplicationController
   def index
     if params[:practice_id]
       @midias = Midia.where(practice_id: @practice.id).load_async
-    elsif params[:local_id]
-      @midias = Midia.where(local_id: @local.id).load_async
+    elsif params[:location_id]
+      @midias = Midia.where(location_id: @location.id).load_async
     end
   end
 
@@ -23,8 +23,8 @@ class MidiasController < ApplicationController
   def gallery
     if params[:practice_id]
       @midias = Midia.where(practice_id: @practice.id).load_async
-    elsif params[:local_id]
-      @midias = Midia.where(local_id: @local.id).load_async
+    elsif params[:location_id]
+      @midias = Midia.where(location_id: @location.id).load_async
     end
   end
 
@@ -48,18 +48,18 @@ class MidiasController < ApplicationController
 
     if params[:practice_id]
       @midia.practice_id = @practice.id
-      @midia.local_id = @practice.local.id
-    elsif params[:local_id]
-      @midia.local_id = @local.id
+      @midia.location_id = @practice.location.id
+    elsif params[:location_id]
+      @midia.location_id = @location.id
     end
 
     respond_to do |format|
       if @midia.save
         if params[:practice_id]
           format.html { redirect_to practice_gallery_path(@practice, @midia), notice: "Photo has been sent" }
-        elsif params[:local_id]
+        elsif params[:location_id]
           format.html do
-            redirect_to local_gallery_path(@local),  notice: "Photo has been sent"
+            redirect_to location_gallery_path(@location),  notice: "Photo has been sent"
           end
         end
         format.json { render :show, status: :created, location: @midia }
@@ -77,9 +77,9 @@ class MidiasController < ApplicationController
       if @midia.update(midia_params)
         if params[:practice_id]
           format.html { redirect_to practice_gallery_path(@practice, @midia), notice: "Media has been updated." }
-        elsif params[:local_id]
+        elsif params[:location_id]
           format.html do
-            redirect_to local_gallery_path(@local),  notice: "Media has been updated."
+            redirect_to location_gallery_path(@location),  notice: "Media has been updated."
           end
         end
         format.json { render :show, status: :ok, location: @midia }
@@ -98,9 +98,9 @@ class MidiasController < ApplicationController
     respond_to do |format|
       if params[:practice_id]
         format.html { redirect_to practice_path(@practice), notice: "Media has been removed." }
-      elsif params[:local_id]
+      elsif params[:location_id]
         format.html do
-          redirect_to local_gallery_path(@local), notice: "Media has been removed."
+          redirect_to location_gallery_path(@location), notice: "Media has been removed."
         end
       end
       format.json { head :no_content }
@@ -115,14 +115,14 @@ class MidiasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def midia_params
-      params.require(:midia).permit(:description, :slug, :practice_id, :local_id, :imagem, :usuario_id)
+      params.require(:midia).permit(:description, :slug, :practice_id, :location_id, :imagem, :usuario_id)
     end
 
     def load_dados
       if params[:practice_id]
         @practice = Practice.friendly.find(params[:practice_id])
-      elsif params[:local_id]
-        @local = Local.friendly.find(params[:local_id])
+      elsif params[:location_id]
+        @location = Location.friendly.find(params[:location_id])
       end
     end
 
@@ -131,8 +131,8 @@ class MidiasController < ApplicationController
         @selected_id = current_usuario.id
         if @practice
           @selected_id = @practice.usuario.id
-        elsif @local
-          @selected_id = @local.usuario.id
+        elsif @location
+          @selected_id = @location.usuario.id
         end
       end
     end
@@ -141,9 +141,9 @@ class MidiasController < ApplicationController
       @default_media_name = ""
 
       if @practice
-        @default_media_name = "Agroecological Practice in " + @practice.local.name + " "
-      elsif @local
-        @default_media_name = "Location " + @local.name + " "
+        @default_media_name = "Agroecological Practice in " + @practice.location.name + " "
+      elsif @location
+        @default_media_name = "Location " + @location.name + " "
       end
     end
 end

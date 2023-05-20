@@ -1,4 +1,4 @@
-<% title @practice.local.name %>
+<% title @practice.location.name %>
 
 <% if usuario_signed_in? %>
   <% if current_usuario.admin? or current_usuario.id == @practice.usuario.id %>
@@ -10,7 +10,7 @@
 
 <ul class="nav nav-tabs flex-column flex-sm-row">
   <li class="nav-item">
-    <%= link_to truncate(@practice.local.name, length: 25), local_path(@practice.local), title: @practice.local.name,  :class => "nav-link" %>
+    <%= link_to truncate(@practice.location.name, length: 25), location_path(@practice.location), title: @practice.location.name,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to @practice.name.truncate(25) , practice_path(@practice), :class => "nav-link active" %>
@@ -40,7 +40,7 @@
       <% if  @practice.midias and @practice.midias[0]%>
         <%= image_tag(@practice.midias[0].imagem.url(:medium)) %>
       <% else %>
-        <%= image_tag(@practice.local.imagem.url(:medium)) %>
+        <%= image_tag(@practice.location.imagem.url(:medium)) %>
       <% end %>
     </div>
 
@@ -48,13 +48,13 @@
     <div class='<%= (@practice.name.length() > 90 ? 'text-box' : '') %>'><h1><%= @practice.name %></h1></div>
     <br>
 
-    <% if ! @practice.local.description.blank? %>
+    <% if ! @practice.location.description.blank? %>
       <%= "<h4>#{t(:description)}</h4>".html_safe  %>
-      <div class="text-box"><%= @practice.local.description.truncate(510) %></div>
+      <div class="text-box"><%= @practice.location.description.truncate(510) %></div>
       <br>
     <% end %>
 
-    <%= "<h4>#{t(:location)}</h4>#{link_to @practice.local.name.truncate(40), local_path(@practice.local)}&nbsp;".html_safe if @practice.local.name? %>
+    <%= "<h4>#{t(:location)}</h4>#{link_to @practice.location.name.truncate(40), location_path(@practice.location)}&nbsp;".html_safe if @practice.location.name? %>
     <br><br>
     <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.usuario.name, usuario_path(@practice.usuario)}&nbsp;".html_safe if @practice.usuario.name? %></div>
     <% if usuario_signed_in? %>
@@ -62,7 +62,7 @@
         <hr>
         <div id="practice-footer">
           <div class="form-actions">
-            <%= link_to t(:edit), edit_local_practice_path(@practice.local, @practice.id), :class => 'btn btn-success' %>
+            <%= link_to t(:edit), edit_location_practice_path(@practice.location, @practice.id), :class => 'btn btn-success' %>
             <%= link_to t(:destroy), practice_path(@practice), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-danger' %>
           </div>
         </div>

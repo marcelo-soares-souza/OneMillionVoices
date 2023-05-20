@@ -525,3 +525,4 @@ gl:
   license: "License"
   content_license: "Content License"
   about_me: "About Me"
+  permission_denied: "Permission Denied"
