@@ -36,10 +36,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.boolean "admin", default: false
     t.string "name"
     t.string "slug"
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.bigint "imagem_file_size"
-    t.datetime "imagem_updated_at", precision: nil
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.bigint "photo_file_size"
+    t.datetime "photo_updated_at", precision: nil
     t.text "about"
     t.string "website"
     t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token", unique: true
@@ -102,10 +102,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.bigint "account_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.bigint "imagem_file_size"
-    t.datetime "imagem_updated_at", precision: nil
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.bigint "photo_file_size"
+    t.datetime "photo_updated_at", precision: nil
     t.string "property_type"
     t.boolean "hide_my_location"
     t.string "country"
@@ -119,10 +119,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.string "slug"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.bigint "imagem_file_size"
-    t.datetime "imagem_updated_at", precision: nil
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.bigint "photo_file_size"
+    t.datetime "photo_updated_at", precision: nil
     t.bigint "account_id"
     t.bigint "location_id"
     t.bigint "practice_id"

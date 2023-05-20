@@ -13,7 +13,7 @@
   <% @locations.each do |location| %>
     <% if location.latitude and location.longitude %>
       var popup = '';
-      popup += '<div class="thumbnail-mini"><%= link_to image_tag(location.imagem.url(:medium)), location_path(location) %></div><br>'
+      popup += '<div class="thumbnail-mini"><%= link_to image_tag(location.photo.url(:medium)), location_path(location) %></div><br>'
       popup += '<h4><%= "#{link_to location.name, location_path(location), target: '_blank'}".html_safe %></h4>';
       popup += '<b>';
       popup += '<div><%= link_to "See all Practices", location_practices_path(location) if ! location.practices.blank? %></div>';

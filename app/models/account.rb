@@ -32,10 +32,10 @@ class Account < ApplicationRecord
     id.to_s.last
   end
 
-  has_attached_file :imagem,
+  has_attached_file :photo,
                     styles: { original: "1440x>", medium: "360x360>", thumb: "180x180>" },
                     default_url: ->(a) { "/assets/avatar_:style_#{a.instance.default_image_number}.png" }
-  validates_attachment_content_type :imagem, content_type: %r{\Aimage/.*\z}
+  validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   protected
     def should_generate_new_friendly_id?

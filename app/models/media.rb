@@ -13,10 +13,10 @@ class Media < ApplicationRecord
   validates_length_of :description, minimum: 2
   validates_length_of :description, maximum: 256
 
-  validates :imagem, presence: true
+  validates :photo, presence: true
 
-  has_attached_file :imagem, styles: { original: "1440>", medium: "360x360>", thumb: "180x180>" }, default_url: "/assets/missing.png"
-  validates_attachment_content_type :imagem, content_type: %r{\Aimage/.*\z}
+  has_attached_file :photo, styles: { original: "1440>", medium: "360x360>", thumb: "180x180>" }, default_url: "/assets/missing.png"
+  validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   protected
     def should_generate_new_friendly_id?

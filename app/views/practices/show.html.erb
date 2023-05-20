@@ -38,9 +38,9 @@
   <div class="tab-pane active">
     <div class="thumbnail">
       <% if  @practice.medias and @practice.medias[0]%>
-        <%= image_tag(@practice.medias[0].imagem.url(:medium)) %>
+        <%= image_tag(@practice.medias[0].photo.url(:medium)) %>
       <% else %>
-        <%= image_tag(@practice.location.imagem.url(:medium)) %>
+        <%= image_tag(@practice.location.photo.url(:medium)) %>
       <% end %>
     </div>
 

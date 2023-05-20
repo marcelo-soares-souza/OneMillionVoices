@@ -26,9 +26,9 @@
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_practice_path(practice.location, practice) %>';">
         <div class="card" style="min-height: 340px;">
           <% if  practice.medias and practice.medias[0]%>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.medias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.medias[0].photo.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% else %>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.photo.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% end %>
           <div class="card-body">
             <h3 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h3>

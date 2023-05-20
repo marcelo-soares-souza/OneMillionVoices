@@ -39,6 +39,6 @@ class AccountsController < ApplicationController
     end
 
     def account_params
-      params.require(:account).permit(:id, :email, :name, :about, :website, :slug, :imagem)
+      params.require(:account).permit(:id, :email, :name, :about, :website, :slug, :photo)
     end
 end

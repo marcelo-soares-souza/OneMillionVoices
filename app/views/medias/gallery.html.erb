@@ -71,8 +71,8 @@
       <div class="row">
         <% @medias.each do |media| %>
           <div class="gallery-image">
-            <a href="<%= media.imagem.url(:original) %>>" data-toggle="lightbox" data-gallery="media-gallery" class="col-sm-4" data-max-width="900">
-              <img src="<%= media.imagem.url(:medium) %>" alt="Photo <%= media.description %>" title="Photo <%= media.description %>" class="img-fluid">
+            <a href="<%= media.photo.url(:original) %>>" data-toggle="lightbox" data-gallery="media-gallery" class="col-sm-4" data-max-width="900">
+              <img src="<%= media.photo.url(:medium) %>" alt="Photo <%= media.description %>" title="Photo <%= media.description %>" class="img-fluid">
             </a>
           </div>
           <% if account_signed_in? %>
