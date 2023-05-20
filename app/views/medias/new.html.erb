@@ -1,0 +1,37 @@
+<% if params[:practice_id] %>
+  <% title "Add Photo To #{@practice.name}" %>
+<% elsif params[:location_id] %>
+  <% title "Add Photo to #{@location.name}" %>
+<% end %>
+
+<br><br><br><br>
+
+<ul class="nav nav-tabs flex-column flex-sm-row">
+  <li class="nav-item">
+    <% if params[:practice_id] %>
+      <%= link_to t(:practices), practices_path, :class => "nav-link" %>
+    <% end %>
+  </li>
+
+  <li class="nav-item">
+    <% if params[:practice_id] %>
+      <%= link_to @practice.name.truncate(25), practice_path(@practice), :class => "nav-link" %>
+    <% elsif params[:location_id] %>
+      <%= link_to truncate(@location.name, length: 25), location_path(@location), :class => "nav-link" %>
+    <% end %>
+  </li>
+
+  <% if account_signed_in? %>
+    <li class="nav-item">
+      <% if params[:practice_id] %>
+        <%= link_to "Send Photo", new_practice_media_path, :class => "nav-link active" %>
+      <% elsif params[:location_id] %>
+        <%= link_to "Send Photo", new_location_media_path, :class => "nav-link active" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<br>
+
+<%= render 'form', media: @media %>

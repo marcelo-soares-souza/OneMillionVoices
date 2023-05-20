@@ -1,0 +1,41 @@
+<%= form_for_media params do |f| %>
+  <% if media.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(media.errors.count, "error") %> encontrado(s):</h2>
+
+      <ul>
+        <% media.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if current_account.admin? %>
+    <div class="form-group row">
+      <%= f.label t(:responsible_for_information), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.collection_select(:account_id, Account.all, :id, :name, {:selected => @selected_id }, { class: "form-control selectpicker", "data-live-search": true }) %>
+      </div>
+    </div>
+  <% end %>
+  <div class="forms">
+    <div class="form-group row">
+      <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-8">
+        <%= f.file_field :imagem, class: "form-control" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row bg-light">
+      <%= f.label t(:description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_field :description, value: @default_media_name,  class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="actions">
+    <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
+  </div>
+<% end %>
