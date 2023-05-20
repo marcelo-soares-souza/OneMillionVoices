@@ -521,7 +521,6 @@ pt-BR:
   does_not_work_at_all_in_depleted_environment: "Does not work at all in depleted environment"
   hide_my_location: "Hide My Location on Map"
   country: "Country"
-  about: "About"
   a_long_time_ago: "A long time ago"
   some_time_ago: "Some time ago"
   recently: "Recently"
@@ -531,3 +530,4 @@ pt-BR:
   farm_and_farming_system: "Farm and Farming System"
   license: "License"
   content_license: "Content License"
+  about_me: "About Me"
