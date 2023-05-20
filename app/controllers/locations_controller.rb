@@ -27,12 +27,10 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
-    @location.location_accounts.build
   end
 
   # GET /locations/1/edit
   def edit
-    @location.location_accounts.build
   end
 
   # POST /locations

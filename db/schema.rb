@@ -84,15 +84,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.index ["practice_id"], name: "index_evaluates_on_practice_id"
   end
 
-  create_table "location_accounts", force: :cascade do |t|
-    t.bigint "location_id"
-    t.bigint "account_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["account_id"], name: "index_location_accounts_on_account_id"
-    t.index ["location_id"], name: "index_location_accounts_on_location_id"
-  end
-
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -159,8 +150,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
   add_foreign_key "acknowledges", "practices"
   add_foreign_key "characterises", "practices"
   add_foreign_key "evaluates", "practices"
-  add_foreign_key "location_accounts", "accounts"
-  add_foreign_key "location_accounts", "locations"
   add_foreign_key "locations", "accounts"
   add_foreign_key "medias", "accounts"
   add_foreign_key "medias", "locations"

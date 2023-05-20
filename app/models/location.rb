@@ -2,14 +2,10 @@
 
 class Location < ApplicationRecord
   paginates_per 4
-  belongs_to :account
 
-  has_many :location_accounts, dependent: :destroy
-  has_many :accounts, through: :location_accounts
+  belongs_to :account
   has_many :medias, dependent: :destroy
   has_many :practices, dependent: :destroy
-
-  accepts_nested_attributes_for :location_accounts, allow_destroy: true
 
   extend FriendlyId
   friendly_id :name, use: :slugged
