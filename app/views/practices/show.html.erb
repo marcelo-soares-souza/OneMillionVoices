@@ -2,7 +2,7 @@
 
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @practice.account.id %>
-    <%= link_to t(:send_photo), new_practice_midia_path(@practice), :class => "btn btn-warning", :style => "float:right;" %>
+    <%= link_to t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning", :style => "float:right;" %>
   <% end %>
 <% end %>
 
@@ -28,7 +28,7 @@
     <%= link_to t(:acknowledge), practice_acknowledge_path(@practice, @practice.acknowledge), :class => "nav-link" if @practice.acknowledge %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:gallery)} (#{@practice.midias.count})", practice_gallery_path(@practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to "#{t(:gallery)} (#{@practice.medias.count})", practice_gallery_path(@practice), :class => "nav-link", :style => "color: red !important" %>
   </li>
 </ul>
 
@@ -37,8 +37,8 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <div class="thumbnail">
-      <% if  @practice.midias and @practice.midias[0]%>
-        <%= image_tag(@practice.midias[0].imagem.url(:medium)) %>
+      <% if  @practice.medias and @practice.medias[0]%>
+        <%= image_tag(@practice.medias[0].imagem.url(:medium)) %>
       <% else %>
         <%= image_tag(@practice.location.imagem.url(:medium)) %>
       <% end %>

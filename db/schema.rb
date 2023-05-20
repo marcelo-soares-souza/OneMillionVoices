@@ -114,7 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.index ["slug"], name: "index_locations_on_slug", unique: true
   end
 
-  create_table "midias", force: :cascade do |t|
+  create_table "medias", force: :cascade do |t|
     t.string "description"
     t.string "slug"
     t.datetime "created_at", precision: nil, null: false
@@ -126,10 +126,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.bigint "account_id"
     t.bigint "location_id"
     t.bigint "practice_id"
-    t.index ["account_id"], name: "index_midias_on_account_id"
-    t.index ["location_id"], name: "index_midias_on_location_id"
-    t.index ["practice_id"], name: "index_midias_on_practice_id"
-    t.index ["slug"], name: "index_midias_on_slug", unique: true
+    t.index ["account_id"], name: "index_medias_on_account_id"
+    t.index ["location_id"], name: "index_medias_on_location_id"
+    t.index ["practice_id"], name: "index_medias_on_practice_id"
+    t.index ["slug"], name: "index_medias_on_slug", unique: true
   end
 
   create_table "practices", force: :cascade do |t|
@@ -162,9 +162,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
   add_foreign_key "location_accounts", "accounts"
   add_foreign_key "location_accounts", "locations"
   add_foreign_key "locations", "accounts"
-  add_foreign_key "midias", "accounts"
-  add_foreign_key "midias", "locations"
-  add_foreign_key "midias", "practices"
+  add_foreign_key "medias", "accounts"
+  add_foreign_key "medias", "locations"
+  add_foreign_key "medias", "practices"
   add_foreign_key "practices", "accounts"
   add_foreign_key "practices", "locations"
   add_foreign_key "what_you_dos", "practices"

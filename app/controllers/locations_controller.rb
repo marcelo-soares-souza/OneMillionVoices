@@ -7,14 +7,14 @@ class LocationsController < ApplicationController
   before_action :load_property_types
   before_action :load_account
   before_action :load_colaboradores, except: %i[index show]
-  before_action :load_total_midias, only: %i[show]
+  before_action :load_total_medias, only: %i[show]
   before_action :load_options
 
   # GET /locations
   # GET /locations.json
   def index
     @locations = if params[:account_id]
-      Location.where(account_id: @account.id).includes(:midias, :practices).load_async.sort_by(&:updated_at).reverse
+      Location.where(account_id: @account.id).includes(:medias, :practices).load_async.sort_by(&:updated_at).reverse
     else
       Location.order("updated_at DESC").load_async.page(params[:page])
     end
@@ -106,8 +106,8 @@ class LocationsController < ApplicationController
       @account = Account.friendly.find(params[:account_id]) if params[:account_id]
     end
 
-    def load_total_midias
-      @total_midia = Midia.where(location_id: @location.id).count
+    def load_total_medias
+      @total_media = Media.where(location_id: @location.id).count
     end
 
     def load_options

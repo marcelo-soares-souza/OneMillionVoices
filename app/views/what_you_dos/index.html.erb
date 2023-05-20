@@ -23,8 +23,8 @@
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= practice_path(practice) %>';">
         <div class="card" style="min-height: 380px;">
           <br>
-          <% if  practice.midias and practice.midias[0]%>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
+          <% if  practice.medias and practice.medias[0]%>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.medias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% else %>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% end %>

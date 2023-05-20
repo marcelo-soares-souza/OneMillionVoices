@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def form_for_midia(condition, &block)
+  def form_for_media(condition, &block)
     if condition["practice_id"]
-      form_for [@practice, @midia], html: { multipart: true }, &block
+      form_for [@practice, @media], html: { multipart: true }, &block
     elsif condition["location_id"]
-      form_for [@location, @midia], html: { multipart: true }, &block
+      form_for [@location, @media], html: { multipart: true }, &block
     end
   end
 

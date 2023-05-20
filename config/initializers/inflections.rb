@@ -2,5 +2,5 @@
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular "local", "locais"
-  inflect.irregular "midia", "midias"
+  inflect.irregular "media", "medias"
 end

@@ -23,14 +23,14 @@ Rails.application.routes.draw do
     resources :evaluates
     resources :characterises
     resources :what_you_dos
-    resources :midias
-    get "/gallery" => "midias#gallery"
+    resources :medias
+    get "/gallery" => "medias#gallery"
   end
 
   resources :locations do
-    get "/gallery" => "midias#gallery"
+    get "/gallery" => "medias#gallery"
     resources :practices
-    resources :midias
+    resources :medias
   end
 
   devise_for :accounts, controllers: {

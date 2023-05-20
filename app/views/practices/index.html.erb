@@ -8,7 +8,7 @@
       <%= link_to @location.name.truncate(25), location_path(@location), title: @location.name, :class => "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to t(:gallery) + " (#{@location.midias.count})", location_gallery_path(@location.id), :class => "nav-link" %>
+      <%= link_to t(:gallery) + " (#{@location.medias.count})", location_gallery_path(@location.id), :class => "nav-link" %>
     </li>
   <% end %>
   <li class="nav-item">
@@ -25,8 +25,8 @@
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_practice_path(practice.location, practice) %>';">
         <div class="card" style="min-height: 340px;">
-          <% if  practice.midias and practice.midias[0]%>
-            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.midias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
+          <% if  practice.medias and practice.medias[0]%>
+            <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.medias[0].imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% else %>
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.imagem.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% end %>
