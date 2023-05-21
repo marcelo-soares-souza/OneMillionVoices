@@ -15,7 +15,7 @@
 
 <br><br><br>
 
-<ul class="nav nav-tabs flex-column flex-sm-row">
+<ul class="nav nav-tabs flex-column flex-xl-row">
   <% if params[:practice_id] %>
     <li class="nav-item">
       <%= link_to truncate(@practice.location.name, length: 25), location_path(@practice.location), title: @practice.location.name,  :class => "nav-link" %>
