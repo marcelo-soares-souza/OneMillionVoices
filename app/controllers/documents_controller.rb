@@ -129,9 +129,9 @@ class DocumentsController < ApplicationController
 
     def load_documents
       if params[:practice_id]
-        @documents = Document.where(practice_id: @practice.id).order("updated_at DESC").load_async
+        @documents = Document.where(practice_id: @practice.id).order("updated_at DESC").load_async.page(params[:page])
       elsif params[:location_id]
-        @documents = Document.where(location_id: @location.id).order("updated_at DESC").load_async
+        @documents = Document.where(location_id: @location.id).order("updated_at DESC").load_async.page(params[:page])
       end
     end
 end
