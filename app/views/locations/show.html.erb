@@ -2,9 +2,10 @@
 
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @location.account.id %>
-    <%= link_to t(:register_new_practice), new_location_practice_path(@location), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" %>
-    <%= link_to t(:send_photo), new_location_media_path(@location), :class => "btn btn-warning", :style => "float:right;" %>
-    <br><br>
+    <div class="controls">
+      <%= link_to t(:register_new_practice), new_location_practice_path(@location), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" %>
+      <%= link_to t(:send_photo), new_location_media_path(@location), :class => "btn btn-warning", :style => "float:right;" %>
+    </div>
   <% end %>
 <% end %>
 

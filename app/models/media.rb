@@ -8,6 +8,11 @@ class Media < ApplicationRecord
   belongs_to :account, required: false
 
   validates :photo, presence: true
+  validates_length_of :description, maximum: 100
+
+  before_save do
+    self.description = description.strip.titleize
+  end
 
   has_attached_file :photo, styles: { original: "1440>", medium: "360x360>", thumb: "180x180>" }, default_url: "/assets/missing.png"
   validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}

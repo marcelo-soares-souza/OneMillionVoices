@@ -16,14 +16,14 @@ class Account < ApplicationRecord
 
   validates :name, presence: true
   validates_length_of :name, minimum: 2
-  validates_length_of :name, maximum: 256
+  validates_length_of :name, maximum: 100
   validates :name, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
   validates :email, presence: true, uniqueness: true
   validates_length_of :about, maximum: 2048
   validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
 
   before_save do
-    self.name = name.titleize
+    self.name = name.strip.titleize
     self.email = email.strip.downcase
   end
 

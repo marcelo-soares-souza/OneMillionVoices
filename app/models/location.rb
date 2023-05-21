@@ -13,10 +13,11 @@ class Location < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates_length_of :name, minimum: 4
-  validates_length_of :name, maximum: 150
+  validates_length_of :name, maximum: 100
 
   before_save do
-    self.name = name.titleize
+    self.name = name.strip.titleize
+    self.description = description.strip.capitalize
   end
 
   def default_image_number

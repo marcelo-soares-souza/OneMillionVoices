@@ -2,9 +2,10 @@
 
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @practice.account.id %>
-    <%= link_to t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
-    <%= link_to t(:send_document), new_practice_document_path(@practice), :class => "btn btn-success", :style => "float:right" %>
-    <br><br>
+    <div class="controls">
+      <%= link_to t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
+      <%= link_to t(:send_document), new_practice_document_path(@practice), :class => "btn btn-secondary", :style => "float:right" %>
+    </div>
   <% end %>
 <% end %>
 

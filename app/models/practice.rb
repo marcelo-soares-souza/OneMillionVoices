@@ -16,13 +16,13 @@ class Practice < ApplicationRecord
 
   validates :name, presence: true
   validates_length_of :name, minimum: 4
-  validates_length_of :name, maximum: 256
+  validates_length_of :name, maximum: 100
 
   extend FriendlyId
   friendly_id :name, use: :slugged
 
   before_save do
-    self.name = name.titleize
+    self.name = name.strip.titleize
   end
 
   protected

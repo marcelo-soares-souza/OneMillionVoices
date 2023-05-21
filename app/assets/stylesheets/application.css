@@ -244,6 +244,10 @@ b, strong {
     #map-show {
         max-width: 100%;
     }
+
+    .controls {
+        min-height: 50px;
+    }
 }
 
 
