@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_21_130808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +65,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["practice_id"], name: "index_characterises_on_practice_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.text "description"
+    t.bigint "practice_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "file_file_name"
+    t.string "file_content_type"
+    t.bigint "file_file_size"
+    t.datetime "file_updated_at"
+    t.bigint "location_id", null: false
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_documents_on_account_id"
+    t.index ["location_id"], name: "index_documents_on_location_id"
+    t.index ["practice_id"], name: "index_documents_on_practice_id"
   end
 
   create_table "evaluates", force: :cascade do |t|
@@ -145,6 +163,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
 
   add_foreign_key "acknowledges", "practices"
   add_foreign_key "characterises", "practices"
+  add_foreign_key "documents", "accounts"
+  add_foreign_key "documents", "locations"
+  add_foreign_key "documents", "practices"
   add_foreign_key "evaluates", "practices"
   add_foreign_key "locations", "accounts"
   add_foreign_key "medias", "accounts"

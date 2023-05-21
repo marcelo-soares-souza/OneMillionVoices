@@ -2,7 +2,9 @@
 
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @what_you_do.practice.account.id %>
-    <%= link_to t(:send_photo), new_practice_media_path(@what_you_do), :class => "btn btn-warning", :style => "float:right;" %>
+    <%= link_to t(:send_photo), new_practice_media_path(@what_you_do.practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
+    <%= link_to t(:send_document), new_practice_document_path(@what_you_do.practice), :class => "btn btn-success", :style => "float:right" %>
+    <br><br>
   <% end %>
 <% end %>
 
@@ -29,6 +31,9 @@
   </li>
   <li class="nav-item">
     <%= link_to "#{t(:gallery)} (#{@what_you_do.practice.medias.count})", practice_gallery_path(@what_you_do.practice), :class => "nav-link", :style => "color: red !important" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:documents)} (#{@what_you_do.practice.documents.count})", practice_documents_path(@what_you_do.practice), :class => "nav-link", :style => "color: red !important" %>
   </li>
 </ul>
 

@@ -3,12 +3,20 @@
 <% end %>
 
 <% if account_signed_in? %>
-  <% if params[:practice_id] %>
-    <%= link_to t(:send_photo), new_practice_media_path, :class => "btn btn-warning", :style => "float:right;" if current_account.admin? or @practice.account_id == current_account.id %>
-  <% elsif params[:location_id] %>
+  <% if params[:location_id] %>
     <%= link_to t(:send_photo), new_location_media_path, :class => "btn btn-warning", :style => "float:right;" if current_account.admin? or @location.account_id == current_account.id %>
   <% end %>
 <% end %>
+
+
+<% if account_signed_in? %>
+  <% if params[:practice_id] %>
+    <%= link_to t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
+    <%= link_to t(:send_document), new_practice_document_path(@practice), :class => "btn btn-success", :style => "float:right" %>
+    <br><br>
+  <% end %>
+<% end %>
+
 
 <br><br><br>
 
@@ -46,6 +54,9 @@
     </li>
     <li class="nav-item">
       <%= link_to "#{t(:gallery)} (#{@practice.medias.count})", practice_gallery_path(@practice), :class => "nav-link active", :style => "color: red !important" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{t(:documents)} (#{@practice.documents.count})", practice_documents_path(@practice), :class => "nav-link", :style => "color: red !important" %>
     </li>
   <% end %>
   </li>

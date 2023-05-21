@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :documents
   scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
     root to: "home#index"
     get "home/index"
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
     resources :characterises
     resources :what_you_dos
     resources :medias
+    resources :documents
     get "/gallery" => "medias#gallery"
   end
 
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
     get "/gallery" => "medias#gallery"
     resources :practices
     resources :medias
+    resources :documents
   end
 
   devise_for :accounts, controllers: {

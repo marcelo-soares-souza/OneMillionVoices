@@ -5,6 +5,7 @@ class Location < ApplicationRecord
 
   belongs_to :account
   has_many :medias, dependent: :destroy
+  has_many :documents, dependent: :destroy
   has_many :practices, dependent: :destroy
 
   extend FriendlyId

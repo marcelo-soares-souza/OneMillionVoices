@@ -1,0 +1,95 @@
+<% if params[:practice_id] %>
+  <% title t(:file) + " #{@practice.name}" %>
+<% end %>
+
+<% if account_signed_in? %>
+  <% if params[:practice_id] %>
+    <%= link_to t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
+    <%= link_to t(:send_document), new_practice_document_path(@practice), :class => "btn btn-success", :style => "float:right" %>
+    <br><br>
+  <% end %>
+<% end %>
+
+<br><br><br>
+
+<ul class="nav nav-tabs flex-column flex-sm-row">
+  <% if params[:practice_id] %>
+    <li class="nav-item">
+      <%= link_to truncate(@practice.location.name, length: 25), location_path(@practice.location), title: @practice.location.name,  :class => "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to @practice.name.truncate(25) , practice_path(@practice), :class => "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:what_you_do), practice_what_you_do_path(@practice, @practice.what_you_do), :class => "nav-link" if @practice.what_you_do %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:characterise), practice_characterise_path(@practice, @practice.characterise), :class => "nav-link" if @practice.characterise %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:evaluate), practice_evaluate_path(@practice, @practice.evaluate), :class => "nav-link" if @practice.evaluate %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:acknowledge), practice_acknowledge_path(@practice, @practice.acknowledge), :class => "nav-link" if @practice.acknowledge %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{t(:gallery)} (#{@practice.medias.count})", practice_gallery_path(@practice), :class => "nav-link", :style => "color: red !important" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{t(:documents)} (#{@practice.documents.count})", practice_documents_path(@practice), :class => "nav-link active", :style => "color: red !important" %>
+    </li>
+  <% end %>
+  </li>
+</ul>
+</ul>
+
+<% if @documents.empty? %>
+  <br><br>
+
+  <h3><%= t(:no_file_submitted) %>.
+    <% if account_signed_in? %>
+      <% if params[:practice_id] %>
+        <%= link_to t(:send_document), new_practice_document_path(@practice) if current_account.admin? or @practice.account_id == current_account.id %>
+      <% end %>
+    <% end %>
+  </h3>
+
+<% else %>
+
+  <br>
+  <div>
+    <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+      <thead>
+      <tr>
+        <th><%= t(:file) %></th>
+        <th><%= t(:description) %></th>
+        <% if account_signed_in? %>
+          <th class="list-control"></th>
+        <% end %>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <% if params[:practice_id] %>
+            <td><%= link_to document.file.original_filename, document.file.url %></td>
+            <td><%= document.description %></td>
+          <% end %>
+
+          <% if account_signed_in? %>
+            <% if current_account.admin? or document.account_id == current_account.id %>
+              <% if params[:practice_id] %>
+                <td><%= link_to t(:destroy), practice_document_path(@practice, document), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-sm btn-danger' %></td>
+              <% end %>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

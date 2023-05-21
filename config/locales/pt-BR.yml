@@ -532,3 +532,6 @@ pt-BR:
   content_license: "Content License"
   about_me: "About Me"
   permission_denied: "Permission Denied"
+  document: "Document"
+  documents: "Documents"
+  send_document: "Send a Document"

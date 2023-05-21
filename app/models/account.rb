@@ -6,6 +6,8 @@ class Account < ApplicationRecord
 
   has_many :locations, dependent: :destroy
   has_many :practices, through: :location
+  has_many :documents
+  has_many :medias
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 

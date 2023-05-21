@@ -2,7 +2,9 @@
 
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @characterise.practice.account.id %>
-    <%= link_to t(:send_photo), new_practice_media_path(@characterise), :class => "btn btn-warning", :style => "float:right;" %>
+    <%= link_to t(:send_photo), new_practice_media_path(@characterise.practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
+    <%= link_to t(:send_document), new_practice_document_path(@characterise.practice), :class => "btn btn-success", :style => "float:right" %>
+    <br><br>
   <% end %>
 <% end %>
 
@@ -30,6 +32,9 @@
   <li class="nav-item">
     <%= link_to "#{t(:gallery)} (#{@characterise.practice.medias.count})", practice_gallery_path(@characterise.practice), :class => "nav-link", :style => "color: red !important" %>
   </li>
+  <li class="nav-item">
+    <%= link_to "#{t(:documents)} (#{@characterise.practice.documents.count})", practice_documents_path(@characterise.practice), :class => "nav-link", :style => "color: red !important" %>
+  </li>
 </ul>
 
 <br>
@@ -38,7 +43,7 @@
   <div class="tab-pane active">
     <br>
     <% if @characterise.agroecology_principles_addressed.blank? and
-          @characterise.food_system_components_addressed.blank? %>
+      @characterise.food_system_components_addressed.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if account_signed_in? %>
           <% if current_account.admin? or current_account.id == @characterise.practice.account.id %>

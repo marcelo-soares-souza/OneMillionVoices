@@ -9,6 +9,7 @@ class Practice < ApplicationRecord
   has_one :acknowledge, dependent: :delete
 
   has_many :medias, dependent: :delete_all
+  has_many :documents, dependent: :delete_all
 
   belongs_to :account
   belongs_to :location

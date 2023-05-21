@@ -530,3 +530,6 @@ en:
   license: "License"
   content_license: "Content License"
   permission_denied: "Permission Denied"
+  document: "Document"
+  documents: "Documents"
+  send_document: "Send a Document"
