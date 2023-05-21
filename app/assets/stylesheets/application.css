@@ -119,6 +119,7 @@ b, strong {
 }
 
 .thumbnail {
+    margin-top: 5px;
     position: relative;
     width: 200px;
     height: 200px;
