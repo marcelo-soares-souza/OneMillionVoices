@@ -6,12 +6,12 @@ class Media < ApplicationRecord
   belongs_to :location, required: false
   belongs_to :practice, required: false
 
-  extend FriendlyId
-  friendly_id :description, use: :slugged
-
-  validates :description, presence: true
-  validates_length_of :description, minimum: 2
-  validates_length_of :description, maximum: 256
+  # extend FriendlyId
+  # friendly_id :description, use: :slugged
+  #
+  # validates :description, presence: true
+  # validates_length_of :description, minimum: 2
+  # validates_length_of :description, maximum: 256
 
   validates :photo, presence: true
 

@@ -24,9 +24,9 @@
   <% if account_signed_in? %>
     <li class="nav-item">
       <% if params[:practice_id] %>
-        <%= link_to "Send Photo", new_practice_media_path, :class => "nav-link active" %>
+        <%= link_to t(:send_photo), new_practice_media_path, :class => "nav-link active" %>
       <% elsif params[:location_id] %>
-        <%= link_to "Send Photo", new_location_media_path, :class => "nav-link active" %>
+        <%= link_to t(:send_photo), new_location_media_path, :class => "nav-link active" %>
       <% end %>
     </li>
   <% end %>

@@ -39,3 +39,43 @@
     <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
   </div>
 <% end %>
+
+<% if not @medias.blank? and params["action"] == 'new'%>
+  <br><br>
+    <div class="row justify-content-left">
+      <div class="col-md-8"  style="margin-left: auto; margin-right: auto; padding-top: 16px; padding-bottom: 16px;">
+        <div class="row">
+          <% @medias.each do |media| %>
+            <div class="gallery-image">
+              <a href="<%= media.photo.url(:original) %>>" data-toggle="lightbox" data-gallery="media-gallery" class="col-sm-4" data-max-width="900">
+                <img src="<%= media.photo.url(:medium) %>" alt="Photo <%= media.description %>" title="Photo <%= media.description %>" class="img-fluid">
+              </a>
+            </div>
+            <% if account_signed_in? %>
+              <% if @location or @practice %>
+                <% if current_account.admin? or current_account.id == (@location ? @location.account.id : nil) or current_account.id == (@practice ? @practice.account.id : nil)%>
+                  <div class="media-control">
+                    <% if @location %>
+                      <%= link_to t(:destroy), location_media_path(@location, media), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you Sure?')) }, :class => 'btn btn-danger btn-sm', :style => 'font-size: 10px;' %>
+                    <% end %>
+
+                    <% if @practice %>
+                      <%= link_to t(:destroy), practice_media_path(@practice, media), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you Sure?')) }, :class => 'btn btn-danger btn-sm', :style => 'font-size: 10px;' %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <br>
+  <script>
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+          event.preventDefault();
+          $(this).ekkoLightbox();
+      });
+  </script>
+<% end %>

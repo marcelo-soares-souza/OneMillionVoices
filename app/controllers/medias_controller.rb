@@ -3,29 +3,20 @@
 class MediasController < ApplicationController
   before_action :set_media, only: %i[show edit update destroy]
   before_action :authenticate_account!, only: %i[new edit update destroy]
-  before_action -> { check_owner Media.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
+  before_action -> { check_owner Media.find(params[:id]).account_id }, only: %i[edit update destroy]
   before_action :load_dados
   before_action :selected_id
   before_action :default_media_name
+  before_action :load_medias
 
   # GET /medias
   # GET /medias.json
   def index
-    if params[:practice_id]
-      @medias = Media.where(practice_id: @practice.id).load_async
-    elsif params[:location_id]
-      @medias = Media.where(location_id: @location.id).load_async
-    end
   end
 
   # GET /gallery
   # GET /gallery.json
   def gallery
-    if params[:practice_id]
-      @medias = Media.where(practice_id: @practice.id).load_async
-    elsif params[:location_id]
-      @medias = Media.where(location_id: @location.id).load_async
-    end
   end
 
   # GET /medias/1
@@ -56,10 +47,10 @@ class MediasController < ApplicationController
     respond_to do |format|
       if @media.save
         if params[:practice_id]
-          format.html { redirect_to practice_gallery_path(@practice, @media), notice: "Photo has been sent" }
+          format.html { redirect_to new_practice_media_path(@practice), notice: "Media has been sent" }
         elsif params[:location_id]
           format.html do
-            redirect_to location_gallery_path(@location),  notice: "Photo has been sent"
+            redirect_to new_location_media_path(@location),  notice: "Media has been sent"
           end
         end
         format.json { render :show, status: :created, location: @media }
@@ -97,7 +88,7 @@ class MediasController < ApplicationController
 
     respond_to do |format|
       if params[:practice_id]
-        format.html { redirect_to practice_path(@practice), notice: "Media has been removed." }
+        format.html { redirect_to practice_gallery_path(@practice), notice: "Media has been removed." }
       elsif params[:location_id]
         format.html do
           redirect_to location_gallery_path(@location), notice: "Media has been removed."
@@ -110,7 +101,7 @@ class MediasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_media
-      @media = Media.friendly.find(params[:id])
+      @media = Media.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -141,9 +132,16 @@ class MediasController < ApplicationController
       @default_media_name = ""
 
       if @practice
-        @default_media_name = "Agroecological Practice in " + @practice.location.name + " "
+        @default_media_name = "Practice " + @practice.name + " "
       elsif @location
         @default_media_name = "Location " + @location.name + " "
+      end
+    end
+    def load_medias
+      if params[:practice_id]
+        @medias = Media.where(practice_id: @practice.id).order("updated_at DESC").load_async
+      elsif params[:location_id]
+        @medias = Media.where(location_id: @location.id).order("updated_at DESC").load_async
       end
     end
 end

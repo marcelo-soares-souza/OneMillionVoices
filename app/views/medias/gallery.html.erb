@@ -75,6 +75,7 @@
               <img src="<%= media.photo.url(:medium) %>" alt="Photo <%= media.description %>" title="Photo <%= media.description %>" class="img-fluid">
             </a>
           </div>
+
           <% if account_signed_in? %>
             <% if @location or @practice %>
               <% if current_account.admin? or current_account.id == (@location ? @location.account.id : nil) or current_account.id == (@practice ? @practice.account.id : nil)%>

@@ -6,24 +6,32 @@
   <li class="nav-item">
     <% if params[:practice_id] %>
       <%= link_to t(:practices), practices_path, :class => "nav-link" %>
+    <% elsif params[:location_id] %>
+      <%= link_to t(:locations), locations_path, :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
     <% if params[:practice_id] %>
       <%= link_to @practice.name, practice_path(@practice), :class => "nav-link" %>
+    <% elsif params[:location_id] %>
+      <%= link_to @location.name, location_path(@location), :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to "Fotos (#{@practice.medias.count})", practice_medias_path, :class => "nav-link" %>
+      <%= link_to "Gallery (#{@practice.medias.count})", practice_gallery_path(@pratice), :class => "nav-link" %>
+    <% elsif params[:location_id] %>
+      <%= link_to "Gallery (#{@location.medias.count})", location_gallery_path(@location), :class => "nav-link" %>
     <% end %>
   </li>
 
   <li class="nav-item">
     <% if params[:practice_id] %>
-      <%= link_to "#{t(:edit)} #{@media.description}", edit_practice_media_path, :class => "nav-link active" %>
+      <%= link_to "#{t(:edit)}", edit_practice_media_path, :class => "nav-link active" %>
+    <% elsif params[:location_id] %>
+      <%= link_to "#{t(:edit)}", edit_location_media_path, :class => "nav-link active" %>
     <% end %>
   </li>
 </ul>
