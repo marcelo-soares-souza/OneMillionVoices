@@ -20,7 +20,8 @@
     <% @locations.each do |location| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_url(location) %>';">
         <div class="card">
-          <div  class="card-img-top thumbnail-mini"><%= link_to image_tag(location.photo.url(:medium)), location_path(location), alt: location.name, title: location.name %></div>
+          <br>
+          <div  class="card-img-top thumbnail"><%= link_to image_tag(location.photo.url(:medium)), location_path(location), alt: location.name, title: location.name %></div>
           <div class="card-body"  style="min-height: 100px;">
             <h3 class="card-title"><%= link_to location.name.truncate(40), location_path(location) %></h3>
             <p class="card-text" style="text-align: center;"><%= link_to "See all Practices", location_practices_path(location) if !location.practices.blank? %></p>

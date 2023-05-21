@@ -6,7 +6,6 @@ class MediasController < ApplicationController
   before_action -> { check_owner Media.find(params[:id]).account_id }, only: %i[edit update destroy]
   before_action :load_dados
   before_action :selected_id
-  before_action :default_media_name
   before_action :load_medias
 
   # GET /medias
@@ -128,20 +127,11 @@ class MediasController < ApplicationController
       end
     end
 
-    def default_media_name
-      @default_media_name = ""
-
-      if @practice
-        @default_media_name = "Practice " + @practice.name + " "
-      elsif @location
-        @default_media_name = "Location " + @location.name + " "
-      end
-    end
     def load_medias
       if params[:practice_id]
-        @medias = Media.where(practice_id: @practice.id).order("updated_at DESC").load_async
+        @medias = Media.where(practice_id: @practice.id).order("updated_at DESC").load_async.page(params[:page])
       elsif params[:location_id]
-        @medias = Media.where(location_id: @location.id).order("updated_at DESC").load_async
+        @medias = Media.where(location_id: @location.id).order("updated_at DESC").load_async.page(params[:page])
       end
     end
 end
