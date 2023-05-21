@@ -19,7 +19,7 @@ class AcknowledgesController < ApplicationController
   # GET /acknowledges/new
   def new
     begin
-      @practice_id = Practice.friendly.find(params[:practice_id])
+      @practice = Practice.friendly.find(params[:practice_id])
     rescue ActiveRecord::RecordNotFound
       redirect_to locations_path, notice: "This Practice doesn't exist."
     end

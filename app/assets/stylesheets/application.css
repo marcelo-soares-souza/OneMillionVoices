@@ -607,6 +607,12 @@ a:focus, a:hover {
     color: #d97800 !important;
 }
 
+.tip_alert {
+    text-align: left;
+    font-size: 15px;
+    font-style: italic;
+    color: #ea1818 !important;
+}
 
 .tip-explanation {
     text-align: left;
