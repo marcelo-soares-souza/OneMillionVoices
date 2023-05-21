@@ -106,7 +106,7 @@ class MediasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def media_params
-      params.require(:media).permit(:description, :slug, :practice_id, :location_id, :photo, :account_id)
+      params.require(:media).permit(:description, :practice_id, :location_id, :photo, :account_id)
     end
 
     def load_dados

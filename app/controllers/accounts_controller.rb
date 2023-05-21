@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: "Usuário foi atualizado." }
+        format.html { redirect_to @account, notice: "Account has been Updated." }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: "Usuário foi removido." }
+      format.html { redirect_to accounts_url, notice: "Account has been removed." }
       format.json { head :no_content }
     end
   end

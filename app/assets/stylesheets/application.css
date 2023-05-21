@@ -600,8 +600,9 @@ a:focus, a:hover {
 }
 
 .tip {
+    margin-top: 6px;
     text-align: left;
-    font-size: 14px;
+    font-size: 15px;
     font-style: italic;
     color: #d97800 !important;
 }

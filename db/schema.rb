@@ -107,7 +107,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
 
   create_table "medias", force: :cascade do |t|
     t.string "description"
-    t.string "slug"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "photo_file_name"
@@ -120,7 +119,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_194650) do
     t.index ["account_id"], name: "index_medias_on_account_id"
     t.index ["location_id"], name: "index_medias_on_location_id"
     t.index ["practice_id"], name: "index_medias_on_practice_id"
-    t.index ["slug"], name: "index_medias_on_slug", unique: true
   end
 
   create_table "practices", force: :cascade do |t|
