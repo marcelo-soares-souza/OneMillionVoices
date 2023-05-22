@@ -13,10 +13,10 @@
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">
-    <%= link_to truncate(@characterise.practice.location.name, length: 25), location_path(@characterise.practice.location), title: @characterise.practice.location.name,  :class => "nav-link" %>
+    <%= link_to truncate(@characterise.practice.location.name, length: 12), location_path(@characterise.practice.location), title: @characterise.practice.location.name,  :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to @characterise.practice.name.truncate(25) , practice_path(@characterise.practice), :class => "nav-link" %>
+    <%= link_to @characterise.practice.name.truncate(18) , practice_path(@characterise.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to t(:what_you_do), practice_what_you_do_path(@characterise.practice, @characterise.practice.what_you_do), :class => "nav-link" %>

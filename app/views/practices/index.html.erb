@@ -20,7 +20,7 @@
   <br>
   <h2><%= t(:no_data_has_been_registered_so_far) %></h2>
 <% else %>
-  <br>
+  <br><br>
   <div class="row">
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_practice_path(practice.location, practice) %>';">
