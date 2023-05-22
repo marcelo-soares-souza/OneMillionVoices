@@ -8,6 +8,7 @@ class Media < ApplicationRecord
   belongs_to :account, required: false
 
   validates :photo, presence: true
+  validates_with AttachmentSizeValidator, attributes: :photo, less_than: 16.megabytes
   validates_length_of :description, maximum: 100
 
   before_save do

@@ -16,4 +16,5 @@ class Document < ApplicationRecord
 
   has_attached_file :file
   validates_attachment_content_type :file, content_type: ["application/pdf"]
+  validates_with AttachmentSizeValidator, attributes: :file, less_than: 16.megabytes
 end

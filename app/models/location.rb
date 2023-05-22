@@ -14,6 +14,7 @@ class Location < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates_length_of :name, minimum: 4
   validates_length_of :name, maximum: 100
+  validates_length_of :description, minimum: 8, allow_blank: true
 
   before_save do
     self.name = name.strip.titleize
@@ -30,7 +31,7 @@ class Location < ApplicationRecord
   validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   protected
-    def should_generate_new_friendly_id?
-      name_changed?
-    end
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 end

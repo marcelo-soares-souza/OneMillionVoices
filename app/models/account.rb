@@ -19,12 +19,15 @@ class Account < ApplicationRecord
   validates_length_of :name, maximum: 100
   validates :name, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
   validates :email, presence: true, uniqueness: true
+  validates_length_of :about, minimum: 4, allow_blank: true
   validates_length_of :about, maximum: 2048
   validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
 
   before_save do
     self.name = name.strip.titleize
     self.email = email.strip.downcase
+    self.about = about.strip.capitalize
+    self.website = website.strip.downcase
   end
 
   def default_image_number
@@ -38,7 +41,7 @@ class Account < ApplicationRecord
   validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   protected
-    def should_generate_new_friendly_id?
-      name_changed?
-    end
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 end
