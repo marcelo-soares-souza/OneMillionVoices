@@ -54,12 +54,12 @@ class ApplicationController < ActionController::Base
 
     def load_effective_options
       @effective_options = {
-        "5) " + t(:very_effective) => "Very effective",
-        "4) " + t(:rather_effective) => "Rather effective",
-        "3) " + t(:neither_effective_nor_uneffective) => "Neither effective nor uneffective",
-        "2) " + t(:rather_uneffective) => "Rather uneffective",
-        "1) " + t(:very_uneffective) => "Very uneffective",
-        "0) " + t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:very_effective) => "Very effective",
+        "4 - " + t(:rather_effective) => "Rather effective",
+        "3 - " + t(:neither_effective_nor_uneffective) => "Neither effective nor uneffective",
+        "2 - " + t(:rather_uneffective) => "Rather uneffective",
+        "1 - " + t(:very_uneffective) => "Very uneffective",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
     end
 

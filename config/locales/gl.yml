@@ -1,6 +1,6 @@
 # yamllint disable rule:line-length
 ---
-gl:
+en:
   site_description: "One Million Voices"
   site: "One Million Voices"
   site_name: "One Million Voices"
@@ -29,19 +29,16 @@ gl:
   agroforestry_systems: "Agroforestry Systems"
   organization: "Organization"
   organizations: "Organizations"
-  contributors: "Contributors"
+  contributors: "Accounts"
   manual: "Manual"
   register: "Register"
   password: "Password"
   agroecology_is_free_software: "Source Code"
   submit_comment: "Submit Comment"
-  location:
-    data: "Location"
-    list: "List of Locations"
-    register_new_location: "Register New Location"
+  register_new_location: "Register New Location"
   experience: "Experience"
   experiences: "Experiences"
-  type: "Type"
+  type: "Property Type"
   types: "Types"
   central_theme: "Central Theme"
   comment: "Comment"
@@ -55,7 +52,7 @@ gl:
   plants: "Plants"
   animals: "Animals"
   safs: "Agroforestry Systems"
-  photo: "Photos"
+  photo: "Photo"
   photos: "Photos"
   register_new_agroforestry: "Register Agroforestry"
   send_photo: "Send a Photo"
@@ -71,7 +68,7 @@ gl:
   no_query: "No"
   upon_consultation: "Upon Consultation"
   accept_hosting: "Accept Hosting Person/Group?"
-  select_location_type: "Select a Location Type"
+  select_location_type: "Select a Location Property Type"
   urban_agriculture: "Urban Agriculture"
   food: "Food"
   health_and_medicinal_plants: "Health and Medicinal Plants"
@@ -114,9 +111,9 @@ gl:
   start: "Start"
   end: "End"
   area: "Area"
-  send_picture: "Send Picture"
+  send_picture: "Send a Photo"
   scientific_name: "Scientific name"
-  no_photo_submitted: "No Photo Submitted"
+  no_photo_submitted: "No Photo uploaded"
   search_using_location_name: "Search using location name"
   sign_in_to_comment: "Sign-in to comment"
   friend: "Friend"
@@ -331,7 +328,7 @@ gl:
       year: Year
   helpers:
     links:
-      confirm: Você tem Certeza
+      confirm: Are you Sure?
     select:
       prompt: Please select
     submit:
@@ -423,6 +420,10 @@ gl:
   previous: "Previous"
   first: "First"
   last: "Last"
+  cookies_eu:
+    cookies_text: "Cookies help us deliver our services. By using our services, you agree to our use of cookies."
+    learn_more: "Learn more"
+    ok: "OK"
   summary_description: "Summary Description"
   one_million_voices: "One Million Voices"
   problem_it_address: "What is the problem you address"
@@ -451,15 +452,14 @@ gl:
   practice: "Practice"
   practices: "Practices"
   save: "Save"
-  type_of_agroecological_practice: "Type of agroecological practice"
   what_you_do: "What you do"
   characterise: "Characterise"
-  evaluate: "Evaluate"
-  acknowledge: "Acknowledge" 
+
+  acknowledge: "Acknowledge"
   register_new_practice: "Register a Practice"
   agroecology_principles_addressed: "Agroecology Principles addressed"
   food_system_components_addressed: "Food system components addressed"
-  general_performance_of_practice: "General Performance of Practice"
+  general_performance_of_practice: "General Performance"
   unintended_positive_side_effects_of_practice: "Unintended Positive Side Effects of Practice"
   unintended_negative_side_effect_of_practice: "Unintended negative side effect of practice"
   knowledge_and_skills_required_for_practice: "Knowledge and skills required for practice"
@@ -515,6 +515,7 @@ gl:
   does_not_work_at_all_in_depleted_environment: "Does not work at all in depleted environment"
   hide_my_location: "Hide My Location on Map"
   country: "Country"
+  about_me: "About Me"
   a_long_time_ago: "A long time ago"
   some_time_ago: "Some time ago"
   recently: "Recently"
@@ -524,7 +525,6 @@ gl:
   farm_and_farming_system: "Farm and Farming System"
   license: "License"
   content_license: "Content License"
-  about_me: "About Me"
   permission_denied: "Permission Denied"
   document: "Document"
   documents: "Documents"

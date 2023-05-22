@@ -20,10 +20,11 @@
     </div>
   <% end %>
   <div class="forms">
-    <div class="form-group row">
-      <%= f.label t(:document), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="form-group required row">
+      <%= f.label t(:document), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-8">
-        <%= f.file_field :file, class: "form-control" %>
+        <%= f.file_field :file, class: "form-control", :required => true %>
+        <div class="tip">File Format: PDF. Size Limit: 16MB.</div>
       </div>
     </div>
     <br>
