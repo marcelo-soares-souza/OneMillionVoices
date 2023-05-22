@@ -116,6 +116,8 @@ b, strong {
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     word-break: break-all;
     border-bottom: 1px solid #e0e0e0;
+    /*background-color: #d3e4ff !important;*/
+    background-color: #f7f8ff !important;
 }
 
 .thumbnail {
