@@ -38,7 +38,7 @@
           <% country = request.location.country_code ? request.location.country_code : '' if params["action"] == 'new' %>
           <%= f.country_select :country, { selected: country, :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }, required: true %>
           <br><br>
-          <div class="tip">Could you tell us what country you are from?</div>
+          <div class="tip">Could you tell us which country this place is in?</div>
         </div>
       </div>
       <br>
@@ -81,7 +81,7 @@
         <%= f.label t(:location), class: "col-sm-2 col-form-label col-form-label-lg" %>
         <div class="col-sm-10">
           <div id="map-sistema"></div>
-          <div class="tip">Please map the place where you practice agroecology</div>
+          <div class="tip">Please show us on the map where you practice agroecology</div>
         </div>
       </div>
 
