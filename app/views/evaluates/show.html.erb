@@ -61,7 +61,7 @@
       </h3>
     <% else %>
       <% if @evaluate.general_performance_of_practice and @evaluate.general_performance_of_practice .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:general_performance_of_practice)}</h4><div class='text-box'>#{simple_format (h @evaluate.general_performance_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:general_performance_of_practice)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.general_performance_of_practice)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.unintended_positive_side_effects_of_practice and @evaluate.unintended_positive_side_effects_of_practice .length() > 0%>
