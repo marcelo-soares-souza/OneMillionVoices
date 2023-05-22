@@ -31,7 +31,7 @@ class Location < ApplicationRecord
   validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   protected
-  def should_generate_new_friendly_id?
-    name_changed?
-  end
+    def should_generate_new_friendly_id?
+      name_changed?
+    end
 end
