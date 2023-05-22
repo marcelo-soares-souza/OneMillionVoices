@@ -672,3 +672,9 @@ input::file-selector-button {
 .practices-box h4 {
     text-decoration: underline #ffdfbe;
 }
+
+@media all and (max-width: 1280px) {
+    .nav-item {
+        font-size: 19px !important;
+    }
+}
