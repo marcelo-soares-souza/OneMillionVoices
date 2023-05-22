@@ -47,6 +47,16 @@
         <%= f.file_field :photo, class: "form-control" %>
       </div>
     </div>
+    <% if account_signed_in? %>
+      <% if current_account.admin? and account.id != 1 %>
+        <div class="form-group row bg-light">
+          <%= f.label t(:administrator), class: "col-sm-2 col-form-label col-form-label-lg" %>
+          <div class="col-sm-8">
+            <%= f.check_box :admin, class: "form-control" %>
+          </div>
+        </div>
+      <%end %>
+    <%end %>
   </div>
   <hr>
   <div class="actions">
