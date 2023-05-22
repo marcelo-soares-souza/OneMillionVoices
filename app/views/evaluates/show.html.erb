@@ -65,39 +65,40 @@
       <% end %>
 
       <% if @evaluate.unintended_positive_side_effects_of_practice and @evaluate.unintended_positive_side_effects_of_practice .length() > 0%>
-        <%= "<h4>#{t(:unintended_positive_side_effects_of_practice)}</h4><div class='text-box'>#{simple_format (h @evaluate.unintended_positive_side_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:unintended_positive_side_effects_of_practice)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_options.key(@evaluate.unintended_positive_side_effects_of_practice)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.unintended_negative_side_effect_of_practice and @evaluate.unintended_negative_side_effect_of_practice .length() > 0%>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:unintended_negative_side_effect_of_practice)}</h4><div class='text-box'>#{simple_format (h @evaluate.unintended_negative_side_effect_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:unintended_negative_side_effect_of_practice)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_options.key(@evaluate.unintended_negative_side_effect_of_practice)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.knowledge_and_skills_required_for_practice and @evaluate.knowledge_and_skills_required_for_practice .length() > 0%>
-        <%= "<h4>#{t(:knowledge_and_skills_required_for_practice)}</h4><div class='text-box'>#{simple_format (h @evaluate.knowledge_and_skills_required_for_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:knowledge_and_skills_required_for_practice)}</h4><div class='text-box'>#{@knowledge_and_skills_required_for_practice_options.key(@evaluate.knowledge_and_skills_required_for_practice)}</div>".html_safe %></div>
+
       <% end %>
 
       <% if @evaluate.labour_required_for_practice and @evaluate.labour_required_for_practice .length() > 0%>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:labour_required_for_practice)}</h4><div class='text-box'>#{simple_format (h @evaluate.labour_required_for_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:labour_required_for_practice)}</h4><div class='text-box'>#{@labour_required_for_practice_options.key(@evaluate.labour_required_for_practice)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.cost_associated_with_practice and @evaluate.cost_associated_with_practice .length() > 0%>
-        <%= "<h4>#{t(:cost_associated_with_practice)}</h4><div class='text-box'>#{simple_format (h @evaluate.cost_associated_with_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:cost_associated_with_practice)}</h4><div class='text-box'>#{@cost_associated_with_practice_options.key(@evaluate.cost_associated_with_practice)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.system_integrity_requirements and @evaluate.system_integrity_requirements .length() > 0%>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:system_integrity_requirements)}</h4><div class='text-box'>#{simple_format (h @evaluate.system_integrity_requirements).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:system_integrity_requirements)}</h4><div class='text-box'>#{@system_integrity_requirements_options.key(@evaluate.system_integrity_requirements)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.system_integrity_effects and @evaluate.system_integrity_effects .length() > 0%>
-        <%= "<h4>#{t(:system_integrity_effects)}</h4><div class='text-box'>#{simple_format (h @evaluate.system_integrity_effects).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:system_integrity_effects)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.system_integrity_effects)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.climate_change_vulnerability_effects and @evaluate.climate_change_vulnerability_effects .length() > 0%>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:climate_change_vulnerability_effects)}</h4><div class='text-box'>#{simple_format (h @evaluate.climate_change_vulnerability_effects).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:climate_change_vulnerability_effects)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.climate_change_vulnerability_effects)}</div>".html_safe %></div>
       <% end %>
 
       <% if @evaluate.time_requirements and @evaluate.time_requirements .length() > 0 %>
-        <%= "<h4>#{t(:time_requirements)}</h4><div class='text-box'>#{simple_format (h @evaluate.time_requirements).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:time_requirements)}</h4><div class='text-box'>#{@time_requirements_options.key(@evaluate.time_requirements)}</div>".html_safe %></div>
       <% end %>
 
       <% if account_signed_in? %>

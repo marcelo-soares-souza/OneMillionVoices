@@ -668,3 +668,7 @@ input::file-selector-button {
     padding: 18px 8px;
     margin: 8px auto 20px;
 }
+
+.practices-box h4 {
+    text-decoration: underline #ffdfbe;
+}

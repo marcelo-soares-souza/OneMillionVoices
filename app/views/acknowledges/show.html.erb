@@ -57,11 +57,11 @@
     <% else %>
 
       <% if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_source)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_source)}</h4><div class='text-box'>#{@knowledge_source_options.key(@acknowledge.knowledge_source)}</div>".html_safe %></div>
       <% end %>
 
       <% if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0 %>
-        <%= "<h4>#{t(:knowledge_timing)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:knowledge_timing)}</h4><div class='text-box'>#{@knowledge_timing_options.key(@acknowledge.knowledge_timing)}</div>".html_safe %></div>
       <% end %>
 
       <% if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0 %>

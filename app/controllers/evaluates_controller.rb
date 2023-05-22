@@ -90,48 +90,48 @@ class EvaluatesController < ApplicationController
 
     def load_options
       @knowledge_and_skills_required_for_practice_options = {
-        t(:high_specialised_knowledge_required) => "High specialised knowledge required",
-        t(:rather_high_specialised_knowledge_required) => "Rather high specialised knowledge required",
-        t(:specialised_knowledge_required_neither_high_nor_low) => "Specialised knowledge required neither high nor low",
-        t(:rather_low_specialised_knowledge_required) => "Rather low specialised knowledge required",
-        t(:no_specialised_knowledge_required) => "No specialised knowledge required",
-        t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:high_specialised_knowledge_required) => "High specialised knowledge required",
+        "4 - " + t(:rather_high_specialised_knowledge_required) => "Rather high specialised knowledge required",
+        "3 - " + t(:specialised_knowledge_required_neither_high_nor_low) => "Specialised knowledge required neither high nor low",
+        "2 - " + t(:rather_low_specialised_knowledge_required) => "Rather low specialised knowledge required",
+        "1 - " + t(:no_specialised_knowledge_required) => "No specialised knowledge required",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
 
       @cost_associated_with_practice_options = {
-        t(:high_costs) => "High costs",
-        t(:rather_high_costs) => "Rather high costs",
-        t(:neither_high_nor_low_costs) => "Rather high costs",
-        t(:rather_low_costs) => "Rather low costs",
-        t(:low_costs) => "Low costs",
-        t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:high_costs) => "High costs",
+        "4 - " + t(:rather_high_costs) => "Rather high costs",
+        "3 - " + t(:neither_high_nor_low_costs) => "Rather high costs",
+        "2 - " + t(:rather_low_costs) => "Rather low costs",
+        "1 - " + t(:low_costs) => "Low costs",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
 
       @labour_required_for_practice_options = {
-        t(:high_labour_required) => "High labour required",
-        t(:rather_high_labour_required) => "Rather high labour required",
-        t(:neither_high_nor_low_labout_required) => "Neither high nor low labout required",
-        t(:rather_low_labour_required) => "Rather low labour required",
-        t(:low_labour_required) => "Low labour required",
-        t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:high_labour_required) => "High labour required",
+        "4 - " + t(:rather_high_labour_required) => "Rather high labour required",
+        "3 - " + t(:neither_high_nor_low_labout_required) => "Neither high nor low labout required",
+        "2 - " + t(:rather_low_labour_required) => "Rather low labour required",
+        "1 - " + t(:low_labour_required) => "Low labour required",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
 
       @time_requirements_options = {
-        t(:works_instantly) => "Works instantly",
-        t(:works_rather_rapidly) => "Works rather rapidly",
-        t(:works_neither_rapidly_nor_slowly) => "Works neither rapidly nor slowly",
-        t(:takes_rather_long_to_work) => "Takes rather long to work",
-        t(:takes_very_long_to_work) => "Takes very long to work",
-        t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:works_instantly) => "Works instantly",
+        "4 - " + t(:works_rather_rapidly) => "Works rather rapidly",
+        "3 - " + t(:works_neither_rapidly_nor_slowly) => "Works neither rapidly nor slowly",
+        "2 - " + t(:takes_rather_long_to_work) => "Takes rather long to work",
+        "1 - " + t(:takes_very_long_to_work) => "Takes very long to work",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
 
       @system_integrity_requirements_options = {
-        t(:works_well_in_depleted_environment) => "Works well in depleted environment",
-        t(:works_rather_well_in_depleted_environment) => "Works rather well in depleted environment",
-        t(:neither_works_well_nor_poorly_in_depleted_environment) => "Neither works well nor poorly in depleted environment",
-        t(:does_rather_not_work_in_depleted_environment) => "Does rather not work in depleted environment",
-        t(:does_not_work_at_all_in_depleted_environment) => "Does not work at all in depleted environment",
-        t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:works_well_in_depleted_environment) => "Works well in depleted environment",
+        "4 - " + t(:works_rather_well_in_depleted_environment) => "Works rather well in depleted environment",
+        "3 - " + t(:neither_works_well_nor_poorly_in_depleted_environment) => "Neither works well nor poorly in depleted environment",
+        "2 - " + t(:does_rather_not_work_in_depleted_environment) => "Does rather not work in depleted environment",
+        "1 - " + t(:does_not_work_at_all_in_depleted_environment) => "Does not work at all in depleted environment",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
     end
 end

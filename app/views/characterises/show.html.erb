@@ -59,7 +59,7 @@
       <% end %>
 
       <% if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0 %>
-        <%= "<h4>#{t(:food_system_components_addressed)}</h4><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:food_system_components_addressed)}</h4><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
       <% end %>
 
       <% if account_signed_in? %>

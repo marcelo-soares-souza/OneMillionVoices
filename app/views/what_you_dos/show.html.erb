@@ -61,7 +61,7 @@
       <% end %>
 
       <%  if @what_you_do.type_of_agroecological_practice and @what_you_do.type_of_agroecological_practice .length() > 0 %>
-        <%= "<h4>#{t(:type_of_agroecological_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.type_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:type_of_agroecological_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.type_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
       <% if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
@@ -69,7 +69,7 @@
       <% end %>
 
       <% if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
-        <%= "<h4>#{t(:practical_implementation_of_the_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box"><%= "<h4>#{t(:practical_implementation_of_the_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
       <% if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
