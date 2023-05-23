@@ -59,6 +59,18 @@
 
       <div class="forms">
         <div class="form-group row bg-light">
+          <%= f.label t(:uptake_motivation), class: "col-sm-2 col-form-label col-form-label-lg" %>
+          <div class="col-sm-10">
+            <%= f.text_area :uptake_motivation, class: "form-control", :rows => "6" %>
+            <div class="tip">
+              What motivated you to adopt the practice?
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="forms">
+        <div class="form-group row">
           <%= f.label t(:knowledge_products), class: "col-sm-2 col-form-label col-form-label-lg" %>
           <div class="col-sm-10">
             <%= f.text_area :knowledge_products, class: "form-control", :rows => "6" %>

@@ -64,8 +64,12 @@
         <div class="practices-box"><%= "<h4>#{t(:knowledge_timing)}</h4><div class='text-box'>#{@knowledge_timing_options.key(@acknowledge.knowledge_timing)}</div>".html_safe %></div>
       <% end %>
 
+      <% if @acknowledge.uptake_motivation and @acknowledge.uptake_motivation .length() > 0 %>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:uptake_motivation)}</h4><div class='text-box'>#{simple_format (h @acknowledge.uptake_motivation).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
+
       <% if @acknowledge.knowledge_products and @acknowledge.knowledge_products .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_products)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box"><%= "<h4>#{t(:knowledge_products)}</h4><div class='text-box'>#{simple_format (h @acknowledge.knowledge_products).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
       <% if account_signed_in? %>

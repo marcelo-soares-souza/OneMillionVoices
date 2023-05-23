@@ -83,7 +83,7 @@ class AcknowledgesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def acknowledge_params
-      params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, knowledge_source: [])
+      params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :uptake_motivation, knowledge_source: [])
     end
 
     def load_options
