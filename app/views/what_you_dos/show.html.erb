@@ -57,35 +57,35 @@
         <% end %>
       </h3>
     <% else %>
-      <% if @what_you_do.where_it_is_realized and @what_you_do.where_it_is_realized.length > 0 %>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:where_it_is_realized)}</h4><div class='text-box'>#{simple_format (h @what_you_do.where_it_is_realized).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% if ! @what_you_do.where_it_is_realized.blank? %>
+        <div class="practices-box"><%= "<h4>#{t(:where_it_is_realized)}</h4><div class='text-box'>#{simple_format (h @what_you_do.where_it_is_realized).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
+      <% if ! @what_you_do.summary_description_of_agroecological_practice.blank? %>
         <div class="practices-box bg-light"><%= "<h4>#{t(:summary_description_of_agroecological_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <%  if @what_you_do.type_of_agroecological_practice and @what_you_do.type_of_agroecological_practice .length() > 0 %>
+      <%  if ! @what_you_do.type_of_agroecological_practice.blank? %>
         <div class="practices-box"><%= "<h4>#{t(:type_of_agroecological_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.type_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if @what_you_do.problem_that_practice_addresses and @what_you_do.problem_that_practice_addresses .length() > 0%>
+      <% if ! @what_you_do.problem_that_practice_addresses.blank? %>
         <div class="practices-box bg-light"><%= "<h4>#{t(:problem_that_practice_addresses)}</h4><div class='text-box'>#{simple_format (h @what_you_do.problem_that_practice_addresses).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if @what_you_do.practical_implementation_of_the_practice and @what_you_do.practical_implementation_of_the_practice .length() > 0%>
+      <% if ! @what_you_do.practical_implementation_of_the_practice.blank? %>
         <div class="practices-box"><%= "<h4>#{t(:practical_implementation_of_the_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
+      <% if ! @what_you_do.expected_function_or_effects_of_practice.blank? %>
         <div class="practices-box bg-light"><%= "<h4>#{t(:expected_function_or_effects_of_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if @what_you_do.land_size%>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:land_size)}</h4><div class='text-box'>#{simple_format (h @what_you_do.land_size).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% if ! @what_you_do.land_size.blank?%>
+        <div class="practices-box"><%= "<h4>#{t(:land_size)}</h4><div class='text-box'>#{simple_format (h @what_you_do.land_size).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if @what_you_do.substitution_of_less_ecological_alternative and @what_you_do.substitution_of_less_ecological_alternative .length() > 0%>
+      <% if ! @what_you_do.substitution_of_less_ecological_alternative.blank? %>
         <div class="practices-box bg-light"><%= "<h4>#{t(:substitution_of_less_ecological_alternative)}</h4><div class='text-box'>#{simple_format (h @what_you_do.substitution_of_less_ecological_alternative).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @what_you_do.substitution_of_less_ecological_alternative_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @what_you_do.substitution_of_less_ecological_alternative_details.blank? %>
         </div>

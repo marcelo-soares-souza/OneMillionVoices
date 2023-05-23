@@ -54,7 +54,7 @@
       </h3>
     <% else %>
 
-      <% if @characterise.agroecology_principles_addressed and @characterise.agroecology_principles_addressed .length() > 0 %>
+      <% if ! @characterise.agroecology_principles_addressed.blank? %>
         <div class="practices-box bg-light"><%= "<h4>#{t(:agroecology_principles_addressed)}</h4><div class='text-box'>#{@characterise.agroecology_principles_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
       <% end %>
 

@@ -30,12 +30,12 @@
       <br><br>
     <% end %>
 
-    <% if @account.about and @account.about .length() > 0 %>
-      <%= "<strong>#{t(:about_me)}</strong><br><div class='text-box'>#{simple_format (h @account.about).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @account.about %>
+    <% if @account.about %>
+      <%= "<strong>#{t(:about_me)}</strong><br><div class='text-box'>#{simple_format (h @account.about).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.about.blank? %>
     <% end %>
 
-    <% if @account.website and @account.website .length() > 0 %>
-      <%= "<strong>Website</strong><br><div class='text-box'>#{simple_format (h @account.website).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @account.website %>
+    <% if @account.website %>
+      <%= "<strong>Website</strong><br><div class='text-box'>#{simple_format (h @account.website).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.website.blank? %>
     <% end %>
 
     <%= "<strong>#{t(:registered_locations)}</strong><br>#{@account.locations.map { |location| link_to location.name.truncate(40), location_path(location) }.join("<br>").html_safe}&nbsp;".html_safe if @account.locations.count > 0 %>

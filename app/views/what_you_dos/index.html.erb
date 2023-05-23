@@ -29,7 +29,7 @@
             <div class="card-img-top thumbnail-mini"><%= link_to image_tag(practice.location.photo.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <% end %>
           <div class="card-body">
-            <%= "<b>Summary</b>".html_safe if practice.summary_description_of_agroecological_practice and practice.summary_description_of_agroecological_practice.length > 0 %>
+            <%= "<b>Summary</b>".html_safe unless practice.summary_description_of_agroecological_practice.blank? %>
             <p class="card-text text-box"><%= practice.summary_description_of_agroecological_practice.truncate(160) %></p>
             <b>Location</b>
             <p class="card-text text-box"><%= link_to practice.location.name.truncate(160), location_path(practice.location) %></p>
