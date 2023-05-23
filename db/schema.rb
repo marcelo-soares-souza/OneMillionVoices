@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_162729) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_165126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_162729) do
     t.text "time_requirements"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "general_performance_of_practice_details"
+    t.text "unintended_positive_side_effects_of_practice_details"
+    t.text "unintended_negative_side_effect_of_practice_details"
+    t.text "knowledge_and_skills_required_for_practice_details"
+    t.text "labour_required_for_practice_details"
+    t.text "cost_associated_with_practice_details"
+    t.text "system_integrity_requirements_details"
+    t.text "system_integrity_effects_details"
+    t.text "climate_change_vulnerability_effects_details"
+    t.text "time_requirements_details"
     t.index ["practice_id"], name: "index_evaluates_on_practice_id"
   end
 
