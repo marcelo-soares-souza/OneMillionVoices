@@ -83,24 +83,24 @@ class AcknowledgesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def acknowledge_params
-      params.require(:acknowledge).permit(:practice_id, :knowledge_source, :knowledge_timing, :knowledge_products)
+      params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, knowledge_source: [])
     end
 
     def load_options
       @knowledge_source_options = {
         t(:formal_knowledge) => "Formal knowledge",
         t(:indigenous_knowledge) => "Indigenous knowledge",
-        t(:location_knowledge) => "Location knowledge",
+        t(:local_knowledge) => "Local knowledge",
         t(:personal_experimentation) => "Personal experimentation",
         t(:other) => "Other",
         t(:i_am_not_sure) => "I am not sure"
       }
 
       @knowledge_timing_options = {
-        t(:a_long_time_ago) => "A long time ago",
-        t(:some_time_ago) => "Some time ago",
-        t(:recently) => "Recently",
-        t(:i_am_not_sure) => "I am not sure"
+        "3 - " + t(:a_long_time_ago) => "A long time ago",
+        "2 - " + t(:some_time_ago) => "Some time ago",
+        "1 - " + t(:recently) => "Recently",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
     end
 end

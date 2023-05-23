@@ -57,7 +57,7 @@
     <% else %>
 
       <% if @acknowledge.knowledge_source and @acknowledge.knowledge_source .length() > 0 %>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_source)}</h4><div class='text-box'>#{@knowledge_source_options.key(@acknowledge.knowledge_source)}</div>".html_safe %></div>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:knowledge_source)}</h4><div class='text-box'>#{@acknowledge.knowledge_source.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
       <% end %>
 
       <% if @acknowledge.knowledge_timing and @acknowledge.knowledge_timing .length() > 0 %>

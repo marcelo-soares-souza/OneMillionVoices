@@ -30,8 +30,13 @@
     <div class="form-group row bg-light">
       <%= f.label t(:knowledge_source), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:knowledge_source, @knowledge_source_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <br><br>
+        <% i = 6 %>
+        <div style="text-align: left;">
+          <% @knowledge_source_options.each do |option| %>
+            <%= check_box_tag 'acknowledge[knowledge_source][]', option[0], checked_knowledge_source(option[0]), id: 'knowledge_source' %> <%= i = i - 1%> - <%= option[0] %>
+            <br>
+          <% end %>
+        </div>
         <div class="tip">
           How did you learn about the practice?
         </div>

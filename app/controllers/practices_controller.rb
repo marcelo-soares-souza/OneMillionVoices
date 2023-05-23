@@ -128,7 +128,9 @@ class PracticesController < ApplicationController
         "Community" => "Community",
         "Value chain" => "Value chain",
         "Policy" => "Policy",
-        "Other" => "Other"
+        "Other" => "Other",
+        "Whole Food System" => "Whole Food System",
+        "I am not sure" => "I am not sure"
       }
 
       @agroecology_principles_addressed_options = {
