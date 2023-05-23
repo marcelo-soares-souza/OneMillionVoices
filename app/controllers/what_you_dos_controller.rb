@@ -89,7 +89,9 @@ class WhatYouDosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def what_you_do_params
-      params.require(:what_you_do).permit(:practice_id, :where_it_is_realized, :land_size, :substitution_of_less_ecological_alternative, :summary_description_of_agroecological_practice, :type_of_agroecological_practice, :problem_that_practice_addresses, :practical_implementation_of_the_practice, :expected_function_or_effects_of_practice)
+      params.require(:what_you_do).permit(:practice_id, :where_it_is_realized, :land_size, :substitution_of_less_ecological_alternative, :summary_description_of_agroecological_practice,
+                                          :type_of_agroecological_practice, :problem_that_practice_addresses, :practical_implementation_of_the_practice,
+                                          :expected_function_or_effects_of_practice, :substitution_of_less_ecological_alternative_details)
     end
 
     def load_options

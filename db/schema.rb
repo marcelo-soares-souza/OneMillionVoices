@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_175518) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_180142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -176,6 +176,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_175518) do
     t.string "where_it_is_realized"
     t.float "land_size"
     t.string "substitution_of_less_ecological_alternative"
+    t.text "substitution_of_less_ecological_alternative_details"
     t.index ["practice_id"], name: "index_what_you_dos_on_practice_id"
   end
 
