@@ -99,6 +99,7 @@
         <div class="practices-box">
           <%= "<h4>#{t(:cost_associated_with_practice)}</h4><div class='text-box'>#{@cost_associated_with_practice_options.key(@evaluate.cost_associated_with_practice)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.cost_associated_with_practice_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.cost_associated_with_practice_details.blank? %>
+        </div>
       <% end %>
 
       <% if ! @evaluate.system_integrity_requirements.blank? %>
