@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_172721) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_175518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -131,6 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_172721) do
     t.text "agroecology_in_practice"
     t.text "summary_observation"
     t.text "farm_and_farming_system_details"
+    t.string "farm_and_farming_system_complement"
     t.index ["account_id"], name: "index_locations_on_account_id"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
   end

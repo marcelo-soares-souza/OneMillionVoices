@@ -82,7 +82,7 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system, :agroecology_in_practice, :summary_observation,
+      params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system, :farm_and_farming_system_complement, :agroecology_in_practice, :summary_observation,
                                        :farm_and_farming_system_details, :latitude, :longitude, :account_id, :photo, :property_type, :hide_my_location, account_ids: [])
     end
 
@@ -111,11 +111,19 @@ class LocationsController < ApplicationController
 
     def load_options
       @farm_and_farming_system_options = {
-        t(:mainly_subsistence) => "Mainly subsistence",
-        t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
-        t(:mainly_commercial) => "Mainly commercial",
-        t(:other) => "Other",
-        t(:i_am_not_sure) => "I am not sure"
+        "1 - " + t(:mainly_subsistence) => "Mainly subsistence",
+        "2 - " + t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
+        "3 - " + t(:mainly_commercial) => "Mainly commercial",
+        "4 - " + t(:other) => "Other",
+        "5 - " + t(:i_am_not_sure) => "I am not sure"
+      }
+
+      @farm_and_farming_system_complement_options = {
+        "1 - " + t(:mainly_crop_farming) => "Mainly crop farming",
+        "2 - " + t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
+        "3 - " + t(:mainly_livestock_farming) => "Mainly livestock farming",
+        "4 - " + t(:other) => "Other",
+        "5 - " + t(:i_am_not_sure) => "I Am Not Sure"
       }
     end
 end

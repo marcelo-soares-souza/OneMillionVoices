@@ -540,4 +540,6 @@ es:
   substitution_of_less_ecological_alternative: "Substitution of less ecological alternative"
   land_size: "Land size"
   farm_and_farming_system_details: "Details of the Farming System"
-
+  mainly_crop_farming: "Mainly crop farming"
+  mixed_crop_livestock_farming: "Mixed crop-livestock farming"
+  mainly_livestock_farming: "Mainly livestock farming"
