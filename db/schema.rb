@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_130808) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_142547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_130808) do
     t.boolean "hide_my_location"
     t.string "country"
     t.string "farm_and_farming_system"
+    t.text "agroecology_in_practice"
+    t.text "summary_observation"
     t.index ["account_id"], name: "index_locations_on_account_id"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
   end

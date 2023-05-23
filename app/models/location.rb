@@ -12,13 +12,16 @@ class Location < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, presence: true, uniqueness: true
-  validates_length_of :name, minimum: 4
-  validates_length_of :name, maximum: 100
-  validates_length_of :description, minimum: 8, allow_blank: true
+  validates_length_of :name, minimum: 4, maximum: 100
+  validates_length_of :description, minimum: 8, maximum: 4096, allow_blank: true
+  validates_length_of :agroecology_in_practice, minimum: 8, maximum: 4096, allow_blank: true
+  validates_length_of :summary_observation, minimum: 8, maximum: 4096, allow_blank: true
 
   before_save do
     self.name = name.strip.titleize
     self.description = description.strip.capitalize
+    self.agroecology_in_practice = agroecology_in_practice.strip.capitalize
+    self.summary_observation = summary_observation.strip.capitalize
   end
 
   def default_image_number

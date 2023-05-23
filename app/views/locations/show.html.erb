@@ -36,8 +36,9 @@
     <div class='<%= (@location.name.length() > 100 ? 'text-box' : '') %>'><h3><%= @location.name.truncate(44) %></h3></div>
     <%= "<strong>#{t(:country)}</strong><br>#{ISO3166::Country[@location.country]}<br>".html_safe if @location.country? %>
     <%= "<br><strong>#{t(:farm_and_farming_system)}</strong><br>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br>".html_safe if @location.farm_and_farming_system? %>
-    <!-- <%= "<br><strong>#{t(:type)}</strong><br>#{@property_types.key(@location.property_type)}&nbsp;<br>".html_safe if @location.property_type? %> -->
     <%= "<br><strong>#{t(:short_description)}</strong><br><div class='text-box'>#{simple_format (h @location.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @location.description? %>
+    <%= "<br><strong>#{t(:agroecology_in_practice)}</strong><br><div class='text-box'>#{simple_format (h @location.agroecology_in_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @location.agroecology_in_practice? %>
+    <%= "<br><strong>#{t(:summary_observation)}</strong><br><div class='text-box'>#{simple_format (h @location.summary_observation).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe if @location.summary_observation? %>
     <%= "<br><strong>#{t(:responsible_for_information)}</strong><br>#{link_to @location.account.name, account_path(@location.account)}&nbsp;<br>".html_safe if @location.account.name? %>
 
     <% if @location.hide_my_location == false %>

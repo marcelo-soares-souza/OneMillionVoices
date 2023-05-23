@@ -14,24 +14,24 @@ class PracticesController < ApplicationController
   # GET /practices.json
   def index
     @practices = if params[:filter]
-                   if (params[:value] == "All") || (params[:value] == "Filter")
-                     Practice.order("updated_at DESC").load_async.page(params[:page])
-                   else
-                     if params[:filter] == "components"
-                       Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").page(params[:page])
-                     elsif params[:filter] == "principles"
-                       Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").page(params[:page])
-                     end
-                   end
-                 else
-                   @practices = if params[:location_id]
-                                  Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
-                                elsif params[:account_id]
-                                  Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
-                                else
-                                  Practice.order("updated_at DESC").load_async.page(params[:page])
-                                end
-                 end
+      if (params[:value] == "All") || (params[:value] == "Filter")
+        Practice.order("updated_at DESC").load_async.page(params[:page])
+      else
+        if params[:filter] == "components"
+          Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").page(params[:page])
+        elsif params[:filter] == "principles"
+          Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").page(params[:page])
+        end
+      end
+    else
+      @practices = if params[:location_id]
+        Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
+      elsif params[:account_id]
+        Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
+      else
+        Practice.order("updated_at DESC").load_async.page(params[:page])
+      end
+    end
   end
 
   # GET /practices/1
@@ -94,59 +94,59 @@ class PracticesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_practice
-    @practice = Practice.friendly.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_practice
+      @practice = Practice.friendly.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def practice_params
-    params.require(:practice).permit(:name, :slug, :location_id, :account_id)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def practice_params
+      params.require(:practice).permit(:name, :slug, :location_id, :account_id)
+    end
 
-  def load_location
-    @location = Location.friendly.find(params[:location_id]) if params[:location_id]
-  end
+    def load_location
+      @location = Location.friendly.find(params[:location_id]) if params[:location_id]
+    end
 
-  def load_account
-    @account = Account.friendly.find(params[:account_id]) if params[:account_id]
-  end
+    def load_account
+      @account = Account.friendly.find(params[:account_id]) if params[:account_id]
+    end
 
-  def load_options
-    @food_system_components_addressed_options = {
-      "Filter by Components" => "Filter",
-      "All" => "All",
-      "Soil" => "Soil",
-      "Water" => "Water",
-      "Crops" => "Crops",
-      "Livestock" => "Livestock",
-      "Trees" => "Trees",
-      "Pests" => "Pests",
-      "Energy" => "Energy",
-      "Household" => "Household",
-      "Workers" => "Workers",
-      "Community" => "Community",
-      "Value chain" => "Value chain",
-      "Policy" => "Policy",
-      "Other" => "Other"
-    }
+    def load_options
+      @food_system_components_addressed_options = {
+        "Filter by Components" => "Filter",
+        "All" => "All",
+        "Soil" => "Soil",
+        "Water" => "Water",
+        "Crops" => "Crops",
+        "Livestock" => "Livestock",
+        "Trees" => "Trees",
+        "Pests" => "Pests",
+        "Energy" => "Energy",
+        "Household" => "Household",
+        "Workers" => "Workers",
+        "Community" => "Community",
+        "Value chain" => "Value chain",
+        "Policy" => "Policy",
+        "Other" => "Other"
+      }
 
-    @agroecology_principles_addressed_options = {
-      "Filter by Principles" => "Filter",
-      "All" => "All",
-      "Recycling" => "Recycling",
-      "Input reduction" => "Input reduction",
-      "Soil heath" => "Soil heath",
-      "Animal health" => "Animal health",
-      "Biodiversity" => "Biodiversity",
-      "Synergy" => "Synergy",
-      "Economic diversification" => "Economic diversification",
-      "Co-creation of knowledge" => "Co-creation of knowledge",
-      "Social values and diets" => "Social values and diets",
-      "Fairness" => "Fairness",
-      "Connectivity" => "Connectivity",
-      "Land and natural resource governance" => "Land and natural resource governance",
-      "Participation" => "Participation"
-    }
-  end
+      @agroecology_principles_addressed_options = {
+        "Filter by Principles" => "Filter",
+        "All" => "All",
+        "Recycling" => "Recycling",
+        "Input reduction" => "Input reduction",
+        "Soil heath" => "Soil heath",
+        "Animal health" => "Animal health",
+        "Biodiversity" => "Biodiversity",
+        "Synergy" => "Synergy",
+        "Economic diversification" => "Economic diversification",
+        "Co-creation of knowledge" => "Co-creation of knowledge",
+        "Social values and diets" => "Social values and diets",
+        "Fairness" => "Fairness",
+        "Connectivity" => "Connectivity",
+        "Land and natural resource governance" => "Land and natural resource governance",
+        "Participation" => "Participation"
+      }
+    end
 end
