@@ -9,7 +9,7 @@ end
 
 gem "rails", "~> 7.0.4.3"
 
-gem "nokogiri", ">= 1.13.9"
+gem "nokogiri", ">= 1.15.1"
 gem "pg", ">= 1.5.3"
 gem "puma", ">= 6.2.2"
 gem "uglifier", ">= 4.2.0"
@@ -39,7 +39,3 @@ gem "cookies_eu", ">= 1.7.8"
 gem "geocoder"
 gem "kaminari"
 gem "country_select"
-
-# gem "sprockets", ">= 4.1.1"
-# gem "sprockets-rails", ">= 3.4.2"
-# gem "babel-transpiler"

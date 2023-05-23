@@ -277,7 +277,7 @@ DEPENDENCIES
   kaminari
   kt-paperclip (>= 7.1.1)
   listen (>= 3.0.5, < 3.2)
-  nokogiri (>= 1.13.9)
+  nokogiri (>= 1.15.1)
   pg (>= 1.5.3)
   puma (>= 6.2.2)
   rails (~> 7.0.4.3)
