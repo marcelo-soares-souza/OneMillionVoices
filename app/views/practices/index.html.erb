@@ -16,8 +16,9 @@
   </li>
 </ul>
 
-<div style="float: left">
-  <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:value]), :include_blank => "Filter by Components", class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/practices/?filter=components&value=" + $("#components :selected").text();'  %>
+<div style="float: left; margin-top: 8px; margin-bottom: 8px;">
+  <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/practices/?filter=components&value=" + $("#components :selected").val();'  %>
+  <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:filter] == 'principles' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/practices/?filter=principles&value=" + $("#principles :selected").val();'  %>
 </div>
 <br><br>
 
