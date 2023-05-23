@@ -22,189 +22,189 @@
 
     <div class="form-group row required bg-light">
       <%= f.label t(:name), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
+
       <div class="col-sm-10">
         <%= f.text_field :name, class: "form-control", :required => true %>
         <div class="tip">
           How would you like to name the place where you practice agroecology?
+          <span class="tip_alert" style="float: right;">*This field is required.</span>
         </div>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="form-group row">
+      <%= f.label t(:country), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <% country = @location.country ? @location.country : '' if params["action"] == 'edit' %>
+        <% country = request.location.country_code ? request.location.country_code : '' if params["action"] == 'new' %>
+        <%= f.country_select :country, { selected: country, :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }, required: true %>
+        <br><br>
+        <div class="tip">Could you tell us which country this place is in?</div>
       </div>
     </div>
     <br>
-    <div class="forms">
-
-      <div class="form-group row">
-        <%= f.label t(:country), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <% country = @location.country ? @location.country : '' if params["action"] == 'edit' %>
-          <% country = request.location.country_code ? request.location.country_code : '' if params["action"] == 'new' %>
-          <%= f.country_select :country, { selected: country, :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }, required: true %>
-          <br><br>
-          <div class="tip">Could you tell us which country this place is in?</div>
-        </div>
+    <div class="form-group required bg-light row">
+      <%= f.label t(:farm_and_farming_system), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
+        <%= f.collection_select(:farm_and_farming_system_complement, @farm_and_farming_system_complement_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
+        <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please, provide additional details..." %>
+        <div class="tip">How would you describe what you do in your farm?</div>
       </div>
-      <br>
-      <div class="form-group required bg-light row">
-        <%= f.label t(:farm_and_farming_system), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-          <br><br>
-          <%= f.collection_select(:farm_and_farming_system_complement, @farm_and_farming_system_complement_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-          <br><br>
-          <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please, provide additional details..." %>
-          <div class="tip">How would you describe what you do in your farm?</div>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-8">
-          <%= f.file_field :photo, class: "form-control" %>
-          <div class="tip">Could you send us a photo that represents the Location</div>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row bg-light">
-        <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <%= f.text_area :description, class: "form-control", :rows => "5" %>
-          <div class="tip">Tell us a little about this place</div>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <%= f.label t(:agroecology_in_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <%= f.text_area :agroecology_in_practice, class: "form-control", :rows => "5" %>
-          <div class="tip">Which (different) agroecological practices you pursue?</div>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row bg-light">
-        <%= f.label t(:summary_observation), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <%= f.text_area :summary_observation, class: "form-control", :rows => "5" %>
-          <div class="tip">How would you describe and evaluate the experience you made with agroecology in your farm?</div>
-        </div>
-      </div>
-      <br>
-      <div class="form-group row">
-        <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
-          <br><br>
-          <div class="tip">If you want to share your practices but don't want to be seen on the Map. You will be listed on the Platform, but your location will be hidden</div>
-        </div>
-      </div>
-      <br>
-
-      <div class="form-group row bg-light" id="location">
-        <%= f.label t(:location), class: "col-sm-2 col-form-label col-form-label-lg" %>
-        <div class="col-sm-10">
-          <div id="map-sistema"></div>
-          <div class="tip">Please show us on the map where you practice agroecology</div>
-        </div>
-      </div>
-
-      <%= f.hidden_field :latitude, id: "latitude" %>
-      <%= f.hidden_field :longitude, id: "longitude" %>
-
-      <hr>
-      <div class="actions">
-        <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
-      </div>
-
-      <script>
-          $(document).ready(function () {
-              if ($("#hide_my_location_on_map option:selected").val() == 'true') {
-                  $("#location").hide();
-              } else {
-                  $("#location").show();
-              }
-
-              $("#hide_my_location_on_map").change(function () {
-                  hide_my_location_on_map = $("#hide_my_location_on_map option:selected").val();
-
-                  if (hide_my_location_on_map == 'true') {
-                      $("#location").hide();
-                  } else {
-                      $("#location").show();
-                  }
-              });
-
-              <% if params[:action] == 'new' %>
-              lat = -15.77835833463309;
-              lon = -47.88219451904297;
-
-              <% if request.location %>
-              lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
-                lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
-                  <% end %>
-
-                  <% elsif params[:action] != 'new' %>
-                  <% if f.object.latitude? %>
-                  lat = <%= f.object.latitude %>;
-              <% else %>
-              lat = -15.77835833463309;
-              <% end %>
-              <% if f.object.longitude? %>
-              lon = <%= f.object.longitude %>;
-              <% else %>
-              lon = -47.88219451904297;
-              <% end %>
-              <% end %>
-
-              var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);
-
-              $(window).on("resize", function () {
-                  $("#map-sistema").width($(window).width());
-                  map.invalidateSize();
-              }).trigger("resize");
-              $(window).on("resize", function () {
-                  $("#map-sistema").height($(window).height());
-                  map.invalidateSize();
-              }).trigger("resize");
-
-              var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                  attribution: '<a href="https://agroecologymap.org/" target="_blank">Agroecology Map</a> | OpenStreetMap',
-                  maxZoom: 18,
-              }).addTo(map);
-              var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
-                  attribution: 'Agroecology Map | MapBox',
-                  maxZoom: 18,
-              });
-              var baseMaps = {"OpenStreetMap": osm, "Satélite (MapBox)": mapbox};
-
-              L.control.layers(baseMaps).addTo(map);
-
-              map.addControl(new L.control.zoom({position: 'topright'}));
-
-              var Icon = L.icon({
-                  iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
-                  shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
-                  iconSize: [38, 95],
-                  shadowSize: [50, 64],
-                  iconAnchor: [22, 94],
-                  shadowAnchor: [4, 62],
-                  popupAnchor: [-3, -76]
-              });
-
-              var marker = L.marker(new L.LatLng(lat, lon), {draggable: true, icon: Icon}).addTo(map);
-
-              $('#latitude').val(lat);
-              $('#longitude').val(lon);
-
-              map.on('click', function (e) {
-                  marker.setLatLng(e.latlng);
-                  $('#latitude').val(marker.getLatLng().lat);
-                  $('#longitude').val(marker.getLatLng().lng);
-              });
-
-              marker.on('dragend', function (e) {
-                  $('#latitude').val(marker.getLatLng().lat);
-                  $('#longitude').val(marker.getLatLng().lng);
-              });
-          });
-      </script>
     </div>
+    <br>
+    <div class="form-group row">
+      <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-8">
+        <%= f.file_field :photo, class: "form-control" %>
+        <div class="tip">Could you send us a photo that represents the Location</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row bg-light">
+      <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :description, class: "form-control", :rows => "5" %>
+        <div class="tip">Tell us a little about this place</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <%= f.label t(:agroecology_in_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :agroecology_in_practice, class: "form-control", :rows => "5" %>
+        <div class="tip">Which (different) agroecological practices you pursue?</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row bg-light">
+      <%= f.label t(:summary_observation), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :summary_observation, class: "form-control", :rows => "5" %>
+        <div class="tip">How would you describe and evaluate the experience you made with agroecology in your farm?</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
+        <br><br>
+        <div class="tip">If you want to share your practices but don't want to be seen on the Map. You will be listed on the Platform, but your location will be hidden</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row bg-light" id="location">
+      <%= f.label t(:location), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <div id="map-sistema"></div>
+        <div class="tip">Please show us on the map where you practice agroecology</div>
+      </div>
+    </div>
+
+    <%= f.hidden_field :latitude, id: "latitude" %>
+    <%= f.hidden_field :longitude, id: "longitude" %>
+
+    <hr>
+    <div class="actions">
+      <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            if ($("#hide_my_location_on_map option:selected").val() == 'true') {
+                $("#location").hide();
+            } else {
+                $("#location").show();
+            }
+
+            $("#hide_my_location_on_map").change(function () {
+                hide_my_location_on_map = $("#hide_my_location_on_map option:selected").val();
+
+                if (hide_my_location_on_map == 'true') {
+                    $("#location").hide();
+                } else {
+                    $("#location").show();
+                }
+            });
+
+            <% if params[:action] == 'new' %>
+            lat = -15.77835833463309;
+            lon = -47.88219451904297;
+
+            <% if request.location %>
+            lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
+              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
+                <% end %>
+
+                <% elsif params[:action] != 'new' %>
+                <% if f.object.latitude? %>
+                lat = <%= f.object.latitude %>;
+            <% else %>
+            lat = -15.77835833463309;
+            <% end %>
+            <% if f.object.longitude? %>
+            lon = <%= f.object.longitude %>;
+            <% else %>
+            lon = -47.88219451904297;
+            <% end %>
+            <% end %>
+
+            var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);
+
+            $(window).on("resize", function () {
+                $("#map-sistema").width($(window).width());
+                map.invalidateSize();
+            }).trigger("resize");
+            $(window).on("resize", function () {
+                $("#map-sistema").height($(window).height());
+                map.invalidateSize();
+            }).trigger("resize");
+
+            var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '<a href="https://agroecologymap.org/" target="_blank">Agroecology Map</a> | OpenStreetMap',
+                maxZoom: 18,
+            }).addTo(map);
+            var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
+                attribution: 'Agroecology Map | MapBox',
+                maxZoom: 18,
+            });
+            var baseMaps = {"OpenStreetMap": osm, "Satélite (MapBox)": mapbox};
+
+            L.control.layers(baseMaps).addTo(map);
+
+            map.addControl(new L.control.zoom({position: 'topright'}));
+
+            var Icon = L.icon({
+                iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
+                shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+                iconSize: [38, 95],
+                shadowSize: [50, 64],
+                iconAnchor: [22, 94],
+                shadowAnchor: [4, 62],
+                popupAnchor: [-3, -76]
+            });
+
+            var marker = L.marker(new L.LatLng(lat, lon), {draggable: true, icon: Icon}).addTo(map);
+
+            $('#latitude').val(lat);
+            $('#longitude').val(lon);
+
+            map.on('click', function (e) {
+                marker.setLatLng(e.latlng);
+                $('#latitude').val(marker.getLatLng().lat);
+                $('#longitude').val(marker.getLatLng().lng);
+            });
+
+            marker.on('dragend', function (e) {
+                $('#latitude').val(marker.getLatLng().lat);
+                $('#longitude').val(marker.getLatLng().lng);
+            });
+        });
+    </script>
+  </div>
 <% end %>
-</div>

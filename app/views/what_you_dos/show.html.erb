@@ -43,11 +43,13 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <br>
-    <% if @what_you_do.summary_description_of_agroecological_practice.blank? and
+    <% if @what_you_do.where_it_is_realized.blank? and
+      @what_you_do.summary_description_of_agroecological_practice.blank? and
       @what_you_do.type_of_agroecological_practice.blank? and
       @what_you_do.problem_that_practice_addresses.blank? and
       @what_you_do.practical_implementation_of_the_practice.blank? and
       @what_you_do.expected_function_or_effects_of_practice.blank? and
+      @what_you_do.land_size.blank? and
       @what_you_do.substitution_of_less_ecological_alternative.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if account_signed_in? %>
@@ -81,7 +83,7 @@
         <div class="practices-box bg-light"><%= "<h4>#{t(:expected_function_or_effects_of_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if ! @what_you_do.land_size.blank?%>
+      <% if ! @what_you_do.land_size.blank? %>
         <div class="practices-box"><%= "<h4>#{t(:land_size)}</h4><div class='text-box'>#{simple_format (h @what_you_do.land_size).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 

@@ -642,6 +642,9 @@ input::file-selector-button {
     font-size: 18px;
 }
 
+.forms {
+    padding-bottom: 32px;
+}
 .forms .form-group{
     border-radius: 1px;
     box-shadow: 0 0 0 1px rgba(0,0,0,0.2);

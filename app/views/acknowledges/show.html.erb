@@ -45,7 +45,8 @@
     <br>
     <% if @acknowledge.knowledge_source.blank? and
       @acknowledge.knowledge_timing.blank? and
-      @acknowledge.knowledge_products.blank?
+      @acknowledge.knowledge_products.blank? and
+      @acknowledge.uptake_motivation.blank?
     %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
         <% if account_signed_in? %>
