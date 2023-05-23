@@ -46,9 +46,9 @@ class ApplicationController < ActionController::Base
 
     def load_yes_no_i_am_not_sure_options
       @yes_no_i_am_not_sure_options = {
-        t(:yes_query) => "Yes",
-        t(:no_query) => "No",
-        t(:i_am_not_sure) => "I am not sure"
+        "2 - " + t(:yes_query) => "Yes",
+        "1 - " + t(:no_query) => "No",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
     end
 

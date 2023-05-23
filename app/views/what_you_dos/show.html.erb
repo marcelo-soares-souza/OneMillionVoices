@@ -56,6 +56,10 @@
         <% end %>
       </h3>
     <% else %>
+      <% if @what_you_do.where_it_is_realized and @what_you_do.where_it_is_realized.length > 0 %>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:where_it_is_realized)}</h4><div class='text-box'>#{simple_format (h @what_you_do.where_it_is_realized).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
+
       <% if @what_you_do.summary_description_of_agroecological_practice and @what_you_do.summary_description_of_agroecological_practice.length > 0 %>
         <div class="practices-box bg-light"><%= "<h4>#{t(:summary_description_of_agroecological_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.summary_description_of_agroecological_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
@@ -75,6 +79,15 @@
       <% if @what_you_do.expected_function_or_effects_of_practice and @what_you_do.expected_function_or_effects_of_practice .length() > 0%>
         <div class="practices-box bg-light"><%= "<h4>#{t(:expected_function_or_effects_of_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
+
+      <% if @what_you_do.land_size%>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:land_size)}</h4><div class='text-box'>#{simple_format (h @what_you_do.land_size).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
+
+      <% if @what_you_do.substitution_of_less_ecological_alternative and @what_you_do.substitution_of_less_ecological_alternative .length() > 0%>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:substitution_of_less_ecological_alternative)}</h4><div class='text-box'>#{simple_format (h @what_you_do.substitution_of_less_ecological_alternative).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% end %>
+
       <% if account_signed_in? %>
         <% if current_account.admin? or current_account.id == @what_you_do.practice.account.id %>
           <hr>
