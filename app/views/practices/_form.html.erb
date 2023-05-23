@@ -45,5 +45,13 @@
         </div>
       </div>
     </div>
+
+    <div class="form-group row">
+      <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-8">
+        <%= f.file_field :photo, class: "form-control" %>
+        <div class="tip">Could you send us a photo that represents this Practice. Later you can send more photos (Gallery).</div>
+      </div>
+    </div>
   </div>
 <% end %>

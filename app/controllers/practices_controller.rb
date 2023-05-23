@@ -101,7 +101,7 @@ class PracticesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def practice_params
-      params.require(:practice).permit(:name, :slug, :location_id, :account_id)
+      params.require(:practice).permit(:name, :photo, :slug, :location_id, :account_id)
     end
 
     def load_location

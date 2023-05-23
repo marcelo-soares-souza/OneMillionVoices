@@ -1,39 +1,59 @@
-<% title "Editing #{@media.description}" %>
+<% if params[:practice_id] %>
+  <% title "Edit" %>
+<% elsif params[:location_id] %>
+  <% title "Edit" %>
+<% end %>
+
+<% if account_signed_in? %>
+  <% if params[:practice_id] %>
+    <div class="controls">
+      <%= link_to t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
+      <%= link_to t(:send_document), new_practice_document_path(@practice), :class => "btn btn-secondary", :style => "float:right" %>
+    </div>
+  <% end %>
+<% end %>
 
 <br><br><br>
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
-  <li class="nav-item">
-    <% if params[:practice_id] %>
-      <%= link_to t(:practices), practices_path, :class => "nav-link" %>
-    <% elsif params[:location_id] %>
-      <%= link_to t(:locations), locations_path, :class => "nav-link" %>
-    <% end %>
-  </li>
+  <% if params[:location_id] %>
+    <li class="nav-item">
+      <%= link_to truncate(@location.name, length: 25), location_path(@location), :class => "nav-link" %>
+    </li>
 
-  <li class="nav-item">
-    <% if params[:practice_id] %>
-      <%= link_to @practice.name, practice_path(@practice), :class => "nav-link" %>
-    <% elsif params[:location_id] %>
-      <%= link_to @location.name, location_path(@location), :class => "nav-link" %>
+    <% if account_signed_in? %>
+      <li class="nav-item">
+        <%= link_to t(:send_photo), new_location_media_path, :class => "nav-link active" %>
+      </li>
     <% end %>
-  </li>
+  <% end %>
 
-  <li class="nav-item">
-    <% if params[:practice_id] %>
-      <%= link_to "Gallery (#{@practice.medias.count})", practice_gallery_path(@pratice), :class => "nav-link" %>
-    <% elsif params[:location_id] %>
-      <%= link_to "Gallery (#{@location.medias.count})", location_gallery_path(@location), :class => "nav-link" %>
-    <% end %>
-  </li>
-
-  <li class="nav-item">
-    <% if params[:practice_id] %>
-      <%= link_to "#{t(:edit)}", edit_practice_media_path, :class => "nav-link active" %>
-    <% elsif params[:location_id] %>
-      <%= link_to "#{t(:edit)}", edit_location_media_path, :class => "nav-link active" %>
-    <% end %>
-  </li>
+  <% if params[:practice_id] %>
+    <li class="nav-item">
+      <%= link_to truncate(@practice.location.name, length: 12), location_path(@practice.location), title: @practice.location.name,  :class => "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to @practice.name.truncate(18) , practice_path(@practice), :class => "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:what_you_do), practice_what_you_do_path(@practice, @practice.what_you_do), :class => "nav-link" if @practice.what_you_do %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:characterise), practice_characterise_path(@practice, @practice.characterise), :class => "nav-link" if @practice.characterise %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:evaluate), practice_evaluate_path(@practice, @practice.evaluate), :class => "nav-link" if @practice.evaluate %>
+    </li>
+    <li class="nav-item">
+      <%= link_to t(:acknowledge), practice_acknowledge_path(@practice, @practice.acknowledge), :class => "nav-link" if @practice.acknowledge %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{t(:gallery)} (#{@practice.medias.count})", practice_gallery_path(@practice), :class => "nav-link active", :style => "color: red !important" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "#{t(:documents)} (#{@practice.documents.count})", practice_documents_path(@practice), :class => "nav-link", :style => "color: red !important" %>
+    </li>
+  <% end %>
 </ul>
 
 <br>

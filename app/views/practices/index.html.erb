@@ -32,11 +32,7 @@
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_practice_path(practice.location, practice) %>';">
         <div class="card" style="min-height: 340px;">
           <br>
-          <% if  practice.medias and practice.medias[0]%>
-            <div class="card-img-top thumbnail"><%= link_to image_tag(practice.medias[0].photo.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
-          <% else %>
-            <div class="card-img-top thumbnail"><%= link_to image_tag(practice.location.photo.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
-          <% end %>
+          <div class="card-img-top thumbnail"><%= link_to image_tag(practice.photo.url(:medium)), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <div class="card-body">
             <h3 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h3>
             <!-- <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(75) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p> -->

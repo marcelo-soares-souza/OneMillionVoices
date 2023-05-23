@@ -23,7 +23,7 @@
     <div class="form-group required row">
       <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-8">
-        <%= f.file_field :photo, class: "form-control", :required => true %>
+        <%= f.file_field :photo, class: "form-control", :required => params["action"] == 'edit' ? false : true %>
         <div class="tip">
           File Format: PNG, JPG or GIF. Size Limit: 16MB.
           <span class="tip_alert" style="float: right;">*This field is required.</span>
