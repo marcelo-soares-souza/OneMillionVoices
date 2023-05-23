@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_180142) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_180907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_180142) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "uptake_motivation"
+    t.text "knowledge_source_details"
+    t.text "knowledge_timing_details"
     t.index ["practice_id"], name: "index_acknowledges_on_practice_id"
   end
 

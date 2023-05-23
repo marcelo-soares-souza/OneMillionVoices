@@ -5,6 +5,7 @@ class AcknowledgesController < ApplicationController
   before_action -> { check_owner Acknowledge.find(params[:id]).practice.account_id }, only: %i[edit update destroy]
 
   before_action :set_acknowledge, only: %i[ show edit update destroy ]
+  before_action :load_practice, only: %i[ edit ]
   before_action :load_options
 
   # GET /acknowledges or /acknowledges.json
@@ -83,7 +84,7 @@ class AcknowledgesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def acknowledge_params
-      params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :uptake_motivation, knowledge_source: [])
+      params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, knowledge_source: [])
     end
 
     def load_options
@@ -102,5 +103,9 @@ class AcknowledgesController < ApplicationController
         "1 - " + t(:recently) => "Recently",
         "0 - " + t(:i_am_not_sure) => "I am not sure"
       }
+    end
+
+    def load_practice
+      @practice = Practice.friendly.find(params[:practice_id])
     end
 end
