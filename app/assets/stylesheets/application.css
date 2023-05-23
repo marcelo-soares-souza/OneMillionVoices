@@ -678,3 +678,7 @@ input::file-selector-button {
         font-size: 19px !important;
     }
 }
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 310px;
+}
