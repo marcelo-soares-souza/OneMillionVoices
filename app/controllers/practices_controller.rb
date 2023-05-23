@@ -8,16 +8,25 @@ class PracticesController < ApplicationController
   before_action :load_locations, except: %i[index show]
   before_action :load_location
   before_action :load_account
+  before_action :load_options
 
   # GET /practices
   # GET /practices.json
   def index
-    @practices = if params[:location_id]
-      Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
-    elsif params[:account_id]
-      Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
+    @practices = if params[:filter] == "components"
+      if (params[:value] == "All") || (params[:value] == "Filter by Components")
+        Practice.order("updated_at DESC").load_async.page(params[:page])
+      else
+        Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").page(params[:page])
+      end
     else
-      Practice.order("updated_at DESC").load_async.page(params[:page])
+      @practices = if params[:location_id]
+        Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
+      elsif params[:account_id]
+        Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
+      else
+        Practice.order("updated_at DESC").load_async.page(params[:page])
+      end
     end
   end
 
@@ -97,5 +106,24 @@ class PracticesController < ApplicationController
 
     def load_account
       @account = Account.friendly.find(params[:account_id]) if params[:account_id]
+    end
+
+    def load_options
+      @food_system_components_addressed_options = {
+        "All" => "All",
+        "Soil" => "Soil",
+        "Water" => "Water",
+        "Crops" => "Crops",
+        "Livestock" => "Livestock",
+        "Trees" => "Trees",
+        "Pests" => "Pests",
+        "Energy" => "Energy",
+        "Household" => "Household",
+        "Workers" => "Workers",
+        "Community" => "Community",
+        "Value chain" => "Value chain",
+        "Policy" => "Policy",
+        "Other" => "Other"
+      }
     end
 end
