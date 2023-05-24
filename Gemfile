@@ -9,7 +9,7 @@ end
 
 gem "rails", "~> 7.0.4.3"
 
-gem "nokogiri", ">= 1.15.1"
+gem "nokogiri", ">= 1.15.2"
 gem "pg", ">= 1.5.3"
 gem "puma", ">= 6.2.2"
 gem "uglifier", ">= 4.2.0"

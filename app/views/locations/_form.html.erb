@@ -6,6 +6,8 @@
       <% location.errors.full_messages.each do |message| %>
         <%= message %><br>
       <% end %><br>
+      <%= "<strong><i>*If you added a photo, please add it again.</i></strong><br>".html_safe if location.errors %>
+      <br>
     </div>
   <% end %>
 
@@ -26,7 +28,7 @@
       <div class="col-sm-10">
         <%= f.text_field :name, class: "form-control", :required => true %>
         <div class="tip">
-          How would you like to name the place where you practice agroecology?
+          How would you like to name the place where you practice agroecology? (Minimum Size: 4 / Maximum Size: 100)
           <span class="tip_alert" style="float: right;">*This field is required.</span>
         </div>
       </div>
@@ -57,11 +59,11 @@
       </div>
     </div>
     <br>
-    <div class="form-group row">
+    <div class="form-group row" >
       <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-8">
-        <%= f.file_field :photo, class: "form-control" %>
-        <div class="tip">Could you send us a photo that represents the Location</div>
+        <%= f.file_field :photo, class: "form-control", style: location.errors.blank? ? "" : "border-color: red" %>
+        <div class="tip">Could you send us a photo that represents the Location. (File Format: PNG, JPG or GIF. Size Limit: 16MB.)</div>
       </div>
     </div>
     <br>
