@@ -14,8 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/storage/*
+
 !/log/.keep
 !/tmp/.keep
+!/storage/.keep
 
 /node_modules
 /yarn-error.log
@@ -37,4 +40,3 @@ yarn.lock
 
 .idea
 .env
-storage
