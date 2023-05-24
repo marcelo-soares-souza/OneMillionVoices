@@ -61,7 +61,7 @@
       <% @medias.each do |media| %>
         <tr>
           <% if params[:practice_id] %>
-            <td scope="row"><div class="thumbnail-mini"><%= link_to image_tag(media.photo.url(:medium)), practice_media_path(@practice, media) %></div></td>
+            <td scope="row"><div class="thumbnail-mini"><%= link_to photo_medium(media, media.description), practice_media_path(@practice, media) %></div></td>
             <td><%= link_to media.description, practice_media_path(@practice, media) %></td>
           <% end %>
 

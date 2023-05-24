@@ -6,15 +6,29 @@ class Media < ApplicationRecord
   belongs_to :location, required: false
   belongs_to :practice, required: false
   belongs_to :account, required: false
+  has_one_attached :photo, dependent: :destroy do |attachable|
+    attachable.variant :original, resize_to_limit: [1920, nil]
+    attachable.variant :medium, resize_to_limit: [600, nil]
+    attachable.variant :thumb, resize_to_limit: [300, nil]
+  end
 
   validates :photo, presence: true
-  validates_with AttachmentSizeValidator, attributes: :photo, less_than: 16.megabytes
+  validate :acceptable_photo
   validates_length_of :description, maximum: 100
 
   before_save do
     self.description = description.strip.titleize
   end
+  def acceptable_photo
+    return unless photo.attached?
 
-  has_attached_file :photo, styles: { original: "1440>", medium: "360x360>", thumb: "180x180>" }, default_url: "/assets/missing.png"
-  validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
+    unless photo.blob.byte_size <= 16.megabyte
+      errors.add(:photo, "Size Limit is 16 Mb")
+    end
+
+    acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+    unless acceptable_types.include?(photo.content_type)
+      errors.add(:photo, "must be a JPEG or PNG")
+    end
+  end
 end

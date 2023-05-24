@@ -30,7 +30,7 @@
 <div class="tab-content" style="min-height: 64px;">
   <div class="tab-pane active">
     <div class="thumbnail">
-      <%= image_tag(@location.photo.url(:medium)) %>
+      <%= photo_thumb(@location) %>
     </div>
     <br>
     <div class='<%= (@location.name.length() > 100 ? 'text-box' : '') %>'><h3><%= @location.name.truncate(44) %></h3></div>

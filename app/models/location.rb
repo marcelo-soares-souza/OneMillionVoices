@@ -7,6 +7,11 @@ class Location < ApplicationRecord
   has_many :medias, dependent: :destroy
   has_many :documents, dependent: :destroy
   has_many :practices, dependent: :destroy
+  has_one_attached :photo, dependent: :destroy do |attachable|
+    attachable.variant :original, resize_to_limit: [1920, nil]
+    attachable.variant :medium, resize_to_limit: [600, nil]
+    attachable.variant :thumb, resize_to_limit: [300, nil]
+  end
 
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -16,6 +21,7 @@ class Location < ApplicationRecord
   validates_length_of :description, minimum: 8, maximum: 4096, allow_blank: true
   validates_length_of :agroecology_in_practice, minimum: 8, maximum: 4096, allow_blank: true
   validates_length_of :summary_observation, minimum: 8, maximum: 4096, allow_blank: true
+  validate :acceptable_photo
 
   before_save do
     self.name = name.strip.titleize
@@ -24,17 +30,21 @@ class Location < ApplicationRecord
     self.summary_observation = summary_observation.strip.capitalize
   end
 
-  def default_image_number
-    rand(0..5)
-  end
-
-  has_attached_file :photo,
-                    styles: { original: "1920x>", medium: "360x360>", thumb: "180x180>" },
-                    default_url: ->(a) { "/assets/place_:style_#{a.instance.default_image_number}.png" }
-  validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
-
   protected
     def should_generate_new_friendly_id?
       name_changed?
+    end
+
+    def acceptable_photo
+      return unless photo.attached?
+
+      unless photo.blob.byte_size <= 16.megabyte
+        errors.add(:photo, "Size Limit is 16 Mb")
+      end
+
+      acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+      unless acceptable_types.include?(photo.content_type)
+        errors.add(:photo, "must be a JPEG or PNG")
+      end
     end
 end

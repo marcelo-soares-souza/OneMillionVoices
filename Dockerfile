@@ -1,7 +1,7 @@
 FROM ruby:3.1.4-bullseye
 
 LABEL maintainer="Marcelo Soares Souza <marcelo@agroecologymap.org>"
-RUN apt-get update && apt-get install build-essential nodejs libpq-dev git imagemagick tzdata -y
+RUN apt-get update && apt-get install build-essential nodejs libpq-dev git imagemagick libvips tzdata -y
 RUN mkdir /app
 WORKDIR /app
 COPY Gemfile Gemfile.lock ./

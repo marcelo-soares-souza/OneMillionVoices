@@ -30,15 +30,15 @@ class Account < ApplicationRecord
     self.website = website.strip.downcase unless !self.website
   end
 
-  def default_image_number
-    # rand(1..9)
-    id.to_s.last
-  end
+  # def default_image_number
+  #  # rand(1..9)
+  #  id.to_s.last
+  # end
 
-  has_attached_file :photo,
-                    styles: { original: "1440x>", medium: "360x360>", thumb: "180x180>" },
-                    default_url: ->(a) { "/assets/avatar_:style_#{a.instance.default_image_number}.png" }
-  validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
+  # has_attached_file :photo,
+  #                  styles: { original: "1440x>", medium: "360x360>", thumb: "180x180>" },
+  #                  default_url: ->(a) { "/assets/avatar_:style_#{a.instance.default_image_number}.png" }
+  # validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   protected
     def should_generate_new_friendly_id?

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_120418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,10 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
     t.boolean "admin", default: false
     t.string "name"
     t.string "slug"
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.bigint "photo_file_size"
-    t.datetime "photo_updated_at", precision: nil
     t.text "about"
     t.string "website"
     t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token", unique: true
@@ -61,6 +57,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
     t.index ["practice_id"], name: "index_acknowledges_on_practice_id"
   end
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "characterises", force: :cascade do |t|
     t.bigint "practice_id", null: false
     t.text "agroecology_principles_addressed"
@@ -75,10 +99,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
     t.bigint "practice_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "file_file_name"
-    t.string "file_content_type"
-    t.bigint "file_file_size"
-    t.datetime "file_updated_at"
     t.bigint "location_id", null: false
     t.bigint "account_id", null: false
     t.index ["account_id"], name: "index_documents_on_account_id"
@@ -122,10 +142,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
     t.bigint "account_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.bigint "photo_file_size"
-    t.datetime "photo_updated_at", precision: nil
     t.string "property_type"
     t.boolean "hide_my_location"
     t.string "country"
@@ -142,10 +158,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
     t.string "description"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.bigint "photo_file_size"
-    t.datetime "photo_updated_at", precision: nil
     t.bigint "account_id"
     t.bigint "location_id"
     t.bigint "practice_id"
@@ -161,10 +173,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.bigint "photo_file_size"
-    t.datetime "photo_updated_at"
     t.index ["account_id"], name: "index_practices_on_account_id"
     t.index ["location_id"], name: "index_practices_on_location_id"
     t.index ["slug"], name: "index_practices_on_slug", unique: true
@@ -187,6 +195,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_211113) do
   end
 
   add_foreign_key "acknowledges", "practices"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characterises", "practices"
   add_foreign_key "documents", "accounts"
   add_foreign_key "documents", "locations"

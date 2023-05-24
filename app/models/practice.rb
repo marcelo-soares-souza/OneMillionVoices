@@ -11,24 +11,22 @@ class Practice < ApplicationRecord
   has_many :medias, dependent: :delete_all
   has_many :documents, dependent: :delete_all
 
+  has_one_attached :photo, dependent: :destroy do |attachable|
+    attachable.variant :original, resize_to_limit: [1920, nil]
+    attachable.variant :medium, resize_to_limit: [600, nil]
+    attachable.variant :thumb, resize_to_limit: [300, nil]
+  end
+
   belongs_to :account
   belongs_to :location
 
   validates :name, presence: true
   validates_length_of :name, minimum: 4
   validates_length_of :name, maximum: 100
+  validate :acceptable_photo
 
   extend FriendlyId
   friendly_id :name, use: :slugged
-
-  def default_image_number
-    rand(0..5)
-  end
-
-  has_attached_file :photo,
-                    styles: { original: "1920x>", medium: "360x360>", thumb: "180x180>" },
-                    default_url: ->(a) { "/assets/place_:style_#{a.instance.default_image_number}.png" }
-  validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
 
   before_save do
     self.name = name.strip.titleize
@@ -37,5 +35,18 @@ class Practice < ApplicationRecord
   protected
     def should_generate_new_friendly_id?
       name_changed?
+    end
+
+    def acceptable_photo
+      return unless photo.attached?
+
+      unless photo.blob.byte_size <= 16.megabyte
+        errors.add(:photo, "Size Limit is 16 Mb")
+      end
+
+      acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+      unless acceptable_types.include?(photo.content_type)
+        errors.add(:photo, "must be a JPEG or PNG")
+      end
     end
 end
