@@ -7,7 +7,7 @@ class Location < ApplicationRecord
   has_many :medias, dependent: :destroy
   has_many :documents, dependent: :destroy
   has_many :practices, dependent: :destroy
-  has_one_attached :photo, dependent: :destroy do |attachable|
+  has_one_attached :photo do |attachable|
     attachable.variant :original, resize_to_limit: [1920, nil]
     attachable.variant :medium, resize_to_limit: [600, nil]
     attachable.variant :thumb, resize_to_limit: [300, nil]

@@ -6,7 +6,7 @@ class Document < ApplicationRecord
   belongs_to :location, required: false
   belongs_to :practice, required: false
   belongs_to :account, required: false
-  has_one_attached :file, dependent: :destroy
+  has_one_attached :file
 
   validates :file, presence: true
   validate :acceptable_file
