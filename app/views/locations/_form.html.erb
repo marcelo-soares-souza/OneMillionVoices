@@ -1,4 +1,6 @@
 <%= form_for(location, html: { multipart: true }) do |f| %>
+  <%= f.submit t(:save), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <br><br><br><br>
   <% if location.errors.any? %>
     <div id="error_explanation">
       <b><%= location.errors.count.to_s + " Error(s)" %></b>
