@@ -26,6 +26,7 @@ class Account < ApplicationRecord
   validates_length_of :about, maximum: 2048
   validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
   validate :acceptable_photo
+  validates :i_agree_with_terms_and_conditions, acceptance: true
 
   before_save do
     self.name = name.strip.titleize
