@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  paginates_per 6
-  max_paginates_per 6
+  paginates_per 4
 
   has_many :locations, dependent: :destroy
   has_many :practices, through: :location
   has_many :documents
   has_many :medias
+  has_one_attached :photo, dependent: :destroy do |attachable|
+    attachable.variant :original, resize_to_limit: [1920, nil]
+    attachable.variant :medium, resize_to_limit: [600, nil]
+    attachable.variant :thumb, resize_to_limit: [300, nil]
+  end
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -15,13 +19,13 @@ class Account < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, presence: true
-  validates_length_of :name, minimum: 2
-  validates_length_of :name, maximum: 100
+  validates_length_of :name, minimum: 4, maximum: 100
   validates :name, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
   validates :email, presence: true, uniqueness: true
   validates_length_of :about, minimum: 4, allow_blank: true
   validates_length_of :about, maximum: 2048
   validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
+  validate :acceptable_photo
 
   before_save do
     self.name = name.strip.titleize
@@ -30,18 +34,21 @@ class Account < ApplicationRecord
     self.website = website.strip.downcase unless !self.website
   end
 
-  # def default_image_number
-  #  # rand(1..9)
-  #  id.to_s.last
-  # end
-
-  # has_attached_file :photo,
-  #                  styles: { original: "1440x>", medium: "360x360>", thumb: "180x180>" },
-  #                  default_url: ->(a) { "/assets/avatar_:style_#{a.instance.default_image_number}.png" }
-  # validates_attachment_content_type :photo, content_type: %r{\Aimage/.*\z}
-
   protected
     def should_generate_new_friendly_id?
       name_changed?
+    end
+
+    def acceptable_photo
+      return unless photo.attached?
+
+      unless photo.blob.byte_size <= 16.megabyte
+        errors.add(:photo, "Size Limit is 16 Mb")
+      end
+
+      acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+      unless acceptable_types.include?(photo.content_type)
+        errors.add(:photo, "must be a JPEG or PNG")
+      end
     end
 end

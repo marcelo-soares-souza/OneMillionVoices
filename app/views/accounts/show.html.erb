@@ -15,14 +15,9 @@
   <div class="tab-pane active">
 
     <div class="thumbnail">
-      <%= image_tag(@account.photo.url(:medium), :width => "150") %>
-      <% if account_signed_in? %>
-        <% if current_account.admin? or current_account.id == @account.id %>
-          <%= link_to image_tag(@account.photo.url(:medium), :width => "150"), edit_account_path(@account) %>
-        <% end %>
-     <% end %>
+      <%= photo_thumb(@account, @account.name) %>
     </div>
-
+    <br>
     <h3><%= @account.name %></h3>
     <br>
     <% if account_signed_in? %>
