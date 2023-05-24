@@ -17,22 +17,22 @@
           <%= f.password_field :password, autocomplete: "off", class: "form-control", :required => true  %>
         </div>
       </div>
-    </div>
-    <% if devise_mapping.rememberable? -%>
-      <div class="checkbox">
-        <label>
-          <%= f.check_box :remember_me %> <%= t(:remember_me) %>
-        </label>
-      </div>
-    <% end -%>
+      <% if devise_mapping.rememberable? -%>
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :remember_me %> <%= t(:remember_me) %>
+          </label>
+        </div>
+      <% end -%>
 
-    <div class="actions">
-      <%= button_tag(name: t(:sign_in), type: 'submit', class: "btn btn-primary", id: 'submit') do %>
-        <span id="button_name"><%= t(:sign_in) %></span>
-        <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true"></span>
-      <% end %>
+      <div class="actions">
+        <%= button_tag(name: t(:sign_in), type: 'submit', class: "btn btn-primary", id: 'submit') do %>
+          <span id="button_name"><%= t(:sign_in) %></span>
+          <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true"></span>
+        <% end %>
+      </div>
     </div>
-    <br>
+
     <%= render "devise/shared/links" %>
     <br>
     <div>

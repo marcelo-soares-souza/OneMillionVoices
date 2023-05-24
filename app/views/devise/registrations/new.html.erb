@@ -44,23 +44,21 @@
         </div>
       </div>
       <div class="tip_alert">You will receive an email with a link to confirm your registration.</div>
+      <br>
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :i_agree_with_terms_and_conditions, {required: true}, true, false  %>
+          <strong>I agree to share the data (non-personal) provided here<br>under a <%= link_to "Creative Commons license CC BY-NC-SA 4.0", license_path, target: "_blank" %>.</strong>
+        </label>
+      </div>
 
+      <div class="actions">
+        <%= button_tag(name: t(:sign_up), type: 'submit', class: "btn btn-primary", id: 'submit', onSubmit: 'verifyTermOfUse()') do %>
+          <span id="button_name"><%= t(:sign_up) %></span>
+          <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true"></span>
+        <% end %>
+      </div>
     </div>
-    <br>
-    <div class="checkbox">
-      <label>
-        <%= f.check_box :i_agree_with_terms_and_conditions, {required: true}, true, false  %>
-        <strong>I agree to share the data (non-personal) provided here<br>under a <%= link_to "Creative Commons license CC BY-NC-SA 4.0", license_path, target: "_blank" %>.</strong>
-      </label>
-    </div>
-
-    <div class="actions">
-      <%= button_tag(name: t(:sign_up), type: 'submit', class: "btn btn-primary", id: 'submit', onSubmit: 'verifyTermOfUse()') do %>
-        <span id="button_name"><%= t(:sign_up) %></span>
-        <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true"></span>
-      <% end %>
-    </div>
-    <br>
     <%= render "devise/shared/links" %>
     <br>
     <div>
@@ -68,6 +66,7 @@
       <br>
       <%= link_to image_tag('CC.png', width: 120), 'https://creativecommons.org/licenses/by-nc-sa/4.0/', target: '_blank' %>
     </div>
+    <br>
     <div><%= invisible_captcha %></div>
   <% end %>
 </div>
