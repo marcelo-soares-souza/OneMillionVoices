@@ -14,22 +14,29 @@ class PracticesController < ApplicationController
   # GET /practices.json
   def index
     @practices = if params[:filter]
-      if (params[:value] == "All") || (params[:value] == "Filter")
-        Practice.order("updated_at DESC").load_async.order("practices.updated_at DESC").page(params[:page])
-      else
-        if params[:filter] == "components"
-          Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-        elsif params[:filter] == "principles"
-          Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-        end
-      end
+      filter
     else
-      @practices = if params[:location_id]
-        Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
-      elsif params[:account_id]
-        Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
-      else
-        Practice.order("updated_at DESC").load_async.page(params[:page])
+      all
+    end
+  end
+
+  def all
+    @practices = if params[:location_id]
+      Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
+    elsif params[:account_id]
+      Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
+    else
+      Practice.order("updated_at DESC").load_async.page(params[:page])
+    end
+  end
+  def filter
+    if (params[:value] == "All") || (params[:value] == "Filter")
+      Practice.order("practices.updated_at DESC").load_async.page(params[:page])
+    else
+      if params[:filter] == "components"
+        Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "principles"
+        Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
       end
     end
   end

@@ -9,17 +9,25 @@ module ApplicationHelper
     if entity.photo.attached?
       image_tag entity.photo.variant(:thumb), title: description, alt: description
     else
-      image_tag "/assets/place_thumb_#{default_image_number}.png"
+      image_tag "/assets/place_thumb_#{default_image_number}.png", title: description, alt: description
     end
   end
   def photo_medium(entity, description = "")
     description || ""
-    image_tag entity.photo.variant(:medium), title: description, alt: description
+    if entity.photo.attached?
+      image_tag entity.photo.variant(:medium), title: description, alt: description
+    else
+      image_tag "/assets/place_medium_#{default_image_number}.png", title: description, alt: description
+    end
   end
 
   def photo_original(entity, description = "")
     description || ""
-    image_tag entity.photo.variant(:original), title: description, alt: description
+    if entity.photo.attached?
+      image_tag entity.photo.variant(:original), title: description, alt: description
+    else
+      image_tag "/assets/place_medium_#{default_image_number}.png", title: description, alt: description
+    end
   end
 
   def form_for_media(condition, &block)

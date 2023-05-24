@@ -10,6 +10,11 @@
   </li>
 </ul>
 
+<div style="float: left; margin-top: 8px; margin-bottom: 8px;">
+  <%= select_tag "system", options_from_collection_for_select(@system_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/locations/?filter=system&value=" + $("#system :selected").val();'  %>
+</div>
+<br><br>
+
 <% if @locations.empty? %>
   <br>
   <h2><%= t(:no_data_has_been_registered_so_far) %></h2>

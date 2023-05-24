@@ -13,10 +13,28 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = if params[:account_id]
+    @locations = if params[:filter]
+      filter
+    else
+      all
+    end
+  end
+
+  def all
+    if params[:account_id]
       Location.where(account_id: @account.id).includes(:medias, :practices).load_async.sort_by(&:updated_at).reverse
     else
       Location.order("updated_at DESC").load_async.page(params[:page])
+    end
+  end
+
+  def filter
+    if (params[:value] == "All") || (params[:value] == "Filter")
+      Location.order("updated_at DESC").load_async.page(params[:page])
+    else
+      if params[:filter] == "system"
+        Location.where("farm_and_farming_system LIKE ? OR farm_and_farming_system_complement LIKE ?", "%#{params[:value]}%", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
+      end
     end
   end
 
@@ -124,6 +142,19 @@ class LocationsController < ApplicationController
         "3 - " + t(:mainly_livestock_farming) => "Mainly livestock farming",
         "4 - " + t(:other) => "Other",
         "5 - " + t(:i_am_not_sure) => "I Am Not Sure"
+      }
+
+      @system_options = {
+        "Filter by Farm System" => "Filter",
+        "All" => "All",
+        t(:mainly_subsistence) => "Mainly subsistence",
+        t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
+        t(:mainly_commercial) => "Mainly commercial",
+        t(:mainly_crop_farming) => "Mainly crop farming",
+        t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
+        t(:mainly_livestock_farming) => "Mainly livestock farming",
+        t(:other) => "Other",
+        t(:i_am_not_sure) => "I Am Not Sure"
       }
     end
 end
