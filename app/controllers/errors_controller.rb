@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ErrorsController < ApplicationController
   rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token
   def not_found
