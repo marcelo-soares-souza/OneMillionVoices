@@ -1,6 +1,9 @@
 <div class="sign_in_up">
-  <h2><%= t(:sign_up) %></h2>
-  <br>
+  <%= image_tag ("signup.png"), width: 200 %>
+  <br><br>
+  <strong><%= t(:sign_up) %></strong>
+  <br><br>
+  
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <% if resource.errors.any? %>
       <div id="error_explanation">
