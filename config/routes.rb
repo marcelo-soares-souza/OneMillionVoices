@@ -5,14 +5,15 @@ Rails.application.routes.draw do
   get "errors/internal_server_error"
   resources :documents
   scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
-    root to: "home#index"
+    root to: "about#landing"
     get "home/index"
   end
 
-  get "/map", to: "home#index"
-  get "/about", to: "about#index"
-  get "/who_we_are", to: "about#who_we_are"
-  get "/manual", to: "about#manual"
+  get "map", to: "home#index"
+  get "landing", to: "about#landing"
+  get "about", to: "about#index"
+  get "who_we_are", to: "about#who_we_are"
+  get "manual", to: "about#manual"
   get "license", to: "about#license"
 
   resources :practices
