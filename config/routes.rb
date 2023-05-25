@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "who_we_are", to: "about#who_we_are"
   get "manual", to: "about#manual"
   get "license", to: "about#license"
+  get "thank_you_notes", to: "about#thank_you_notes"
 
   resources :practices
   resources :acknowledges

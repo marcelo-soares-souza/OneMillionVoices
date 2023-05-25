@@ -15,4 +15,7 @@ class AboutController < ApplicationController
 
   def license
   end
+
+  def thank_you_notes
+  end
 end
