@@ -50,9 +50,9 @@
     <div class='<%= (@practice.name.length() > 90 ? 'text-box' : '') %>'><h1><%= @practice.name %></h1></div>
     <br>
 
-    <% if ! @practice.location.description.blank? %>
-      <%= "<h4>#{t(:description)}</h4>".html_safe  %>
-      <div class="text-box"><%= @practice.location.description.truncate(510) %></div>
+    <% if ! @practice.what_you_do.summary_description_of_agroecological_practice.blank? %>
+      <%= "<h4>#{t(:summary_description)}</h4>".html_safe  %>
+      <div class="text-box"><%= @practice.what_you_do.summary_description_of_agroecological_practice.truncate(512) %></div>
       <br>
     <% end %>
 

@@ -193,10 +193,12 @@ b, strong {
     max-width: 600px;
     text-align: justify;
     text-align-last: center;
+
 }
 
 .text-box p {
     padding-top: 4px;
+    line-height: 25px;
 }
 
 .comment-box {
@@ -681,7 +683,6 @@ input::file-selector-button {
     margin-right: auto;
     max-width: 100%;
     height: auto;
-    width: auto;
 }
 
 .error-box {
