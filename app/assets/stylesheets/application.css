@@ -675,3 +675,21 @@ input::file-selector-button {
 .form-group .bootstrap-select.btn-group, .form-horizontal .bootstrap-select.btn-group, .form-inline .bootstrap-select.btn-group {
     margin-bottom: 16px;
 }
+
+.error {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+.error-box {
+    font-size: 21px;
+    width: 100%;
+    height: 100%;
+    margin-right: auto;
+    margin-right: auto;
+    text-align: justify;
+    text-align-last: center;
+}
