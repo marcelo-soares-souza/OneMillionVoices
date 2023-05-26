@@ -37,6 +37,8 @@ class PracticesController < ApplicationController
         Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
       elsif params[:filter] == "principles"
         Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "search"
+        Practice.where("name ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
       end
     end
   end
