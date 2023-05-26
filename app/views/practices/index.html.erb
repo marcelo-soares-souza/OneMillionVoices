@@ -7,9 +7,6 @@
     <li class="nav-item">
       <%= link_to @location.name.truncate(25), location_path(@location), title: @location.name, :class => "nav-link" %>
     </li>
-    <li class="nav-item">
-      <%= link_to t(:gallery) + " (#{@location.medias.count})", location_gallery_path(@location.id), :class => "nav-link" %>
-    </li>
   <% end %>
   <li class="nav-item">
     <%= link_to t(:practices) + " (#{@practices.count})", "#", :class => "nav-link active" %>

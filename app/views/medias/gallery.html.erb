@@ -33,10 +33,10 @@
       <%= link_to truncate(@location.name, length: 25), location_path(@location), :class => "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to t(:gallery)+ " (#{@location.medias.count})", location_path(@location), :class => "nav-link active" %>
+      <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location), :class => "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location), :class => "nav-link" if @location.practices.count > 0%>
+      <%= link_to t(:gallery)+ " (#{@location.medias.count})", location_path(@location), :class => "nav-link active" %>
     </li>
   <% end %>
 

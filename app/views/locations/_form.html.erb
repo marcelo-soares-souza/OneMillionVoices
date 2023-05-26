@@ -1,7 +1,7 @@
 <%= form_for(location, html: { multipart: true }) do |f| %>
-  <%= "<div class='tip'>Start by adding the location where you do your practices.</div>".html_safe unless params["action"] == 'edit' %>
+  <%= "<div class='tip'>Start by adding the location where you do your practices.</div>".html_safe unless params["action"] == 'edit' ||  params["action"] == 'update' %>
 
-  <% button_name = params["action"] == 'edit' ? t(:save) :  t(:save_and_add_a_practice) %>
+  <% button_name = params["action"] == 'edit' ||  params["action"] == 'update' ? t(:save) : t(:save_and_add_a_practice) %>
   <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
 
   <br><br><br><br>
@@ -51,8 +51,20 @@
         <div class="tip">Could you tell us which country this place is in?</div>
       </div>
     </div>
+
     <br>
-    <div class="form-group required bg-light row">
+    <div class="form-group row">
+      <%= f.label t(:is_it_a_farm), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <div style="text-align: left;">
+          <%= f.select :is_it_a_farm, options_for_select([["Yes", true], ["No", false]], @location.is_it_a_farm), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'is_it_a_farm' } %>
+        </div>
+        <div class="tip">Is this Location a Conventional Farm?</div>
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group required bg-light row" id="farm_and_farming_system_options">
       <%= f.label t(:farm_and_farming_system), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
@@ -68,7 +80,7 @@
         </div>
         <br>
         <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please, provide additional details..." %>
-        <div class="tip">How would you describe what you do in your farm?</div>
+        <div class="tip">How would you describe what you do in your location?</div>
       </div>
     </div>
     <br>
@@ -133,6 +145,7 @@
 
     <script>
         $(document).ready(function () {
+            // hide_my_location_on_map
             if ($("#hide_my_location_on_map option:selected").val() == 'true') {
                 $("#location").hide();
             } else {
@@ -149,6 +162,24 @@
                 }
             });
 
+            // Verify is_it_a_farm
+            if ($("#is_it_a_farm option:selected").val() == 'true') {
+                $("#farm_and_farming_system_options").show();
+            } else {
+                $("#farm_and_farming_system_options").hide();
+            }
+
+            $("#is_it_a_farm").change(function () {
+                is_it_a_farm = $("#is_it_a_farm option:selected").val();
+
+                if (is_it_a_farm == 'true') {
+                    $("#farm_and_farming_system_options").show();
+                } else {
+                    $("#farm_and_farming_system_options").hide();
+                }
+            });
+
+            // Location and Maps Things
             <% if params[:action] == 'new' %>
             <% if request.location %>
             lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>

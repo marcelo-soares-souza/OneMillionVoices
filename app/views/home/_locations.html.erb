@@ -32,4 +32,6 @@
     .setContent('<h4><a href="/locations/new?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '" class=""><%= t(:new_location) %></a></h4>')
     .openOn(map);
   });
+
+  $('.leaflet-container').css('cursor','crosshair');
 <% end %>
