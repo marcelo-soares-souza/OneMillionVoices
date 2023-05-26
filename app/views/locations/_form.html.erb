@@ -140,8 +140,10 @@
       <%= f.submit button_name, class: "btn btn-warning btn-lg" %>
     </div>
 
-    <% lat = params[:lat].blank? ? '' : params[:lat] %>
-    <% lon = params[:lon].blank? ?  '' : params[:lon] %>
+    <% if params["action"] == 'new' %>
+      <% lat = params[:lat].blank? ? '' : params[:lat] %>
+      <% lon = params[:lon].blank? ?  '' : params[:lon] %>
+    <% end %>
 
     <script>
         $(document).ready(function () {
@@ -198,8 +200,10 @@
             <% end %>
             <% end %>
 
-            lat = <%= !lat.blank? ? lat : -15.77835833463309 %>;
-            lon = <%= !lon.blank? ? lon : -47.88219451904297 %>;
+            <% if params["action"] == 'new' %>
+              lat = <%= !lat.blank? ? lat : -15.77835833463309 %>;
+              lon = <%= !lon.blank? ? lon : -47.88219451904297 %>;
+            <% end %>
 
             var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);
 
