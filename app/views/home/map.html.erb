@@ -61,7 +61,15 @@
 
         L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'bottomright'}).addTo(map);
 
-        <%= render 'locations', locations: @locations %>
+        map.on('contextmenu',(e) => {
+            L.popup()
+              .setLatLng(e.latlng)
+              .setContent('<h4><a href="/locations/new?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '" class=""><%= t(:new_location) %></a></h4>')
+              .openOn(map);
+        });
 
+        $('.leaflet-container').css('cursor','crosshair');
+
+        <%= render 'locations', locations: @locations %>
     });
 </script>
