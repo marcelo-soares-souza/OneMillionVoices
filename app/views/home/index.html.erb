@@ -89,6 +89,10 @@
             margin-top: -36px;
         }
 
+        .links {
+            font-size: 16px;
+        }
+
     }
 </style>
 <main>
@@ -100,7 +104,7 @@
         <div>
           <h4 class="links">
             <%= link_to "Discover Practices", practices_path %>
-            <%= link_to "Share your Practice", locations_path, style: "color: #90AD34; !important" %>
+            <%= link_to "Share your Practice", new_location_path, style: "color: #90AD34; !important" %>
             <%= link_to "See the Map", map_path, style: "color: #DD7A00FF; !important" %>
           </h4>
         </div>

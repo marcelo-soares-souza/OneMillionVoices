@@ -1,5 +1,6 @@
 <%= form_for(location, html: { multipart: true }) do |f| %>
-  <%= f.submit t(:save), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+  <div class="tip">Start by adding the location where you do your practices.</div>
+  <%= f.submit t(:save_and_add_a_practice), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px; margin-right: 8px;" %>
   <br><br><br><br>
   <% if location.errors.any? %>
     <div id="error_explanation">
@@ -111,7 +112,7 @@
 
     <hr>
     <div class="actions">
-      <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
+      <%= f.submit t(:save_and_add_a_practice), class: "btn btn-warning btn-lg" %>
     </div>
 
     <% lat = params[:lat].blank? ? '' : params[:lat] %>

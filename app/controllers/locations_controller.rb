@@ -61,7 +61,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: t(:location_has_been_registered) }
+        format.html { redirect_to new_location_practice_path(@location), notice: t(:location_has_been_registered) }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new }
@@ -131,8 +131,8 @@ class LocationsController < ApplicationController
 
     def load_options
       @farm_and_farming_system_options = {
-        "1 - " + t(:mainly_subsistence) => "Mainly subsistence",
-        "2 - " + t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
+        "1 - " + t(:mainly_home_consumption) => "Mainly Home Consumption",
+        "2 - " + t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
         "3 - " + t(:mainly_commercial) => "Mainly commercial",
         "4 - " + t(:other) => "Other",
         "5 - " + t(:i_am_not_sure) => "I am not sure"
@@ -149,8 +149,8 @@ class LocationsController < ApplicationController
       @system_options = {
         "Filter by Farm System" => "Filter",
         "All" => "All",
-        t(:mainly_subsistence) => "Mainly subsistence",
-        t(:mixed_subsistence_and_commercial) => "Mixed subsistence and commercial",
+        t(:mainly_home_consumption) => "Mainly Home Consumption",
+        t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
         t(:mainly_commercial) => "Mainly commercial",
         t(:mainly_crop_farming) => "Mainly crop farming",
         t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
