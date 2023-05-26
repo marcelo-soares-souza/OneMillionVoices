@@ -11,8 +11,8 @@
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
-  <%= select_tag "system", options_from_collection_for_select(@system_options, :last, :first, params[:filter] == 'system' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/locations/?filter=system&value=" + $("#system :selected").val();'  %>
-  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'window.location.href = "/locations/?filter=search&value=" + $("#search").val();' %>
+  <%= select_tag "system", options_from_collection_for_select(@system_options, :last, :first, params[:filter] == 'system' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("system")'  %>
+  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>
 </div>
 
 <% if @locations.empty? %>
@@ -42,9 +42,20 @@
 <% end %>
 
 <script>
+    const controller = 'locations';
+
+    function filter(filter) {
+        if (filter != "search") {
+            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
+        }
+        else {
+            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter).val();
+        }
+    }
+
     $("#search").on('keyup', function (event) {
         if (event.keyCode === 13) {
-            window.location.href = "/locations/?filter=search&value=" + $("#search").val();
+            filter("search");
         }
     });
 </script>

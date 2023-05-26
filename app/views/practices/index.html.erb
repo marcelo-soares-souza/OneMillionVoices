@@ -17,9 +17,9 @@
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
-  <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/practices/?filter=components&value=" + $("#components :selected").val();'  %>
-  <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:filter] == 'principles' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'window.location.href = "/practices/?filter=principles&value=" + $("#principles :selected").val();'  %>
-  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'window.location.href = "/practices/?filter=search&value=" + $("#search").val();' %>
+  <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("components")'  %>
+  <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:filter] == 'principles' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("principles")'  %>
+  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>
 </div>
 
 <% if @practices.empty? %>
@@ -51,9 +51,20 @@
 <% end %>
 
 <script>
+    const controller = 'practices';
+
+    function filter(filter) {
+        if (filter != "search") {
+            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
+        }
+        else {
+            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter).val();
+        }
+    }
+
     $("#search").on('keyup', function (event) {
         if (event.keyCode === 13) {
-            window.location.href = "/practices/?filter=search&value=" + $("#search").val();
+            filter("search");
         }
     });
 </script>
