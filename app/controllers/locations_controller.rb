@@ -102,8 +102,9 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system, :farm_and_farming_system_complement, :agroecology_in_practice, :summary_observation,
-                                       :farm_and_farming_system_details, :latitude, :longitude, :account_id, :photo, :property_type, :hide_my_location, account_ids: [])
+      params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system, :agroecology_in_practice,
+                                       :summary_observation, :farm_and_farming_system_details, :latitude, :longitude, :account_id,
+                                       :photo, :property_type, :hide_my_location, account_ids: [], farm_and_farming_system_complement: [])
     end
 
     def load_property_types
@@ -138,13 +139,13 @@ class LocationsController < ApplicationController
         "5 - " + t(:i_am_not_sure) => "I am not sure"
       }
 
-      @farm_and_farming_system_complement_options = {
-        "1 - " + t(:mainly_crop_farming) => "Mainly crop farming",
-        "2 - " + t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
-        "3 - " + t(:mainly_livestock_farming) => "Mainly livestock farming",
-        "4 - " + t(:other) => "Other",
-        "5 - " + t(:i_am_not_sure) => "I Am Not Sure"
-      }
+      # @farm_and_farming_system_complement_options = {
+      #   "1 - " + t(:mainly_crop_farming) => "Mainly crop farming",
+      #   "2 - " + t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
+      #   "3 - " + t(:mainly_livestock_farming) => "Mainly livestock farming",
+      #   "4 - " + t(:other) => "Other",
+      #   "5 - " + t(:i_am_not_sure) => "I Am Not Sure"
+      # }
 
       @system_options = {
         "Filter by Farm System" => "Filter",
@@ -152,9 +153,9 @@ class LocationsController < ApplicationController
         t(:mainly_home_consumption) => "Mainly Home Consumption",
         t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
         t(:mainly_commercial) => "Mainly commercial",
-        t(:mainly_crop_farming) => "Mainly crop farming",
-        t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
-        t(:mainly_livestock_farming) => "Mainly livestock farming",
+        t(:crops) => "Crops",
+        t(:animals) => "Animals",
+        t(:trees) => "Trees",
         t(:other) => "Other",
         t(:i_am_not_sure) => "I Am Not Sure"
       }

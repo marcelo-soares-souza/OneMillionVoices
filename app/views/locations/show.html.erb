@@ -17,9 +17,9 @@
   <li class="nav-item">
     <%= link_to t(:gallery) + " (#{@total_media})", location_gallery_path(@location.id), :class => "nav-link" %>
   </li>
-    <li class="nav-item">
-      <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location, ''), :class => "nav-link" %>
-    </li>
+  <li class="nav-item">
+    <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location, ''), :class => "nav-link" %>
+  </li>
 </ul>
 
 <br>
@@ -36,8 +36,9 @@
 
     <%= "<h4>#{t(:short_description)}</h4><div class='text-box'>#{simple_format (h @location.description).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.description.blank? %>
     <%= "<h4>#{t(:country)}</h4><div class='text-box'>#{ISO3166::Country[@location.country]}</div><br>".html_safe unless @location.country.blank? %>
-    <%= "<h4>#{t(:farm_and_farming_system)}</h4><div class='text-box'>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br></div>".html_safe unless @location.farm_and_farming_system.blank? %>
-    <%= "<div class='text-box'>#{@farm_and_farming_system_complement_options.key(@location.farm_and_farming_system_complement)}</div><br>".html_safe unless @location.farm_and_farming_system_complement.blank? %>
+    <%= "<h4>#{t(:farm_and_farming_system)}</h4>".html_safe unless @location.farm_and_farming_system.blank? && @location.farm_and_farming_system_complement.blank? %>
+    <%= "<div class='text-box'>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br></div>".html_safe unless @location.farm_and_farming_system.blank? %>
+    <%= "<div class='text-box'>#{@location.farm_and_farming_system_complement.gsub(/,/, '<br/>')}</div><br>".html_safe unless @location.farm_and_farming_system_complement.blank? %>
     <%= "<h4>#{t(:farm_and_farming_system_details)}</h4><div class='text-box'>#{simple_format (h @location.farm_and_farming_system_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.farm_and_farming_system_details.blank? %>
     <%= "<h4>#{t(:agroecology_in_practice)}</h4><div class='text-box'>#{simple_format (h @location.agroecology_in_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.agroecology_in_practice.blank? %>
     <%= "<h4>#{t(:summary_observation)}</h4><div class='text-box'>#{simple_format (h @location.summary_observation).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.summary_observation.blank? %>

@@ -31,10 +31,10 @@
     <%= link_to t(:acknowledge), practice_acknowledge_path(@characterise.practice, @characterise.practice.acknowledge), :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:gallery)} (#{@characterise.practice.medias.count})", practice_gallery_path(@characterise.practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to "#{t(:gallery)} (#{@characterise.practice.medias.count})", practice_gallery_path(@characterise.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:documents)} (#{@characterise.practice.documents.count})", practice_documents_path(@characterise.practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to "#{t(:documents)} (#{@characterise.practice.documents.count})", practice_documents_path(@characterise.practice), :class => "nav-link" %>
   </li>
 </ul>
 

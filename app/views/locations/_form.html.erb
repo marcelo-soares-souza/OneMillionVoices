@@ -1,6 +1,9 @@
 <%= form_for(location, html: { multipart: true }) do |f| %>
-  <div class="tip">Start by adding the location where you do your practices.</div>
-  <%= f.submit t(:save_and_add_a_practice), class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px; margin-right: 8px;" %>
+  <%= "<div class='tip'>Start by adding the location where you do your practices.</div>".html_safe unless params["action"] == 'edit' %>
+
+  <% button_name = params["action"] == 'edit' ? t(:save) :  t(:save_and_add_a_practice) %>
+  <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
+
   <br><br><br><br>
   <% if location.errors.any? %>
     <div id="error_explanation">
@@ -53,7 +56,17 @@
       <%= f.label t(:farm_and_farming_system), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.collection_select(:farm_and_farming_system_complement, @farm_and_farming_system_complement_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <br><br>
+        <div style="text-align: left;">
+          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Crops', checked_farm_and_farming_system_complement('Crops'), id: 'farm_and_farming_system_complement' %> 1 - Crops
+          <br>
+          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Animals', checked_farm_and_farming_system_complement('Animals'), id: 'farm_and_farming_system_complement' %> 2 - Animals
+          <br>
+          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Trees', checked_farm_and_farming_system_complement('Trees'), id: 'farm_and_farming_system_complement' %> 3 - Trees
+          <br>
+          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Other', checked_farm_and_farming_system_complement('Other'), id: 'farm_and_farming_system_complement' %> 4 - Other
+        </div>
+        <br>
         <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please, provide additional details..." %>
         <div class="tip">How would you describe what you do in your farm?</div>
       </div>
@@ -112,7 +125,7 @@
 
     <hr>
     <div class="actions">
-      <%= f.submit t(:save_and_add_a_practice), class: "btn btn-warning btn-lg" %>
+      <%= f.submit button_name, class: "btn btn-warning btn-lg" %>
     </div>
 
     <% lat = params[:lat].blank? ? '' : params[:lat] %>
@@ -137,12 +150,12 @@
             });
 
             <% if params[:action] == 'new' %>
-              <% if request.location %>
-                lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
-                lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
+            <% if request.location %>
+            lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
+              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
                 <% end %>
-            <% elsif params[:action] != 'new' %>
-              <% if f.object.latitude? %>
+                <% elsif params[:action] != 'new' %>
+                <% if f.object.latitude? %>
                 lat = <%= f.object.latitude %>;
             <% else %>
             lat = -15.77835833463309;

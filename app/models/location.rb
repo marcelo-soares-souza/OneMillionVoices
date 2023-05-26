@@ -28,6 +28,8 @@ class Location < ApplicationRecord
     self.description = description.strip.capitalize
     self.agroecology_in_practice = agroecology_in_practice.strip.capitalize
     self.summary_observation = summary_observation.strip.capitalize
+
+    self.farm_and_farming_system_complement.gsub!(/[\[\]"]/, "") if attribute_present?("farm_and_farming_system_complement")
   end
 
   protected

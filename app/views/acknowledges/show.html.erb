@@ -31,10 +31,10 @@
     <%= link_to t(:acknowledge), practice_acknowledge_path(@acknowledge.practice, @acknowledge.practice.acknowledge), :class => "nav-link active" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:gallery)} (#{@acknowledge.practice.medias.count})", practice_gallery_path(@acknowledge.practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to "#{t(:gallery)} (#{@acknowledge.practice.medias.count})", practice_gallery_path(@acknowledge.practice), :class => "nav-link" %>
   </li>
   <li class="nav-item">
-    <%= link_to "#{t(:documents)} (#{@acknowledge.practice.documents.count})", practice_documents_path(@acknowledge.practice), :class => "nav-link", :style => "color: red !important" %>
+    <%= link_to "#{t(:documents)} (#{@acknowledge.practice.documents.count})", practice_documents_path(@acknowledge.practice), :class => "nav-link" %>
   </li>
 </ul>
 
