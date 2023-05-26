@@ -405,6 +405,7 @@ pt-BR:
   sign_in: "Entrar"
   sign_up: "Cadastrar"
   confirmation_instruction: "Não recebi as instruções de confirmação?"
+  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
   remember_me: "Lembrar de Mim?"
   forgot_password: "Esqueceu a Senha?"
   observation: "Observação"
@@ -542,3 +543,5 @@ pt-BR:
   mixed_crop_livestock_farming: "Mixed crop-livestock farming"
   mainly_livestock_farming: "Mainly livestock farming"
   thank_you_notes: "Thank You Notes"
+  home: "Home"
+  new_location: "New Location"

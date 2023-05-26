@@ -402,6 +402,7 @@ en:
   sign_in: "Sign In"
   sign_up: "Sign Up"
   confirmation_instruction: "Didn't receive confirmation instructions?"
+  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
   remember_me: "Remember Me?"
   forgot_password: "Forgot password?"
   observation: "Observation"
@@ -541,3 +542,5 @@ en:
   mixed_crop_livestock_farming: "Mixed crop-livestock farming"
   mainly_livestock_farming: "Mainly livestock farming"
   thank_you_notes: "Thank You Notes"
+  home: "Home"
+  new_location: "New Location"

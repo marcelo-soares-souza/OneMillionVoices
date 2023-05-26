@@ -1,91 +1,113 @@
-<% title t(:map) %>
 <style>
-    footer .container {
-        width: 80%;
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 
-    .container {
-        width: 100%;
-        padding-left: 0px;
-        padding-right: 0px;
+    .grid-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) min(1350px, 96%) minmax(0, 1fr);
+        max-width: 1080px;
+        margin-top: 16px;
+        margin-right: auto;
+        margin-left: auto;
     }
 
-    <% if request.path == '/map' %>
-    html {
-        position: inherit !important;
-        min-height: 90%;
+    .two-columns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        grid-column: 2;
     }
-    #map {
-        position: absolute !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-    <% end %>
 
-    <% if request.env['HTTP_USER_AGENT'] == 'Agroecology Map Webview' %>
-    html {
-        position: inherit !important;
-        min-height: 90%;
+    .two-columns > * {
+        flex: 1;
     }
-    #map {
-        position: absolute !important;
-        width: 100% !important;
-        height: 94% !important;
+    .first-column {
+        margin-top:auto;
+        margin-bottom: auto;
+        max-width: 820px;
+        padding-top: 64px;
+        margin-right: 20px;
     }
-    <% end %>
+
+    .ilustration-container {
+        min-width: min(96%, 315px);
+        max-width: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ilustration-container-img {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+    }
+
+    .landing-title {
+        margin: 0 0 21px 0;
+        font-size: 3.2rem;
+    }
+
+    .light-text {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        margin-top: 32px;
+    }
+
+    .first-column p {
+        font-family: verdana, arial, helvetica, sans-serif;
+        line-height: 30px;
+        font-size: 18px;
+    }
+
+    .links {
+        margin-top: 25px;
+        display: flex;
+    }
+
+    .links a {
+        margin-left: 8px;
+        margin-right: 8px;
+        margin-bottom: auto;
+        margin-top: auto;
+        border: 1px solid;
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    @media all and (max-width: 768px) {
+        .grid-container {
+            margin-top: -36px;
+        }
+
+    }
 </style>
-
-<div id="map"></div>
-
-<script>
-    lat = 16.0;
-    lon = 1.0;
-    zoom = 3.25;
-
-    if (window.devicePixelRatio > 2) {
-        zoom = 2;
-        lat = -1.00;
-        lon = -32.00;
-    }
-
-    var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
-
-    $(document).ready(function () {
-        $(window).on("resize", function () {
-            $("#map").height($(window).height() - 80);
-            map.invalidateSize();
-        }).trigger("resize");
-    });
-
-    $(window).on('load', function () {
-        // Base Maps
-        var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '<span style="font-size: 10px"><a href="https://codeberg.org/marcelo-soares-souza/OneMillionVoices" target="_blank"><%= t('site') %></a> | <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></span>',
-            maxZoom: 18,
-        }).addTo(map);
-
-        var osmHot = L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-            attribution: '<span style="font-size: 10px"><a href="https://codeberg.org/marcelo-soares-souza/OneMillionVoices" target="_blank"><%= t('site') %></a> | <a href="https://www.hotosm.org/" target="_blank">HOT OSM</a> | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></span>',
-            maxZoom: 18,
-        });
-
-        var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
-            attribution: '<span style="font-size: 10px"><a href="https://codeberg.org/marcelo-soares-souza/OneMillionVoices" target="_blank"><%= t('site') %></a> | MapBox | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></span>',
-            maxZoom: 18,
-        });
-
-        var baseMaps = {
-            "<a href='https://www.openstreetmap.org/' target='_blank'>OpenStreetMap</a>": osm,
-            "<a href='https://www.hotosm.org/' target='_blank'>Humanitarian OpenStreetMap</a>": osmHot,
-            "Satélite (MapBox)": mapbox
-        };
-
-        // OverLay Maps
-        var overlayMaps = { };
-
-        L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'bottomright'}).addTo(map);
-
-        <%= render 'locations', locations: @locations %>
-
-    });
-</script>
+<main>
+  <div class="grid-container">
+    <div class="two-columns" style="justify-content: center;">
+      <div class="first-column">
+        <h1 class="landing-title">One Million Voices of Agroecology</h1>
+        <p class="light-text">Discover and share valuable resources and knowledge, find agroecological practices near you and connect with a like-minded community. Create a profile, explore, be found.</p>
+        <div>
+          <h4 class="links">
+            <%= link_to "Discover Practices", practices_path %>
+            <%= link_to "Share your Practice", locations_path, style: "color: #90AD34; !important" %>
+            <%= link_to "See the Map", map_path, style: "color: #DD7A00FF; !important" %>
+          </h4>
+        </div>
+      </div>
+      <div class="ilustration-container">
+        <%= image_tag ("landing/landing.png"), class: "ilustration-container-img" %>
+      </div>
+    </div>
+  </div>
+</main>

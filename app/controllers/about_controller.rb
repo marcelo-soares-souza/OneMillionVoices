@@ -4,9 +4,6 @@ class AboutController < ApplicationController
   def index
   end
 
-  def landing
-  end
-
   def who_we_are
   end
 

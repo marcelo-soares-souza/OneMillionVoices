@@ -26,7 +26,10 @@
     <% end %>
   <% end %>
 
-  map.addLayer(markers);
-  map.addControl(new L.control.zoom({ position: 'topright' }));
-
+  map.on('contextmenu',(e) => {
+    L.popup()
+    .setLatLng(e.latlng)
+    .setContent('<h4><a href="/locations/new?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '" class=""><%= t(:new_location) %></a></h4>')
+    .openOn(map);
+  });
 <% end %>

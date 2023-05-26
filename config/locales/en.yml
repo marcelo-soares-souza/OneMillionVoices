@@ -139,7 +139,7 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Confirmation E-Mail"
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:
@@ -401,7 +401,8 @@ en:
   registered_experiences: "Experiences"
   sign_in: "Sign In"
   sign_up: "Sign Up"
-  confirmation_instruction: "Didn't receive confirmation instructions?"
+  confirmation_instruction: "Didn't receive confirmation E-Mail?"
+  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
   remember_me: "Remember Me?"
   forgot_password: "Forgot password?"
   observation: "Observation"
@@ -541,3 +542,5 @@ en:
   mixed_crop_livestock_farming: "Mixed crop-livestock farming"
   mainly_livestock_farming: "Mainly livestock farming"
   thank_you_notes: "Thank You Notes"
+  home: "Home"
+  new_location: "New Location"

@@ -486,6 +486,7 @@ fr:
   sign_in: "S'identifier"
   sign_up: "Enrol"
   confirmation_instruction: "Vous n'avez pas reçu les instructions de confirmation ?"
+  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
   remember_me: "Souviens-toi de moi?"
   forgot_password: "Mot de passe oublié?"
   observation: "Observation"
@@ -624,3 +625,5 @@ fr:
   mixed_crop_livestock_farming: "Mixed crop-livestock farming"
   mainly_livestock_farming: "Mainly livestock farming"
   thank_you_notes: "Thank You Notes"
+  home: "Home"
+  new_location: "New Location"

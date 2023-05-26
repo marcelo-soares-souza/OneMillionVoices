@@ -1,0 +1,67 @@
+<% title t(:map) %>
+<style>
+    footer .container {
+        width: 80%;
+    }
+
+    .container {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+</style>
+
+<div id="map"></div>
+
+<script>
+    lat = 16.0;
+    lon = 1.0;
+    zoom = 3.25;
+
+    if (window.devicePixelRatio > 2) {
+        zoom = 2;
+        lat = -1.00;
+        lon = -32.00;
+    }
+
+    var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
+
+    $(document).ready(function () {
+        $(window).on("resize", function () {
+            $("#map").height($(window).height() - 80);
+            map.invalidateSize();
+        }).trigger("resize");
+    });
+
+    $(window).on('load', function () {
+        // Base Maps
+        var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<span style="font-size: 10px"><a href="https://codeberg.org/marcelo-soares-souza/OneMillionVoices" target="_blank"><%= t('site') %></a> | <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></span>',
+            maxZoom: 18,
+        }).addTo(map);
+
+        var osmHot = L.tileLayer('https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+            attribution: '<span style="font-size: 10px"><a href="https://codeberg.org/marcelo-soares-souza/OneMillionVoices" target="_blank"><%= t('site') %></a> | <a href="https://www.hotosm.org/" target="_blank">HOT OSM</a> | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></span>',
+            maxZoom: 18,
+            });
+
+        var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
+            attribution: '<span style="font-size: 10px"><a href="https://codeberg.org/marcelo-soares-souza/OneMillionVoices" target="_blank"><%= t('site') %></a> | MapBox | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></span>',
+            maxZoom: 18,
+        });
+
+        var baseMaps = {
+            "<a href='https://www.openstreetmap.org/' target='_blank'>OpenStreetMap</a>": osm,
+            "<a href='https://www.hotosm.org/' target='_blank'>Humanitarian OpenStreetMap</a>": osmHot,
+            "Satélite (MapBox)": mapbox
+        };
+
+        // OverLay Maps
+        var overlayMaps = { };
+
+        L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'bottomright'}).addTo(map);
+
+        <%= render 'locations', locations: @locations %>
+
+    });
+</script>

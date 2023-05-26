@@ -114,6 +114,9 @@
       <%= f.submit t(:save), class: "btn btn-warning btn-lg" %>
     </div>
 
+    <% lat = params[:lat].blank? ? '' : params[:lat] %>
+    <% lon = params[:lon].blank? ?  '' : params[:lon] %>
+
     <script>
         $(document).ready(function () {
             if ($("#hide_my_location_on_map option:selected").val() == 'true') {
@@ -133,16 +136,12 @@
             });
 
             <% if params[:action] == 'new' %>
-            lat = -15.77835833463309;
-            lon = -47.88219451904297;
-
-            <% if request.location %>
-            lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
-              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
+              <% if request.location %>
+                lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
+                lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
                 <% end %>
-
-                <% elsif params[:action] != 'new' %>
-                <% if f.object.latitude? %>
+            <% elsif params[:action] != 'new' %>
+              <% if f.object.latitude? %>
                 lat = <%= f.object.latitude %>;
             <% else %>
             lat = -15.77835833463309;
@@ -153,6 +152,9 @@
             lon = -47.88219451904297;
             <% end %>
             <% end %>
+
+            lat = <%= !lat.blank? ? lat : -15.77835833463309 %>;
+            lon = <%= !lon.blank? ? lon : -47.88219451904297 %>;
 
             var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);
 
