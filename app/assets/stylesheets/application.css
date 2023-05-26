@@ -698,3 +698,7 @@ input::file-selector-button {
     text-align: justify;
     text-align-last: center;
 }
+
+.background-tree {
+    background: url("background.png") bottom center no-repeat fixed;
+}

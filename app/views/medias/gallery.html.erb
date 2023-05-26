@@ -1,5 +1,7 @@
 <% if params[:practice_id] %>
   <% title t(:gallery) + " #{@practice.name}" %>
+<% elsif params[:location_id] %>
+  <% title t(:gallery) + " #{@location.name}" %>
 <% end %>
 
 <% if account_signed_in? %>
