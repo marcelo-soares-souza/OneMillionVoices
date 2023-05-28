@@ -75,14 +75,27 @@
 .sign_in_up {
     margin-right: auto;
     margin-left: auto;
-    max-width: 610px;
+    max-width: 400px;
 }
 
 .sign_in_up .form-group {
     margin-right: auto;
     margin-left: auto;
-    max-width: 610px;
+    max-width: 400px;
 }
+
+.sign_up .form-group {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+}
+
+.sign_up {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+}
+
 
 .friends {
     margin-left: auto;
@@ -701,4 +714,12 @@ input::file-selector-button {
 
 .background-tree {
     background: url("background.png") bottom center no-repeat fixed;
+}
+
+.form-group.required .control-label:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 2px;
+    top: inherit;
 }
