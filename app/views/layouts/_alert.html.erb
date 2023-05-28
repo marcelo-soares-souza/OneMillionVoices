@@ -17,3 +17,9 @@
     </div>
   <% end %>
 <% end %>
+
+<% if flash[:recaptcha_error] %>
+  <div class="alert alert-danger fade in" role="alert" style="font-weight: bold;">
+    <%= flash[:recaptcha_error] %>
+  </div>
+<% end %>

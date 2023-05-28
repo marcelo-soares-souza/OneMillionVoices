@@ -33,7 +33,6 @@
       <div class="actions">
         <%= button_tag(name: t(:sign_in), type: 'submit', class: "btn btn-primary", id: 'submit') do %>
           <span id="button_name"><%= t(:sign_in) %></span>
-          <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true"></span>
         <% end %>
       </div>
     </div>
@@ -45,12 +44,7 @@
       <br>
       <%= link_to image_tag('CC.png', width: 120), 'https://creativecommons.org/licenses/by-nc-sa/4.0/', target: '_blank' %>
     </div>
+    <br>
+    <%= recaptcha_tags %>
   <% end %>
 </div>
-<script>
-    document.getElementById("submit").setAttribute("disabled", "disabled");
-    setTimeout(function () {
-        document.getElementById("submit").removeAttribute("disabled");
-        document.getElementById("spinner").remove();
-    }, 3600);
-</script>
