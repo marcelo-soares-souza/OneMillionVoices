@@ -40,10 +40,10 @@
       </li>
       <% if current_account %>
         <li class="nav-item">
-          <%= link_to("#{t(:logout)}", destroy_account_session_path, :method => :delete, :class => "nav-link") %>
+          <%= link_to "#{current_account.email}", account_path(current_account), :class => "nav-link text-secondary" %>
         </li>
         <li class="nav-item">
-          <%= link_to "#{current_account.email}", account_path(current_account), :class => "nav-link text-danger" %>
+          <%= link_to("#{t(:logout)}", destroy_account_session_path, :method => :delete, :class => "nav-link text-danger") %>
         </li>
       <% else %>
         <li class="nav-item">
