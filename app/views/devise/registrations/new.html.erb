@@ -1,3 +1,13 @@
+<style>
+    .text-center {
+        text-align: center;
+    }
+
+    .g-recaptcha {
+        display: inline-block;
+    }
+</style>
+
 <% title t(:sign_up) %>
 
 <div class="sign_in_up">
@@ -57,10 +67,13 @@
         </label>
       </div>
 
+
       <div class="actions">
         <%= button_tag(name: t(:sign_up), type: 'submit', class: "btn btn-primary", id: 'submit', onSubmit: 'verifyTermOfUse()') do %>
           <span id="button_name"><%= t(:sign_up) %></span>
         <% end %>
+        <br><br>
+        <div><%= recaptcha_tags %></div>
       </div>
     </div>
     <%= render "devise/shared/links" %>
@@ -71,6 +84,5 @@
       <%= link_to image_tag('CC.png', width: 120), 'https://creativecommons.org/licenses/by-nc-sa/4.0/', target: '_blank' %>
     </div>
     <br>
-    <%= recaptcha_tags %>
 <% end %>
 </div>

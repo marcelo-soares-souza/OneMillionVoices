@@ -1,3 +1,13 @@
+<style>
+    .text-center {
+        text-align: center;
+    }
+
+    .g-recaptcha {
+        display: inline-block;
+    }
+</style>
+
 <% title t(:sign_in) %>
 
 <div class="sign_in_up">
@@ -35,6 +45,9 @@
           <span id="button_name"><%= t(:sign_in) %></span>
         <% end %>
       </div>
+      <br><br>
+      <div><%= recaptcha_tags %></div>
+
     </div>
 
     <%= render "devise/shared/links" %>
@@ -44,7 +57,5 @@
       <br>
       <%= link_to image_tag('CC.png', width: 120), 'https://creativecommons.org/licenses/by-nc-sa/4.0/', target: '_blank' %>
     </div>
-    <br>
-    <%= recaptcha_tags %>
   <% end %>
 </div>
