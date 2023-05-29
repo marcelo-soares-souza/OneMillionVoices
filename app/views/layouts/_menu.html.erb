@@ -1,6 +1,6 @@
 <script>$(document).ready(function () { $("#locale").val("<%= locale %>"); });</script>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+<nav class="navbar navbar-expand-lg navbar-light" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     &#9776;
   </button>
@@ -40,10 +40,10 @@
       </li>
       <% if current_account %>
         <li class="nav-item">
-          <%= link_to "#{current_account.email}", account_path(current_account), :class => "nav-link text-secondary" %>
+          <%= link_to "#{current_account.email}", account_path(current_account), :class => "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to("#{t(:logout)}", destroy_account_session_path, :method => :delete, :class => "nav-link text-danger") %>
+          <%= link_to("#{t(:logout)}", destroy_account_session_path, :method => :delete, :class => "nav-link") %>
         </li>
       <% else %>
         <li class="nav-item">
