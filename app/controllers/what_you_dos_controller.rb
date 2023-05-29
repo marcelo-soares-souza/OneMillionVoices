@@ -91,7 +91,7 @@ class WhatYouDosController < ApplicationController
     def what_you_do_params
       params.require(:what_you_do).permit(:practice_id, :where_it_is_realized, :land_size, :substitution_of_less_ecological_alternative, :summary_description_of_agroecological_practice,
                                           :type_of_agroecological_practice, :problem_that_practice_addresses, :practical_implementation_of_the_practice,
-                                          :expected_function_or_effects_of_practice, :substitution_of_less_ecological_alternative_details)
+                                          :expected_function_or_effects_of_practice, :substitution_of_less_ecological_alternative_details, :unit_of_measure)
     end
 
     def load_options
@@ -99,6 +99,13 @@ class WhatYouDosController < ApplicationController
         "3 - " + "On-farm" => "On-farm",
         "2 - " + "Off-farm" => "Off-farm",
         "1 - " + "Other" => "Other"
+      }
+
+      @unit_of_measure_options = {
+        "m2" => "m2",
+        "Acre" => "Acre",
+        "Hectare" => "Hectare",
+        "Square foot" => "Square foot"
       }
     end
 end
