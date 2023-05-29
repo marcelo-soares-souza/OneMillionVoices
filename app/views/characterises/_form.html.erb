@@ -29,6 +29,8 @@
     <div class="form-group row bg-light">
       <%= f.label t(:agroecology_principles_addressed), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
+        <div class="tip">Which agroecological principles are addressed or invoked through the practice?</div>
+        <br>
         <div style="text-align: left;">
           <%= check_box_tag 'characterise[agroecology_principles_addressed][]', 'Recycling', checked_characterises('Recycling'), id: 'principle' %> 1 - Recycling
           <div class="tip-explanation">Preferentially use location renewable resources and close as far as possible resource cycles of nutrients and biomass.</div>
@@ -70,15 +72,19 @@
           <div class="tip-explanation">Encourage social organization and greater participation in decision-making by food producers and consumers to support decentralized governance and location adaptive management of agricultural and food systems.</div>
           <br>
         </div>
-        <div class="tip">Which agroecological principles are addressed or invoked through the practice?</div>
       </div>
     </div>
 
     <br>
     <div class="form-group row">
-      <%= f.label t(:food_system_components_addressed), class: "col-sm-2 col-form-label col-form-label-lg" %>
-      <div class="col-sm-10">
 
+      <%= f.label t(:food_system_components_addressed), class: "col-sm-2 col-form-label col-form-label-lg" %>
+
+      <div class="col-sm-10">
+        <div class="tip">
+          Which parts of the food system are concerned or engaged through the practice?
+        </div>
+        <br>
         <div style="text-align: left;">
           <%= check_box_tag 'characterise[food_system_components_addressed][]', 'Soil', checked_components('Soil'), id: 'food_system_components_addressed' %> 1 - Soil
           <br>
@@ -111,9 +117,6 @@
           <%= check_box_tag 'characterise[food_system_components_addressed][]', 'I am not sure', checked_components('I am not sure'), id: 'food_system_components_addressed' %> 15 - I am not sure
         </div>
         <br>
-        <div class="tip">
-          Which parts of the food system are concerned or engaged through the practice?
-        </div>
       </div>
     </div>
     <%= f.submit button_name, class: "btn btn-warning btn-lg" %>

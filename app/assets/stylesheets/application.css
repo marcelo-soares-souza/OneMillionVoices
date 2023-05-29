@@ -324,7 +324,7 @@ html {
 body {
     background-color: #fff;
     color: #333;
-    font-family: verdana, arial, helvetica, sans-serif;
+    font-family: Proxima Nova light, verdana, arial, helvetica, sans-serif;
     font-size: 16px;
     line-height: 1.3;
     overflow-y: scroll;
@@ -681,8 +681,17 @@ input::file-selector-button {
     margin: 8px auto 20px;
 }
 
+h4 {
+    color: #00a88e !important;
+    font-family: Barlow Bold, verdana, arial, helvetica, sans-serif !important;
+}
+
+h1 {
+    color: #00a88e !important;
+}
+
 .practices-box h4 {
-    text-decoration: underline #ffdfbe;
+    color: #00a88e !important;
 }
 
 @media all and (max-width: 1280px) {
@@ -735,4 +744,8 @@ input::file-selector-button {
 .navbar-light .navbar-toggler {
     color: white;
     border-color: rgba(0,0,0,.1);
+}
+
+.bg-light {
+    background-color: rgba(248, 249, 250, 0.65) !important;
 }
