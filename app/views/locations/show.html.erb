@@ -40,8 +40,8 @@
     <%= "<div class='text-box'>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br></div>".html_safe unless @location.farm_and_farming_system.blank? %>
     <%= "<div class='text-box'>#{@location.farm_and_farming_system_complement.gsub(/,/, '<br/>')}</div><br>".html_safe unless @location.farm_and_farming_system_complement.blank? %>
     <%= "<h4>#{t(:farm_and_farming_system_details)}</h4><div class='text-box'>#{simple_format (h @location.farm_and_farming_system_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.farm_and_farming_system_details.blank? %>
-    <%= "<h4>#{t(:agroecology_in_practice)}</h4><div class='text-box'>#{simple_format (h @location.agroecology_in_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.agroecology_in_practice.blank? %>
-    <%= "<h4>#{t(:summary_observation)}</h4><div class='text-box'>#{simple_format (h @location.summary_observation).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.summary_observation.blank? %>
+    <%#= "<h4>#{t(:agroecology_in_practice)}</h4><div class='text-box'>#{simple_format (h @location.agroecology_in_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.agroecology_in_practice.blank? %>
+    <%#= "<h4>#{t(:summary_observation)}</h4><div class='text-box'>#{simple_format (h @location.summary_observation).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.summary_observation.blank? %>
 
     <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @location.account.name, account_path(@location.account)}&nbsp;".html_safe if @location.account.name? %></div>
 

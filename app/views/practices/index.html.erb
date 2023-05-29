@@ -11,9 +11,15 @@
   <li class="nav-item">
     <%= link_to t(:practices) + " (#{@practices.count})", "#", :class => "nav-link active" %>
   </li>
+  <% if params[:location_id] %>
+    <li class="nav-item">
+      <%= link_to t(:gallery) + " (#{@location.medias.count})", location_gallery_path(@location.id), :class => "nav-link" %>
+    </li>
+  <% end %>
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
+  <%= select_tag "system", options_from_collection_for_select(@system_options, :last, :first, params[:filter] == 'system' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system")' %>
   <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("components")'  %>
   <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:filter] == 'principles' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("principles")'  %>
   <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>

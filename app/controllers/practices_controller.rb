@@ -9,6 +9,7 @@ class PracticesController < ApplicationController
   before_action :load_location
   before_action :load_account
   before_action :load_options
+  before_action :load_system_options
 
   # GET /practices
   # GET /practices.json
@@ -37,6 +38,8 @@ class PracticesController < ApplicationController
         Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
       elsif params[:filter] == "principles"
         Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "system"
+        Practice.joins(:location).where("farm_and_farming_system LIKE ? OR farm_and_farming_system_complement LIKE ?", "%#{params[:value]}%", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
       elsif params[:filter] == "search"
         Practice.where("name ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
       end

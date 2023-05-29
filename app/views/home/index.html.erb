@@ -82,6 +82,9 @@
         border: 1px solid;
         padding: 16px;
         border-radius: 18px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        width: 250px !important;
     }
 
     @media all and (max-width: 768px) {
@@ -93,6 +96,10 @@
             font-size: 16px;
         }
 
+        .links a {
+            width: 90px !important;
+            height: 70px !important;
+        }
     }
 </style>
 <main>
@@ -103,9 +110,9 @@
         <p class="light-text">Discover and share valuable resources and knowledge, find agroecological practices near you and connect with a like-minded community. Create a profile, explore, be found.</p>
         <div>
           <h4 class="links">
+            <%= link_to "Discover the map", map_path, style: "color: #DD7A00FF; !important" %>
+            <%= link_to "Register a location", new_location_path, style: "color: #90AD34; !important" %>
             <%= link_to "Discover Practices", practices_path %>
-            <%= link_to "Share your Practice", new_location_path, style: "color: #90AD34; !important" %>
-            <%= link_to "See the Map", map_path, style: "color: #DD7A00FF; !important" %>
           </h4>
         </div>
       </div>

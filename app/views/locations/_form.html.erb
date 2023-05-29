@@ -53,7 +53,7 @@
     </div>
 
     <br>
-    <div class="form-group row">
+    <div class="form-group row  bg-light">
       <%= f.label t(:is_it_a_farm), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <div style="text-align: left;">
@@ -64,24 +64,30 @@
     </div>
 
     <br>
-    <div class="form-group required bg-light row" id="farm_and_farming_system_options">
-      <%= f.label t(:farm_and_farming_system), class: "col-sm-2 col-form-label col-form-label-lg" %>
-      <div class="col-sm-10">
-        <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <br><br>
-        <div style="text-align: left;">
-          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Crops', checked_farm_and_farming_system_complement('Crops'), id: 'farm_and_farming_system_complement' %> 1 - Crops
+    <div id="farm_and_farming_system_options">
+      <div class="form-group required bg-light row" id="">
+        <%= f.label t(:what_do_you_have_on_your_farm), class: "col-sm-2 col-form-label col-form-label-lg" %>
+        <div class="col-sm-10">
           <br>
-          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Animals', checked_farm_and_farming_system_complement('Animals'), id: 'farm_and_farming_system_complement' %> 2 - Animals
+          <div style="text-align: left;">
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Crops', checked_farm_and_farming_system_complement('Crops'), id: 'farm_and_farming_system_complement' %> 1 - Crops
+            <br>
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Animals', checked_farm_and_farming_system_complement('Animals'), id: 'farm_and_farming_system_complement' %> 2 - Animals
+            <br>
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Trees', checked_farm_and_farming_system_complement('Trees'), id: 'farm_and_farming_system_complement' %> 3 - Trees
+            <br>
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Other', checked_farm_and_farming_system_complement('Other'), id: 'farm_and_farming_system_complement' %> 4 - Other
+          </div>
           <br>
-          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Trees', checked_farm_and_farming_system_complement('Trees'), id: 'farm_and_farming_system_complement' %> 3 - Trees
-          <br>
-          <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Other', checked_farm_and_farming_system_complement('Other'), id: 'farm_and_farming_system_complement' %> 4 - Other
         </div>
-        <br>
-        <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please, provide additional details..." %>
-        <div class="tip">How would you describe what you do in your location?</div>
+        <%= f.label t(:what_the_main_purpose_of_your_farm), class: "col-sm-2 col-form-label col-form-label-lg" %>
+        <div class="col-sm-10">
+          <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+          <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please, provide additional details..." %>
+          <div class="tip">How would you describe what you do in your location?</div>
+        </div>
       </div>
+
     </div>
     <br>
     <div class="form-group row" >
@@ -96,26 +102,26 @@
       <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :description, class: "form-control", :rows => "5" %>
-        <div class="tip">Tell us a little about this place</div>
+        <div class="tip">Tell us a bit about your place, what you do in the place you register, and what your experiences have been</div>
       </div>
     </div>
     <br>
-    <div class="form-group row">
-      <%= f.label t(:agroecology_in_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
-      <div class="col-sm-10">
-        <%= f.text_area :agroecology_in_practice, class: "form-control", :rows => "5" %>
-        <div class="tip">Which (different) agroecological practices you pursue?</div>
-      </div>
-    </div>
-    <br>
-    <div class="form-group row bg-light">
-      <%= f.label t(:summary_observation), class: "col-sm-2 col-form-label col-form-label-lg" %>
-      <div class="col-sm-10">
-        <%= f.text_area :summary_observation, class: "form-control", :rows => "5" %>
-        <div class="tip">How would you describe and evaluate the experience you made with agroecology in your farm?</div>
-      </div>
-    </div>
-    <br>
+    <!--    <div class="form-group row">-->
+    <%#= f.label t(:agroecology_in_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <!--      <div class="col-sm-10">-->
+    <%#= f.text_area :agroecology_in_practice, class: "form-control", :rows => "5" %>
+    <!--        <div class="tip">Which (different) agroecological practices you pursue?</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <br>-->
+    <!--    <div class="form-group row bg-light">-->
+    <%#= f.label t(:summary_observation), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <!--      <div class="col-sm-10">-->
+    <%#= f.text_area :summary_observation, class: "form-control", :rows => "5" %>
+    <!--        <div class="tip">How would you describe and evaluate the experience you made with agroecology in your farm?</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <br>-->
     <div class="form-group row">
       <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
@@ -201,8 +207,8 @@
             <% end %>
 
             <% if params["action"] == 'new' %>
-              lat = <%= !lat.blank? ? lat : -15.77835833463309 %>;
-              lon = <%= !lon.blank? ? lon : -47.88219451904297 %>;
+            lat = <%= !lat.blank? ? lat : -15.77835833463309 %>;
+            lon = <%= !lon.blank? ? lon : -47.88219451904297 %>;
             <% end %>
 
             var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);

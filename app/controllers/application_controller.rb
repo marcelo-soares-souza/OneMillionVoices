@@ -67,6 +67,21 @@ class ApplicationController < ActionController::Base
       }
     end
 
+    def load_system_options
+      @system_options = {
+        "Filter by Farm System" => "Filter",
+        "All" => "All",
+        t(:mainly_home_consumption) => "Mainly Home Consumption",
+        t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
+        t(:mainly_commercial) => "Mainly commercial",
+        t(:crops) => "Crops",
+        t(:animals) => "Animals",
+        t(:trees) => "Trees",
+        t(:other) => "Other",
+        t(:i_am_not_sure) => "I Am Not Sure"
+      }
+    end
+
   private
     def storable_location?
       request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
