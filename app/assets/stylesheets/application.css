@@ -263,7 +263,6 @@ b, strong {
     }
 }
 
-
 #locale {
     font-size: 0.75rem;
     height: 34px;
@@ -362,29 +361,30 @@ td {
 }
 
 #notice {
-    color: green;
+    color: #008000FF;
 }
 
 .field_with_errors {
     padding: 2px;
-    background-color: red;
+    background-color: #FF0000FF;
     display: table;
 }
 
 #error_explanation {
     width: 450px;
-    border: 2px solid red;
+    border: 2px solid #FF0000FF;
     padding: 7px 7px 0;
     margin-bottom: 20px;
     background-color: #f0f0f0;
 }
+
 #error_explanation h2 {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
     font-size: 12px;
     margin: -7px -7px 0;
-    background-color: #c00;
+    background-color: #FF0000FF;
     color: #fff;
 }
 
@@ -452,7 +452,7 @@ a, a:visited {
 }
 
 .error {
-    border-color: red;
+    border-color: #FF0000FF;
 }
 
 table thead th {
@@ -560,7 +560,7 @@ a:focus, a:hover {
     display: block;
     width: 100%;
     position: absolute;
-    background-color: white;
+    background-color: #ffffff;
     opacity: 0.8;
     bottom: -0.3em
 }
@@ -580,7 +580,7 @@ a:focus, a:hover {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: white;
+    color: #ffffff;
     font-weight: 600;
     font-size: 16px;
 }
@@ -662,7 +662,7 @@ input::file-selector-button {
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link
 {
-    color: white;
+    color: #ffffff;
 }
 
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link:hover
@@ -698,10 +698,20 @@ h1 {
     .nav-item {
         font-size: 19px !important;
     }
+
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 310px !important;
+    }
+    .bootstrap-select > .dropdown-menu > .dropdown-menu li a {
+        width: 305px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
-    width: 310px;
+    width: 345px;
 }
 
 .form-group .bootstrap-select.btn-group, .form-horizontal .bootstrap-select.btn-group, .form-inline .bootstrap-select.btn-group {
@@ -742,7 +752,7 @@ h1 {
 }
 
 .navbar-light .navbar-toggler {
-    color: white;
+    color: #ffffff !important;
     border-color: rgba(0,0,0,.1);
 }
 

@@ -16,6 +16,12 @@
     .thank_you_notes .card {
         border: 0;
     }
+
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 
 <div class="thank_you_notes">
@@ -26,20 +32,22 @@
   </div>
 
   <br><br>
-
   <div class="row">
-    <div class="col-sm-4" >
-      <div class="card" style="min-height: 200px">
+    <div class="col-sm-4">
+      <div class="card">
         <div class="logo"><%= link_to image_tag("agroecologymap.png", width: "180px", alt: "Agroecology Map Logo", title: "Agroecology Map Logo"), "https://agroecologymap.org", :target => "_blank", :alt => "Agroecology Map Logo", :title => "Agroecology Map Logo" %></div>
       </div>
     </div>
 
-    <div class="col-sm-4" >
-      <div class="card" style="min-height: 200px">
+    <div class="col-sm-4">
+      <div class="card">
         <div class="logo"><%= link_to image_tag("tpp.jpg", width: "180px", alt: "The Transformative Partnership Platform on Agroecology", title: "The Transformative Partnership Platform on Agroecology"), "https://glfx.globallandscapesforum.org/topics/21467/page/TPP-home", :target => "_blank", :alt => "Agroecology Map Logo", :title => "The Transformative Partnership Platform on Agroecology" %></div>
       </div>
     </div>
+  </div>
 
+  <br><br>
+  <div class="row">
     <div class="col-sm-4" >
       <div class="card" style="min-height: 200px">
         <div class="logo"><%= link_to image_tag("rails.png", width: "180px", alt: "Ruby on Rails", title: "Ruby on Rails"), "https://rubyonrails.org/", :target => "_blank", :alt => "Ruby on Rails", :title => "Ruby on Rails" %></div>
