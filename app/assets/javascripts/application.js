@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require_tree .
-//= require cookies_eu
 
 $(document).ready(function () {
     $(".alert").fadeTo(6000, 500).slideUp(500, function () {

@@ -47,7 +47,7 @@
 
     <% if @location.hide_my_location == false %>
       <% if @location.latitude and @location.longitude %>
-        <div id="map-show"></div>
+        <div id="map-show" style="z-index: 1;"></div>
       <% end %>
     <% end %>
   </div>

@@ -76,8 +76,6 @@ GEM
       rails (>= 6)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
-    cookies_eu (1.7.8)
-      js_cookie_rails (~> 2.2.0)
     countries (5.4.0)
       unaccent (~> 0.3)
     country_select (8.0.1)
@@ -106,8 +104,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    js_cookie_rails (2.2.0)
-      railties (>= 3.1)
     json (2.6.3)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -267,7 +263,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-icons-helper
-  cookies_eu (>= 1.7.8)
   country_select
   devise (~> 4.9.2)
   friendly_id

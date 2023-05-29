@@ -33,7 +33,6 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "devise", "~> 4.9.2"
 gem "friendly_id"
-gem "cookies_eu", ">= 1.7.8"
 gem "geocoder"
 gem "kaminari"
 gem "country_select"
