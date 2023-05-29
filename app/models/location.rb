@@ -19,15 +19,15 @@ class Location < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates_length_of :name, minimum: 4, maximum: 100
   validates_length_of :description, minimum: 8, maximum: 4096, allow_blank: true
-  validates_length_of :agroecology_in_practice, minimum: 8, maximum: 4096, allow_blank: true
-  validates_length_of :summary_observation, minimum: 8, maximum: 4096, allow_blank: true
+  # validates_length_of :agroecology_in_practice, minimum: 8, maximum: 4096, allow_blank: true
+  # validates_length_of :summary_observation, minimum: 8, maximum: 4096, allow_blank: true
   validate :acceptable_photo
 
   before_save do
     self.name = name.strip.titleize
     self.description = description.strip.capitalize
-    self.agroecology_in_practice = agroecology_in_practice.strip.capitalize
-    self.summary_observation = summary_observation.strip.capitalize
+    # self.agroecology_in_practice = agroecology_in_practice.strip.capitalize
+    # self.summary_observation = summary_observation.strip.capitalize
 
     self.farm_and_farming_system_complement.gsub!(/[\[\]"]/, "") if attribute_present?("farm_and_farming_system_complement")
   end

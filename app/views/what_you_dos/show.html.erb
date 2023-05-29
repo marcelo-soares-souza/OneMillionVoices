@@ -60,7 +60,9 @@
       </h3>
     <% else %>
       <% if ! @what_you_do.where_it_is_realized.blank? %>
-        <div class="practices-box"><%= "<h4>#{t(:where_it_is_realized)}</h4><div class='text-box'>#{simple_format (h @what_you_do.where_it_is_realized).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+        <div class="practices-box">
+          <%= "<h4>#{t(:where_it_is_realized)}</h4><div class='text-box'>#{@where_it_is_realized_options.key(@what_you_do.where_it_is_realized)}</div>".html_safe %>
+        </div>
       <% end %>
 
       <% if ! @what_you_do.summary_description_of_agroecological_practice.blank? %>
@@ -88,7 +90,8 @@
       <% end %>
 
       <% if ! @what_you_do.substitution_of_less_ecological_alternative.blank? %>
-        <div class="practices-box"><%= "<h4>#{t(:substitution_of_less_ecological_alternative)}</h4><div class='text-box'>#{simple_format (h @what_you_do.substitution_of_less_ecological_alternative).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %>
+        <div class="practices-box">
+          <%= "<h4>#{t(:substitution_of_less_ecological_alternative)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_options.key(@what_you_do.substitution_of_less_ecological_alternative)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @what_you_do.substitution_of_less_ecological_alternative_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @what_you_do.substitution_of_less_ecological_alternative_details.blank? %>
         </div>
       <% end %>
