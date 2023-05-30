@@ -309,7 +309,7 @@ fr:
         one: 1 error prohibited this %{model} from being saved
         other: "%{count} errors prohibited this %{model} from being saved"
   send_me_the_reset_instructions: "Send me the Reset Instructions"
-  resend_confirmation_by_email: "Resend Confirmation by E-Mail"
+  resend_confirmation_by_email: "Resend Confirmation by e-mail"
   resend: "Resend"
   date:
     abbr_day_names:
@@ -486,7 +486,7 @@ fr:
   sign_in: "S'identifier"
   sign_up: "Enrol"
   confirmation_instruction: "Vous n'avez pas reçu les instructions de confirmation ?"
-  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
+  didnt_confirmation_instruction: "Didn't receive confirmation e-mail?"
   remember_me: "Souviens-toi de moi?"
   forgot_password: "Mot de passe oublié?"
   observation: "Observation"

@@ -139,7 +139,7 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation E-Mail"
+        subject: "Confirmation e-mail"
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:
@@ -218,7 +218,7 @@ en:
         one: 1 error prohibited this %{model} from being saved
         other: "%{count} errors prohibited this %{model} from being saved"
   send_me_the_reset_instructions: "Send me the Reset Instructions"
-  resend_confirmation_by_email: "Resend Confirmation by E-Mail"
+  resend_confirmation_by_email: "Resend Confirmation by e-mail"
   resend: "Resend"
   activerecord:
     errors:
@@ -401,8 +401,8 @@ en:
   registered_experiences: "Experiences"
   sign_in: "Sign In"
   sign_up: "Sign Up"
-  confirmation_instruction: "Didn't receive confirmation E-Mail?"
-  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
+  confirmation_instruction: "Didn't receive confirmation e-mail?"
+  didnt_confirmation_instruction: "Didn't receive confirmation e-mail?"
   remember_me: "Remember Me?"
   forgot_password: "Forgot password?"
   observation: "Observation"

@@ -220,7 +220,7 @@ es:
         one: No se pudo guardar este/a %{model} porque se encontró 1 error
         other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
   send_me_the_reset_instructions: "Send me the Reset Instructions"
-  resend_confirmation_by_email: "Resend Confirmation by E-Mail"
+  resend_confirmation_by_email: "Resend Confirmation by e-mail"
   resend: "Resend"
   activerecord:
     errors:
@@ -406,7 +406,7 @@ es:
   sign_in: "Entrar"
   sign_up: "Inscribirse"
   confirmation_instruction: "¿No recibió las instrucciones de confirmación?"
-  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
+  didnt_confirmation_instruction: "Didn't receive confirmation e-mail?"
   remember_me: "¿Recuérdame?"
   forgot_password: "¿Se te olvidó tu contraseña?"
   observation: "Observación"

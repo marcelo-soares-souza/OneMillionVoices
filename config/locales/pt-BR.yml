@@ -216,7 +216,7 @@ pt-BR:
         one: "Não foi possível gravar %{model}: 1 erro"
         other: "Não foi possível gravar %{model}: %{count} erros"
   send_me_the_reset_instructions: "Envie-me as Instruções para Redefinir"
-  resend_confirmation_by_email: "Reenviar Confirmação por E-Mail"
+  resend_confirmation_by_email: "Reenviar Confirmação por e-mail"
   resend: "Reenviar"
   activerecord:
     errors:
@@ -405,7 +405,7 @@ pt-BR:
   sign_in: "Entrar"
   sign_up: "Cadastrar"
   confirmation_instruction: "Não recebi as instruções de confirmação?"
-  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
+  didnt_confirmation_instruction: "Didn't receive confirmation e-mail?"
   remember_me: "Lembrar de Mim?"
   forgot_password: "Esqueceu a Senha?"
   observation: "Observação"

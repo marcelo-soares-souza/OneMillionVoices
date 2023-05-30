@@ -218,7 +218,7 @@ en:
         one: 1 error prohibited this %{model} from being saved
         other: "%{count} errors prohibited this %{model} from being saved"
   send_me_the_reset_instructions: "Send me the Reset Instructions"
-  resend_confirmation_by_email: "Resend Confirmation by E-Mail"
+  resend_confirmation_by_email: "Resend Confirmation by e-mail"
   resend: "Resend"
   activerecord:
     errors:
@@ -402,7 +402,7 @@ en:
   sign_in: "Sign In"
   sign_up: "Sign Up"
   confirmation_instruction: "Didn't receive confirmation instructions?"
-  didnt_confirmation_instruction: "Didn't receive confirmation E-Mail?"
+  didnt_confirmation_instruction: "Didn't receive confirmation e-mail?"
   remember_me: "Remember Me?"
   forgot_password: "Forgot password?"
   observation: "Observation"
