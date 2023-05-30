@@ -19,8 +19,8 @@ class Account < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, presence: true
-  validates_length_of :name, minimum: 4, maximum: 100
-  validates :name, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
+  validates_length_of :name, minimum: 2, maximum: 100
+  # validates :name, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
   validates :email, presence: true, uniqueness: true
   validates_length_of :about, minimum: 4, allow_blank: true
   validates_length_of :about, maximum: 2048

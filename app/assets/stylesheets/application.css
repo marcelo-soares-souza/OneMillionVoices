@@ -109,7 +109,7 @@
 
 .friends a {
     font-size: 22px;
-    color: rgb(221, 122, 0) !important;
+    color: #00a88e !important;
     background-color: transparent;
 }
 
@@ -620,7 +620,7 @@ a:focus, a:hover {
     text-align: left;
     font-size: 15px;
     font-style: italic;
-    color: #d97800 !important;
+    color: #00a88e !important;
 }
 
 .tip_alert {
