@@ -84,7 +84,11 @@
         border-radius: 18px;
         padding-top: 4px;
         padding-bottom: 4px;
-        width: 250px !important;
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+        min-height: 50px !important;
+        max-height: 50px !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -103,6 +107,10 @@
         .links a {
             width: 85px !important;
             height: 70px !important;
+            min-width: 85px !important;
+            min-height: 70px !important;
+            max-width: 85px !important;
+            max-height: 70px !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -119,7 +127,7 @@
           <h4 class="links">
             <%= link_to "Discover the map", map_path, style: "color: #d1db61 !important" %>
             <%= link_to "Register a location", new_location_path, style: "color: #175f5e !important" %>
-            <%= link_to "Discover Practices", practices_path %>
+            <%= link_to "Share your practices", practices_path %>
           </h4>
         </div>
       </div>
