@@ -96,9 +96,9 @@ class WhatYouDosController < ApplicationController
 
     def load_options
       @where_it_is_realized_options = {
-        "3 - " + "On-farm" => "On-farm",
+        "1 - " + "On-farm" => "On-farm",
         "2 - " + "Off-farm" => "Off-farm",
-        "1 - " + "Other" => "Other"
+        "3 - " + "Other" => "Other"
       }
 
       @unit_of_measure_options = {

@@ -26,13 +26,14 @@
   </div>
 
   <div class="forms">
-    <div class="form-group row bg-light">
-      <%= f.label t(:summary_description_of_agroecological_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+    <div class="form-group row bg-light required">
+      <%= f.label t(:summary_description_of_agroecological_practice), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:where_it_is_realized, @where_it_is_realized_options, :last, :first, { :include_blank => t(:where_it_is_realized) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :summary_description_of_agroecological_practice, class: "form-control", :rows => "6" %>
+        <%= f.collection_select(:where_it_is_realized, @where_it_is_realized_options, :last, :first, { :include_blank => false }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.text_area :summary_description_of_agroecological_practice, class: "form-control", :rows => "6", :required => true %>
         <div class="tip">
           In short, what is the practice that you want to map?
+          <span class="tip_alert" style="float: right;">*This field is required.</span>
         </div>
       </div>
     </div>
