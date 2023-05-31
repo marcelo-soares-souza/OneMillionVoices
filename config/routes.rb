@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "manual", to: "about#manual"
   get "license", to: "about#license"
   get "thank_you_notes", to: "about#thank_you_notes"
+  get "coordinates", to: "locations#coordinates"
 
   resources :practices
   resources :acknowledges

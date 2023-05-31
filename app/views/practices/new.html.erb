@@ -25,9 +25,8 @@
 
 <br>
 
-<% if !@locations.empty? %>
+<% if params[:location_id] %>
   <%= render 'form', practice: @practice %>
 <% else %>
-  <br>
-  <h3>Nenhum Location Cadastrado. Deseja <%= link_to "Cadastrar um Location Agora?", new_location_url %></h3>
+  <%= render 'locations' %>
 <% end %>

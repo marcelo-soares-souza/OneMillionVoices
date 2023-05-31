@@ -38,9 +38,9 @@ class ApplicationController < ActionController::Base
 
     def load_locations
       @locations = if current_account.admin?
-        Location.all.load_async
+        Location.all
       else
-        Location.where(account_id: current_account.id).load_async
+        Location.where(account_id: current_account.id)
       end
     end
 

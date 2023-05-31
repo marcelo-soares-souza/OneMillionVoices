@@ -258,6 +258,16 @@
                 popupAnchor: [-3, -76]
             });
 
+            $("#location_country").change(function () {
+                location_country = $("#location_country option:selected").text();
+                console.log(location_country)
+                $.get( "/coordinates?country=" + location_country, function( data ) {
+                    lat = data["latitude"] ? data["latitude"] : lat;
+                    lon = data["longitude"] ? data["longitude"] : lon;
+                    map.flyTo([lat, lon], 6);
+                });
+            });
+
             var marker = L.marker(new L.LatLng(lat, lon), {draggable: true, icon: Icon}).addTo(map);
 
             $('#latitude').val(lat);

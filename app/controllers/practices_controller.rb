@@ -10,6 +10,7 @@ class PracticesController < ApplicationController
   before_action :load_account
   before_action :load_options
   before_action :load_system_options
+  before_action :load_locations, only: %i[new]
 
   # GET /practices
   # GET /practices.json
