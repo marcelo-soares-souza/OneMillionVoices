@@ -158,114 +158,56 @@
       <%= f.submit button_name, class: "btn btn-warning btn-lg" %>
     </div>
 
-    <% if params["action"] == 'new' %>
+    <% if params["action"] == "new" %>
       <% lat = params[:lat].blank? ? '' : params[:lat] %>
       <% lon = params[:lon].blank? ?  '' : params[:lon] %>
     <% end %>
 
     <script>
         $(document).ready(function () {
-            // hide_my_location_on_map
-            if ($("#hide_my_location_on_map option:selected").val() == 'true') {
-                $("#location").hide();
-            } else {
-                $("#location").show();
-            }
+            $("#hide_my_location_on_map option:selected").val() == 'true' ? $("#location").hide() : $("#location").show();
+            $("#is_it_a_farm option:selected").val() == 'true' ? $("#farm_and_farming_system_options").show() : $("#farm_and_farming_system_options").hide();
 
             $("#hide_my_location_on_map").change(function () {
-                hide_my_location_on_map = $("#hide_my_location_on_map option:selected").val();
-
-                if (hide_my_location_on_map == 'true') {
-                    $("#location").hide();
-                } else {
-                    $("#location").show();
-                }
+                $("#hide_my_location_on_map option:selected").val() == 'true' ? $("#location").hide() : $("#location").show();
             });
 
-            // Verify is_it_a_farm
-            if ($("#is_it_a_farm option:selected").val() == 'true') {
-                $("#farm_and_farming_system_options").show();
-            } else {
-                $("#farm_and_farming_system_options").hide();
-            }
-
             $("#is_it_a_farm").change(function () {
-                is_it_a_farm = $("#is_it_a_farm option:selected").val();
-
-                if (is_it_a_farm == 'true') {
-                    $("#farm_and_farming_system_options").show();
-                } else {
-                    $("#farm_and_farming_system_options").hide();
-                }
+                $("#is_it_a_farm option:selected").val() == 'true' ? $("#farm_and_farming_system_options").show() : $("#farm_and_farming_system_options").hide();
             });
 
             // Location and Maps Things
-            <% if params[:action] == 'new' %>
-            <% if request.location %>
-            lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
-              lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
-                <% end %>
-                <% elsif params[:action] != 'new' %>
-                <% if f.object.latitude? %>
-                lat = <%= f.object.latitude %>;
-            <% else %>
+            // Default Location is Brasilia
             lat = -15.77835833463309;
-            <% end %>
-            <% if f.object.longitude? %>
-            lon = <%= f.object.longitude %>;
-            <% else %>
             lon = -47.88219451904297;
-            <% end %>
-            <% end %>
 
-            <% if params["action"] == 'new' %>
-            lat = <%= !lat.blank? ? lat : -15.77835833463309 %>;
-            lon = <%= !lon.blank? ? lon : -47.88219451904297 %>;
+            <% if params[:action] == "new" %>
+                <% if request.location %>
+                  lat = <%= request.location.latitude ? request.location.latitude : -15.77835833463309 %>
+                  lon = <%= request.location.longitude ? request.location.longitude : -47.88219451904297 %>
+               <% end %>
+            <% elsif params[:action] != "new" %>
+                lat = <%= f.object.latitude %>;
+                lon = <%= f.object.longitude %>;
             <% end %>
 
             var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);
 
             $(window).on("resize", function () {
                 $("#map-sistema").width($(window).width());
-                map.invalidateSize();
-            }).trigger("resize");
-            $(window).on("resize", function () {
                 $("#map-sistema").height($(window).height());
                 map.invalidateSize();
             }).trigger("resize");
 
-            var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '<a href="https://agroecologymap.org/" target="_blank">Agroecology Map</a> | OpenStreetMap',
-                maxZoom: 18,
-            }).addTo(map);
-            var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
-                attribution: 'Agroecology Map | MapBox',
-                maxZoom: 18,
-            });
-            var baseMaps = {"OpenStreetMap": osm, "Satélite (MapBox)": mapbox};
-
+            var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '<a href="https://agroecologymap.org/" target="_blank">Agroecology Map</a> | OpenStreetMap', maxZoom: 18, }).addTo(map);
+            var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', { attribution: 'Agroecology Map | MapBox', maxZoom: 18,});
+            var baseMaps = {"OpenStreetMap": osm, "MapBox": mapbox};
             L.control.layers(baseMaps).addTo(map);
-
             map.addControl(new L.control.zoom({position: 'topright'}));
 
             var Icon = L.icon({
-                iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
-                shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
-                iconSize: [38, 95],
-                shadowSize: [50, 64],
-                iconAnchor: [22, 94],
-                shadowAnchor: [4, 62],
-                popupAnchor: [-3, -76]
-            });
-
-            $("#location_country").change(function () {
-                location_country = $("#location_country option:selected").text();
-                console.log(location_country)
-                $.get( "/coordinates?country=" + location_country, function( data ) {
-                    lat = data["latitude"] ? data["latitude"] : lat;
-                    lon = data["longitude"] ? data["longitude"] : lon;
-                    map.flyTo([lat, lon], 6);
-                });
+                iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>', shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+                iconSize: [38, 95], shadowSize: [50, 64],  iconAnchor: [22, 94],  shadowAnchor: [4, 62], popupAnchor: [-3, -76]
             });
 
             var marker = L.marker(new L.LatLng(lat, lon), {draggable: true, icon: Icon}).addTo(map);
@@ -282,6 +224,57 @@
             marker.on('dragend', function (e) {
                 $('#latitude').val(marker.getLatLng().lat);
                 $('#longitude').val(marker.getLatLng().lng);
+            });
+
+            <% if params["action"] == "new" %>
+              location_country = $("#location_country option:selected").text();
+
+              $.get( "/coordinates?country=" + location_country, function( data ) {
+                  lat = data["latitude"] ? data["latitude"] : lat;
+                  lon = data["longitude"] ? data["longitude"] : lon;
+                  map.setView([lat, lon], 6);
+                  marker.remove()
+                  marker = L.marker(new L.LatLng(lat, lon), {draggable: true, icon: Icon}).addTo(map);
+
+                  $('#latitude').val(lat);
+                  $('#longitude').val(lon);
+
+                  map.on('click', function (e) {
+                      marker.setLatLng(e.latlng);
+                      $('#latitude').val(marker.getLatLng().lat);
+                      $('#longitude').val(marker.getLatLng().lng);
+                  });
+
+                  marker.on('dragend', function (e) {
+                      $('#latitude').val(marker.getLatLng().lat);
+                      $('#longitude').val(marker.getLatLng().lng);
+                  });
+              });
+            <% end %>
+
+            $("#location_country").change(function () {
+                location_country = $("#location_country option:selected").text();
+                $.get( "/coordinates?country=" + location_country, function( data ) {
+                    lat = data["latitude"] ? data["latitude"] : lat;
+                    lon = data["longitude"] ? data["longitude"] : lon;
+                    map.setView([lat, lon], 6);
+                    marker.remove()
+                    marker = L.marker(new L.LatLng(lat, lon), {draggable: true, icon: Icon}).addTo(map);
+
+                    $('#latitude').val(lat);
+                    $('#longitude').val(lon);
+
+                    map.on('click', function (e) {
+                        marker.setLatLng(e.latlng);
+                        $('#latitude').val(marker.getLatLng().lat);
+                        $('#longitude').val(marker.getLatLng().lng);
+                    });
+
+                    marker.on('dragend', function (e) {
+                        $('#latitude').val(marker.getLatLng().lat);
+                        $('#longitude').val(marker.getLatLng().lng);
+                    });
+                });
             });
         });
     </script>
