@@ -12,6 +12,7 @@
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
   <%= select_tag "system", options_from_collection_for_select(@system_options, :last, :first, params[:filter] == 'system' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system")' %>
+  <%= country_select("country", "country", { selected: params[:filter] == 'country' ? params[:value] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true, onchange: 'filter("country")' }) %>
   <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>
 </div>
 
@@ -47,10 +48,15 @@
 
     function filter(filter) {
         if (filter != "search") {
-            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
+            if (filter == "country") {
+                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#country_country :selected").val();
+            }
+            else {
+                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
+            }
         }
         else {
-            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter).val();
+                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter).val();
         }
     }
 
