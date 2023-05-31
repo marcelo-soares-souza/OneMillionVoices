@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+email = ENV.fetch("ADMIN_EMAIL") { "admin@agroecologymap.org" }
 password = ENV.fetch("ADMIN_PASSWORD") { "agroecology" }
 
-account_admin = Account.new(name: "One Million Voices Administrator", email: "admin@agroecologymap.org", password: password, admin: "t")
+account_admin = Account.new(name: "One Million Voices Administrator", email: email, password: password, admin: "t")
 account_admin.password_confirmation = password
 account_admin.skip_confirmation!
 account_admin.save!

@@ -147,8 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_143441) do
     t.boolean "hide_my_location"
     t.string "country"
     t.string "farm_and_farming_system"
-    t.text "agroecology_in_practice"
-    t.text "summary_observation"
     t.text "farm_and_farming_system_details"
     t.string "farm_and_farming_system_complement"
     t.boolean "is_it_a_farm"
@@ -184,7 +182,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_143441) do
     t.bigint "practice_id", null: false
     t.text "summary_description_of_agroecological_practice"
     t.text "type_of_agroecological_practice"
-    t.text "problem_that_practice_addresses"
     t.text "practical_implementation_of_the_practice"
     t.text "expected_function_or_effects_of_practice"
     t.datetime "created_at", null: false
