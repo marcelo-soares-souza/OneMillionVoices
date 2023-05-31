@@ -71,35 +71,21 @@
       $(document).ready(function () {
           var map = L.map('map-show').setView([<%= @location.latitude %>, <%= @location.longitude %>], 10);
           var attributions = '<a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> | <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY-NC-SA</a>'
-          var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: attributions,
-              maxZoom: 18,
-          }).addTo(map);
-          var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', {
-              attribution: 'Mapa da Agroecologia | MapBox',
-              maxZoom: 18,
-          });
+          var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: attributions, maxZoom: 18, }).addTo(map);
+          var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', { attribution: 'Mapa da Agroecologia | MapBox', maxZoom: 18, });
           var baseMaps = {"OpenStreetMap": osm, "Satélite (MapBox)": mapbox};
-
           L.control.layers(baseMaps).addTo(map);
 
-          var Icon = L.icon({
-              iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
-              shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
-              iconSize: [38, 95],
-              shadowSize: [50, 64],
-              iconAnchor: [22, 94],
-              shadowAnchor: [4, 62],
-              popupAnchor: [-3, -76]
-          });
           $(window).on("resize", function () {
               $("#map-show").width($(window).width() - 30);
-              map.invalidateSize();
-          }).trigger("resize");
-          $(window).on("resize", function () {
               $("#map-show").height($(window).height());
               map.invalidateSize();
           }).trigger("resize");
+
+          var Icon = L.icon({
+              iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>', shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+              iconSize: [38, 95], shadowSize: [50, 64], iconAnchor: [22, 94], shadowAnchor: [4, 62], popupAnchor: [-3, -76]
+          });
 
           L.marker([<%= @location.latitude %>, <%= @location.longitude %>], {icon: Icon}).addTo(map);
       });

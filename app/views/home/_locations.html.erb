@@ -1,13 +1,9 @@
 <% if @locations %>
   var markers = L.markerClusterGroup({ disableClusteringAtZoom: 12, maxClusterRadius: 20 });
+
   var Icon = L.icon({
-  iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>',
-  shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
-  iconSize:     [38, 95],
-  shadowSize:   [50, 64],
-  iconAnchor:   [22, 94],
-  shadowAnchor: [4, 62],
-  popupAnchor:  [-3, -76]
+    iconUrl: '<%= image_url "leaflet/images/leaf-green.png" %>', shadowUrl: '<%= image_url "leaflet/images/leaf-shadow.png" %>',
+    iconSize:     [38, 95], shadowSize:   [50, 64], iconAnchor:   [22, 94], shadowAnchor: [4, 62], popupAnchor:  [-3, -76]
   });
 
   <% @locations.each do |location| %>

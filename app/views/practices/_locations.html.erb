@@ -5,7 +5,7 @@
 
 <% if @locations.empty? %>
   <br>
-  <h2><%= t(:no_data_has_been_registered_so_far) %> <%= link_to t(:register_new_location), new_location_path if account_signed_in? %></h2>
+  <h2><%= t(:no_data_has_been_registered_so_far) %> <%= link_to t(:register_new_location), new_location_path if account_signed_in? %> first</h2>
 <% else %>
   <div class="row">
     <% @locations.each do |location| %>
