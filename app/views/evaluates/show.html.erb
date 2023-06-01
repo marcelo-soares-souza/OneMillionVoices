@@ -69,14 +69,14 @@
 
       <% if ! @evaluate.unintended_positive_side_effects_of_practice.blank? %>
         <div class="practices-box">
-          <%= "<h4>#{t(:unintended_positive_side_effects_of_practice)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_options.key(@evaluate.unintended_positive_side_effects_of_practice)}</div>".html_safe %>
+          <%= "<h4>#{t(:unintended_positive_side_effects_of_practice)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_not_applicable_options.key(@evaluate.unintended_positive_side_effects_of_practice)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.unintended_positive_side_effects_of_practice_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.unintended_positive_side_effects_of_practice_details.blank? %>
         </div>
       <% end %>
 
       <% if ! @evaluate.unintended_negative_side_effect_of_practice.blank? %>
         <div class="practices-box bg-light">
-          <%= "<h4>#{t(:unintended_negative_side_effect_of_practice)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_options.key(@evaluate.unintended_negative_side_effect_of_practice)}</div>".html_safe %>
+          <%= "<h4>#{t(:unintended_negative_side_effect_of_practice)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_not_applicable_options.key(@evaluate.unintended_negative_side_effect_of_practice)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.unintended_negative_side_effect_of_practice_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.unintended_negative_side_effect_of_practice_details.blank? %>
         </div>
       <% end %>
