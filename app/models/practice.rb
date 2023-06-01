@@ -29,7 +29,7 @@ class Practice < ApplicationRecord
   friendly_id :name, use: :slugged
 
   before_save do
-    self.name = name.strip.titleize
+    self.name = name.strip.capitalize
   end
 
   protected

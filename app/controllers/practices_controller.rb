@@ -157,7 +157,7 @@ class PracticesController < ApplicationController
         "All" => "All",
         "1 - Recycling" => "Recycling",
         "2 - Input reduction" => "Input reduction",
-        "3 - Soil heath" => "Soil heath",
+        "3 - Soil health" => "Soil health",
         "4 - Animal health" => "Animal health",
         "5 - Biodiversity" => "Biodiversity",
         "6 - Synergy" => "Synergy",

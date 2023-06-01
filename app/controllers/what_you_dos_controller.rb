@@ -105,7 +105,8 @@ class WhatYouDosController < ApplicationController
         "m2" => "m2",
         "Acre" => "Acre",
         "Hectare" => "Hectare",
-        "Square foot" => "Square foot"
+        "Square foot" => "Square foot",
+        t(:not_applicable) => "Not applicable"
       }
     end
 end
