@@ -537,7 +537,7 @@ es:
   agroecology_in_practice: "Agroecology in Practice"
   summary_observation: "Summary Observation"
   uptake_motivation: "Uptake Motivation"
-  where_it_is_realized: "Where it is realized?"
+  where_it_is_realized: "Where it is realized"
   substitution_of_less_ecological_alternative: "Substitution of less ecological alternative"
   land_size: "Land size"
   farm_and_farming_system_details: "Details of the Farming System"
@@ -558,3 +558,4 @@ es:
   what_the_main_purpose_of_your_farm: "What's the main purpose of your farm?"
   unit_of_measurement: "Unit of Measurement"
   edit_your_profile: "Edit your Profile"
+  not_applicable: "Not applicable"

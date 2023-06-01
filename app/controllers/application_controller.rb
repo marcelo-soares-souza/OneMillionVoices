@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
       @yes_no_i_am_not_sure_options = {
         "1 - " + t(:yes_query) => "Yes",
         "2 - " + t(:no_query) => "No",
-        "3 - " + t(:i_am_not_sure) => "I am not sure"
+        "3 - " + t(:i_am_not_sure) => "I am not sure",
       }
     end
 
@@ -63,7 +63,8 @@ class ApplicationController < ActionController::Base
         "3 - " + t(:neither_effective_nor_uneffective) => "Neither effective nor uneffective",
         "2 - " + t(:rather_uneffective) => "Rather uneffective",
         "1 - " + t(:very_uneffective) => "Very uneffective",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
+        "0 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
       }
     end
 

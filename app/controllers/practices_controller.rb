@@ -133,7 +133,7 @@ class PracticesController < ApplicationController
 
     def load_options
       @food_system_components_addressed_options = {
-        "Filter by Components" => "Filter",
+        "Filter by System Component" => "Filter",
         "All" => "All",
         "1 - Soil" => "Soil",
         "2 - Water" => "Water",
@@ -153,7 +153,7 @@ class PracticesController < ApplicationController
       }
 
       @agroecology_principles_addressed_options = {
-        "Filter by Principles" => "Filter",
+        "Filter by Agroecology Principle" => "Filter",
         "All" => "All",
         "1 - Recycling" => "Recycling",
         "2 - Input reduction" => "Input reduction",

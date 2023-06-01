@@ -723,7 +723,7 @@ h1 {
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(
     .input-group-btn
   ) {
-    width: 345px;
+    width: 385px;
 }
 
 .form-group .bootstrap-select.btn-group,

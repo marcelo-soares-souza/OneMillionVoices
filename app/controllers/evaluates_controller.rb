@@ -100,7 +100,8 @@ class EvaluatesController < ApplicationController
         "3 - " + t(:specialised_knowledge_required_neither_high_nor_low) => "Specialised knowledge required neither high nor low",
         "2 - " + t(:rather_low_specialised_knowledge_required) => "Rather low specialised knowledge required",
         "1 - " + t(:no_specialised_knowledge_required) => "No specialised knowledge required",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
+        "0 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
       }
 
       @cost_associated_with_practice_options = {
@@ -109,7 +110,8 @@ class EvaluatesController < ApplicationController
         "3 - " + t(:neither_high_nor_low_costs) => "Rather high costs",
         "2 - " + t(:rather_low_costs) => "Rather low costs",
         "1 - " + t(:low_costs) => "Low costs",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
+        "0 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
       }
 
       @labour_required_for_practice_options = {
@@ -118,7 +120,8 @@ class EvaluatesController < ApplicationController
         "3 - " + t(:neither_high_nor_low_labout_required) => "Neither high nor low labout required",
         "2 - " + t(:rather_low_labour_required) => "Rather low labour required",
         "1 - " + t(:low_labour_required) => "Low labour required",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
+        "0 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
       }
 
       @time_requirements_options = {
@@ -127,7 +130,8 @@ class EvaluatesController < ApplicationController
         "3 - " + t(:works_neither_rapidly_nor_slowly) => "Works neither rapidly nor slowly",
         "2 - " + t(:takes_rather_long_to_work) => "Takes rather long to work",
         "1 - " + t(:takes_very_long_to_work) => "Takes very long to work",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
+        "0 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
       }
 
       @system_integrity_requirements_options = {
@@ -136,7 +140,15 @@ class EvaluatesController < ApplicationController
         "3 - " + t(:neither_works_well_nor_poorly_in_depleted_environment) => "Neither works well nor poorly in depleted environment",
         "2 - " + t(:does_rather_not_work_in_depleted_environment) => "Does rather not work in depleted environment",
         "1 - " + t(:does_not_work_at_all_in_depleted_environment) => "Does not work at all in depleted environment",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
+        "0 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
+      }
+
+      @yes_no_i_am_not_sure_not_applicable_options = {
+        "1 - " + t(:yes_query) => "Yes",
+        "2 - " + t(:no_query) => "No",
+        "3 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
       }
     end
 end

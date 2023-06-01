@@ -42,7 +42,7 @@
     <div class="form-group row">
       <%= f.label t(:unintended_positive_side_effects_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:unintended_positive_side_effects_of_practice, @yes_no_i_am_not_sure_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.collection_select(:unintended_positive_side_effects_of_practice, @yes_no_i_am_not_sure_not_applicable_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
         <%= f.text_area :unintended_positive_side_effects_of_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
         <div class="tip">
           Does using the practice have any positive side effects that you did not expect?
@@ -54,7 +54,7 @@
     <div class="form-group row bg-light">
       <%= f.label t(:unintended_negative_side_effect_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:unintended_negative_side_effect_of_practice, @yes_no_i_am_not_sure_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.collection_select(:unintended_negative_side_effect_of_practice, @yes_no_i_am_not_sure_not_applicable_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
         <%= f.text_area :unintended_negative_side_effect_of_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
         <div class="tip">
           Does using the practice have any negative side effects that you did not expect?
@@ -147,4 +147,5 @@
     </div>
     <%= f.submit button_name, class: "btn btn-warning btn-lg" %>
   </div>
+  <br><br>
 <% end %>
