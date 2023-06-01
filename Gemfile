@@ -11,14 +11,14 @@ gem "rails", "~> 7.0"
 
 gem "nokogiri", ">= 1.15.2"
 gem "pg", ">= 1.5.3"
-gem "puma", ">= 6.2.2"
+gem "puma", ">= 6.3.0"
 gem "uglifier", ">= 4.2.0"
 gem "jbuilder", ">= 2.11.5"
 gem "sass-rails", ">= 6.0.0"
 
 group :development do
-  gem "listen", ">= 3.0.5", "< 3.2"
-  gem "web-console", ">= 3.3.0"
+  gem "listen", ">= 3.0.8", "< 3.2"
+  gem "web-console", ">= 4.2.0"
 end
 
 group :rubocop do
@@ -32,10 +32,10 @@ end
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "devise", "~> 4.9.2"
-gem "friendly_id"
-gem "geocoder"
-gem "kaminari"
-gem "country_select"
+gem "friendly_id", ">= 5.5.0"
+gem "geocoder", ">= 1.8.1"
+gem "kaminari", ">= 1.2.2"
+gem "country_select", ">= 8.0.1"
 gem "image_processing", ">= 1.2"
-gem "bootstrap-icons-helper"
-gem "recaptcha"
+gem "bootstrap-icons-helper", ">= 1.0.13"
+gem "recaptcha", ">= 5.14.0"

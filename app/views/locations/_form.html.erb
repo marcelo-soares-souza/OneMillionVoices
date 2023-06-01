@@ -47,6 +47,12 @@
       <div class="col-sm-10">
         <% country = @location.country ? @location.country : '' if params["action"] == 'edit' %>
         <% country = request.location.country_code ? request.location.country_code : '' if params["action"] == 'new' %>
+        <%
+            if !params[:lat].blank? and !params[:lon].blank?
+              results = Geocoder.search([params[:lat], params[:lon]])
+              country = results.first.country_code.upcase
+            end
+        %>
         <%= f.country_select :country, { selected: country, :include_blank => false }, { class: "form-control selectpicker", "data-live-search": true } %>
         <div class="tip">
           Could you tell us which country this place is in?
