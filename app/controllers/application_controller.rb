@@ -68,17 +68,35 @@ class ApplicationController < ActionController::Base
     end
 
     def load_system_options
-      @system_options = {
-        "Filter by Farm System" => "Filter",
+      @system_functions_options = {
+        "Filter by Farm Functions" => "Filter",
         "All" => "All",
-        t(:mainly_home_consumption) => "Mainly Home Consumption",
-        t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
-        t(:mainly_commercial) => "Mainly commercial",
-        t(:crops) => "Crops",
-        t(:animals) => "Animals",
-        t(:trees) => "Trees",
-        t(:other) => "Other",
-        t(:i_am_not_sure) => "I Am Not Sure"
+        "1 - " + t(:mainly_home_consumption) => "Mainly Home Consumption",
+        "2 - " + t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
+        "3 - " + t(:mainly_commercial) => "Mainly commercial",
+        "4 - " + t(:other) => "Other",
+        "5 - " + t(:i_am_not_sure) => "I Am not Sure"
+      }
+
+      @system_components_options = {
+        "Filter by Farm Components" => "Filter",
+        "All" => "All",
+        "1 - " + t(:crops) => "Crops",
+        "2 - " + t(:animals) => "Animals",
+        "3 - " + t(:trees) => "Trees",
+        "4 - " + t(:other) => "Other",
+      }
+
+      @continent_options = {
+        "Filter by Continent" => "Filter",
+        "All" => "All",
+        "Africa" => "Africa",
+        "Asia" => "Asia",
+        "Europe" => "Europe",
+        "North America" => "North America",
+        "South America" => "South America",
+        "Oceania" => "Oceania",
+        "Antarctica" => "Antarctica"
       }
     end
 

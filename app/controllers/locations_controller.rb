@@ -33,10 +33,14 @@ class LocationsController < ApplicationController
     if (params[:value] == "All") || (params[:value] == "Filter") || params[:value].empty?
       Location.order("updated_at DESC").load_async.page(params[:page])
     else
-      if params[:filter] == "system"
-        Location.where("farm_and_farming_system LIKE ? OR farm_and_farming_system_complement LIKE ?", "%#{params[:value]}%", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
+      if params[:filter] == "system_functions"
+        Location.where("farm_and_farming_system ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
+      elsif params[:filter] == "system_components"
+        Location.where("farm_and_farming_system_complement ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
       elsif params[:filter] == "country"
         Location.where("country = ?", "#{params[:value]}").load_async.order("updated_at DESC").page(params[:page])
+      elsif params[:filter] == "continent"
+        Location.where("continent = ?", "#{params[:value]}").load_async.order("updated_at DESC").page(params[:page])
       elsif params[:filter] == "search"
         Location.where("name ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
       end

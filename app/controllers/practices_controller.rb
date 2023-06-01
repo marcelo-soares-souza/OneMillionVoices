@@ -36,11 +36,17 @@ class PracticesController < ApplicationController
       Practice.order("practices.updated_at DESC").load_async.page(params[:page])
     else
       if params[:filter] == "components"
-        Practice.joins(:characterise).where("food_system_components_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+        Practice.joins(:characterise).where("food_system_components_addressed ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
       elsif params[:filter] == "principles"
-        Practice.joins(:characterise).where("agroecology_principles_addressed LIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "system"
-        Practice.joins(:location).where("farm_and_farming_system LIKE ? OR farm_and_farming_system_complement LIKE ?", "%#{params[:value]}%", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+        Practice.joins(:characterise).where("agroecology_principles_addressed ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "system_functions"
+        Practice.joins(:location).where("farm_and_farming_system ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "system_components"
+        Practice.joins(:location).where("farm_and_farming_system_complement ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "country"
+        Practice.joins(:location).where("country = ?", "#{params[:value]}").load_async.order("practices.updated_at DESC").page(params[:page])
+      elsif params[:filter] == "continent"
+        Practice.joins(:location).where("continent ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
       elsif params[:filter] == "search"
         Practice.where("name ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
       end
@@ -129,39 +135,39 @@ class PracticesController < ApplicationController
       @food_system_components_addressed_options = {
         "Filter by Components" => "Filter",
         "All" => "All",
-        "Soil" => "Soil",
-        "Water" => "Water",
-        "Crops" => "Crops",
-        "Livestock" => "Livestock",
-        "Trees" => "Trees",
-        "Pests" => "Pests",
-        "Energy" => "Energy",
-        "Household" => "Household",
-        "Workers" => "Workers",
-        "Community" => "Community",
-        "Value chain" => "Value chain",
-        "Policy" => "Policy",
-        "Other" => "Other",
-        "Whole Food System" => "Whole Food System",
-        "I am not sure" => "I am not sure"
+        "1 - Soil" => "Soil",
+        "2 - Water" => "Water",
+        "3 - Crops" => "Crops",
+        "4 - Livestock" => "Livestock",
+        "5 - Trees" => "Trees",
+        "6 - Pests" => "Pests",
+        "7 - Energy" => "Energy",
+        "8 - Household" => "Household",
+        "9 - Workers" => "Workers",
+        "10 - Community" => "Community",
+        "11 - Value chain" => "Value chain",
+        "12 - Policy" => "Policy",
+        "13 - Whole Food System" => "Whole Food System",
+        "14 - Other" => "Other",
+        "15 - I am not sure" => "I am not sure"
       }
 
       @agroecology_principles_addressed_options = {
         "Filter by Principles" => "Filter",
         "All" => "All",
-        "Recycling" => "Recycling",
-        "Input reduction" => "Input reduction",
-        "Soil heath" => "Soil heath",
-        "Animal health" => "Animal health",
-        "Biodiversity" => "Biodiversity",
-        "Synergy" => "Synergy",
-        "Economic diversification" => "Economic diversification",
-        "Co-creation of knowledge" => "Co-creation of knowledge",
-        "Social values and diets" => "Social values and diets",
-        "Fairness" => "Fairness",
-        "Connectivity" => "Connectivity",
-        "Land and natural resource governance" => "Land and natural resource governance",
-        "Participation" => "Participation"
+        "1 - Recycling" => "Recycling",
+        "2 - Input reduction" => "Input reduction",
+        "3 - Soil heath" => "Soil heath",
+        "4 - Animal health" => "Animal health",
+        "5 - Biodiversity" => "Biodiversity",
+        "6 - Synergy" => "Synergy",
+        "7 - Economic diversification" => "Economic diversification",
+        "8 - Co-creation of knowledge" => "Co-creation of knowledge",
+        "9 - Social values and diets" => "Social values and diets",
+        "10 - Fairness" => "Fairness",
+        "11 - Connectivity" => "Connectivity",
+        "12 - Land and natural resource governance" => "Land and natural resource governance",
+        "13 - Participation" => "Participation"
       }
     end
 end

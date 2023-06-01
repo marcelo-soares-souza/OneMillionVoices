@@ -25,6 +25,7 @@ class Location < ApplicationRecord
     self.name = name.strip.titleize
     self.description = description.strip.capitalize
     self.farm_and_farming_system_complement.gsub!(/[\[\]"]/, "") if attribute_present?("farm_and_farming_system_complement")
+    self.continent = ISO3166::Country[country.downcase].continent
   end
 
   protected

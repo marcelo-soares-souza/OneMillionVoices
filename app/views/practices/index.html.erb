@@ -21,10 +21,17 @@
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
-  <%= select_tag "system", options_from_collection_for_select(@system_options, :last, :first, params[:filter] == 'system' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system")' %>
-  <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("components")'  %>
-  <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:filter] == 'principles' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("principles")'  %>
   <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>
+  <br>
+  <span style="font-size: 14px;"><a href="#" onclick="showAdvancedFilters()">Show more filters</a></span>
+  <div id="more-filter">
+    <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:filter] == 'system_functions' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system_functions")' %>
+    <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:filter] == 'system_components' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system_components")' %>
+    <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:filter] == 'components' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("components")'  %>
+    <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:filter] == 'principles' ? params[:value] : ''), class: "selectpicker", "data-live-search": true, :onchange => 'filter("principles")'  %>
+    <%= country_select("country", "country", { selected: params[:filter] == 'country' ? params[:value] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true, onchange: 'filter("country")' }) %>
+    <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:filter] == 'continent' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("continent")' %>
+  </div>
 </div>
 
 <% if @practices.empty? %>
@@ -39,7 +46,6 @@
           <div class="card-img-top thumbnail"><%= link_to photo_medium(practice, practice.name), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <div class="card-body">
             <h3 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h3>
-            <!-- <p class="card-text text-box"><%= practice.what_you_do.summary_description_of_agroecological_practice.truncate(75) if practice.what_you_do and practice.what_you_do.summary_description_of_agroecological_practice %></p> -->
             <p class="card-text" style="text-align: center;">
             <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.location.name.truncate(40), location_path(practice.location) %></p></p>
           </div>
@@ -57,11 +63,22 @@
 <% end %>
 
 <script>
+    $(document).ready(function () {
+        <% if params[:filter].blank? or params[:filter] == "search" %>
+          $("#more-filter").hide();
+        <% end %>
+    });
+
     const controller = 'practices';
 
     function filter(filter) {
         if (filter != "search") {
-            window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
+            if (filter == "country") {
+                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#country_country :selected").val();
+            }
+            else {
+                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
+            }
         }
         else {
             window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter).val();
@@ -73,4 +90,8 @@
             filter("search");
         }
     });
+
+    function showAdvancedFilters() {
+        $("#more-filter").is(":visible") ? $("#more-filter").hide() : $("#more-filter").show();
+    }
 </script>

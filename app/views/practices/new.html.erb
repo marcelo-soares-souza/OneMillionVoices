@@ -24,9 +24,10 @@
 </ul>
 
 <br>
-
-<% if params[:location_id] %>
+<% if params[:location_id] or params[:action] == "create" %>
   <%= render 'form', practice: @practice %>
-<% else %>
+<% end %>
+
+<% if params[:location_id].blank? and params[:action] == "new" %>
   <%= render 'locations' %>
 <% end %>
