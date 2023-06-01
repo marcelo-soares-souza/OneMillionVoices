@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
         "Europe" => "Europe",
         "North America" => "North America",
         "South America" => "South America",
-        "Oceania" => "Oceania",
+        "Australia/Oceania" => "Australia",
         "Antarctica" => "Antarctica"
       }
     end
