@@ -68,7 +68,7 @@
 <script>
     $(document).ready(function () {
         <% if params[:filter].blank? or params[:name] %>
-        $("#more-filter").hide();
+            $("#more-filter").hide();
         <% end %>
     });
 
@@ -81,7 +81,6 @@
     });
 
     function filter(filter) {
-
         var name = $("#search").val();
         var system_functions = $("#system_functions :selected").val();
         var system_components = $("#system_components :selected").val();
