@@ -21,7 +21,7 @@
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
-  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search" %> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>
+  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search" %> <%= link_to (bootstrap_icon "search"), "#", id: 'searchButton', onclick: 'filter("search")' %>
   <br>
   <span style="font-size: 14px;"><a href="#" onclick="showAdvancedFilters()">Show more filters</a></span>
   <div id="more-filter">
@@ -69,6 +69,9 @@
     $(document).ready(function () {
         <% if params[:filter].blank? or params[:name] %>
             $("#more-filter").hide();
+            $("#searchButton").show();
+        <% else %>
+            $("#searchButton").hide();
         <% end %>
     });
 
@@ -109,5 +112,6 @@
 
     function showAdvancedFilters() {
         $("#more-filter").is(":visible") ? $("#more-filter").hide() : $("#more-filter").show();
+        $("#more-filter").is(":visible") ? $("#searchButton").hide() : $("#searchButton").show();
     }
 </script>
