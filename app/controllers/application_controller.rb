@@ -70,8 +70,8 @@ class ApplicationController < ActionController::Base
 
     def load_system_options
       @system_functions_options = {
-        "Filter by Farm Functions" => "Filter",
-        "All" => "All",
+        # "Filter by Farm Functions" => "Filter",
+        # "All" => "All",
         "1 - " + t(:mainly_home_consumption) => "Mainly Home Consumption",
         "2 - " + t(:mixed_home_consumption_and_commercial) => "Mixed Home Consumption and Commercial",
         "3 - " + t(:mainly_commercial) => "Mainly commercial",
@@ -80,8 +80,8 @@ class ApplicationController < ActionController::Base
       }
 
       @system_components_options = {
-        "Filter by Farm Components" => "Filter",
-        "All" => "All",
+        # "Filter by Farm Components" => "Filter",
+        # "All" => "All",
         "1 - " + t(:crops) => "Crops",
         "2 - " + t(:animals) => "Animals",
         "3 - " + t(:trees) => "Trees",
@@ -89,8 +89,8 @@ class ApplicationController < ActionController::Base
       }
 
       @continent_options = {
-        "Filter by Continent" => "Filter",
-        "All" => "All",
+        # "Filter by Continent" => "Filter",
+        # "All" => "All",
         "Africa" => "Africa",
         "Asia" => "Asia",
         "Europe" => "Europe",

@@ -32,25 +32,15 @@ class PracticesController < ApplicationController
     end
   end
   def filter
-    if (params[:value] == "All") || (params[:value] == "Filter")
-      Practice.order("practices.updated_at DESC").load_async.page(params[:page])
-    else
-      if params[:filter] == "components"
-        Practice.joins(:characterise).where("food_system_components_addressed ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "principles"
-        Practice.joins(:characterise).where("agroecology_principles_addressed ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "system_functions"
-        Practice.joins(:location).where("farm_and_farming_system ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "system_components"
-        Practice.joins(:location).where("farm_and_farming_system_complement ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "country"
-        Practice.joins(:location).where("country = ?", "#{params[:value]}").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "continent"
-        Practice.joins(:location).where("continent ILIKE ?", "%#{params[:value]}%").load_async.order("practices.updated_at DESC").page(params[:page])
-      elsif params[:filter] == "search"
-        Practice.where("name ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
-      end
-    end
+    @practices = Practice.unscoped
+    @practices = @practices.by_name(params[:name]) unless params[:name].blank?
+    @practices = @practices.by_food_system_components_addressed(params[:components]) unless params[:components].blank?
+    @practices = @practices.by_agroecology_principles_addressed(params[:principles]) unless params[:principles].blank?
+    @practices = @practices.by_farm_and_farming_system(params[:system_functions]) unless params[:system_functions].blank?
+    @practices = @practices.by_farm_and_farming_system_complement(params[:system_components]) unless params[:system_components].blank?
+    @practices = @practices.by_country(params[:country]) unless params[:country].blank?
+    @practices = @practices.by_continent(params[:continent]) unless params[:continent].blank?
+    @practices = @practices.page(params[:page])
   end
 
   # GET /practices/1
@@ -133,8 +123,8 @@ class PracticesController < ApplicationController
 
     def load_options
       @food_system_components_addressed_options = {
-        "Filter by System Component" => "Filter",
-        "All" => "All",
+        # "Filter by System Component" => "Filter",
+        # "All" => "All",
         "1 - Soil" => "Soil",
         "2 - Water" => "Water",
         "3 - Crops" => "Crops",
@@ -153,8 +143,8 @@ class PracticesController < ApplicationController
       }
 
       @agroecology_principles_addressed_options = {
-        "Filter by Agroecology Principle" => "Filter",
-        "All" => "All",
+        # "Filter by Agroecology Principle" => "Filter",
+        # "All" => "All",
         "1 - Recycling" => "Recycling",
         "2 - Input reduction" => "Input reduction",
         "3 - Soil health" => "Soil health",

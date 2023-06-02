@@ -16,12 +16,16 @@
     zoom = 3.25;
 
     if (window.devicePixelRatio > 2) {
-        zoom = 2;
+        zoom = 3;
         lat = -1.00;
         lon = -32.00;
     }
 
-    var map = L.map('map', { zoomControl: false }).setView([lat, lon], zoom);
+    var map = L.map('map', { zoomControl: false, worldCopyJump: true }).setView([lat, lon], zoom);
+
+    L.control.scale().addTo(this.map);
+    map.setMinZoom(3);
+    map.setMaxZoom(18);
 
     $(document).ready(function () {
         $(window).on("resize", function () {

@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Practice < ApplicationRecord
+  scope :by_name, -> (name) { where("practices.name ILIKE ?", "%#{name}%") }
+  scope :by_food_system_components_addressed, -> (food_system_components_addressed) { joins(:characterise).where("characterises.food_system_components_addressed ILIKE ?", "%#{food_system_components_addressed}%") }
+  scope :by_agroecology_principles_addressed, -> (agroecology_principles_addressed) { joins(:characterise).where("characterises.agroecology_principles_addressed ILIKE ?", "%#{agroecology_principles_addressed}%") }
+  scope :by_farm_and_farming_system, -> (farm_and_farming_system) { joins(:location).where("locations.farm_and_farming_system ILIKE ?", "%#{farm_and_farming_system}%") }
+  scope :by_farm_and_farming_system_complement, -> (farm_and_farming_system_complement) { joins(:location).where("locations.farm_and_farming_system_complement ILIKE ?", "%#{farm_and_farming_system_complement}%") }
+  scope :by_country, -> (country) { joins(:location).where("locations.country ILIKE ?", "%#{country}%") }
+  scope :by_continent, -> (continent) { joins(:location).where("locations.continent ILIKE ?", "%#{continent}%") }
+
   paginates_per 4
 
   has_one :what_you_do, dependent: :delete
