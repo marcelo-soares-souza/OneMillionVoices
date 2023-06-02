@@ -11,14 +11,18 @@
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
-  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search"%> <%= link_to (bootstrap_icon "search"), "#", onclick: 'filter("search")' %>
+  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search" %>
+  <%= link_to (bootstrap_icon "search"), "#", id: 'searchButton', onclick: 'filter("search")' %>
   <br>
   <span style="font-size: 14px;"><a href="#" onclick="showAdvancedFilters()">Show more filters</a></span>
   <div id="more-filter">
-    <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:filter] == 'system_functions' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system_functions")' %>
-    <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:filter] == 'system_components' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("system_components")' %>
-    <%= country_select("country", "country", { selected: params[:filter] == 'country' ? params[:value] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true, onchange: 'filter("country")' }) %>
-    <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:filter] == 'continent' ? params[:value] : ''), class: "selectpicker",  "data-live-search": true, :onchange => 'filter("continent")' %>
+    <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:system_functions] ? params[:system_functions] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Functions' %>
+    <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:system_components] ? params[:system_components] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Components' %>
+    <%= country_select("country", "country", { selected: params[:country] ? params[:country] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true}) %>
+    <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:continent] ? params[:continent] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Continent' %>
+    <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
+      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", locations_path %>
+    </div>
   </div>
 </div>
 
@@ -50,25 +54,16 @@
 <% end %>
 
 <script>
-    <% if params[:filter].blank? or params[:filter] == "search" %>
-      $("#more-filter").hide();
-    <% end %>
-
     const controller = 'locations';
 
-    function filter(filter) {
-        if (filter != "search") {
-            if (filter == "country") {
-                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#country_country :selected").val();
-            }
-            else {
-                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter + " :selected").val();
-            }
-        }
-        else {
-                window.location.href = "/" + controller + "/?filter=" + filter + "&value=" + $("#" + filter).val();
-        }
-    }
+    $(document).ready(function () {
+        <% if params[:filter].blank? or params[:name] %>
+          $("#more-filter").hide();
+          $("#searchButton").show();
+        <% else %>
+          $("#searchButton").hide();
+        <% end %>
+    });
 
     $("#search").on('keyup', function (event) {
         if (event.keyCode === 13) {
@@ -76,7 +71,31 @@
         }
     });
 
+    function filter(filter) {
+        var name = $("#search").val();
+        var system_functions = $("#system_functions :selected").val();
+        var system_components = $("#system_components :selected").val();
+        var country = $("#country_country :selected").val();
+        var continent = $("#continent :selected").val();
+
+        var filter = "?filter=true"
+        filter += name ? "&name=" + name : "";
+        filter += system_functions ? "&system_functions=" + system_functions : "";
+        filter += system_components ? "&system_components=" + system_components : "";
+        filter += country ? "&country=" + country : "";
+        filter += continent ? "&continent=" + continent : "";
+        var url = "/" + controller + "/" + filter;
+
+        if (url != '/'+controller+'/?filter=true') {
+            window.location.href = url;
+        }
+        else {
+            window.location.href = '/' + controller;
+        }
+    }
+
     function showAdvancedFilters() {
         $("#more-filter").is(":visible") ? $("#more-filter").hide() : $("#more-filter").show();
+        $("#more-filter").is(":visible") ? $("#searchButton").hide() : $("#searchButton").show();
     }
 </script>

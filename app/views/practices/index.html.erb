@@ -32,7 +32,7 @@
     <%= country_select("country", "country", { selected: params[:country] ? params[:country] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true}) %>
     <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:continent] ? params[:continent] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Continent' %>
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
-      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", "/practices" %>
+      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", practices_path %>
     </div>
   </div>
 </div>
@@ -66,6 +66,8 @@
 <% end %>
 
 <script>
+    const controller = 'practices';
+
     $(document).ready(function () {
         <% if params[:filter].blank? or params[:name] %>
             $("#more-filter").hide();
@@ -74,8 +76,6 @@
             $("#searchButton").hide();
         <% end %>
     });
-
-    const controller = 'practices';
 
     $("#search").on('keyup', function (event) {
         if (event.keyCode === 13) {

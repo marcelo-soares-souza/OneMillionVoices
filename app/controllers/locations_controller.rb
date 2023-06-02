@@ -30,21 +30,13 @@ class LocationsController < ApplicationController
   end
 
   def filter
-    if (params[:value] == "All") || (params[:value] == "Filter") || params[:value].empty?
-      Location.order("updated_at DESC").load_async.page(params[:page])
-    else
-      if params[:filter] == "system_functions"
-        Location.where("farm_and_farming_system ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
-      elsif params[:filter] == "system_components"
-        Location.where("farm_and_farming_system_complement ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
-      elsif params[:filter] == "country"
-        Location.where("country = ?", "#{params[:value]}").load_async.order("updated_at DESC").page(params[:page])
-      elsif params[:filter] == "continent"
-        Location.where("continent = ?", "#{params[:value]}").load_async.order("updated_at DESC").page(params[:page])
-      elsif params[:filter] == "search"
-        Location.where("name ILIKE ?", "%#{params[:value]}%").load_async.order("updated_at DESC").page(params[:page])
-      end
-    end
+    @locations = Location.unscoped
+    @locations = @locations.by_name(params[:name]) unless params[:name].blank?
+    @locations = @locations.by_farm_and_farming_system(params[:system_functions]) unless params[:system_functions].blank?
+    @locations = @locations.by_farm_and_farming_system_complement(params[:system_components]) unless params[:system_components].blank?
+    @locations = @locations.by_country(params[:country]) unless params[:country].blank?
+    @locations = @locations.by_continent(params[:continent]) unless params[:continent].blank?
+    @locations = @locations.order("locations.updated_at DESC").page(params[:page])
   end
 
   # GET /locations/1
