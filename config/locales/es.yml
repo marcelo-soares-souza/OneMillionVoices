@@ -1,561 +1,275 @@
-# yamllint disable rule:line-length
----
 es:
-  site_description: "One Million Voices"
-  site: "One Million Voices"
-  site_name: "One Million Voices"
-  true_value: "Sim"
-  false_value: "Não"
-  users: "Usuários"
-  about: "Sobre"
-  login: "Iniciar sesión"
-  logout: "Sair"
-  images: "Imagens"
-  submit: "Enviar"
+  site_description: "Un millón de voces"
+  site: "Un millón de voces"
+  site_name: "Un millón de voces"
+  true_value: "Sí"
+  false_value: "No"
+  users: "Users"
+  about: "Acerca de"
+  login: "Acceso"
+  logout: "Cerrar sesión"
+  images: "Imágenes"
+  submit: "Entregar"
   edit: "Editar"
   destroy: "Borrar"
-  back: "Voltar"
-  new: "Novo"
-  all: "Todos"
-  file: "Arquivo"
+  back: "Atrás"
+  new: "New"
+  all: "All"
+  file: "Archivo"
   title: "Título"
-  details: "Detalhes"
-  home_page: "Casa"
+  details: "Detalles"
+  home_page: "Hogar"
   blog: "Blog"
-  news: "Novidades"
-  locations: "Localizacións"
-  experience_in_agroecology: "Experiencia en Agroecología"
-  experiences_in_agroecology: "Experiencias en Agroecología"
-  agroforestry_systems: "Sistemas Agroflorestais"
+  news: "Noticias"
+  locations: "Ubicación"
+  experience_in_agroecology: "Experiencia en agroecología"
+  experiences_in_agroecology: "Experiencias en agroecología"
+  agroforestry_systems: "Sistemas agroforestales"
   organization: "Organización"
-  organizations: "Organizacións"
+  organizations: "Organizaciones"
   contributors: "Cuentas"
   manual: "Manual"
-  register: "Suscribirse"
+  register: "Registro"
   password: "Contraseña"
-  agroecology_is_free_software: "Código-Fonte"
-  submit_comment: "Enviar Comentário"
-  register_new_location: "Registrar nueva Localización"
+  agroecology_is_free_software: "Código fuente"
+  submit_comment: "Enviar comentario"
+  register_new_location: "Registrar una ubicación"
   experience: "Experiencia"
   experiences: "Experiencias"
-  type: "Tipo de Propriedade"
-  types: "Tipo"
-  central_theme: "Tema Central"
-  photo: "Fotografía"
-  photos: "Fotografías"
+  type: "Tipo de propiedad"
+  types: "Tipos"
+  central_theme: "Tema central"
   comment: "Comentario"
-  comments: "Comentarios"
-  register_new_experience: "Registrar Experiencia"
+  comments: "Comentario"
+  register_new_experience: "Experiencia de registro"
   latest_blog_post: "Última publicación de blog"
   none_registered: "Ninguno registrado"
-  responsible_for_information: "Responsable de información"
+  responsible_for_information: "Responsable de la información"
   log_into_the_system_to_make_comments: "Inicie sesión en el sistema para hacer comentarios"
   systems: "Sistemas"
   plants: "Plantas"
   animals: "Animales"
-  safs: "Sistemas Agroforestales"
-  register_new_agroforestry: "Registrar Agroforestales"
-  send_photo: "Enviar Foto"
-  main_objective: "Objetivo Principal"
-  main_product: "Produto Principal"
-  settlement: "Assentamento"
-  collective_property: "Propriedade Coletiva"
-  public_property: "Propriedade Pública (Governo)"
-  private_property: "Propriedade Privada"
+  safs: "Sistemas agroforestales"
+  photo: "Foto"
+  photos: "Fotos"
+  register_new_agroforestry: "Registrar agroforestry"
+  send_photo: "Agregar una foto"
+  main_objective: "Objetivo principal"
+  main_product: "Producto principal"
+  settlement: "Asentamiento"
+  collective_property: "Propiedad colectiva"
+  public_property: "Propiedad pública"
+  private_property: "Propiedad privada"
   familiar: "Familiar"
-  other: "Outro"
-  yes_query: "Sim"
-  no_query: "Não"
-  upon_consultation: "Mediante a Consulta"
-  accept_hosting: "Aceitar Hospedar Pessoa/Grupo?"
-  select_location_type: "Selecione um Tipo de Propriedade"
-  urban_agriculture: "Agricultura Urbana"
-  food: "Alimentação"
-  health_and_medicinal_plants: "Saúde e plantas medicinais"
-  rural_development: "Desenvolvimento Rural"
-  local_development: "Desenvolvimento Local"
-  education: "Educação"
-  agricultural_research_and_rural_extension: "Pesquisa Agrícola e Extensão Rural"
-  management_of_water_resources: "Manejo de Recursos Hídricos"
-  certification: "Certificação"
-  marketing: "Comercialização"
-  processing_and_processing_of_production: "Processamento e beneficiamento da produção"
-  seeds: "Sementes"
-  management_of_native_vegetation_and_agro_extractivism: "Manejo da vegetação nativa e agroextrativismo"
-  animal_husbandry_systems: "Sistemas de criação animal"
-  agricultural_production_system: "Sistema de Produção Agrícola"
-  alternative_agriculture_currents: "Correntes de Agricultura Alternativa"
-  management_of_pests__diseases_and_weeds: "Manejo de pragas, doenças e plantas espontâneas"
-  soil_management: "Manejo dos solos"
-  access_to_land_agrarian_reform_and_agroecology: "Acesso a terra, reforma agrária e Agroecologia"
-  relationship_with_the_markets: "Relação com os mercados"
-  others: "Outros"
-  women_and_agroecology: "Mulheres e agroecologia"
-  fruit_growing: "Fruticultura"
-  extractivism: "Extrativismo"
-  craftsmanship: "Artesanato"
-  periurban_agriculture: "Agricultura Periurbana"
-  sovereignty_and_food_security: "Soberania e Segurança Alimentar"
-  biodiversity: "Biodiversidade"
-  financing: "Financiamento"
-  construction_of_agroecological_knowledge: "Construção do Conhecimento Agroecológico"
-  public_policies_with_an_agroecological_approach: "Políticas Públicas com enfoque agroecológico"
-  reforestation: "Reflorestamento"
-  compost: "Compostagem"
-  eco_tourism: "Eco Turismo"
-  rural_tourism: "Turismo Rural"
-  indigenous_agriculture: "Agricultura Indigena"
+  other: "Other"
+  yes_query: "Sí"
+  no_query: "No"
+  upon_consultation: "Al consultar"
+  accept_hosting: "¿Aceptar alojamiento de persona/grupo?"
+  select_location_type: "Seleccione un tipo de propiedad de ubicación"
+  urban_agriculture: "Agricultura urbana"
+  food: "Alimento"
+  health_and_medicinal_plants: "Salud y plantas medicinales"
+  rural_development: "Desarrollo Rural"
+  local_development: "Desarrollo local"
+  education: "Educación"
+  agricultural_research_and_rural_extension: "Investigación agrícola y extensión rural"
+  management_of_water_resources: "Gestión de recursos hídricos"
+  certification: "Certificación"
+  marketing: "Comercialización"
+  processing_and_processing_of_production: "Procesamiento y procesamiento de la producción"
+  seeds: "Semillas"
+  management_of_native_vegetation_and_agro_extractivism: "Manejo de la vegetación nativa y el agro extractivismo"
+  animal_husbandry_systems: "Sistemas de cría de animales"
+  agricultural_production_system: "Sistema de producción agrícola"
+  alternative_agriculture_currents: "Corrientes agrícolas alternativas"
+  management_of_pests__diseases_and_weeds: "Gestión de enfermedades de plagas y malezas"
+  soil_management: "Manejo del suelo"
+  access_to_land_agrarian_reform_and_agroecology: "Acceso a la reforma agraria y la agroecología de la tierra"
+  relationship_with_the_markets: "Relación con los mercados"
+  others: "Others"
+  women_and_agroecology: "Mujeres y agroecología"
+  fruit_growing: "Fruta creciendo"
+  extractivism: "Extractivismo"
+  craftsmanship: "Artesanía"
+  periurban_agriculture: "Periurban agriculture"
+  sovereignty_and_food_security: "Soberanía y seguridad alimentaria"
+  biodiversity: "Biodiversidad"
+  financing: "Financiación"
+  construction_of_agroecological_knowledge: "Construcción del conocimiento agroecológico"
+  public_policies_with_an_agroecological_approach: "Políticas públicas con un enfoque agroecológico"
+  reforestation: "Repoblación forestal"
+  compost: "Compost"
+  eco_tourism: "Turismo ecológico"
+  rural_tourism: "Turismo rural"
+  indigenous_agriculture: "Agricultura indígena"
   map: "Mapa"
-  search_by_address: "Buscar por Dirección"
+  search_by_address: "Buscar por dirección"
   locate: "Localizar"
-  start: "Start"
-  end: "End"
-  area: "Area"
-  send_picture: "Enviar Foto"
+  start: "Comenzar"
+  end: "Fin"
+  area: "Área"
+  send_picture: "Agregar una foto"
   scientific_name: "Nombre científico"
-  no_photo_submitted: "No se envió ninguna foto"
+  no_photo_submitted: "No hay fotos cargadas"
   search_using_location_name: "Buscar usando el nombre de la ubicación"
-  sign_in_to_comment: "Inicia sesión para comentar"
-  friend: "Amigo"
-  friends: "Amigos"
-  special_thanks: "Gracias Especiales"
-  donors: "Donantes (Tiempo, Dinero y/o Amor)"
+  sign_in_to_comment: "Iniciar sesión para comentar"
+  friend: "Friend"
+  friends: "Friends"
+  special_thanks: "Gracias especiales"
+  donors: "Donantes (tiempo, dinero o amor)"
   donate: "Donar"
-  gallery: "Galeria"
-  devise:
-    confirmations:
-      confirmed: "Tu correo electrónico ha sido confirmado exitosamente."
-      send_instructions: "Recibirás un email con las instrucciones para confirmar tu correo electrónico en unos minutos."
-      send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos, recibirás un email con las instrucciones para confirmar tu correo electrónico en unos minutos."
-    failure:
-      already_authenticated: "Ya iniciaste sesión."
-      inactive: "Tu cuenta aún no ha sido activada."
-      invalid: "Email y/o contraseña inválidos."
-      locked: "Tu cuenta está bloqueada."
-      last_attempt: "Tienes un intento más antes que tu cuenta sea bloqueada."
-      not_found_in_database: "%{authentication_keys} o contraseña inválidos."
-      timeout: "Tu sesión ha expirado. Inicia sesión nuevamente."
-      unauthenticated: "Tienes que registrarte o iniciar sesión antes de continuar."
-      unconfirmed: "Tienes que confirmar tu cuenta antes de continuar."
-    mailer:
-      confirmation_instructions:
-        subject: "Instrucciones de confirmación"
-      reset_password_instructions:
-        subject: "Instrucciones de cambio de contraseña"
-      unlock_instructions:
-        subject: "Instrucciones de desbloqueo"
-      email_changed:
-        subject: "Email modificado"
-      password_change:
-        subject: "Contraseña modificada"
-    omniauth_callbacks:
-      failure: "No pudimos autentificar tu cuenta de %{kind} por la siguiente razón: \"%{reason}\"."
-      success: "Te autentificaste correctamente con tu cuenta de %{kind}."
-    passwords:
-      no_token: "No puedes acceder a esta página sin venir desde el email de reinicio de contraseña. Si vienes desde ahí, por favor asegúrate de usar la url completa que aparece."
-      send_instructions: "Recibirás un email con instrucciones para reiniciar tu contraseña en unos minutos."
-      send_paranoid_instructions: "Si tu email existe en el sistema, recibirás un email con instrucciones para reiniciar tu contraseña en unos minutos."
-      updated: "Tu contraseña fue modificada correctamente. Has iniciado sesión."
-      updated_not_active: "Tu contraseña fue modificada correctamente."
-    registrations:
-      destroyed: "Adiós, tu cuenta ha sido eliminada. Esperamos verte de vuelta pronto!"
-      signed_up: "Bienvenido! Te has registrado correctamente."
-      signed_up_but_inactive: "Te has registrado correctamente, pero tu cuenta aun no ha sido activada."
-      signed_up_but_locked: "Te has registrado correctamente, pero tu cuenta está bloqueada."
-      signed_up_but_unconfirmed: "Te hemos enviado un email con instrucciones para que confirmes tu cuenta."
-      update_needs_confirmation: "Actualizaste tu cuenta correctamente, pero tenemos que revalidar tu email. Revisa tu correo para confirmar la dirección."
-      updated: "Actualizaste tu cuenta correctamente."
-    sessions:
-      signed_in: "Iniciaste sesión correctamente."
-      signed_out: "Cerraste sesión correctamente."
-      already_signed_out: "Se cerró sesión correctamente."
-    unlocks:
-      send_instructions: "Recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
-      send_paranoid_instructions: "Si tu cuenta existe, recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
-      unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
-  errors:
-    messages:
-      already_confirmed: "ya fue confirmada. Intenta ingresar."
-      confirmation_period_expired: "necesita ser confirmada dentro de %{period}, por favor pide una nueva"
-      expired: "ha expirado, por favor pide una nueva"
-      not_found: "no encontrado"
-      not_locked: "no ha sido bloqueada"
-      not_saved:
-        one: "Ha ocurrido 1 error:"
-        other: "Han ocurrido %{count} errores:"
-      accepted: debe ser aceptado
-      blank: no puede estar en blanco
-      present: debe estar en blanco
-      confirmation: no coincide
-      empty: no puede estar vacío
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser mayor que %{count}
-      greater_than_or_equal_to: debe ser mayor que o igual a %{count}
-      inclusion: no está incluido en la lista
-      invalid: no es válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que o igual a %{count}
-      model_invalid: "La validación falló: %{errors}"
-      not_a_number: no es un número
-      not_an_integer: debe ser un entero
-      odd: debe ser impar
-      required: debe existir
-      taken: ya está en uso
-      too_long:
-        one: "es demasiado largo (1 carácter máximo)"
-        other: "es demasiado largo (%{count} caracteres máximo)"
-      too_short:
-        one: "es demasiado corto (1 carácter mínimo)"
-        other: "es demasiado corto (%{count} caracteres mínimo)"
-      wrong_length:
-        one: "no tiene la longitud correcta (1 carácter exactos)"
-        other: "no tiene la longitud correcta (%{count} caracteres exactos)"
-      other_than: debe ser distinto de %{count}
-    format: "%{attribute} %{message}"
-    template:
-      body: 'Se encontraron problemas con los siguientes campos:'
-      header:
-        one: No se pudo guardar este/a %{model} porque se encontró 1 error
-        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
-  send_me_the_reset_instructions: "Send me the Reset Instructions"
-  resend_confirmation_by_email: "Resend Confirmation by e-mail"
-  resend: "Resend"
-  activerecord:
-    errors:
-      messages:
-        record_invalid: "La validación falló: %{errors}"
-        restrict_dependent_destroy:
-          has_one: No se puede eliminar el registro porque existe un %{record} dependiente
-          has_many: No se puede eliminar el registro porque existen %{record} dependientes
-  date:
-    abbr_day_names:
-      - dom
-      - lun
-      - mar
-      - mié
-      - jue
-      - vie
-      - sáb
-    abbr_month_names:
-      -
-      - ene
-      - feb
-      - mar
-      - abr
-      - may
-      - jun
-      - jul
-      - ago
-      - sep
-      - oct
-      - nov
-      - dic
-    day_names:
-      - domingo
-      - lunes
-      - martes
-      - miércoles
-      - jueves
-      - viernes
-      - sábado
-    formats:
-      default: "%-d/%-m/%Y"
-      long: "%-d de %B de %Y"
-      short: "%-d de %b"
-    month_names:
-      -
-      - enero
-      - febrero
-      - marzo
-      - abril
-      - mayo
-      - junio
-      - julio
-      - agosto
-      - septiembre
-      - octubre
-      - noviembre
-      - diciembre
-    order:
-      - :day
-      - :month
-      - :year
-  datetime:
-    distance_in_words:
-      about_x_hours:
-        one: alrededor de 1 hora
-        other: alrededor de %{count} horas
-      about_x_months:
-        one: alrededor de 1 mes
-        other: alrededor de %{count} meses
-      about_x_years:
-        one: alrededor de 1 año
-        other: alrededor de %{count} años
-      almost_x_years:
-        one: casi 1 año
-        other: casi %{count} años
-      half_a_minute: medio minuto
-      less_than_x_minutes:
-        one: menos de 1 minuto
-        other: menos de %{count} minutos
-      less_than_x_seconds:
-        one: menos de 1 segundo
-        other: menos de %{count} segundos
-      over_x_years:
-        one: más de 1 año
-        other: más de %{count} años
-      x_days:
-        one: 1 día
-        other: "%{count} días"
-      x_minutes:
-        one: 1 minuto
-        other: "%{count} minutos"
-      x_months:
-        one: 1 mes
-        other: "%{count} meses"
-      x_years:
-        one: 1 año
-        other: "%{count} años"
-      x_seconds:
-        one: 1 segundo
-        other: "%{count} segundos"
-    prompts:
-      day: Día
-      hour: Hora
-      minute: Minutos
-      month: Mes
-      second: Segundos
-      year: Año
-  helpers:
-    select:
-      prompt: Por favor seleccione
-    submit:
-      create: Crear %{model}
-      submit: Guardar %{model}
-      update: Actualizar %{model}
-  number:
-    currency:
-      format:
-        delimiter: "."
-        format: "%n %u"
-        precision: 2
-        separator: ","
-        significant: false
-        strip_insignificant_zeros: false
-        unit: "€"
-    format:
-      delimiter: "."
-      precision: 3
-      separator: ","
-      significant: false
-      strip_insignificant_zeros: false
-    human:
-      decimal_units:
-        format: "%n %u"
-        units:
-          billion: mil millones
-          million:
-            one: millón
-            other: millones
-          quadrillion: mil billones
-          thousand: mil
-          trillion:
-            one: billón
-            other: billones
-          unit: ''
-      format:
-        delimiter: ''
-        precision: 1
-        significant: true
-        strip_insignificant_zeros: true
-      storage_units:
-        format: "%n %u"
-        units:
-          byte:
-            one: Byte
-            other: Bytes
-          gb: GB
-          kb: KB
-          mb: MB
-          tb: TB
-    percentage:
-      format:
-        delimiter: ''
-        format: "%n %"
-    precision:
-      format:
-        delimiter: ''
-  support:
-    array:
-      last_word_connector: " y "
-      two_words_connector: " y "
-      words_connector: ", "
-  time:
-    am: am
-    formats:
-      default: "%A, %-d de %B de %Y %H:%M:%S %z"
-      long: "%-d de %B de %Y %H:%M"
-      short: "%-d de %b %H:%M"
-    pm: pm
+  gallery: "Galería"
   name: "Nombre"
-  password_confirm: "Confirme a Contraseña"
-  registered_locations: "Localizacións"
+  password_confirm: "Confirmar Contraseña"
+  registered_locations: "Ubicación"
   registered_experiences: "Experiencias"
-  sign_in: "Entrar"
+  sign_in: "Iniciar sesión"
   sign_up: "Inscribirse"
-  confirmation_instruction: "¿No recibió las instrucciones de confirmación?"
-  didnt_confirmation_instruction: "Didn't receive confirmation e-mail?"
-  remember_me: "¿Recuérdame?"
-  forgot_password: "¿Se te olvidó tu contraseña?"
+  confirmation_instruction: "¿No recibió el correo electrónico de confirmación?"
+  didnt_confirmation_instruction: "¿No recibió el correo electrónico de confirmación?"
+  remember_me: "¿Acuérdate de mí?"
+  forgot_password: "¿Has olvidado tu contraseña?"
   observation: "Observación"
   description: "Descripción"
   accommodation: "Alojamiento"
-  localization: "Ubicación"
-  partner_collaborators: "Socios colaboradores?"
-  add_location: "Añade una ubicación"
-  invisible_captcha:
-    sentence_for_humans: "Se você é humano, ignore este campo"
-    timestamp_error_message: "Desculpe, foi muito rápido! Por favor, reenvie em 5 segundos."
-  search: "Búsqueda"
-  showing: "Mostrando"
-  records: "registros"
-  next: "Próximo"
+  localization: "Localización"
+  partner_collaborators: "Colaboradores asociados?"
+  add_location: "Agregar Direccion"
+  search: "Buscar"
+  showing: "Demostración"
+  records: "Registros"
+  next: "Next"
   previous: "Anterior"
-  first: "Primeiro"
-  last: "Último"
-  cookies_eu:
-    cookies_text: "Las cookies nos ayudan a ofrecer nuestros servicios. Al utilizar nuestros servicios, aceptas el uso de cookies."
-    learn_more: "Más información"
-    ok: "OK"
-  summary_description: "Summary Description"
-  one_million_voices: "One Million Voices"
-  problem_it_address: "What is the problem you address"
-  how_it_is_done: "How it is Done"
-  expected_function_effects: "Expected function/effects"
-  principles: "Principles"
-  register_new_one_million_voices: "Register a One Million Voices"
-  evaluate: "Evaluate"
-  general_evaluate: "General Evaluate (Is the practice effective)"
-  account: "Account"
-  accounts: "Accounts"
-  short_description: "Short description of your place and practices"
-  i_agree_with_the_term_of_use: "I agree to the Terms and Conditions"
-  location_has_been_registered: "Location has been registered"
-  who_we_are: "Who we are"
+  first: "First"
+  last: "Last"
+  summary_description: "Descripción resumida"
+  one_million_voices: "Un millón de voces"
+  problem_it_address: "¿Cuál es el problema que aborda?"
+  how_it_is_done: "Como esta hecho"
+  expected_function_effects: "Función/efectos esperados"
+  principles: "Principios"
+  register_new_one_million_voices: "Registre un un millón de voces"
+  evaluate: "Evaluar"
+  general_evaluate: "Evaluar general (es la práctica efectiva)"
+  account: "Cuenta"
+  accounts: "Cuentas"
+  short_description: "Descripción breve de su lugar y prácticas"
+  i_agree_with_the_term_of_use: "Estoy de acuerdo con los términos y condiciones"
+  location_has_been_registered: "La ubicación ha sido registrada"
+  who_we_are: "Quienes somos"
   developers: "Developers"
   researchers: "Researchers"
-  location: "Location"
-  add_more_information: "Add more information"
-  no_data_has_been_registered_so_far: "No data has been registered so far."
-  location_has_been_updated: "Location has been updated"
-  are_you_sure: "Are you sure?"
-  agroecological_practice: "Agroecological Practice"
-  agroecological_practices: "Agroecological Practices"
-  register_new_agroecological_practice: "Register a Practice"
-  practice: "Practice"
-  practices: "Practices"
-  save: "Save"
-  what_you_do: "What you do"
-  characterise: "Characterise"
-  acknowledge: "Acknowledge"
-  register_new_practice: "Register a Practice"
-  agroecology_principles_addressed: "Agroecology Principles invoked"
-  food_system_components_addressed: "Food system components addressed"
-  general_performance_of_practice: "General Performance of Practice"
-  unintended_positive_side_effects_of_practice: "Unintended Positive Side Effects of Practice"
-  unintended_negative_side_effect_of_practice: "Unintended negative side effect of practice"
-  knowledge_and_skills_required_for_practice: "Knowledge and skills required for practice"
-  labour_required_for_practice: "Labour required for practice"
-  cost_associated_with_practice: "Cost associated with practice"
-  system_integrity_requirements: "System integrity requirements"
-  system_integrity_effects: "System integrity effects"
-  climate_change_vulnerability_effects: "Climate change vulnerability effects"
-  time_requirements: "Time Requirements"
-  knowledge_source: "Knowledge Source"
-  knowledge_timing: "Knowledge Timing"
-  knowledge_products: "Knowledge Products"
-  summary_description_of_agroecological_practice: "Summary Description of Agroecological Practice"
-  type_of_agroecological_practice: "Type of Agroecological Practice"
-  problem_that_practice_addresses: "Problem that Practice Addresses"
-  practical_implementation_of_the_practice: "Implementing the practice"
-  expected_function_or_effects_of_practice: "Expected function or effects of practice"
-  select_an_option: "Select an Option"
-  very_effective: "Very effective"
-  rather_effective: "Rather effective"
-  neither_effective_nor_uneffective: "Neither effective nor uneffective"
-  rather_uneffective: "Rather uneffective"
-  very_uneffective: "Very uneffective"
-  i_am_not_sure: "I am not sure"
-  formal_knowledge: "Formal knowledge"
-  indigenous_knowledge: "Indigenous knowledge"
-  local_knowledge: "Local knowledge"
-  personal_experimentation: "Personal experimentation"
-  high_specialised_knowledge_required: "High specialised knowledge required"
-  rather_high_specialised_knowledge_required: "Rather high specialised knowledge required"
-  specialised_knowledge_required_neither_high_nor_low: "Specialised knowledge required neither high nor low"
-  rather_low_specialised_knowledge_required: "Rather low specialised knowledge required"
-  no_specialised_knowledge_required: "No specialised knowledge required"
-  high_costs: "High costs"
-  rather_high_costs: "Rather high costs"
-  neither_high_nor_low_costs: "Neither high nor low costs"
-  rather_low_costs: "Rather low costs"
-  low_costs: "Low costs"
-  high_labour_required: "High labour required"
-  rather_high_labour_required: "Rather high labour required"
-  neither_high_nor_low_labout_required: "Neither high nor low labout required"
-  rather_low_labour_required: "Rather low labour required"
-  low_labour_required: "Low labour required"
-  works_instantly: "Works instantly"
-  works_rather_rapidly: "Works rather rapidly"
-  works_neither_rapidly_nor_slowly: "Works neither rapidly nor slowly"
-  takes_rather_long_to_work: "Takes rather long to work"
-  takes_very_long_to_work: "Takes very long to work"
-  works_well_in_depleted_environment: "Works well in depleted environment"
-  works_rather_well_in_depleted_environment: "Works rather well in depleted environment"
-  neither_works_well_nor_poorly_in_depleted_environment: "Neither works well nor poorly in depleted environment"
-  does_rather_not_work_in_depleted_environment: "Does rather not work in depleted environment"
-  does_not_work_at_all_in_depleted_environment: "Does not work at all in depleted environment"
-  hide_my_location: "Hide My Location on Map"
-  country: "Country"
-  a_long_time_ago: "A long time ago"
-  some_time_ago: "Some time ago"
-  recently: "Recently"
-  mainly_home_consumption: "Mainly Home Consumption"
-  mixed_home_consumption_and_commercial: "Mixed Home Consumption and Commercial"
-  mainly_commercial: "Mainly commercial"
-  farm_and_farming_system: "Farm and Farming System"
-  license: "License"
-  content_license: "Content License"
-  about_me: "About Me"
-  permission_denied: "Permission Denied"
-  document: "Document"
-  documents: "Documents"
-  send_document: "Add a Document"
+  location: "Ubicación"
+  add_more_information: "Agregar más información"
+  no_data_has_been_registered_so_far: "Hasta ahora no se han registrado datos."
+  location_has_been_updated: "La ubicación se ha actualizado"
+  are_you_sure: "¿Está seguro?"
+  agroecological_practice: "Práctica agroecológica"
+  agroecological_practices: "Prácticas agroecológicas"
+  register_new_agroecological_practice: "Registrar una práctica"
+  practice: "Práctica"
+  practices: "Práctica"
+  save: "Ahorrar"
+  what_you_do: "Que haces"
+  characterise: "Caracterizar"
+  acknowledge: "Reconocer"
+  register_new_practice: "Registrar una práctica"
+  agroecology_principles_addressed: "Principios de agroecología invocados"
+  food_system_components_addressed: "Componentes del sistema de alimentos abordados"
+  general_performance_of_practice: "Rendimiento general"
+  unintended_positive_side_effects_of_practice: "Efectos secundarios positivos no deseados de la práctica"
+  unintended_negative_side_effect_of_practice: "Efecto secundario negativo no deseado de la práctica"
+  knowledge_and_skills_required_for_practice: "Conocimiento y habilidades requeridas para la práctica"
+  labour_required_for_practice: "Trabajo requerido para la práctica"
+  cost_associated_with_practice: "Costo asociado con la práctica"
+  system_integrity_requirements: "Requisitos de integridad del sistema"
+  system_integrity_effects: "Efectos de integridad del sistema"
+  climate_change_vulnerability_effects: "Efectos de vulnerabilidad del cambio climático"
+  time_requirements: "Requisitos de tiempo"
+  knowledge_source: "Fuente de conocimiento"
+  knowledge_timing: "Tiempo de conocimiento"
+  knowledge_products: "Productos de conocimiento"
+  summary_description_of_agroecological_practice: "Descripción resumida de la práctica agroecológica"
+  type_of_agroecological_practice: "Tipo de práctica agroecológica"
+  problem_that_practice_addresses: "Problema que se dirige a la práctica"
+  practical_implementation_of_the_practice: "Implementación de la práctica"
+  expected_function_or_effects_of_practice: "Función o efectos esperados de la práctica"
+  select_an_option: "Seleccione una opción"
+  very_effective: "Muy efectivo"
+  rather_effective: "Bastante efectivo"
+  neither_effective_nor_uneffective: "Ni efectivo ni ineficaz"
+  rather_uneffective: "Bastante ineficaz"
+  very_uneffective: "Muy ineficaz"
+  i_am_not_sure: "no estoy seguro"
+  formal_knowledge: "Conocimiento formal"
+  indigenous_knowledge: "Conocimiento indígena"
+  local_knowledge: "Conocimiento local"
+  personal_experimentation: "Experimentación personal"
+  high_specialised_knowledge_required: "Se requiere un alto conocimiento especializado"
+  rather_high_specialised_knowledge_required: "Se requiere un conocimiento especializado bastante alto"
+  specialised_knowledge_required_neither_high_nor_low: "Conocimiento especializado requerido ni alto ni bajo"
+  rather_low_specialised_knowledge_required: "Se requiere un conocimiento especializado bastante bajo"
+  no_specialised_knowledge_required: "No se requiere conocimiento especializado"
+  high_costs: "Altos precios"
+  rather_high_costs: "Costos bastante altos"
+  neither_high_nor_low_costs: "Ni costos altos ni bajos"
+  rather_low_costs: "Costos bastante bajos"
+  low_costs: "Bajos costos"
+  high_labour_required: "Se requiere alto trabajo de parto"
+  rather_high_labour_required: "Requerido un parto bastante alto"
+  neither_high_nor_low_labout_required: "Ni la altura ni el bajo parto requerido"
+  rather_low_labour_required: "Requerido un parto bastante bajo"
+  low_labour_required: "Se requiere bajo trabajo de parto"
+  works_instantly: "Funciona al instante"
+  works_rather_rapidly: "Funciona bastante rápidamente"
+  works_neither_rapidly_nor_slowly: "Funciona ni rápido ni lentamente"
+  takes_rather_long_to_work: "Tarda mucho en trabajar"
+  takes_very_long_to_work: "Tarda mucho en trabajar"
+  works_well_in_depleted_environment: "Funciona bien en un entorno agotado"
+  works_rather_well_in_depleted_environment: "Funciona bastante bien en un entorno agotado"
+  neither_works_well_nor_poorly_in_depleted_environment: "Ni funciona bien ni mal en un entorno agotado"
+  does_rather_not_work_in_depleted_environment: "Más bien no funciona en un entorno agotado"
+  does_not_work_at_all_in_depleted_environment: "No funciona en absoluto en un entorno agotado"
+  hide_my_location: "Esconder mi ubicación en el mapa"
+  country: "País"
+  about_me: "Acerca de mí"
+  a_long_time_ago: "Hace mucho tiempo"
+  some_time_ago: "Hace tiempo"
+  recently: "Recientemente"
+  mainly_home_consumption: "Principalmente consumo doméstico"
+  mixed_home_consumption_and_commercial: "Consumo mixto para el hogar y comercial"
+  mainly_commercial: "Principalmente comercial"
+  farm_and_farming_system: "Sistema de granja y agricultura"
+  license: "Licencia"
+  content_license: "Licencia de contenido"
+  permission_denied: "Permiso denegado"
+  document: "Documento"
+  documents: "Documentos"
+  send_document: "Agregar un documento"
   administrator: "Administrator"
-  agroecology_in_practice: "Agroecology in Practice"
-  summary_observation: "Summary Observation"
-  uptake_motivation: "Uptake Motivation"
-  where_it_is_realized: "Where it is realized"
-  substitution_of_less_ecological_alternative: "Substitution of less ecological alternative"
-  land_size: "Land size"
-  farm_and_farming_system_details: "Details of the Farming System"
-  mainly_crop_farming: "Mainly crop farming"
-  mixed_crop_livestock_farming: "Mixed crop-livestock farming"
-  mainly_livestock_farming: "Mainly livestock farming"
-  thank_you_notes: "Thank You Notes"
-  home: "Home"
-  new_location: "Add a New Location"
-  first_and_last_name: "First and Last Name"
-  add_a_practice: "Add a Practice"
-  save_and_add_a_practice: "Save and Add a Practice"
-  please_sign_up: "Don't have an Account? Sign Up."
-  crops: "Crops"
-  trees: "Trees"
-  is_it_a_farm: "Is it a farm?"
-  what_do_you_have_on_your_farm: "What do you have on your farm?"
-  what_the_main_purpose_of_your_farm: "What's the main purpose of your farm?"
-  unit_of_measurement: "Unit of Measurement"
-  edit_your_profile: "Edit your Profile"
-  not_applicable: "Not applicable"
+  agroecology_in_practice: "Agroecología en la práctica"
+  summary_observation: "Observación resumida"
+  uptake_motivation: "Motivación de absorción"
+  where_it_is_realized: "Donde se realiza"
+  substitution_of_less_ecological_alternative: "Sustitución de menos alternativa ecológica"
+  land_size: "Tamaño de la tierra"
+  farm_and_farming_system_details: "Detalles del sistema agrícola"
+  mainly_crop_farming: "Principalmente cultivo de cultivos"
+  mixed_crop_livestock_farming: "Cultivo de cultivos mixtos"
+  mainly_livestock_farming: "Principalmente cultivo de ganado"
+  thank_you_notes: "Nota de agradecimiento"
+  home: "Hogar"
+  new_location: "Agregar una nueva ubicación"
+  first_and_last_name: "Primer y apellido"
+  add_a_practice: "Agregar una práctica"
+  save_and_add_a_practice: "Guardar y agregar una práctica"
+  please_sign_up: "¿No tienes una cuenta?inscribirse."
+  crops: "Cultivos"
+  trees: "Árboles"
+  is_it_a_farm: "¿Es una granja?"
+  what_do_you_have_on_your_farm: "¿Qué tienes en tu granja?"
+  what_the_main_purpose_of_your_farm: "¿Cuál es el propósito principal de su granja?"
+  unit_of_measurement: "Unidad de medida"
+  edit_your_profile: "Edite su perfil"
+  not_applicable: "No aplica"
