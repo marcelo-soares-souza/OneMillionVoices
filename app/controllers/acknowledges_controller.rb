@@ -6,7 +6,7 @@ class AcknowledgesController < ApplicationController
 
   before_action :set_acknowledge, only: %i[ show edit update destroy ]
   before_action :load_practice, only: %i[ edit ]
-  before_action :load_options
+  before_action :load_options_acknowledges
 
   # GET /acknowledges or /acknowledges.json
   def index
@@ -85,24 +85,6 @@ class AcknowledgesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def acknowledge_params
       params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, knowledge_source: [])
-    end
-
-    def load_options
-      @knowledge_source_options = {
-        t(:formal_knowledge) => "Formal knowledge",
-        t(:indigenous_knowledge) => "Indigenous knowledge",
-        t(:local_knowledge) => "Local knowledge",
-        t(:personal_experimentation) => "Personal experimentation",
-        t(:other) => "Other",
-        t(:i_am_not_sure) => "I am not sure"
-      }
-
-      @knowledge_timing_options = {
-        "3 - " + t(:a_long_time_ago) => "A long time ago",
-        "2 - " + t(:some_time_ago) => "Some time ago",
-        "1 - " + t(:recently) => "Recently",
-        "0 - " + t(:i_am_not_sure) => "I am not sure"
-      }
     end
 
     def load_practice

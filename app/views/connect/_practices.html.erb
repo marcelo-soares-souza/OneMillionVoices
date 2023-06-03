@@ -7,6 +7,8 @@
     <%= select_tag "where_it_is_realized", options_from_collection_for_select(@where_it_is_realized_options, :last, :first, params[:where_it_is_realized] ? params[:where_it_is_realized] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Where it is realized'  %>
     <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:components] ? params[:components] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by System Component'  %>
     <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:principles] ? params[:principles] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Agroecology Principle' %>
+    <%= select_tag "knowledge_source", options_from_collection_for_select(@knowledge_source_options, :last, :first, params[:knowledge_source] ? params[:knowledge_source] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Knowledge Source'  %>
+
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
       <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", connect_path %>
     </div>
@@ -53,6 +55,7 @@
         var country = $("#country_country :selected").val();
         var continent = $("#continent :selected").val();
         var where_it_is_realized = $("#where_it_is_realized :selected").val();
+        var knowledge_source = $("#knowledge_source :selected").val();
 
         var filter = "?filter=true"
         filter += name ? "&name=" + name : "";
@@ -63,6 +66,7 @@
         filter += country ? "&country=" + country : "";
         filter += continent ? "&continent=" + continent : "";
         filter += where_it_is_realized ? "&where_it_is_realized=" + where_it_is_realized : "";
+        filter += knowledge_source ? "&knowledge_source=" + knowledge_source : "";
 
         var url = "/" + controller + "/" + filter;
 

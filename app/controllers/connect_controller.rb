@@ -4,6 +4,7 @@ class ConnectController < ApplicationController
   before_action :load_system_options
   before_action :load_principles
   before_action :load_options_what_you_do
+  before_action :load_options_acknowledges
 
   def index
     @practices = if params[:filter]
@@ -28,6 +29,7 @@ class ConnectController < ApplicationController
     @practices = @practices.by_food_system_components_addressed(params[:components]) unless params[:components].blank?
     @practices = @practices.by_agroecology_principles_addressed(params[:principles]) unless params[:principles].blank?
     @practices = @practices.by_where_it_is_realized(params[:where_it_is_realized]) unless params[:where_it_is_realized].blank?
+    @practices = @practices.by_knowledge_source(params[:knowledge_source]) unless params[:knowledge_source].blank?
     @practices = @practices.by_farm_and_farming_system(params[:system_functions]) unless params[:system_functions].blank?
     @practices = @practices.by_farm_and_farming_system_complement(params[:system_components]) unless params[:system_components].blank?
     @practices = @practices.by_country(params[:country]) unless params[:country].blank?

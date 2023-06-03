@@ -169,6 +169,24 @@ class ApplicationController < ActionController::Base
       }
     end
 
+    def load_options_acknowledges
+      @knowledge_source_options = {
+        t(:formal_knowledge) => "Formal knowledge",
+        t(:indigenous_knowledge) => "Indigenous knowledge",
+        t(:local_knowledge) => "Local knowledge",
+        t(:personal_experimentation) => "Personal experimentation",
+        t(:other) => "Other",
+        t(:i_am_not_sure) => "I am not sure"
+      }
+
+      @knowledge_timing_options = {
+        "3 - " + t(:a_long_time_ago) => "A long time ago",
+        "2 - " + t(:some_time_ago) => "Some time ago",
+        "1 - " + t(:recently) => "Recently",
+        "0 - " + t(:i_am_not_sure) => "I am not sure"
+      }
+    end
+
   private
     def storable_location?
       request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
