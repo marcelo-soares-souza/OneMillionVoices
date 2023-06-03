@@ -8,7 +8,7 @@ class PracticesController < ApplicationController
   before_action :load_locations, except: %i[index show]
   before_action :load_location
   before_action :load_account
-  before_action :load_options
+  before_action :load_principles
   before_action :load_system_options
   before_action :load_locations, only: %i[new]
 
@@ -119,45 +119,5 @@ class PracticesController < ApplicationController
 
     def load_account
       @account = Account.friendly.find(params[:account_id]) if params[:account_id]
-    end
-
-    def load_options
-      @food_system_components_addressed_options = {
-        # "Filter by System Component" => "Filter",
-        # "All" => "All",
-        "1 - Soil" => "Soil",
-        "2 - Water" => "Water",
-        "3 - Crops" => "Crops",
-        "4 - Livestock" => "Livestock",
-        "5 - Trees" => "Trees",
-        "6 - Pests" => "Pests",
-        "7 - Energy" => "Energy",
-        "8 - Household" => "Household",
-        "9 - Workers" => "Workers",
-        "10 - Community" => "Community",
-        "11 - Value chain" => "Value chain",
-        "12 - Policy" => "Policy",
-        "13 - Whole Food System" => "Whole Food System",
-        "14 - Other" => "Other",
-        "15 - I am not sure" => "I am not sure"
-      }
-
-      @agroecology_principles_addressed_options = {
-        # "Filter by Agroecology Principle" => "Filter",
-        # "All" => "All",
-        "1 - Recycling" => "Recycling",
-        "2 - Input reduction" => "Input reduction",
-        "3 - Soil health" => "Soil health",
-        "4 - Animal health" => "Animal health",
-        "5 - Biodiversity" => "Biodiversity",
-        "6 - Synergy" => "Synergy",
-        "7 - Economic diversification" => "Economic diversification",
-        "8 - Co-creation of knowledge" => "Co-creation of knowledge",
-        "9 - Social values and diets" => "Social values and diets",
-        "10 - Fairness" => "Fairness",
-        "11 - Connectivity" => "Connectivity",
-        "12 - Land and natural resource governance" => "Land and natural resource governance",
-        "13 - Participation" => "Participation"
-      }
     end
 end

@@ -6,7 +6,7 @@ class WhatYouDosController < ApplicationController
 
   before_action :set_what_you_do, only: %i[ show edit update destroy ]
   before_action :authenticate_account!, only: %i[new edit update destroy]
-  before_action :load_options
+  before_action :load_options_what_you_do
   before_action :load_yes_no_i_am_not_sure_options
 
   # GET /what_you_dos or /what_you_dos.json
@@ -92,21 +92,5 @@ class WhatYouDosController < ApplicationController
       params.require(:what_you_do).permit(:practice_id, :where_it_is_realized, :land_size, :substitution_of_less_ecological_alternative, :summary_description_of_agroecological_practice,
                                           :type_of_agroecological_practice, :practical_implementation_of_the_practice,
                                           :expected_function_or_effects_of_practice, :substitution_of_less_ecological_alternative_details, :unit_of_measure)
-    end
-
-    def load_options
-      @where_it_is_realized_options = {
-        "1 - " + "On-farm" => "On-farm",
-        "2 - " + "Off-farm" => "Off-farm",
-        "3 - " + "Other" => "Other"
-      }
-
-      @unit_of_measure_options = {
-        "m2" => "m2",
-        "Acre" => "Acre",
-        "Hectare" => "Hectare",
-        "Square foot" => "Square foot",
-        t(:not_applicable) => "Not applicable"
-      }
     end
 end

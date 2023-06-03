@@ -112,6 +112,63 @@ class ApplicationController < ActionController::Base
       }
     end
 
+    def load_principles
+      @food_system_components_addressed_options = {
+        # "Filter by System Component" => "Filter",
+        # "All" => "All",
+        "1 - Soil" => "Soil",
+        "2 - Water" => "Water",
+        "3 - Crops" => "Crops",
+        "4 - Livestock" => "Livestock",
+        "5 - Trees" => "Trees",
+        "6 - Pests" => "Pests",
+        "7 - Energy" => "Energy",
+        "8 - Household" => "Household",
+        "9 - Workers" => "Workers",
+        "10 - Community" => "Community",
+        "11 - Value chain" => "Value chain",
+        "12 - Policy" => "Policy",
+        "13 - Whole Food System" => "Whole Food System",
+        "14 - Other" => "Other",
+        "15 - I am not sure" => "I am not sure"
+      }
+
+      @agroecology_principles_addressed_options = {
+        # "Filter by Agroecology Principle" => "Filter",
+        # "All" => "All",
+        "1 - Recycling" => "Recycling",
+        "2 - Input reduction" => "Input reduction",
+        "3 - Soil health" => "Soil health",
+        "4 - Animal health" => "Animal health",
+        "5 - Biodiversity" => "Biodiversity",
+        "6 - Synergy" => "Synergy",
+        "7 - Economic diversification" => "Economic diversification",
+        "8 - Co-creation of knowledge" => "Co-creation of knowledge",
+        "9 - Social values and diets" => "Social values and diets",
+        "10 - Fairness" => "Fairness",
+        "11 - Connectivity" => "Connectivity",
+        "12 - Land and natural resource governance" => "Land and natural resource governance",
+        "13 - Participation" => "Participation"
+      }
+    end
+
+
+    def load_options_what_you_do
+      @where_it_is_realized_options = {
+        "1 - " + "On-farm" => "On-farm",
+        "2 - " + "Off-farm" => "Off-farm",
+        "3 - " + "Other" => "Other"
+      }
+
+      @unit_of_measure_options = {
+        "m2" => "m2",
+        "Acre" => "Acre",
+        "Hectare" => "Hectare",
+        "Square foot" => "Square foot",
+        t(:not_applicable) => "Not applicable"
+      }
+    end
+
   private
     def storable_location?
       request.get? && is_navigational_format? && !devise_controller? && !request.xhr?

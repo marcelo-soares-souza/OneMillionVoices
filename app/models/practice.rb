@@ -4,6 +4,7 @@ class Practice < ApplicationRecord
   scope :by_name, -> (name) { where("practices.name ILIKE ?", "%#{name}%") }
   scope :by_food_system_components_addressed, -> (food_system_components_addressed) { joins(:characterise).where("characterises.food_system_components_addressed ILIKE ?", "%#{food_system_components_addressed}%") }
   scope :by_agroecology_principles_addressed, -> (agroecology_principles_addressed) { joins(:characterise).where("characterises.agroecology_principles_addressed ILIKE ?", "%#{agroecology_principles_addressed}%") }
+  scope :by_where_it_is_realized, -> (where_it_is_realized) { joins(:what_you_do).where("what_you_dos.where_it_is_realized ILIKE ?", "%#{where_it_is_realized}%") }
   scope :by_farm_and_farming_system, -> (farm_and_farming_system) { joins(:location).where("locations.farm_and_farming_system ILIKE ?", "%#{farm_and_farming_system}%") }
   scope :by_farm_and_farming_system_complement, -> (farm_and_farming_system_complement) { joins(:location).where("locations.farm_and_farming_system_complement ILIKE ?", "%#{farm_and_farming_system_complement}%") }
   scope :by_country, -> (country) { joins(:location).where("locations.country ILIKE ?", "%#{country}%") }
