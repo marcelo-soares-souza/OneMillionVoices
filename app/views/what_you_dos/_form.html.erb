@@ -76,7 +76,7 @@
     <div class="form-group row bg-light">
       <%= f.label t(:substitution_of_less_ecological_alternative), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.collection_select(:substitution_of_less_ecological_alternative, @yes_no_i_am_not_sure_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
+        <%= f.collection_select(:substitution_of_less_ecological_alternative, @yes_no_i_am_not_sure_not_applicable_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
         <%= f.text_area :substitution_of_less_ecological_alternative_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
         <div class="tip">
           Does the practice substitute or reduce a less ecological alternative (i.e. use of synthetic inputs)?

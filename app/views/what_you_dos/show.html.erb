@@ -86,7 +86,7 @@
 
       <% if ! @what_you_do.substitution_of_less_ecological_alternative.blank? %>
         <div class="practices-box">
-          <%= "<h4>#{t(:substitution_of_less_ecological_alternative)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_options.key(@what_you_do.substitution_of_less_ecological_alternative)}</div>".html_safe %>
+          <%= "<h4>#{t(:substitution_of_less_ecological_alternative)}</h4><div class='text-box'>#{@yes_no_i_am_not_sure_not_applicable_options.key(@what_you_do.substitution_of_less_ecological_alternative)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @what_you_do.substitution_of_less_ecological_alternative_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @what_you_do.substitution_of_less_ecological_alternative_details.blank? %>
         </div>
       <% end %>

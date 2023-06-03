@@ -54,6 +54,13 @@ class ApplicationController < ActionController::Base
         "2 - " + t(:no_query) => "No",
         "3 - " + t(:i_am_not_sure) => "I am not sure",
       }
+
+      @yes_no_i_am_not_sure_not_applicable_options = {
+        "1 - " + t(:yes_query) => "Yes",
+        "2 - " + t(:no_query) => "No",
+        "3 - " + t(:i_am_not_sure) => "I am not sure",
+        t(:not_applicable) => "Not applicable"
+      }
     end
 
     def load_effective_options
