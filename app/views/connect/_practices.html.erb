@@ -1,8 +1,7 @@
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
   <div id="more-filter">
-    <% countries = ISO3166::Country.find_all_countries_by_continent(params[:continent]).map(&:alpha2) %>
     <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:continent] ? params[:continent] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Continent' %>
-    <%= country_select("country", "country", { only: countries, selected: params[:country] ? params[:country] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true}) %>
+    <%= country_select("country", "country", { selected: params[:country] ? params[:country] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true}) %>
     <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:system_functions] ? params[:system_functions] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Functions' %>
     <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:system_components] ? params[:system_components] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Components' %>
     <%= select_tag "where_it_is_realized", options_from_collection_for_select(@where_it_is_realized_options, :last, :first, params[:where_it_is_realized] ? params[:where_it_is_realized] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Where it is realized'  %>
@@ -46,6 +45,35 @@
 
 <script>
     const controller = 'connect';
+
+    $(document).ready(function () {
+        continent = $("#continent option:selected").text()
+        if (continent != 'Filter by Continent')
+            updateCountries(continent)
+    });
+
+    $("#continent").change(function () {
+        updateCountries($("#continent option:selected").text())
+    });
+
+    function updateCountries(continent) {
+        $.get( "/countries.json?continent=" + continent, function( data ) {
+            const countries = data["countries"]
+            $("#country_country option").each(function() {
+                if (countries.length > 0) {
+                    const country = $(this).val()
+                    if (!countries.includes(country))
+                        $("#country_country option[value='" + country + "']").hide();
+                    else
+                        $("#country_country option[value='" + country + "']").show();
+                }
+                else {
+                    $("#country_country option[value='" + $(this).val() + "']").show();
+                }
+                $('#country_country').selectpicker('refresh');
+            });
+        });
+    }
 
     function filter(filter) {
         var name = $("#search").val();

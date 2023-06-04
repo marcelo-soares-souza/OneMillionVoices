@@ -97,6 +97,10 @@ class LocationsController < ApplicationController
     @location = Geocoder.search(params[:country].blank? ? "Brazil" : params[:country])
   end
 
+  def countries
+    @countries = ISO3166::Country.find_all_countries_by_continent(params[:continent]).map(&:alpha2)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
