@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 SocialShareButton.configure do |config|
-  config.allow_sites = %w(twitter facebook)
+  config.allow_sites = %w(twitter facebook whatsapp_web telegram email)
 end
