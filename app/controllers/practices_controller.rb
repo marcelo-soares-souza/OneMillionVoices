@@ -12,6 +12,7 @@ class PracticesController < ApplicationController
   before_action :load_system_options
   before_action :load_locations, only: %i[new]
   before_action :load_likes_info, only: %i[show]
+  before_action :load_comments, only: %i[show]
 
   # GET /practices
   # GET /practices.json
@@ -132,5 +133,10 @@ class PracticesController < ApplicationController
     def load_likes_info
       likes = @practice.likes.map { |like| like.account.name }.join(", ")
       @likes_info = likes.empty? ? "Like Button" : likes
+    end
+
+    def load_comments
+      @practice_id = Practice.friendly.find(params[:id]).id
+      @comments = Comment.where(practice_id: @practice_id).page(params[:page])
     end
 end
