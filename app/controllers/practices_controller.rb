@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PracticesController < ApplicationController
-  before_action :authenticate_account!, only: %i[new edit update destroy]
+  before_action :authenticate_account!, only: %i[new edit update destroy like]
   before_action lambda { check_owner Practice.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
 
   before_action :set_practice, only: %i[show edit update destroy]

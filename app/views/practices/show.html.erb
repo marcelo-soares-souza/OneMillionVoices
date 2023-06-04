@@ -44,16 +44,9 @@
 
   <div class="tab-pane active">
     <div class="like">
-      <% if account_signed_in? %>
-        <%= link_to like_path(@practice), method: "put", class: "btn text-white",  style: "background-color: #fff;", disabled: true do %>
-          <%= bootstrap_icon "heart-fill", width: 16, fill: "rgb(220, 53, 69)" %>
-          <span class="badge bg-danger ms-2" style="font-size: 14px"> <%= @practice.likes.count.to_s %></span>
-        <% end %>
-      <% else %>
-        <%= link_to "#", method: "put", class: "btn text-white",  style: "background-color: #fff;", disabled: true do %>
-          <%= bootstrap_icon "heart-fill", width: 16, fill: "rgb(220, 53, 69)" %>
-          <span class="badge bg-danger ms-2" style="font-size: 14px"><%= @practice.likes.count.to_s %></span>
-        <% end %>
+      <%= link_to like_path(@practice), method: "put", class: "btn text-white",  style: "background-color: #fff;", disabled: true do %>
+        <%= bootstrap_icon "heart-fill", width: 16, fill: "rgb(220, 53, 69)" %>
+        <span class="badge bg-danger ms-2" style="font-size: 14px"><%= @practice.likes.count.to_s %></span>
       <% end %>
     </div>
 
