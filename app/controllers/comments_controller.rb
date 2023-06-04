@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
       if @comment.save
         subject = "[One Million Voices] You have received a new comment on #{@comment.practice.name}"
         body = "Comment: #{@comment.comment}"
-        body += "\r\n"
+        body += "\r\n \r\n"
         body += "Link to the Practice: " + location_practice_url(@comment.practice.location, @comment.practice)
 
         if @practice.account.id != current_account.id
