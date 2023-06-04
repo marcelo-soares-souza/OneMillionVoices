@@ -6,7 +6,7 @@ class LocationsController < ApplicationController
   before_action -> { check_owner Location.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
   before_action :load_property_types
   before_action :load_account
-  before_action :load_colaboradores, except: %i[index show]
+  before_action :load_all_accounts, except: %i[index show]
   before_action :load_total_medias, only: %i[show]
   before_action :load_options
   before_action :load_system_options
@@ -126,7 +126,7 @@ class LocationsController < ApplicationController
       }
     end
 
-    def load_colaboradores
+    def load_all_accounts
       @accounts = Account.all.load_async
     end
 

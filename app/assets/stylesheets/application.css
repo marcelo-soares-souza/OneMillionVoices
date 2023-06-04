@@ -781,3 +781,7 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgba(248, 249, 250, 0.65) !important;
+}

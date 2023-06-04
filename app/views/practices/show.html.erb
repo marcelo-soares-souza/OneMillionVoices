@@ -71,8 +71,21 @@
     <div>
       <h4>Share</h4>
       <%= social_share_button_tag("See this incredible agroecological practice " + @practice.name + " #Agroecology #OneMillionVoices ", :url => location_practice_url(@practice.location, @practice)) %>
-
     </div>
+    <br>
+    <strong><%= @practice.comments.count.to_s + " " + t(:comment) + "(s)" %>:</strong>
+    <% if  account_signed_in? %>
+      <div class='text-box'>
+        <%= render 'comment', comment: @comment %>
+      </div>
+    <% end %>
+
+    <br>
+    <%= "<b>#{link_to t(:sign_in_to_comment), new_account_session_path, :class => 'text-danger'}</b>".html_safe if !account_signed_in? %>
+    
+    <% if @practice.comments.count > 0 %>
+      <%= render 'comments', comments: @practice.comments.order(:updated_at).reverse_order %>
+    <% end %>
 
     <% if account_signed_in? %>
       <% if current_account.admin? or current_account.id == @practice.account.id %>

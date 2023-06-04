@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_04_120835) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -95,6 +95,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_120835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["practice_id"], name: "index_characterises_on_practice_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "account_id", null: false
+    t.bigint "practice_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_comments_on_account_id"
+    t.index ["practice_id"], name: "index_comments_on_practice_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -212,6 +222,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_120835) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characterises", "practices"
+  add_foreign_key "comments", "accounts"
+  add_foreign_key "comments", "practices"
   add_foreign_key "documents", "accounts"
   add_foreign_key "documents", "locations"
   add_foreign_key "documents", "practices"

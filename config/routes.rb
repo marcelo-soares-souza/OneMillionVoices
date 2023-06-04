@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :evaluates
   resources :characterises
   resources :what_you_dos
+  resources :comments
 
   resources :practices do
     resources :acknowledges
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
     resources :what_you_dos
     resources :medias
     resources :documents
+    resources :comments
     get "/gallery" => "medias#gallery"
   end
 

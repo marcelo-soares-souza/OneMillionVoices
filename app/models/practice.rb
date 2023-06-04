@@ -20,7 +20,8 @@ class Practice < ApplicationRecord
 
   has_many :medias, dependent: :delete_all
   has_many :documents, dependent: :delete_all
-  has_many :likes
+  has_many :likes, dependent: :delete_all
+  has_many :comments, dependent: :delete_all
 
   has_one_attached :photo do |attachable|
     attachable.variant :original, resize_to_limit: [1920, nil]

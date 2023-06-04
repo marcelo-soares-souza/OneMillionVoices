@@ -47,6 +47,7 @@ class PracticesController < ApplicationController
   # GET /practices/1
   # GET /practices/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /practices/new

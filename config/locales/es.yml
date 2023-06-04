@@ -32,7 +32,7 @@ es:
   register: "Registro"
   password: "Contraseña"
   agroecology_is_free_software: "Código fuente"
-  submit_comment: "Enviar comentario"
+  submit_comment: "Comentar"
   register_new_location: "Registrar una ubicación"
   experience: "Experiencia"
   experiences: "Experiencias"
