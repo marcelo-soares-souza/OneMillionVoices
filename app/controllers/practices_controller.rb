@@ -106,7 +106,7 @@ class PracticesController < ApplicationController
   def like
     @practice = Practice.friendly.find(params[:id])
     Like.create(account_id: current_account.id, practice_id: @practice.id)
-    redirect_to @practice
+    redirect_to @practice, notice: "Your like was given to " + @practice.name
   end
 
   private
