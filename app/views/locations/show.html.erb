@@ -9,13 +9,12 @@
 <% end %>
 
 <br><br><br>
-
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">
     <%= link_to truncate(@location.name, length: 25), location_path(@location.id), :class => "nav-link active" %>
   </li>
   <li class="nav-item">
-    <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location, ''), :class => "nav-link" %>
+    <%= link_to t(:practices) + " (#{@location.practices.count})", location_practices_path(@location), :class => "nav-link" %>
   </li>
   <li class="nav-item">
     <%= link_to t(:gallery) + " (#{@total_media})", location_gallery_path(@location.id), :class => "nav-link" %>

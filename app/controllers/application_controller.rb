@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def default_url_options(options = {})
+      { locale: I18n.locale }
+    end
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:account_update, keys: [:name])
       devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
