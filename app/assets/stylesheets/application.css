@@ -774,3 +774,9 @@ h1 {
 .bg-light {
     background-color: rgba(248, 249, 250, 0.65) !important;
 }
+
+.tab-content > .active {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}

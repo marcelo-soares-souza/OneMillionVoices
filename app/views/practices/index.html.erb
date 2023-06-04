@@ -45,6 +45,19 @@
     <% @practices.each do |practice| %>
       <div class="col-sm-6" style="cursor: pointer;" onclick="window.location='<%= location_practice_path(practice.location, practice) %>';">
         <div class="card" style="min-height: 340px;">
+          <div class="like">
+            <% if  account_signed_in? %>
+              <%= link_to like_path(practice), method: "put", class: "btn text-white",  style: "background-color: #fff;", disabled: true do %>
+                <img src="/like.png">
+                <span class="badge bg-danger ms-2" style="font-size: 14px"><%= practice.likes.count.to_s %></span>
+              <% end %>
+            <% else %>
+              <%= link_to "#", method: "put", class: "btn text-white",  style: "background-color: #fff;", disabled: true do %>
+                <img src="/like.png">
+                <span class="badge bg-danger ms-2" style="font-size: 14px"><%= practice.likes.count.to_s %></span>
+              <% end %>
+            <% end %>
+          </div>
           <br>
           <div class="card-img-top thumbnail"><%= link_to photo_medium(practice, practice.name), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <div class="card-body">
@@ -70,10 +83,10 @@
 
     $(document).ready(function () {
         <% if params[:filter].blank? or params[:name] %>
-            $("#more-filter").hide();
-            $("#searchButton").show();
+        $("#more-filter").hide();
+        $("#searchButton").show();
         <% else %>
-            $("#searchButton").hide();
+        $("#searchButton").hide();
         <% end %>
     });
 

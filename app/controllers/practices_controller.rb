@@ -11,6 +11,7 @@ class PracticesController < ApplicationController
   before_action :load_principles
   before_action :load_system_options
   before_action :load_locations, only: %i[new]
+  before_action :load_likes_info, only: %i[show]
 
   # GET /practices
   # GET /practices.json
@@ -102,6 +103,12 @@ class PracticesController < ApplicationController
     end
   end
 
+  def like
+    @practice = Practice.friendly.find(params[:id])
+    Like.create(account_id: current_account.id, practice_id: @practice.id)
+    redirect_to @practice
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_practice
@@ -119,5 +126,10 @@ class PracticesController < ApplicationController
 
     def load_account
       @account = Account.friendly.find(params[:account_id]) if params[:account_id]
+    end
+
+    def load_likes_info
+      likes = @practice.likes.map { |like| like.account.name }.join(", ")
+      @likes_info = likes.empty? ? "Like Button" : likes
     end
 end

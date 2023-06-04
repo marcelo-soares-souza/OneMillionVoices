@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   get "errors/not_found"
   get "errors/internal_server_error"
-  resources :documents
+
   scope "(:locale)", locale: /pt-BR|es|en|fr|gl/ do
     root to: "home#index"
     get "home/index"
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get "coordinates", to: "locations#coordinates"
   get "countries", to: "locations#countries"
+  put "/practices/:id/like", to: "practices#like", as: "like"
 
   resources :practices
   resources :acknowledges
