@@ -67,6 +67,13 @@
     <%= "<h4>#{t(:location)}</h4>#{link_to @practice.location.name.truncate(40), location_path(@practice.location)}&nbsp;".html_safe if @practice.location.name? %>
     <br><br>
     <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @practice.account.name, account_path(@practice.account)}&nbsp;".html_safe if @practice.account.name? %></div>
+
+    <div>
+      <h4>Share</h4>
+      <%= social_share_button_tag("See my Agroecological practice " + @practice.name + " #Agroecology #OneMillionVoices ", :url => location_practice_url(@practice.location, @practice)) %>
+
+    </div>
+
     <% if account_signed_in? %>
       <% if current_account.admin? or current_account.id == @practice.account.id %>
         <hr>
