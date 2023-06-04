@@ -5,4 +5,6 @@ class Comment < ApplicationRecord
 
   belongs_to :account
   belongs_to :practice
+
+  validates_length_of :comment, maximum: 4096
 end

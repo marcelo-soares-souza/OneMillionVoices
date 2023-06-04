@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
         format.html { redirect_to @practice, notice: "A Comment was Added." }
       else
-        format.html { redirect_to @practice, notice: "Error" }
+        format.html { redirect_to @practice, notice: "Error when trying to send comment. Limit of 4096 characters." }
       end
     end
   end
