@@ -3,7 +3,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
   before_action :authenticate_account!, only: %i[new edit update destroy]
-  before_action -> { check_owner Comment.find(params[:id]).practice.account_id }, only: %i[edit update destroy]
+  before_action -> { check_owner Comment.find(params[:id]).account_id }, only: %i[edit update destroy]
 
   # POST /comments
   # POST /comments.json
