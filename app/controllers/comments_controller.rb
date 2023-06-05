@@ -15,16 +15,17 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        subject = "[One Million Voices] You have received a new comment on #{@comment.practice.name}"
-        body = "Comment: #{@comment.comment}"
-        body += "\r\n \r\n"
-        body += "Link to the Practice: " + location_practice_url(@comment.practice.location, @comment.practice)
+        # Send E-Mail to the User - Disabled to evaluate
+        # subject = "[One Million Voices] You have received a new comment on #{@comment.practice.name}"
+        # body = "Comment: #{@comment.comment}"
+        # body += "\r\n \r\n"
+        # body += "Link to the Practice: " + location_practice_url(@comment.practice.location, @comment.practice)
+        #
+        # if @practice.account.id != current_account.id
+        #   ActionMailer::Base.mail(from: '"One Million Voices" <noreply@agroecologymap.org>', to: @practice.account.email, subject: subject,  body: body).deliver
+        # end
 
-        if @practice.account.id != current_account.id
-          ActionMailer::Base.mail(from: "One Million Voices <marcelo@agroecologymap.org>", to: @practice.account.email, subject: subject,  body: body).deliver
-        end
-
-        format.html { redirect_to @practice, notice: "A Comment was Added." }
+        format.html { redirect_to @practice, notice: "A Comment was added." }
       else
         format.html { redirect_to @practice, notice: "Error when trying to send comment. Limit of 4096 characters." }
       end

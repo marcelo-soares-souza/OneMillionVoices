@@ -136,8 +136,8 @@ strong {
 .thumbnail {
     margin-top: 5px;
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     overflow: hidden;
     margin-right: auto;
     margin-left: auto;
@@ -701,6 +701,14 @@ h1 {
 
 .practices-box h4 {
     color: #00a88e !important;
+}
+
+b {
+    color: rgb(0, 102, 107) !important;
+}
+
+strong {
+    color: rgb(0, 102, 107) !important;
 }
 
 @media all and (max-width: 1280px) {

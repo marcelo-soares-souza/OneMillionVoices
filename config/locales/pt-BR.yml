@@ -274,4 +274,9 @@ pt-BR:
   edit_your_profile: "Edite seu perfil"
   not_applicable: "Não aplicável"
   connect: "Connect"
-
+  send_me_the_reset_instructions: "Send me the reset instructions"
+  resend: "Resend"
+  why_do_you_use_it: "Why do you use it?"
+  does_it_work_in_degraded_environments: "Does it work in degraded environments?"
+  does_it_help_restore_land: "Does it help restore land?"
+  why_you_use_and_what_you_expect_from_this_practice: "Why you use and what you expect from this practice?"

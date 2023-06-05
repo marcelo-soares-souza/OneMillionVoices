@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Location < ApplicationRecord
+  paginates_per 15
+
   scope :by_name, -> (name) { where("locations.name ILIKE ?", "%#{name}%") }
   scope :by_farm_and_farming_system, -> (farm_and_farming_system) { where("locations.farm_and_farming_system ILIKE ?", "%#{farm_and_farming_system}%") }
   scope :by_farm_and_farming_system_complement, -> (farm_and_farming_system_complement) { where("locations.farm_and_farming_system_complement ILIKE ?", "%#{farm_and_farming_system_complement}%") }
   scope :by_country, -> (country) { where("locations.country ILIKE ?", "%#{country}%") }
   scope :by_continent, -> (continent) { where("locations.continent ILIKE ?", "%#{continent}%") }
-
-  paginates_per 4
 
   belongs_to :account
   has_many :medias, dependent: :destroy

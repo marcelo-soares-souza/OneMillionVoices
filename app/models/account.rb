@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  paginates_per 4
+  paginates_per 15
 
   has_many :locations, dependent: :destroy
   has_many :practices, through: :location

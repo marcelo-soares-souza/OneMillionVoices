@@ -100,7 +100,7 @@
     <br>
 
     <div class="form-group row bg-light">
-      <%= f.label t(:system_integrity_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <%= f.label t(:does_it_work_in_degraded_environments), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:system_integrity_requirements, @system_integrity_requirements_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
         <%= f.text_area :system_integrity_requirements_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
@@ -112,7 +112,7 @@
     <br>
 
     <div class="form-group row">
-      <%= f.label t(:system_integrity_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <%= f.label t(:does_it_help_restore_land), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:system_integrity_effects, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
         <%= f.text_area :system_integrity_effects_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>

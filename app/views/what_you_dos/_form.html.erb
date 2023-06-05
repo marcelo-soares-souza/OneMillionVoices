@@ -44,7 +44,8 @@
       <div class="col-sm-10">
         <%= f.text_area :type_of_agroecological_practice, class: "form-control", :rows => "6" %>
         <div class="tip">
-          What kind of practice is it?
+          There is no standardised typology for agroecological practices, so please describe briefly what kind of practice it is - which might be similar to the name you gave your practice.
+          (e.g. soil erosion control, fruit tree planting, multipurpose agroforestry, producer cooperative, organic herb production, using biological control etc.)
         </div>
       </div>
     </div>
@@ -79,14 +80,14 @@
         <%= f.collection_select(:substitution_of_less_ecological_alternative, @yes_no_i_am_not_sure_not_applicable_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
         <%= f.text_area :substitution_of_less_ecological_alternative_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
         <div class="tip">
-          Does the practice substitute or reduce a less ecological alternative (i.e. use of synthetic inputs)?
+          Does the practice substitute and/or reduce a less ecological alternative (i.e. use of synthetic inputs)?
         </div>
       </div>
     </div>
 
     <br>
     <div class="form-group row ">
-      <%= f.label t(:expected_function_or_effects_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <%= f.label t(:why_you_use_and_what_you_expect_from_this_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :expected_function_or_effects_of_practice, class: "form-control", :rows => "6" %>
         <div class="tip">

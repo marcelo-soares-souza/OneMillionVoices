@@ -22,10 +22,16 @@
         align-items: center;
         justify-content: center;
     }
+
+    .card {
+        margin-bottom: 32px;
+
+    }
 </style>
 
 <div class="thank_you_notes">
   <h1><%= t(:thank_you_notes) %></h1>
+
   <div class="text-box" style="line-height: 30px;">
     The <strong>One Million Voices</strong> platform is completely <a href="https://www.gnu.org/philosophy/free-sw.html" target="_blank">free and open source</a>.
     We would like to thank all the projects, artists and partners that contribute to the One Million Voices platform.
@@ -44,9 +50,34 @@
         <div class="logo"><%= link_to image_tag("tpp.jpg", width: "180px", alt: "The Transformative Partnership Platform on Agroecology", title: "The Transformative Partnership Platform on Agroecology"), "https://glfx.globallandscapesforum.org/topics/21467/page/TPP-home", :target => "_blank", :alt => "Agroecology Map Logo", :title => "The Transformative Partnership Platform on Agroecology" %></div>
       </div>
     </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="logo"><%= link_to image_tag("afa.jpg", width: "180px", alt: "AFA", title: "AFA"), "https://asianfarmers.org/", :target => "_blank", :alt => "AFA", :title => "AFA" %></div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="logo"><%= link_to image_tag("sdc.png", width: "180px", alt: "SDC", title: "SDC"), "https://www.fdfa.admin.ch/sdc", :target => "_blank", :alt => "SDC", :title => "SDC" %></div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="logo"><%= link_to image_tag("cifor_icraf.png", width: "180px", alt: "CIFOR-ICRAF", title: "CIFOR-ICRAF"), "https://www.cifor-icraf.org/", :target => "_blank", :alt => "CIFOR-ICRAF", :title => "CIFOR-ICRAF" %></div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="logo"><%= link_to image_tag("groundswell.jpg", width: "180px", alt: "Groundswell International", title: "Groundswell International "), "https://www.groundswellinternational.org/", :target => "_blank", :alt => "Groundswell International ", :title => "Groundswell International " %></div>
+      </div>
+    </div>
   </div>
 
-  <br><br>
+  <hr>
+  <strong>Technologies and Arts used from</strong>
   <div class="row">
     <div class="col-sm-4" >
       <div class="card" style="min-height: 200px">

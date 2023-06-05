@@ -51,12 +51,10 @@
               <span class="badge bg-danger ms-2" style="font-size: 14px"> <%= practice.likes.count.to_s %></span>
             <% end %>
           </div>
-          <br>
           <div class="card-img-top thumbnail"><%= link_to photo_medium(practice, practice.name), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <div class="card-body">
-            <h3 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h3>
-            <p class="card-text" style="text-align: center;">
-            <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.location.name.truncate(40), location_path(practice.location) %></p></p>
+            <h4 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h4>
+            <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.location.name.truncate(40), location_path(practice.location) %></p>
           </div>
         </div>
         <br>
