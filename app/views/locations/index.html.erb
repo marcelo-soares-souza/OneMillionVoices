@@ -11,17 +11,17 @@
 </ul>
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
-  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: "Search" %>
+  <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: t(:search) %>
   <%= link_to (bootstrap_icon "search"), "#", id: 'searchButton', onclick: 'filter("search")' %>
   <br>
-  <span style="font-size: 14px;"><a href="#" onclick="showAdvancedFilters()">Show more filters</a></span>
+  <span style="font-size: 14px;"><a href="#" onclick="showAdvancedFilters()"><%= t(:show_more_filters) %></a></span>
   <div id="more-filter">
     <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:system_functions] ? params[:system_functions] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Functions' %>
     <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:system_components] ? params[:system_components] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Components' %>
     <%= country_select("country", "country", { selected: params[:country] ? params[:country] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true}) %>
     <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:continent] ? params[:continent] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Continent' %>
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
-      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", locations_path %>
+      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " " + t(:filter), "#", onclick: 'filter("search")' %> | <%= link_to " " + t(:clear_filters), locations_path %>
     </div>
   </div>
 </div>
@@ -38,7 +38,7 @@
           <div class="card-img-top thumbnail"><%= link_to photo_thumb(location), location_path(location), alt: location.name, title: location.name %></div>
           <div class="card-body" style="min-height: 100px;">
             <h4 class="card-title"><%= link_to location.name.truncate(40), location_path(location) %></h4>
-            <p class="card-text" style="text-align: center;"><%= link_to "See all Practices", location_practices_path(location) if !location.practices.blank? %></p>
+            <p class="card-text" style="text-align: center;"><%= link_to t(:see_all_practices), location_practices_path(location) if !location.practices.blank? %></p>
           </div>
         </div>
         <br>

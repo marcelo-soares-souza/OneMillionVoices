@@ -13,7 +13,7 @@
     <%= select_tag "knowledge_and_skills_required_for_practice", options_from_collection_for_select(@knowledge_and_skills_required_for_practice_options, :last, :first, params[:knowledge_and_skills_required_for_practice] ? params[:knowledge_and_skills_required_for_practice] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Knowledge and skills required for practice' %>
 
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
-      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", connect_path %>
+      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " " + t(:filter), "#", onclick: 'filter("search")' %> | <%= link_to " " + t(:clear_filters), locations_path %>
     </div>
 </div>
 
@@ -34,7 +34,7 @@
           <div class="card-img-top thumbnail"><%= link_to photo_medium(practice, practice.name), practice_path(practice), alt: practice.location.name, title: practice.location.name %></div>
           <div class="card-body">
             <h4 class="card-title"><%= link_to practice.name.truncate(40), location_practice_path(practice.location, practice) %></h4>
-            <p class="card-text text-box"><b>Location</b><br> <%= link_to practice.location.name.truncate(40), location_path(practice.location) %></p>
+            <p class="card-text text-box"><b><%= t(:location) %></b><br> <%= link_to practice.location.name.truncate(40), location_path(practice.location) %></p>
           </div>
         </div>
         <br>
