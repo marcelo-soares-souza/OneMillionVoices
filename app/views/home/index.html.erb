@@ -125,13 +125,13 @@
   <div class="grid-container">
     <div class="two-columns" style="justify-content: center;">
       <div class="first-column">
-        <h1 class="landing-title">One Million Voices of Agroecology</h1>
-        <p class="light-text">Discover and share valuable resources and knowledge, find agroecological practices near you and connect with a like-minded community. Create a profile, explore, be found.</p>
+        <h1 class="landing-title">One Million Voices <%= t(:of_agroecology )%></h1>
+        <p class="light-text"><%= t(:landing_page_text) %></p>
         <div>
           <h4 class="links">
-            <%= link_to "Discover the map", map_path, style: "color: #d1db61 !important" %>
-            <%= link_to "Register a location", new_location_path, style: "color: #175f5e !important" %>
-            <%= link_to "Share your practices", practices_path %>
+            <%= link_to t(:discover_the_map), map_path, style: "color: #d1db61 !important" %>
+            <%= link_to t(:register_a_location), new_location_path, style: "color: #175f5e !important" %>
+            <%= link_to t(:share_your_practices), practices_path %>
           </h4>
         </div>
       </div>

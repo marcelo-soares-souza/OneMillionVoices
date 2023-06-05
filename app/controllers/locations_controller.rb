@@ -4,7 +4,6 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Location.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
-  before_action :load_property_types
   before_action :load_account
   before_action :load_all_accounts, except: %i[index show]
   before_action :load_total_medias, only: %i[show]
@@ -111,19 +110,8 @@ class LocationsController < ApplicationController
     def location_params
       params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system,
                                        :farm_and_farming_system_details, :latitude, :longitude, :account_id,
-                                       :photo, :property_type, :hide_my_location, :is_it_a_farm,
+                                       :photo, :hide_my_location, :is_it_a_farm,
                                        account_ids: [], farm_and_farming_system_complement: [])
-    end
-
-    def load_property_types
-      @property_types = {
-        t(:settlement) => "Assentamento",
-        t(:collective_property) => "Propriedade Coletiva",
-        t(:public_property) => "Propriedade Pública (Governo)",
-        t(:private_property) => "Propriedade Privada",
-        t(:familiar) => "Familiar",
-        t(:other) => "Outro"
-      }
     end
 
     def load_all_accounts
@@ -146,13 +134,5 @@ class LocationsController < ApplicationController
         "4 - " + t(:other) => "Other",
         "5 - " + t(:i_am_not_sure) => "I am not sure"
       }
-
-      # @farm_and_farming_system_complement_options = {
-      #   "1 - " + t(:mainly_crop_farming) => "Mainly crop farming",
-      #   "2 - " + t(:mixed_crop_livestock_farming) => "Mixed crop-livestock farming",
-      #   "3 - " + t(:mainly_livestock_farming) => "Mainly livestock farming",
-      #   "4 - " + t(:other) => "Other",
-      #   "5 - " + t(:i_am_not_sure) => "I Am Not Sure"
-      # }
     end
 end

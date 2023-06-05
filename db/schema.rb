@@ -164,7 +164,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
     t.bigint "account_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.string "property_type"
     t.boolean "hide_my_location"
     t.string "country"
     t.string "farm_and_farming_system"
