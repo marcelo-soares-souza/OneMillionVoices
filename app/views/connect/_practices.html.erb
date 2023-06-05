@@ -60,6 +60,7 @@
     });
 
     $("#continent").change(function () {
+        $("#country_country").val($("#country_country option:first").val());
         updateCountries($("#continent option:selected").text())
     });
 
