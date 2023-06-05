@@ -37,19 +37,19 @@
 
       <div class="form-group col-xs-2 col-md-4 required bg-light">
         <%= f.label t(:name), class: "col-form-label-lg control-label" %>
-        <%= f.text_field :name, class: "form-control", :required => true, :autocomplete => "nope"  %>
+        <%= f.text_field :name, class: "form-control", :required => true, :autocomplete => "name"  %>
         <div class="tip" style="text-align: center">Provide at least one name</div>
       </div>
 
       <div class="form-group col-xs-2 col-md-4 required bg-light">
         <%= f.label t(:password), class: "col-form-label-lg control-label" %>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", :required => true, :autocomplete => "off"  %>
+        <%= f.password_field :password, class: "form-control", :required => true, :autocomplete => "new-password"  %>
         <div class="tip" style="text-align: center">Minimum is 8 characters</div>
       </div>
 
       <div class="form-group col-xs-2 col-md-4 required bg-light">
         <%= f.label t(:password_confirm), class: "col-form-label-lg control-label" %>
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :required => true, :autocomplete => "off"  %>
+        <%= f.password_field :password_confirmation, class: "form-control", :required => true, :autocomplete => "off"  %>
         <div class="tip" style="text-align: center">Enter your password again</div>
       </div>
       <div class="tip_alert" style="text-align: center">You will receive an email with a link to confirm your registration.</div>
