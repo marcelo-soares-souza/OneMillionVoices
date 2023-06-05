@@ -17,7 +17,7 @@
   <div class="tip" style="text-align: center">Sign up and share your Agroecological Practices.</div>
   <br>
 
-  <%= form_for(resource, as: resource_name, autocomplete: "off", url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { autocomplete: "off" }) do |f| %>
     <% if resource.errors.any? %>
       <div id="error_explanation">
         <b><%= resource.errors.count.to_s + " Error(s)" %></b>
