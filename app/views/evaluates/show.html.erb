@@ -104,14 +104,14 @@
 
       <% if ! @evaluate.system_integrity_requirements.blank? %>
         <div class="practices-box bg-light">
-          <%= "<h4>#{t(:system_integrity_requirements)}</h4><div class='text-box'>#{@system_integrity_requirements_options.key(@evaluate.system_integrity_requirements)}</div>".html_safe %>
+          <%= "<h4>#{t(:does_it_work_in_degraded_environments)}</h4><div class='text-box'>#{@system_integrity_requirements_options.key(@evaluate.system_integrity_requirements)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.system_integrity_requirements_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.system_integrity_requirements_details.blank? %>
         </div>
       <% end %>
 
       <% if ! @evaluate.system_integrity_effects.blank? %>
         <div class="practices-box">
-          <%= "<h4>#{t(:system_integrity_effects)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.system_integrity_effects)}</div>".html_safe %>
+          <%= "<h4>#{t(:does_it_help_restore_land)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.system_integrity_effects)}</div>".html_safe %>
           <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.system_integrity_effects_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.system_integrity_effects_details.blank? %>
         </div>
       <% end %>
