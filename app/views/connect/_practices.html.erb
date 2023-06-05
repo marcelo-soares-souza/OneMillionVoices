@@ -63,16 +63,19 @@
     function updateCountries(continent) {
         $.get( "/countries.json?continent=" + continent, function( data ) {
             const countries = data["countries"]
+
             $("#country_country option").each(function() {
+                const country = $(this).val()
                 if (countries.length > 0) {
-                    const country = $(this).val()
-                    if (!countries.includes(country))
-                        $("#country_country option[value='" + country + "']").hide();
-                    else
-                        $("#country_country option[value='" + country + "']").show();
+                    if (country) {
+                      if (!countries.includes(country))
+                          $("#country_country option[value='" + country + "']").hide();
+                      else
+                          $("#country_country option[value='" + country + "']").show();
+                    }
                 }
                 else {
-                    $("#country_country option[value='" + $(this).val() + "']").show();
+                    $("#country_country option[value='" + country + "']").show();
                 }
                 $('#country_country').selectpicker('refresh');
             });
