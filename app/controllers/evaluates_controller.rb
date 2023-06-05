@@ -7,7 +7,7 @@ class EvaluatesController < ApplicationController
   before_action :set_evaluate, only: %i[ show edit update destroy ]
   before_action :load_effective_options
   before_action :load_yes_no_i_am_not_sure_options
-  before_action :load_options
+  before_action :load_evaluates_options
 
   # GET /evaluates or /evaluates.json
   def index
@@ -91,57 +91,5 @@ class EvaluatesController < ApplicationController
                                        :general_performance_of_practice_details, :unintended_positive_side_effects_of_practice_details, :unintended_negative_side_effect_of_practice_details,
                                        :knowledge_and_skills_required_for_practice_details, :labour_required_for_practice_details, :cost_associated_with_practice_details,
                                        :system_integrity_requirements_details, :system_integrity_effects_details, :climate_change_vulnerability_effects_details, :time_requirements_details)
-    end
-
-    def load_options
-      @knowledge_and_skills_required_for_practice_options = {
-        "5 - " + t(:high_specialised_knowledge_required) => "High specialised knowledge required",
-        "4 - " + t(:rather_high_specialised_knowledge_required) => "Rather high specialised knowledge required",
-        "3 - " + t(:specialised_knowledge_required_neither_high_nor_low) => "Specialised knowledge required neither high nor low",
-        "2 - " + t(:rather_low_specialised_knowledge_required) => "Rather low specialised knowledge required",
-        "1 - " + t(:no_specialised_knowledge_required) => "No specialised knowledge required",
-        "0 - " + t(:i_am_not_sure) => "I am not sure",
-        t(:not_applicable) => "Not applicable"
-      }
-
-      @cost_associated_with_practice_options = {
-        "5 - " + t(:high_costs) => "High costs",
-        "4 - " + t(:rather_high_costs) => "Rather high costs",
-        "3 - " + t(:neither_high_nor_low_costs) => "Rather high costs",
-        "2 - " + t(:rather_low_costs) => "Rather low costs",
-        "1 - " + t(:low_costs) => "Low costs",
-        "0 - " + t(:i_am_not_sure) => "I am not sure",
-        t(:not_applicable) => "Not applicable"
-      }
-
-      @labour_required_for_practice_options = {
-        "5 - " + t(:high_labour_required) => "High labour required",
-        "4 - " + t(:rather_high_labour_required) => "Rather high labour required",
-        "3 - " + t(:neither_high_nor_low_labout_required) => "Neither high nor low labout required",
-        "2 - " + t(:rather_low_labour_required) => "Rather low labour required",
-        "1 - " + t(:low_labour_required) => "Low labour required",
-        "0 - " + t(:i_am_not_sure) => "I am not sure",
-        t(:not_applicable) => "Not applicable"
-      }
-
-      @time_requirements_options = {
-        "5 - " + t(:works_instantly) => "Works instantly",
-        "4 - " + t(:works_rather_rapidly) => "Works rather rapidly",
-        "3 - " + t(:works_neither_rapidly_nor_slowly) => "Works neither rapidly nor slowly",
-        "2 - " + t(:takes_rather_long_to_work) => "Takes rather long to work",
-        "1 - " + t(:takes_very_long_to_work) => "Takes very long to work",
-        "0 - " + t(:i_am_not_sure) => "I am not sure",
-        t(:not_applicable) => "Not applicable"
-      }
-
-      @system_integrity_requirements_options = {
-        "5 - " + t(:works_well_in_depleted_environment) => "Works well in depleted environment",
-        "4 - " + t(:works_rather_well_in_depleted_environment) => "Works rather well in depleted environment",
-        "3 - " + t(:neither_works_well_nor_poorly_in_depleted_environment) => "Neither works well nor poorly in depleted environment",
-        "2 - " + t(:does_rather_not_work_in_depleted_environment) => "Does rather not work in depleted environment",
-        "1 - " + t(:does_not_work_at_all_in_depleted_environment) => "Does not work at all in depleted environment",
-        "0 - " + t(:i_am_not_sure) => "I am not sure",
-        t(:not_applicable) => "Not applicable"
-      }
     end
 end

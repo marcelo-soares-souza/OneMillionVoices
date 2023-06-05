@@ -8,7 +8,10 @@
     <%= select_tag "components", options_from_collection_for_select(@food_system_components_addressed_options, :last, :first, params[:components] ? params[:components] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by System Component'  %>
     <%= select_tag "principles", options_from_collection_for_select(@agroecology_principles_addressed_options, :last, :first, params[:principles] ? params[:principles] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Agroecology Principle' %>
     <%= select_tag "knowledge_source", options_from_collection_for_select(@knowledge_source_options, :last, :first, params[:knowledge_source] ? params[:knowledge_source] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Knowledge Source'  %>
-
+    <%= select_tag "substitution_of_less_ecological_alternative", options_from_collection_for_select(@yes_no_i_am_not_sure_not_applicable_options, :last, :first, params[:substitution_of_less_ecological_alternative] ? params[:substitution_of_less_ecological_alternative] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Substitution of less ecological alternative' %>
+    <%= select_tag "system_integrity_effects", options_from_collection_for_select(@effective_options, :last, :first, params[:system_integrity_effects] ? params[:system_integrity_effects] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by It help restore land?' %>
+    <%= select_tag "system_integrity_requirements", options_from_collection_for_select(@system_integrity_requirements_options, :last, :first, params[:system_integrity_requirements] ? params[:system_integrity_requirements] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Work in degraded environments?' %>
+    <%= select_tag "knowledge_and_skills_required_for_practice", options_from_collection_for_select(@knowledge_and_skills_required_for_practice_options, :last, :first, params[:knowledge_and_skills_required_for_practice] ? params[:knowledge_and_skills_required_for_practice] : ''), class: "selectpicker", "data-live-search": true, :include_blank => 'Filter by Knowledge and skills required for practice' %>
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
       <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " Filter", "#", onclick: 'filter("search")' %> | <%= link_to " Clean Filter", connect_path %>
     </div>
@@ -92,6 +95,10 @@
         var continent = $("#continent :selected").val();
         var where_it_is_realized = $("#where_it_is_realized :selected").val();
         var knowledge_source = $("#knowledge_source :selected").val();
+        var substitution_of_less_ecological_alternative = $("#substitution_of_less_ecological_alternative :selected").val();
+        var system_integrity_effects = $("#system_integrity_effects :selected").val();
+        var system_integrity_requirements = $("#system_integrity_requirements :selected").val();
+        var knowledge_and_skills_required_for_practice = $("#knowledge_and_skills_required_for_practice :selected").val();
 
         var filter = "?filter=true"
         filter += name ? "&name=" + name : "";
@@ -103,6 +110,10 @@
         filter += continent ? "&continent=" + continent : "";
         filter += where_it_is_realized ? "&where_it_is_realized=" + where_it_is_realized : "";
         filter += knowledge_source ? "&knowledge_source=" + knowledge_source : "";
+        filter += substitution_of_less_ecological_alternative ? "&substitution_of_less_ecological_alternative=" + substitution_of_less_ecological_alternative : "";
+        filter += system_integrity_effects ? "&system_integrity_effects=" + system_integrity_effects : "";
+        filter += system_integrity_requirements ? "&system_integrity_requirements=" + system_integrity_requirements : "";
+        filter += knowledge_and_skills_required_for_practice ? "&knowledge_and_skills_required_for_practice=" + knowledge_and_skills_required_for_practice : "";
 
         var url = "/" + controller + "/" + filter;
 

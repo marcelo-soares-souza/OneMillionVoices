@@ -12,6 +12,10 @@ class Practice < ApplicationRecord
   scope :by_farm_and_farming_system_complement, -> (farm_and_farming_system_complement) { joins(:location).where("locations.farm_and_farming_system_complement ILIKE ?", "%#{farm_and_farming_system_complement}%") }
   scope :by_country, -> (country) { joins(:location).where("locations.country ILIKE ?", "%#{country}%") }
   scope :by_continent, -> (continent) { joins(:location).where("locations.continent ILIKE ?", "%#{continent}%") }
+  scope :by_substitution_of_less_ecological_alternative, -> (substitution_of_less_ecological_alternative) { joins(:what_you_do).where("what_you_dos.substitution_of_less_ecological_alternative ILIKE ?", "%#{substitution_of_less_ecological_alternative}%") }
+  scope :by_system_integrity_effects, -> (system_integrity_effects) { joins(:evaluate).where("evaluates.system_integrity_effects ILIKE ?", "%#{system_integrity_effects}%") }
+  scope :by_system_integrity_requirements, -> (system_integrity_requirements) { joins(:evaluate).where("evaluates.system_integrity_requirements ILIKE ?", "%#{system_integrity_requirements}%") }
+  scope :by_knowledge_and_skills_required_for_practice, -> (knowledge_and_skills_required_for_practice) { joins(:evaluate).where("evaluates.knowledge_and_skills_required_for_practice ILIKE ?", "%#{knowledge_and_skills_required_for_practice}%") }
 
   has_one :what_you_do, dependent: :delete
   has_one :characterise, dependent: :delete
