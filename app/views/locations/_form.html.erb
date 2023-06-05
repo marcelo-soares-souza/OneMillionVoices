@@ -66,7 +66,7 @@
       <%= f.label t(:is_it_a_farm), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
         <div style="text-align: left;">
-          <%= f.select :is_it_a_farm, options_for_select([["Yes", true], ["No", false]], @location.is_it_a_farm), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'is_it_a_farm' } %>
+          <%= f.select :is_it_a_farm, options_for_select([[t(:yes_query), true], [t(:no_query), false]], @location.is_it_a_farm), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'is_it_a_farm' } %>
         </div>
         <div class="tip">
           Is this Location a Conventional Farm?
