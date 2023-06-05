@@ -64,7 +64,7 @@
         updateCountries($("#continent option:selected").text())
     });
 
-    function updateCountries(continent) {
+    async function updateCountries(continent) {
         $.get( "/countries.json?continent=" + continent, function( data ) {
             const countries = data["countries"]
 

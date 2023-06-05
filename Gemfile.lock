@@ -75,13 +75,6 @@ GEM
       bootstrap-icons (~> 1)
       rails (>= 6)
     builder (3.2.4)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.2.2)
     countries (5.4.0)
       unaccent (~> 0.3)
@@ -237,8 +230,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    social-share-button (1.2.4)
-      coffee-rails
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -247,7 +238,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.2.2)
-    tilt (2.1.0)
+    tilt (2.2.0)
     timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -292,7 +283,6 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   sass-rails (>= 6.0.0)
-  social-share-button (>= 1.2.4)
   tzinfo-data
   uglifier (>= 4.2.0)
   web-console (>= 4.2.0)
