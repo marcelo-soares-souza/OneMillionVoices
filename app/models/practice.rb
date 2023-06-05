@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Practice < ApplicationRecord
-  paginates_per 15
+  paginates_per 20
 
   scope :by_name, -> (name) { where("practices.name ILIKE ?", "%#{name}%") }
   scope :by_food_system_components_addressed, -> (food_system_components_addressed) { joins(:characterise).where("characterises.food_system_components_addressed ILIKE ?", "%#{food_system_components_addressed}%") }
@@ -17,15 +17,15 @@ class Practice < ApplicationRecord
   scope :by_system_integrity_requirements, -> (system_integrity_requirements) { joins(:evaluate).where("evaluates.system_integrity_requirements ILIKE ?", "%#{system_integrity_requirements}%") }
   scope :by_knowledge_and_skills_required_for_practice, -> (knowledge_and_skills_required_for_practice) { joins(:evaluate).where("evaluates.knowledge_and_skills_required_for_practice ILIKE ?", "%#{knowledge_and_skills_required_for_practice}%") }
 
-  has_one :what_you_do, dependent: :delete
-  has_one :characterise, dependent: :delete
-  has_one :evaluate, dependent: :delete
-  has_one :acknowledge, dependent: :delete
+  has_one :what_you_do, dependent: :destroy
+  has_one :characterise, dependent: :destroy
+  has_one :evaluate, dependent: :destroy
+  has_one :acknowledge, dependent: :destroy
 
-  has_many :medias, dependent: :delete_all
-  has_many :documents, dependent: :delete_all
-  has_many :likes, dependent: :delete_all
-  has_many :comments, dependent: :delete_all
+  has_many :medias, dependent: :destroy
+  has_many :documents, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_one_attached :photo do |attachable|
     attachable.variant :original, resize_to_limit: [1920, nil]

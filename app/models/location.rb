@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Location < ApplicationRecord
-  paginates_per 15
+  paginates_per 20
 
   scope :by_name, -> (name) { where("locations.name ILIKE ?", "%#{name}%") }
   scope :by_farm_and_farming_system, -> (farm_and_farming_system) { where("locations.farm_and_farming_system ILIKE ?", "%#{farm_and_farming_system}%") }
@@ -10,9 +10,11 @@ class Location < ApplicationRecord
   scope :by_continent, -> (continent) { where("locations.continent ILIKE ?", "%#{continent}%") }
 
   belongs_to :account
+
+  has_many :practices, dependent: :destroy
   has_many :medias, dependent: :destroy
   has_many :documents, dependent: :destroy
-  has_many :practices, dependent: :destroy
+
   has_one_attached :photo do |attachable|
     attachable.variant :original, resize_to_limit: [1920, nil]
     attachable.variant :medium, resize_to_limit: [600, nil]

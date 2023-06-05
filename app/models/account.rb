@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  paginates_per 15
+  paginates_per 20
 
+  has_many :documents, dependent: :destroy
+  has_many :medias, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :practices, dependent: :destroy
   has_many :locations, dependent: :destroy
-  has_many :practices, through: :location
-  has_many :documents
-  has_many :medias
-  has_many :likes, dependent: :delete_all
-  has_many :comments, dependent: :delete_all
 
   has_one_attached :photo do |attachable|
     attachable.variant :original, resize_to_limit: [1920, nil]

@@ -81,12 +81,14 @@
     margin-right: auto;
     margin-left: auto;
     max-width: 400px;
+    padding-top: 4px;
 }
 
 .sign_up .form-group {
     margin-right: auto;
     margin-left: auto;
     max-width: 500px;
+    padding-top: 4px;
 }
 
 .sign_up {

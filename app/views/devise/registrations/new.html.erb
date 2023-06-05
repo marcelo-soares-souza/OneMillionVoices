@@ -35,7 +35,7 @@
         <div class="tip" style="text-align: center">We will use this to send you a confirmation E-mail.</div>
       </div>
 
-      <div class="form-group col-xs-2 col-md-4 required bg-light">
+      <div class="form-group col-xs-2 col-md-4 required">
         <%= f.label t(:name), class: "col-form-label-lg control-label" %>
         <%= f.text_field :name, class: "form-control", :required => true, :autocomplete => "name"  %>
         <div class="tip" style="text-align: center">Provide at least one name</div>
@@ -47,7 +47,7 @@
         <div class="tip" style="text-align: center">Minimum is 8 characters</div>
       </div>
 
-      <div class="form-group col-xs-2 col-md-4 required bg-light">
+      <div class="form-group col-xs-2 col-md-4 required">
         <%= f.label t(:password_confirm), class: "col-form-label-lg control-label" %>
         <%= f.password_field :password_confirmation, class: "form-control", :required => true, :autocomplete => "off"  %>
         <div class="tip" style="text-align: center">Enter your password again</div>
