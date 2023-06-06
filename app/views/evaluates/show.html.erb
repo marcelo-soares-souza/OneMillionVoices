@@ -3,8 +3,8 @@
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @evaluate.practice.account.id %>
     <div class="controls">
-      <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_practice_media_path(@evaluate.practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
-      <%= link_to (bootstrap_icon "file-earmark-text") + " " + t(:send_document), new_practice_document_path(@evaluate.practice), :class => "btn btn-secondary", :style => "float:right" %>
+      <%= link_to (bootstrap_icon "file-earmark-text") + " " + t(:send_document), new_practice_document_path(@evaluate.practice), :class => "btn btn-secondary", :style => "float:right; ; margin-left: 10px;" %>
+      <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_practice_media_path(@evaluate.practice), :class => "btn btn-warning",  :style => "float:right" %>
     </div>
   <% end %>
 <% end %>
@@ -48,8 +48,8 @@
       @evaluate.knowledge_and_skills_required_for_practice.blank? and
       @evaluate.labour_required_for_practice.blank? and
       @evaluate.cost_associated_with_practice.blank? and
-      @evaluate.system_integrity_requirements.blank? and
-      @evaluate.system_integrity_effects.blank? and
+      @evaluate.does_it_work_in_degraded_environments.blank? and
+      @evaluate.does_it_help_restore_land.blank? and
       @evaluate.climate_change_vulnerability_effects.blank? and
       @evaluate.time_requirements.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
@@ -102,17 +102,17 @@
         </div>
       <% end %>
 
-      <% if ! @evaluate.system_integrity_requirements.blank? %>
+      <% if ! @evaluate.does_it_work_in_degraded_environments.blank? %>
         <div class="practices-box bg-light">
-          <%= "<h4>#{t(:does_it_work_in_degraded_environments)}</h4><div class='text-box'>#{@system_integrity_requirements_options.key(@evaluate.system_integrity_requirements)}</div>".html_safe %>
-          <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.system_integrity_requirements_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.system_integrity_requirements_details.blank? %>
+          <%= "<h4>#{t(:does_it_work_in_degraded_environments)}</h4><div class='text-box'>#{@does_it_work_in_degraded_environments_options.key(@evaluate.does_it_work_in_degraded_environments)}</div>".html_safe %>
+          <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.does_it_work_in_degraded_environments_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.does_it_work_in_degraded_environments_details.blank? %>
         </div>
       <% end %>
 
-      <% if ! @evaluate.system_integrity_effects.blank? %>
+      <% if ! @evaluate.does_it_help_restore_land.blank? %>
         <div class="practices-box">
-          <%= "<h4>#{t(:does_it_help_restore_land)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.system_integrity_effects)}</div>".html_safe %>
-          <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.system_integrity_effects_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.system_integrity_effects_details.blank? %>
+          <%= "<h4>#{t(:does_it_help_restore_land)}</h4><div class='text-box'>#{@effective_options.key(@evaluate.does_it_help_restore_land)}</div>".html_safe %>
+          <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @evaluate.does_it_help_restore_land_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @evaluate.does_it_help_restore_land_details.blank? %>
         </div>
       <% end %>
 

@@ -3,8 +3,8 @@
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @what_you_do.practice.account.id %>
     <div class="controls">
-      <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_practice_media_path(@what_you_do.practice), :class => "btn btn-warning", :style => "float:right; ; margin-left: 10px;" %>
-      <%= link_to (bootstrap_icon "file-earmark-text") + " " + t(:send_document), new_practice_document_path(@what_you_do.practice), :class => "btn btn-secondary", :style => "float:right" %>
+      <%= link_to (bootstrap_icon "file-earmark-text") + " " + t(:send_document), new_practice_document_path(@what_you_do.practice), :class => "btn btn-secondary", :style => "float:right; ; margin-left: 10px;" %>
+      <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_practice_media_path(@what_you_do.practice), :class => "btn btn-warning",  :style => "float:right" %>
     </div>
   <% end %>
 <% end %>
@@ -47,7 +47,7 @@
       @what_you_do.summary_description_of_agroecological_practice.blank? and
       @what_you_do.type_of_agroecological_practice.blank? and
       @what_you_do.practical_implementation_of_the_practice.blank? and
-      @what_you_do.expected_function_or_effects_of_practice.blank? and
+      @what_you_do.why_you_use_and_what_you_expect_from_this_practice.blank? and
       @what_you_do.land_size.blank? and
       @what_you_do.substitution_of_less_ecological_alternative.blank? %>
       <h3><%= t(:no_data_has_been_registered_so_far) %>
@@ -76,8 +76,8 @@
         <div class="practices-box bg-light"><%= "<h4>#{t(:practical_implementation_of_the_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.practical_implementation_of_the_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
-      <% if ! @what_you_do.expected_function_or_effects_of_practice.blank? %>
-        <div class="practices-box"><%= "<h4>#{t(:why_you_use_and_what_you_expect_from_this_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.expected_function_or_effects_of_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
+      <% if ! @what_you_do.why_you_use_and_what_you_expect_from_this_practice.blank? %>
+        <div class="practices-box"><%= "<h4>#{t(:why_you_use_and_what_you_expect_from_this_practice)}</h4><div class='text-box'>#{simple_format (h @what_you_do.why_you_use_and_what_you_expect_from_this_practice).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe %></div>
       <% end %>
 
       <% if ! @what_you_do.land_size.blank? %>

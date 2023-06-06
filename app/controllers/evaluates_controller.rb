@@ -86,10 +86,10 @@ class EvaluatesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def evaluate_params
       params.require(:evaluate).permit(:practice_id, :general_performance_of_practice, :unintended_positive_side_effects_of_practice, :unintended_negative_side_effect_of_practice,
-                                       :knowledge_and_skills_required_for_practice, :labour_required_for_practice, :cost_associated_with_practice, :system_integrity_requirements,
-                                       :system_integrity_effects, :climate_change_vulnerability_effects, :time_requirements,
+                                       :knowledge_and_skills_required_for_practice, :labour_required_for_practice, :cost_associated_with_practice, :does_it_work_in_degraded_environments,
+                                       :does_it_help_restore_land, :climate_change_vulnerability_effects, :time_requirements,
                                        :general_performance_of_practice_details, :unintended_positive_side_effects_of_practice_details, :unintended_negative_side_effect_of_practice_details,
                                        :knowledge_and_skills_required_for_practice_details, :labour_required_for_practice_details, :cost_associated_with_practice_details,
-                                       :system_integrity_requirements_details, :system_integrity_effects_details, :climate_change_vulnerability_effects_details, :time_requirements_details)
+                                       :does_it_work_in_degraded_environments_details, :does_it_help_restore_land_details, :climate_change_vulnerability_effects_details, :time_requirements_details)
     end
 end

@@ -7,7 +7,7 @@ class CreateWhatYouDos < ActiveRecord::Migration[7.0]
       t.text :summary_description_of_agroecological_practice
       t.text :type_of_agroecological_practice
       t.text :practical_implementation_of_the_practice
-      t.text :expected_function_or_effects_of_practice
+      t.text :why_you_use_and_what_you_expect_from_this_practice
 
       t.timestamps
     end

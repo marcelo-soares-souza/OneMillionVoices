@@ -38,8 +38,8 @@ class ConnectController < ApplicationController
     @practices = @practices.by_country(params[:country]) unless params[:country].blank?
     @practices = @practices.by_continent(params[:continent]) unless params[:continent].blank?
     @practices = @practices.by_substitution_of_less_ecological_alternative(params[:substitution_of_less_ecological_alternative]) unless params[:substitution_of_less_ecological_alternative].blank?
-    @practices = @practices.by_system_integrity_effects(params[:system_integrity_effects]) unless params[:system_integrity_effects].blank?
-    @practices = @practices.by_system_integrity_requirements(params[:system_integrity_requirements]) unless params[:system_integrity_requirements].blank?
+    @practices = @practices.by_does_it_help_restore_land(params[:does_it_help_restore_land]) unless params[:does_it_help_restore_land].blank?
+    @practices = @practices.by_does_it_work_in_degraded_environments(params[:does_it_work_in_degraded_environments]) unless params[:does_it_work_in_degraded_environments].blank?
     @practices = @practices.by_knowledge_and_skills_required_for_practice(params[:knowledge_and_skills_required_for_practice]) unless params[:knowledge_and_skills_required_for_practice].blank?
     @practices = @practices.order("practices.updated_at DESC").page(params[:page])
   end

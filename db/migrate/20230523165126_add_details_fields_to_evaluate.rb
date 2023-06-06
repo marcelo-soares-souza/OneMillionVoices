@@ -8,8 +8,8 @@ class AddDetailsFieldsToEvaluate < ActiveRecord::Migration[7.0]
     add_column :evaluates, :knowledge_and_skills_required_for_practice_details, :text
     add_column :evaluates, :labour_required_for_practice_details, :text
     add_column :evaluates, :cost_associated_with_practice_details, :text
-    add_column :evaluates, :system_integrity_requirements_details, :text
-    add_column :evaluates, :system_integrity_effects_details, :text
+    add_column :evaluates, :does_it_work_in_degraded_environments_details, :text
+    add_column :evaluates, :does_it_help_restore_land_details, :text
     add_column :evaluates, :climate_change_vulnerability_effects_details, :text
     add_column :evaluates, :time_requirements_details, :text
   end

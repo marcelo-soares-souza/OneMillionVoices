@@ -13,8 +13,8 @@ class Practice < ApplicationRecord
   scope :by_country, -> (country) { joins(:location).where("locations.country ILIKE ?", "%#{country}%") }
   scope :by_continent, -> (continent) { joins(:location).where("locations.continent ILIKE ?", "%#{continent}%") }
   scope :by_substitution_of_less_ecological_alternative, -> (substitution_of_less_ecological_alternative) { joins(:what_you_do).where("what_you_dos.substitution_of_less_ecological_alternative ILIKE ?", "%#{substitution_of_less_ecological_alternative}%") }
-  scope :by_system_integrity_effects, -> (system_integrity_effects) { joins(:evaluate).where("evaluates.system_integrity_effects ILIKE ?", "%#{system_integrity_effects}%") }
-  scope :by_system_integrity_requirements, -> (system_integrity_requirements) { joins(:evaluate).where("evaluates.system_integrity_requirements ILIKE ?", "%#{system_integrity_requirements}%") }
+  scope :by_does_it_help_restore_land, -> (does_it_help_restore_land) { joins(:evaluate).where("evaluates.does_it_help_restore_land ILIKE ?", "%#{does_it_help_restore_land}%") }
+  scope :by_does_it_work_in_degraded_environments, -> (does_it_work_in_degraded_environments) { joins(:evaluate).where("evaluates.does_it_work_in_degraded_environments ILIKE ?", "%#{does_it_work_in_degraded_environments}%") }
   scope :by_knowledge_and_skills_required_for_practice, -> (knowledge_and_skills_required_for_practice) { joins(:evaluate).where("evaluates.knowledge_and_skills_required_for_practice ILIKE ?", "%#{knowledge_and_skills_required_for_practice}%") }
 
   has_one :what_you_do, dependent: :destroy

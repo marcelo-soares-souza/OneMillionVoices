@@ -232,7 +232,7 @@ class ApplicationController < ActionController::Base
         t(:not_applicable) => "Not applicable"
       }
 
-      @system_integrity_requirements_options = {
+      @does_it_work_in_degraded_environments_options = {
         "5 - " + t(:works_well_in_depleted_environment) => "Works well in depleted environment",
         "4 - " + t(:works_rather_well_in_depleted_environment) => "Works rather well in depleted environment",
         "3 - " + t(:neither_works_well_nor_poorly_in_depleted_environment) => "Neither works well nor poorly in depleted environment",

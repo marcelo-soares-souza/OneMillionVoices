@@ -127,8 +127,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
     t.text "knowledge_and_skills_required_for_practice"
     t.text "labour_required_for_practice"
     t.text "cost_associated_with_practice"
-    t.text "system_integrity_requirements"
-    t.text "system_integrity_effects"
+    t.text "does_it_work_in_degraded_environments"
+    t.text "does_it_help_restore_land"
     t.text "climate_change_vulnerability_effects"
     t.text "time_requirements"
     t.datetime "created_at", null: false
@@ -139,8 +139,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
     t.text "knowledge_and_skills_required_for_practice_details"
     t.text "labour_required_for_practice_details"
     t.text "cost_associated_with_practice_details"
-    t.text "system_integrity_requirements_details"
-    t.text "system_integrity_effects_details"
+    t.text "does_it_work_in_degraded_environments_details"
+    t.text "does_it_help_restore_land_details"
     t.text "climate_change_vulnerability_effects_details"
     t.text "time_requirements_details"
     t.index ["practice_id"], name: "index_evaluates_on_practice_id"
@@ -197,7 +197,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
     t.text "summary_description_of_agroecological_practice"
     t.text "type_of_agroecological_practice"
     t.text "practical_implementation_of_the_practice"
-    t.text "expected_function_or_effects_of_practice"
+    t.text "why_you_use_and_what_you_expect_from_this_practice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "where_it_is_realized"
