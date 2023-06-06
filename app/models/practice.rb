@@ -24,7 +24,6 @@ class Practice < ApplicationRecord
 
   has_many :medias, dependent: :destroy
   has_many :documents, dependent: :destroy
-  has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   has_one_attached :photo do |attachable|

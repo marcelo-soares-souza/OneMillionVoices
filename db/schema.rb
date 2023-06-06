@@ -146,15 +146,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
     t.index ["practice_id"], name: "index_evaluates_on_practice_id"
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.bigint "practice_id", null: false
-    t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_likes_on_account_id"
-    t.index ["practice_id"], name: "index_likes_on_practice_id"
-  end
-
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -227,8 +218,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
   add_foreign_key "documents", "locations"
   add_foreign_key "documents", "practices"
   add_foreign_key "evaluates", "practices"
-  add_foreign_key "likes", "accounts"
-  add_foreign_key "likes", "practices"
   add_foreign_key "locations", "accounts"
   add_foreign_key "medias", "accounts"
   add_foreign_key "medias", "locations"

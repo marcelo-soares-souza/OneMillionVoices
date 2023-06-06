@@ -5,7 +5,6 @@ class Account < ApplicationRecord
 
   has_many :documents, dependent: :destroy
   has_many :medias, dependent: :destroy
-  has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :practices, dependent: :destroy
   has_many :locations, dependent: :destroy

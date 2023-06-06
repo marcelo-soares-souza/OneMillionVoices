@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PracticesController < ApplicationController
-  before_action :authenticate_account!, only: %i[new edit update destroy like]
+  before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action lambda { check_owner Practice.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
 
   before_action :set_practice, only: %i[show edit update destroy]
@@ -11,7 +11,6 @@ class PracticesController < ApplicationController
   before_action :load_principles
   before_action :load_system_options
   before_action :load_locations, only: %i[new]
-  before_action :load_likes_info, only: %i[show]
   before_action :load_comments, only: %i[show]
 
   # GET /practices
@@ -105,12 +104,6 @@ class PracticesController < ApplicationController
     end
   end
 
-  def like
-    @practice = Practice.friendly.find(params[:id])
-    Like.create(account_id: current_account.id, practice_id: @practice.id)
-    redirect_to @practice, notice: "Your like was given to " + @practice.name
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_practice
@@ -128,11 +121,6 @@ class PracticesController < ApplicationController
 
     def load_account
       @account = Account.friendly.find(params[:account_id]) if params[:account_id]
-    end
-
-    def load_likes_info
-      likes = @practice.likes.map { |like| like.account.name }.join(", ")
-      @likes_info = likes.empty? ? "Like Button" : likes
     end
 
     def load_comments
