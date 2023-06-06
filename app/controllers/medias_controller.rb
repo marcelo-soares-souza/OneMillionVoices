@@ -66,7 +66,7 @@ class MediasController < ApplicationController
     respond_to do |format|
       if @media.update(media_params)
         if params[:practice_id]
-          format.html { redirect_to practice_gallery_path(@practice, @media), notice: "Media has been updated." }
+          format.html { redirect_to practice_gallery_path(@practice), notice: "Media has been updated." }
         elsif params[:location_id]
           format.html do
             redirect_to location_gallery_path(@location),  notice: "Media has been updated."
