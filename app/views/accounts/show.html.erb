@@ -30,7 +30,7 @@
     <% end %>
 
     <% if @account.website %>
-      <%= "<h4>Website</h4><div class='text-box'>#{simple_format (h @account.website).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.website.blank? %>
+      <%= "<h4>Website</h4><div class='text-box'><a href='#{@account.website}' target='_blank'>#{@account.website.truncate(32)}</div><br>".html_safe unless @account.website.blank? %>
     <% end %>
 
     <%= "<h4>#{t(:registered_locations)}</h4>#{@account.locations.map { |location| link_to location.name.truncate(40), location_path(location) }.join("<br>").html_safe}&nbsp;".html_safe if @account.locations.count > 0 %>
