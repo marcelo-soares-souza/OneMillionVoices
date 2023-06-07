@@ -68,7 +68,6 @@
       </div>
     <% end %>
 
-    <br>
     <%= "<b>#{link_to t(:sign_in_to_comment), new_account_session_path, :class => 'text-danger'}</b>".html_safe if !account_signed_in? %>
     
     <% if @practice.comments.count > 0 %>
@@ -77,7 +76,7 @@
 
     <% if account_signed_in? %>
       <% if current_account.admin? or current_account.id == @practice.account.id %>
-        <hr>
+        <br><hr>
         <div id="practice-footer">
           <div class="form-actions">
             <%= link_to t(:edit), edit_location_practice_path(@practice.location, @practice.id), :class => 'btn btn-success' %>

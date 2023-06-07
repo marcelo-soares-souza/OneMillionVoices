@@ -58,10 +58,10 @@
       <%= link_to t(:send_photo), new_location_media_path(@location), :class => "btn btn-warning" %>
       <%= link_to t(:register_new_practice), new_location_practice_path(@location), :class => "btn btn-info" %>
     </div>
-    <br><br>
+    <br>
   <% end %>
 <% end %>
-
+<br>
 <% if @location.latitude and @location.longitude %>
   <script>
       $(document).ready(function () {
