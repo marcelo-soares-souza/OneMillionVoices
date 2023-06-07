@@ -150,6 +150,18 @@
 
     <script>
         $(document).ready(function () {
+            $("form").validate({
+                rules: {
+                    "location[name]": {
+                        required: true,
+                        minlength: 4
+                    },
+                    "location[description]": {
+                        minlength: 8
+                    }
+                }
+            });
+
             $("#hide_my_location_on_map option:selected").val() == 'true' ? $("#location").hide() : $("#location").show();
             $("#is_it_a_farm option:selected").val() == 'true' ? $("#farm_and_farming_system_options").show() : $("#farm_and_farming_system_options").hide();
 
