@@ -18,22 +18,22 @@
       <%= photo_thumb(@account, @account.name) %>
     </div>
     <br>
-    <h3><%= @account.name %></h3>
+    <h1><%= @account.name.truncate(64) %></h1>
     <br>
     <% if account_signed_in? %>
-      <%= "<strong>E-Mail</strong><br>#{@account.email}&nbsp;".html_safe if @account.email? %>
+      <%= "<h4>E-Mail</h4>#{@account.email}&nbsp;".html_safe if @account.email? %>
       <br><br>
     <% end %>
 
     <% if @account.about %>
-      <%= "<strong>#{t(:about_me)}</strong><br><div class='text-box'>#{simple_format (h @account.about).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.about.blank? %>
+      <%= "<h4>#{t(:about_me)}</h4><div class='text-box'>#{simple_format (h @account.about).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.about.blank? %>
     <% end %>
 
     <% if @account.website %>
-      <%= "<strong>Website</strong><br><div class='text-box'>#{simple_format (h @account.website).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.website.blank? %>
+      <%= "<h4>Website</h4><div class='text-box'>#{simple_format (h @account.website).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @account.website.blank? %>
     <% end %>
 
-    <%= "<strong>#{t(:registered_locations)}</strong><br>#{@account.locations.map { |location| link_to location.name.truncate(40), location_path(location) }.join("<br>").html_safe}&nbsp;".html_safe if @account.locations.count > 0 %>
+    <%= "<h4>#{t(:registered_locations)}</h4>#{@account.locations.map { |location| link_to location.name.truncate(40), location_path(location) }.join("<br>").html_safe}&nbsp;".html_safe if @account.locations.count > 0 %>
   </div>
 </div>
 
