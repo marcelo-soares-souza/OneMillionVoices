@@ -31,9 +31,9 @@
       <%= f.label t(:general_performance_of_practice), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
       <div class="col-sm-10">
         <%= f.collection_select(:general_performance_of_practice, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :general_performance_of_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :general_performance_of_practice_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice work as intended - does it have the effect you expected?
+          <%= t(:does_the_practice_work_as_intended_does_it_have_the_effect_you_expected) %>
         </div>
       </div>
     </div>
@@ -43,9 +43,9 @@
       <%= f.label t(:unintended_positive_side_effects_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:unintended_positive_side_effects_of_practice, @yes_no_i_am_not_sure_not_applicable_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :unintended_positive_side_effects_of_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :unintended_positive_side_effects_of_practice_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does using the practice have any positive side effects that you did not expect?
+          <%= t(:does_using_the_practice_have_any_positive_side_effects_that_you_did_not_expect) %>
         </div>
       </div>
     </div>
@@ -55,9 +55,9 @@
       <%= f.label t(:unintended_negative_side_effect_of_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:unintended_negative_side_effect_of_practice, @yes_no_i_am_not_sure_not_applicable_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :unintended_negative_side_effect_of_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :unintended_negative_side_effect_of_practice_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does using the practice have any negative side effects that you did not expect?
+          <%= t(:does_using_the_practice_have_any_negative_side_effects_that_you_did_not_expect) %>
         </div>
       </div>
     </div>
@@ -67,9 +67,9 @@
       <%= f.label t(:knowledge_and_skills_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:knowledge_and_skills_required_for_practice, @knowledge_and_skills_required_for_practice_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :knowledge_and_skills_required_for_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :knowledge_and_skills_required_for_practice_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practive require a lot of formal knowledge and training?
+          <%= t(:does_the_practive_require_a_lot_of_formal_knowledge_and_training) %>
         </div>
       </div>
     </div>
@@ -79,9 +79,9 @@
       <%= f.label t(:labour_required_for_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:labour_required_for_practice, @labour_required_for_practice_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :labour_required_for_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :labour_required_for_practice_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice require a lot of work?
+          <%= t(:does_the_practice_require_a_lot_of_work) %>
         </div>
       </div>
     </div>
@@ -91,9 +91,9 @@
       <%= f.label t(:cost_associated_with_practice), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:cost_associated_with_practice, @cost_associated_with_practice_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :cost_associated_with_practice_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :cost_associated_with_practice_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice engender financial costs?
+          <%= t(:does_the_practice_engender_financial_costs) %>
         </div>
       </div>
     </div>
@@ -103,9 +103,9 @@
       <%= f.label t(:does_it_work_in_degraded_environments), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:does_it_work_in_degraded_environments, @does_it_work_in_degraded_environments_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :does_it_work_in_degraded_environments_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :does_it_work_in_degraded_environments_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice work when the environment, land and soil are depleted?
+          <%= t(:does_the_practice_work_when_the_environment_land_and_soil_are_depleted) %>
         </div>
       </div>
     </div>
@@ -115,9 +115,9 @@
       <%= f.label t(:does_it_help_restore_land), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:does_it_help_restore_land, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :does_it_help_restore_land_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :does_it_help_restore_land_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice help to restore the health of your farm and/or its surrounding?
+          <%= t(:does_the_practice_help_to_restore_the_health_of_your_farm_and_or_its_surrounding) %>
         </div>
       </div>
     </div>
@@ -127,9 +127,9 @@
       <%= f.label t(:climate_change_vulnerability_effects), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:climate_change_vulnerability_effects, @effective_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :climate_change_vulnerability_effects_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :climate_change_vulnerability_effects_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice help to reduce climate change effects that you experienced previously?
+          <%= t(:does_the_practice_help_to_reduce_climate_change_effects_that_you_experienced_previously) %>
         </div>
       </div>
     </div>
@@ -139,9 +139,9 @@
       <%= f.label t(:time_requirements), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.collection_select(:time_requirements, @time_requirements_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-        <%= f.text_area :time_requirements_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+        <%= f.text_area :time_requirements_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
         <div class="tip">
-          Does the practice require time to work as expected (as the system heals)?
+          <%= t(:does_the_practice_require_time_to_work_as_expected_as_the_system_heals) %>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <%= form_for(location, html: { multipart: true }) do |f| %>
-  <%= "<div class='tip'>Start by adding the location where you do your practices.</div>".html_safe unless params["action"] == 'edit' ||  params["action"] == 'update' %>
+  <%= "<div class='tip'>#{t(:start_by_adding_the_location_where_you_do_your_practices)}.</div>".html_safe unless params["action"] == 'edit' ||  params["action"] == 'update' %>
 
   <% button_name = params["action"] == 'edit' ||  params["action"] == 'update' ? t(:save) : t(:save_and_add_a_practice) %>
   <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
@@ -34,8 +34,8 @@
       <div class="col-sm-10">
         <%= f.text_field :name, class: "form-control", :required => true %>
         <div class="tip">
-          How would you like to name the place where you practice agroecology? (Minimum Size: 4 / Maximum Size: 100)
-          <span class="tip_alert" style="float: right;">*This field is required.</span>
+          <%= t(:how_would_you_like_to_name_the_place_where_you_practice_agroecology) %> (Minimum Size: 4 / Maximum Size: 100)
+          <span class="tip_alert" style="float: right;">*<%= t(:this_field_is_required) %>.</span>
         </div>
       </div>
 
@@ -55,8 +55,8 @@
         %>
         <%= f.country_select :country, { selected: country, :include_blank => false }, { class: "form-control selectpicker", "data-live-search": true } %>
         <div class="tip">
-          Could you tell us which country this place is in?
-          <span class="tip_alert" style="float: right;">*This field is required.</span>
+          <%= t(:could_you_tell_us_which_country_this_place_is_in) %>
+          <span class="tip_alert" style="float: right;">*<%= t(:this_field_is_required) %>.</span>
         </div>
       </div>
     </div>
@@ -69,8 +69,8 @@
           <%= f.select :is_it_a_farm, options_for_select([[t(:yes_query), true], [t(:no_query), false]], @location.is_it_a_farm), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'is_it_a_farm' } %>
         </div>
         <div class="tip">
-          Is this Location a Conventional Farm?
-          <span class="tip_alert" style="float: right;">*This field is required.</span>
+          <%= t(:is_this_location_a_conventional_farm) %>
+          <span class="tip_alert" style="float: right;">*<%= t(:this_field_is_required) %>.</span>
         </div>
       </div>
     </div>
@@ -82,23 +82,23 @@
         <div class="col-sm-10">
           <br>
           <div style="text-align: left;">
-            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Crops', checked_farm_and_farming_system_complement('Crops'), id: 'farm_and_farming_system_complement' %> 1 - Crops
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Crops', checked_farm_and_farming_system_complement('Crops'), id: 'farm_and_farming_system_complement' %> 1 - <%= t(:crops) %>
             <br>
-            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Animals', checked_farm_and_farming_system_complement('Animals'), id: 'farm_and_farming_system_complement' %> 2 - Animals
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Animals', checked_farm_and_farming_system_complement('Animals'), id: 'farm_and_farming_system_complement' %> 2 - <%= t(:animals) %>
             <br>
-            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Trees', checked_farm_and_farming_system_complement('Trees'), id: 'farm_and_farming_system_complement' %> 3 - Trees
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Trees', checked_farm_and_farming_system_complement('Trees'), id: 'farm_and_farming_system_complement' %> 3 - <%= t(:trees) %>
             <br>
-            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Other', checked_farm_and_farming_system_complement('Other'), id: 'farm_and_farming_system_complement' %> 4 - Other
+            <%= check_box_tag 'location[farm_and_farming_system_complement][]', 'Other', checked_farm_and_farming_system_complement('Other'), id: 'farm_and_farming_system_complement' %> 4 - <%= t(:other) %>
           </div>
           <br>
         </div>
         <%= f.label t(:what_the_main_purpose_of_your_farm), class: "col-sm-2 col-form-label col-form-label-lg control-label" %>
         <div class="col-sm-10">
           <%= f.collection_select(:farm_and_farming_system, @farm_and_farming_system_options, :last, :first, { :include_blank => t(:select_an_option) }, { class: "form-control selectpicker", "data-live-search": true }) %>
-          <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => "Please provide additional details..." %>
+          <%= f.text_area :farm_and_farming_system_details, class: "form-control", :rows => "3", :placeholder => t(:please_provide_additional_details) %>
           <div class="tip">
-            How would you describe what you do in your location?
-            <span class="tip_alert" style="float: right;">*This field is required.</span>
+            <%= t(:how_would_you_describe_what_you_do_in_your_location) %>
+            <span class="tip_alert" style="float: right;">*<%= t(:this_field_is_required) %>.</span>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
       <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-8">
         <%= f.file_field :photo, class: "form-control", style: location.errors.blank? ? "" : "border-color: red" %>
-        <div class="tip">Could you send us a photo that represents the Location. (File Format: PNG, JPG or GIF. Size Limit: 16MB.)</div>
+        <div class="tip"><%= t(:could_you_send_us_a_photo_that_represents_the_location) %>. (File Format: PNG, JPG or GIF. Size Limit: 16MB.)</div>
       </div>
     </div>
     <br>
@@ -117,7 +117,7 @@
       <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :description, class: "form-control", :rows => "5" %>
-        <div class="tip">Tell us a bit about your place, what you do in the place you register, and what your experiences have been</div>
+        <div class="tip"><%= t(:tell_us_a_bit_about_your_place_what_you_do_in_the_place_you_register_and_what_your_experiences_have_been) %></div>
       </div>
     </div>
     <br>
@@ -125,7 +125,7 @@
       <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
-        <div class="tip">If you want to share your practices but don't want to be seen on the Map. You will be listed on the Platform, but your location will be hidden</div>
+        <div class="tip"><%= t(:if_you_want_to_share_your_practices_but_dont_want_to_be_seen_on_the_map_you_will_be_listed_on_the_platform_but_your_location_will_be_hidden) %></div>
       </div>
     </div>
     <br>
@@ -134,8 +134,8 @@
       <div class="col-sm-10">
         <div id="map-sistema" style="z-index: 1;"></div>
         <div class="tip">
-          Please show us on the map where you practice agroecology
-          <span class="tip_alert" style="float: right;">*This field is required.</span>
+          <%= t(:please_show_us_on_the_map_where_you_practice_agroecology) %>
+          <span class="tip_alert" style="float: right;">*<%= t(:this_field_is_required) %>.</span>
         </div>
       </div>
     </div>

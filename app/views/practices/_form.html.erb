@@ -42,8 +42,9 @@
       <div class="col-sm-10">
         <%= f.text_field :name, class: "form-control", :required => true  %>
         <div class="tip">
-          Name this Practice (e.g. My agroforestry, Permaculture experiment, Food forest, Medicinal herb garden, tree planting etc.).<br>Minimum Size: 4 / Maximum Size: 100
-          <span class="tip_alert" style="float: right;">*This field is required.</span>
+          <%= t(:name_this_practice_eg_my_agroforestry_permaculture_experiment_food_forest_medicinal_herb_garden_tree_planting_etc) %>
+          <br>Minimum Size: 4 / Maximum Size: 100
+          <span class="tip_alert" style="float: right;">*<%= t(:this_field_is_required) %>.</span>
         </div>
       </div>
     </div>
@@ -52,7 +53,10 @@
       <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-8">
         <%= f.file_field :photo, class: "form-control", style: practice.errors.blank? ? "" : "border-color: red" %>
-        <div class="tip">Could you send us a photo that represents this Practice. Later you can send more photos (to the Practice Gallery).<br>File Format: PNG, JPG or GIF. Size Limit: 16MB.</div>
+        <div class="tip">
+          <%= t(:could_you_send_us_a_photo_that_represents_this_practice_later_you_can_send_more_photos_to_the_practice_gallery) %>>
+          <br>File Format: PNG, JPG or GIF. Size Limit: 16MB.
+        </div>
       </div>
     </div>
   </div>

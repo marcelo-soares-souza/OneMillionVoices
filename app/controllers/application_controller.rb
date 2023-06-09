@@ -159,9 +159,9 @@ class ApplicationController < ActionController::Base
 
     def load_options_what_you_do
       @where_it_is_realized_options = {
-        "1 - " + "On-farm" => "On-farm",
-        "2 - " + "Off-farm" => "Off-farm",
-        "3 - " + "Other" => "Other"
+        "1 - " + t(:on_farm) => "On-farm",
+        "2 - " + t(:off_farm) => "Off-farm",
+        "3 - " + t(:other) => "Other"
       }
 
       @unit_of_measure_options = {
