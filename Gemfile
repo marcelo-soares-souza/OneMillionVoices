@@ -22,11 +22,12 @@ group :development do
 end
 
 group :rubocop do
-  gem "rubocop", ">= 1.51.0", require: false
+  gem "rubocop", ">= 1.52.0", require: false
   gem "rubocop-minitest", require: false
   gem "rubocop-packaging", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
+  gem "rubocop-md", require: false
 end
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
