@@ -169,3 +169,4 @@ en:
   works_rather_well_in_depleted_environment: "Works rather well in depleted environment"
   works_well_in_depleted_environment: "Works well in depleted environment"
   yes_query: "Yes"
+  resend_confirmation_by_email: "Resend confirmation by e-mail"

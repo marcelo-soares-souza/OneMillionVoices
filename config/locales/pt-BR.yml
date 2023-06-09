@@ -169,3 +169,4 @@ pt-BR:
   works_rather_well_in_depleted_environment: "Funciona bastante bem em ambiente esgotado"
   works_well_in_depleted_environment: "Funciona bem em ambiente esgotado"
   yes_query: "Sim"
+  resend_confirmation_by_email: "Resend confirmation by e-mail"

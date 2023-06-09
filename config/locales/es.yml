@@ -169,3 +169,4 @@ es:
   works_rather_well_in_depleted_environment: "Funciona bastante bien en un entorno agotado"
   works_well_in_depleted_environment: "Funciona bien en un entorno agotado"
   yes_query: "Sí"
+  resend_confirmation_by_email: "Resend confirmation by e-mail"
