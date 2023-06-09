@@ -37,7 +37,14 @@
     <%= "<h4>#{t(:country)}</h4><div class='text-box'>#{ISO3166::Country[@location.country]}</div><br>".html_safe unless @location.country.blank? %>
     <%= "<h4>#{t(:farm_and_farming_system)}</h4>".html_safe unless @location.farm_and_farming_system.blank? && @location.farm_and_farming_system_complement.blank? %>
     <%= "<div class='text-box'>#{@farm_and_farming_system_options.key(@location.farm_and_farming_system)}&nbsp;<br></div>".html_safe unless @location.farm_and_farming_system.blank? %>
-    <%= "<div class='text-box'>#{@location.farm_and_farming_system_complement.gsub(/,/, '<br/>')}</div><br>".html_safe unless @location.farm_and_farming_system_complement.blank? %>
+
+    <%
+      unless @location.farm_and_farming_system_complement.blank?
+        farm_and_farming_system_complement = @location.farm_and_farming_system_complement.split(',').map { | item | t(item.strip.downcase.to_sym) }
+        farm_and_farming_system_complement = farm_and_farming_system_complement.join(", ")
+      end
+    %>
+    <%= "<div class='text-box'>#{farm_and_farming_system_complement}</div><br>".html_safe unless farm_and_farming_system_complement.blank? %>
     <%= "<h4>#{t(:farm_and_farming_system_details)}</h4><div class='text-box'>#{simple_format (h @location.farm_and_farming_system_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @location.farm_and_farming_system_details.blank? %>
     <div class="practices-box bg-light"><%= "<h4>#{t(:responsible_for_information)}</h4>#{link_to @location.account.name, account_path(@location.account)}&nbsp;".html_safe if @location.account.name? %></div>
 
