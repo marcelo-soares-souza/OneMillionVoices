@@ -124,7 +124,7 @@
     <div class="form-group row">
       <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
-        <%= f.select :hide_my_location, options_for_select([["No", false], ["Yes", true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
+        <%= f.select :hide_my_location, options_for_select([[t(:no_query), false], [t(:yes_query), true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>
         <div class="tip"><%= t(:if_you_want_to_share_your_practices_but_dont_want_to_be_seen_on_the_map_you_will_be_listed_on_the_platform_but_your_location_will_be_hidden) %></div>
       </div>
     </div>

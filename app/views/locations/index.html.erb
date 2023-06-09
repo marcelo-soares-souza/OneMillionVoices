@@ -12,16 +12,16 @@
 
 <div style="margin-top: 8px; margin-bottom: 8px; text-align: left">
   <%= text_field_tag "search", {}, class: "btn dropdown-toggle btn-default search", placeholder: t(:search) %>
-  <%= link_to (bootstrap_icon "search"), "#", id: 'searchButton', onclick: 'filter("search")' %>
+  <%= link_to (bootstrap_icon "search"), "#", id: 'searchButton', onclick: 'filter()' %>
   <br>
   <span style="font-size: 14px;"><a href="#" onclick="showAdvancedFilters()"><%= t(:show_more_filters) %></a></span>
   <div id="more-filter">
-    <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:system_functions] ? params[:system_functions] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Functions' %>
-    <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:system_components] ? params[:system_components] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Farm Components' %>
-    <%= country_select("country", "country", { selected: params[:country] ? params[:country] : '', :include_blank => 'Filter by Country' }, { class: "selectpicker", "data-live-search": true}) %>
-    <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:continent] ? params[:continent] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => 'Filter by Continent' %>
+    <%= select_tag "system_functions", options_from_collection_for_select(@system_functions_options, :last, :first, params[:system_functions] ? params[:system_functions] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => t(:filter_by_farm_functions) %>
+    <%= select_tag "system_components", options_from_collection_for_select(@system_components_options, :last, :first, params[:system_components] ? params[:system_components] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => t(:filter_by_farm_components) %>
+    <%= country_select("country", "country", { selected: params[:country] ? params[:country] : '', :include_blank => t(:'filter_by_country') }, { class: "selectpicker", "data-live-search": true}) %>
+    <%= select_tag "continent", options_from_collection_for_select(@continent_options, :last, :first, params[:continent] ? params[:continent] : ''), class: "selectpicker",  "data-live-search": true, :include_blank => t(:filter_by_continent) %>
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
-      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " " + t(:filter), "#", onclick: 'filter("search")' %> | <%= link_to " " + t(:clear_filters), locations_path %>
+      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " " + t(:filter), "#", onclick: 'filter()' %> | <%= link_to " " + t(:clear_filters), locations_path %>
     </div>
   </div>
 </div>
@@ -71,7 +71,7 @@
         }
     });
 
-    function filter(filter) {
+    function filter() {
         var name = $("#search").val();
         var system_functions = $("#system_functions :selected").val();
         var system_components = $("#system_components :selected").val();
@@ -86,11 +86,14 @@
         filter += continent ? "&continent=" + continent : "";
         var url = "/" + controller + "/" + filter;
 
-        if (url != '/'+controller+'/?filter=true') {
-            window.location.href = url;
+
+        var lang = '<%= params[:locale] ? params[:locale] : 'en' %>'
+
+        if (url != '/' + controller + '/?filter=true') {
+            window.location.href =  '/' + lang + url;
         }
         else {
-            window.location.href = '/' + controller;
+            window.location.href = '/' + lang + '/' + controller;
         }
     }
 
