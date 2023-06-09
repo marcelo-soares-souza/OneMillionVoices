@@ -60,14 +60,14 @@
       <% if ! @acknowledge.knowledge_source.blank? %>
         <div class="practices-box bg-light">
           <%= "<h4>#{t(:knowledge_source)}</h4><div class='text-box'>#{@acknowledge.knowledge_source.gsub(/,/, '<br/>')}<br></div>".html_safe %>
-          <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @acknowledge.knowledge_source_details.blank? %>
+          <%= "<br><strong>#{t(:details)}</strong><div class='text-box'>#{simple_format (h @acknowledge.knowledge_source_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @acknowledge.knowledge_source_details.blank? %>
         </div>
       <% end %>
 
       <% if ! @acknowledge.knowledge_timing.blank? %>
         <div class="practices-box">
           <%= "<h4>#{t(:knowledge_timing)}</h4><div class='text-box'>#{@knowledge_timing_options.key(@acknowledge.knowledge_timing)}</div>".html_safe %>
-          <%= "<br><strong>Details</strong><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @acknowledge.knowledge_timing_details.blank? %>
+          <%= "<br><strong>#{t(:details)}</strong><div class='text-box'>#{simple_format (h @acknowledge.knowledge_timing_details).gsub(URI.regexp, '<a href="\0">\0</a>')}</div>".html_safe unless @acknowledge.knowledge_timing_details.blank? %>
         </div>
       <% end %>
 

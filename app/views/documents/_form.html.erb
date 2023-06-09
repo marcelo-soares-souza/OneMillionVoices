@@ -26,7 +26,7 @@
         <%= f.file_field :file, class: "form-control", :required => params["action"] == 'edit' ||  params["action"] == 'update' ? false : true %>
         <div class="tip">
           File Format: PDF. Size Limit: 16MB.
-          <%= '<span class="tip_alert" style="float: right;">*This field is required.</span>'.html_safe unless (params["action"] == 'edit' ||  params["action"] == 'update') %>
+          <%= "<span class='tip_alert' style='float: right;'>*#{t(:this_field_is_required)}.</span>".html_safe unless (params["action"] == 'edit' ||  params["action"] == 'update') %>
         </div>
       </div>
     </div>

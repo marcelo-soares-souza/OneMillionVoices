@@ -55,11 +55,19 @@
     <% else %>
 
       <% if ! @characterise.agroecology_principles_addressed.blank? %>
-        <div class="practices-box bg-light"><%= "<h4>#{t(:agroecology_principles_addressed)}</h4><div class='text-box'>#{@characterise.agroecology_principles_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
+        <%
+          agroecology_principles_addressed = @characterise.agroecology_principles_addressed.split(',').map { | item | t(item.strip.gsub(/\s+/, '_').gsub(/-/, '_').downcase.to_sym) }
+          agroecology_principles_addressed = agroecology_principles_addressed.join(", ")
+        %>
+        <div class="practices-box bg-light"><%= "<h4>#{t(:agroecology_principles_addressed)}</h4><div class='text-box'>#{agroecology_principles_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
       <% end %>
 
       <% if @characterise.food_system_components_addressed and @characterise.food_system_components_addressed .length() > 0 %>
-        <div class="practices-box"><%= "<h4>#{t(:food_system_components_addressed)}</h4><div class='text-box'>#{@characterise.food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
+        <%
+          food_system_components_addressed = @characterise.food_system_components_addressed.split(',').map { | item | t(item.strip.gsub(/\s+/, '_').gsub(/-/, '_').downcase.to_sym) }
+          food_system_components_addressed = food_system_components_addressed.join(", ")
+        %>
+        <div class="practices-box"><%= "<h4>#{t(:food_system_components_addressed)}</h4><div class='text-box'>#{food_system_components_addressed.gsub(/,/, '<br/>')}<br></div>".html_safe %></div>
       <% end %>
 
       <% if account_signed_in? %>
