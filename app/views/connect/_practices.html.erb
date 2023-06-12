@@ -13,7 +13,8 @@
     <%= select_tag "knowledge_and_skills_required_for_practice", options_from_collection_for_select(@knowledge_and_skills_required_for_practice_options, :last, :first, params[:knowledge_and_skills_required_for_practice] ? params[:knowledge_and_skills_required_for_practice] : ''), class: "selectpicker", "data-live-search": true, :include_blank => t(:filter_by_knowledge_and_skills_required_for_practice) %>
 
     <div style="padding-top: 10px; padding-bottom: 10px; align-content: center; text-align: center; font-size: 21px">
-      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " " + t(:filter), "#", onclick: 'filter()' %> | <%= link_to " " + t(:clear_filters), locations_path %>
+      <%= link_to (bootstrap_icon "search", width: 16, style: "margin-bottom: 3px") + " " + t(:filter), "#", onclick: 'filter()', class: "btn btn-warning btn-lg" %>
+      <%= link_to " " + t(:clear_filters), locations_path, class: "btn btn-info btn-lg" %>
     </div>
 </div>
 

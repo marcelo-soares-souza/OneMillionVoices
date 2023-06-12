@@ -1,3 +1,20 @@
+<style>
+  .forms {
+      font-size: 18px;
+  }
+
+  .tip-explanation {
+      text-align: left;
+      font-size: 16px;
+      font-style: italic;
+      color: #124400 !important;
+  }
+
+  input[type="checkbox"] {
+      margin-bottom: 16px;
+  }
+</style>
+
 <%= form_for(characterise, html: { multipart: true }) do |f| %>
   <%= link_to t(:back), "javascript:history.back()", class: "btn btn-danger btn-lg", style: "float: left; margin-bottom: 16px;" unless params["action"] == 'edit' %>
   <% button_name = params["action"] == 'edit' ? t(:save) :  t(:next ) %>
