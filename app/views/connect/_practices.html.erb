@@ -49,7 +49,7 @@
 
     $(document).ready(function () {
         continent = $("#continent option:selected").text()
-        if (continent != <%= t(:filter_by_continent) %>)
+        if (continent != '<%= t(:filter_by_continent) %>')
             updateCountries(continent)
     });
 
@@ -109,6 +109,7 @@
         filter += does_it_help_restore_land ? "&does_it_help_restore_land=" + does_it_help_restore_land : "";
         filter += does_it_work_in_degraded_environments ? "&does_it_work_in_degraded_environments=" + does_it_work_in_degraded_environments : "";
         filter += knowledge_and_skills_required_for_practice ? "&knowledge_and_skills_required_for_practice=" + knowledge_and_skills_required_for_practice : "";
+        var url = "/" + controller + "/" + filter;
 
         var lang = '<%= params[:locale] ? params[:locale] : 'en' %>'
 

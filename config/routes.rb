@@ -48,7 +48,9 @@ Rails.application.routes.draw do
     end
 
     devise_for :accounts, controllers: {
-      registrations: "accounts/registrations", sessions: "accounts/sessions"
+      registrations: "accounts/registrations",
+      sessions: "accounts/sessions",
+      confirmations: "accounts/confirmations"
     }
 
     resources :accounts do
