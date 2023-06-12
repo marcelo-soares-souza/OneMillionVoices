@@ -26,7 +26,7 @@
 
       <div class="form-group col-xs-2 col-md-4 required">
         <%= f.label t(:password), class: "col-form-label-lg control-label" %>
-        <%= f.password_field :password, autocomplete: "off", class: "form-control", :required => true, :autocomplete => "current-password"  %>
+        <%= f.password_field :password, class: "form-control", :required => true, :autocomplete => "current-password"  %>
       </div>
       <% if devise_mapping.rememberable? -%>
         <div class="checkbox">
