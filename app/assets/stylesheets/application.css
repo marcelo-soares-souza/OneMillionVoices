@@ -327,6 +327,7 @@ body {
     font-size: 16px;
     line-height: 1.3;
     overflow-y: scroll;
+    overflow-wrap: break-word;
 }
 
 @media all and (max-width: 768px) {
