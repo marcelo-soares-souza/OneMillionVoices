@@ -195,7 +195,7 @@
                 lon = <%= f.object.longitude %>;
             <% end %>
 
-            var map = L.map('map-sistema', {zoomControl: false}).setView([lat, lon], 10);
+            var map = L.map('map-sistema', { zoomControl: false, worldCopyJump: true }).setView([lat, lon], 10);
             var osm = L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '<a href="https://agroecologymap.org/" target="_blank">Agroecology Map</a> | OpenStreetMap', maxZoom: 18, }).addTo(map);
             var mapbox = L.tileLayer('https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFyY2Vsb3NvYXJlc3NvdXphIiwiYSI6ImNpZ2NpNXFmMzNvaDh3Ym0zeXM3aWN3Y2EifQ.1xOQgKK1MioUioN0B4DVog', { attribution: 'Agroecology Map | MapBox', maxZoom: 18,});
             var baseMaps = {"OpenStreetMap": osm, "MapBox": mapbox};
