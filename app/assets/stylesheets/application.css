@@ -656,6 +656,7 @@ input::file-selector-button {
     margin: 32px auto;
     font-size: 21px;
     text-align: justify-all;
+    max-width: 1200px;
 }
 
 .forms {
