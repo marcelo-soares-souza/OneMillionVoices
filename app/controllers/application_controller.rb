@@ -100,7 +100,8 @@ class ApplicationController < ActionController::Base
         "1 - " + t(:crops) => "Crops",
         "2 - " + t(:animals) => "Animals",
         "3 - " + t(:trees) => "Trees",
-        "4 - " + t(:other) => "Other",
+        "4 - " + t(:fish) => "Fish",
+        "5 - " + t(:other) => "Other",
       }
 
       @continent_options = {
@@ -124,17 +125,18 @@ class ApplicationController < ActionController::Base
         "2 - " + t(:water) => "Water",
         "3 - " + t(:crops) => "Crops",
         "4 - " + t(:livestock) => "Livestock",
-        "5 - " + t(:trees) => "Trees",
-        "6 - " + t(:pests) => "Pests",
-        "7 - " + t(:energy) => "Energy",
-        "8 - " + t(:household) => "Household",
-        "9 - " + t(:workers) => "Workers",
-        "10 - " + t(:community) => "Community",
-        "11 - " + t(:value_chain) => "Value chain",
-        "12 - " + t(:policy) => "Policy",
-        "13 - " + t(:whole_food_system) => "Whole Food System",
-        "14 - " + t(:other) => "Other",
-        "15 - " + t(:i_am_not_sure) => "I am not sure"
+        "5 - " + t(:fish) => "Fish",
+        "6 - " + t(:trees) => "Trees",
+        "7 - " + t(:pests) => "Pests",
+        "8 - " + t(:energy) => "Energy",
+        "9 - " + t(:household) => "Household",
+        "10 - " + t(:workers) => "Workers",
+        "11 - " + t(:community) => "Community",
+        "12 - " + t(:value_chain) => "Value chain",
+        "13 - " + t(:policy) => "Policy",
+        "14 - " + t(:whole_food_system) => "Whole Food System",
+        "15 - " + t(:other) => "Other",
+        "16 - " + t(:i_am_not_sure) => "I am not sure"
       }
 
       @agroecology_principles_addressed_options = {
