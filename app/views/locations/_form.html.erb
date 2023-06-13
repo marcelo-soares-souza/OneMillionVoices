@@ -105,7 +105,15 @@
 
     </div>
     <br>
-    <div class="form-group row" >
+    <div class="form-group row">
+      <%= f.label t(:what_is_your_dream_for_the_future_of_your_farm_and_or_your_location_in_general), class: "col-sm-2 col-form-label col-form-label-lg" %>
+      <div class="col-sm-10">
+        <%= f.text_area :what_is_your_dream, class: "form-control", :rows => "5" %>
+        <div class="tip"><%= t(:do_you_have_a_dream_of_transforming_your_farm_and_or_location_and_what_are_your_experienced_in_achieving_that_dream) %></div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row bg-light" >
       <%= f.label t(:photo), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-8">
         <%= f.file_field :photo, class: "form-control", style: location.errors.blank? ? "" : "border-color: red" %>
@@ -113,7 +121,7 @@
       </div>
     </div>
     <br>
-    <div class="form-group row bg-light">
+    <div class="form-group row">
       <%= f.label t(:short_description), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.text_area :description, class: "form-control", :rows => "5" %>
@@ -121,7 +129,7 @@
       </div>
     </div>
     <br>
-    <div class="form-group row">
+    <div class="form-group row bg-light">
       <%= f.label t(:hide_my_location), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
         <%= f.select :hide_my_location, options_for_select([[t(:no_query), false], [t(:yes_query), true]], @location.hide_my_location), { :include_blank => false }, { :class => 'form-control selectpicker', :id => 'hide_my_location_on_map' } %>

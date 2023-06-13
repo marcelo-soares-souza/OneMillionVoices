@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_122003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_04_145650) do
     t.string "farm_and_farming_system_complement"
     t.boolean "is_it_a_farm"
     t.string "continent"
+    t.text "what_is_your_dream"
     t.index ["account_id"], name: "index_locations_on_account_id"
     t.index ["name"], name: "index_locations_on_name", opclass: :gin_trgm_ops, using: :gin
     t.index ["slug"], name: "index_locations_on_slug", unique: true

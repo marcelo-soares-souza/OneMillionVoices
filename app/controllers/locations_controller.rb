@@ -109,7 +109,7 @@ class LocationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system,
-                                       :farm_and_farming_system_details, :latitude, :longitude, :account_id,
+                                       :farm_and_farming_system_details, :what_is_your_dream, :latitude, :longitude, :account_id,
                                        :photo, :hide_my_location, :is_it_a_farm,
                                        account_ids: [], farm_and_farming_system_complement: [])
     end
