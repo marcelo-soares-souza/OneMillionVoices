@@ -11,6 +11,37 @@
 <div id="map" style="z-index: 1;"></div>
 
 <script>
+    async function loadAgroecologyMap() {
+        var agroecologymap = L.markerClusterGroup({ disableClusteringAtZoom: 12, maxClusterRadius: 32 });
+
+        var Icon = L.icon({
+            iconUrl: '/assets/leaflet/images/leaf-red.png',
+            shadowUrl: '/assets/leaflet/images/leaf-shadow.png',
+            iconSize: [38, 95],
+            shadowSize: [50, 64],
+            iconAnchor: [22, 94],
+            shadowAnchor: [4, 62],
+            popupAnchor: [-3, -76]
+        });
+
+        const response = await fetch("https://agroecologymap.org/locations.json");
+        const jsonData = await response.json();
+
+        for (const location of jsonData) {
+            const name = location['name'];
+            const url = location['url'];
+            const latitude = location['latitude'];
+            const longitude = location['longitude'];
+
+            var popup = '<h4>Agroecology Map</h4></h3><b><a href=" '+url+'" target="_blank">' + name.substring(0, 256) + "..." + '</a></b>';
+            var marker = new L.marker(new L.latLng(latitude, longitude), {icon: Icon});
+            marker.bindPopup(popup);
+            agroecologymap.addLayer(marker);
+        }
+
+        return agroecologymap;
+    }
+
     lat = 16.0;
     lon = 1.0;
     zoom = 3.25;
@@ -70,6 +101,7 @@
         });
 
         $('.leaflet-container').css('cursor','crosshair');
+        loadAgroecologyMap().then(agroecologymap => agroecologymap.addTo(map));
 
         <%= render 'locations', locations: @locations %>
     });
