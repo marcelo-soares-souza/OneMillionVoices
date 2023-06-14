@@ -85,7 +85,7 @@
         var baseMaps = {
             "<a href='https://www.openstreetmap.org/' target='_blank'>OpenStreetMap</a>": osm,
             "<a href='https://www.hotosm.org/' target='_blank'>Humanitarian OpenStreetMap</a>": osmHot,
-            "Satélite (MapBox)": mapbox
+            "Satellite Images (MapBox)": mapbox
         };
 
         // OverLay Maps
@@ -101,8 +101,9 @@
         });
 
         $('.leaflet-container').css('cursor','crosshair');
-        loadAgroecologyMap().then(agroecologymap => agroecologymap.addTo(map));
 
         <%= render 'locations', locations: @locations %>
+
+        loadAgroecologyMap().then(agroecologymap => agroecologymap.addTo(map));
     });
 </script>

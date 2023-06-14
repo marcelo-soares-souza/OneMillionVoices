@@ -30,11 +30,13 @@ class LocationsController < ApplicationController
 
   def filter
     @locations = Location.unscoped
+    @locations = @locations.includes(:practices)
     @locations = @locations.by_name(params[:name]) unless params[:name].blank?
     @locations = @locations.by_farm_and_farming_system(params[:system_functions]) unless params[:system_functions].blank?
     @locations = @locations.by_farm_and_farming_system_complement(params[:system_components]) unless params[:system_components].blank?
     @locations = @locations.by_country(params[:country]) unless params[:country].blank?
     @locations = @locations.by_continent(params[:continent]) unless params[:continent].blank?
+    @locations = @locations.with_attached_photo
     @locations = @locations.order("locations.updated_at DESC").page(params[:page])
   end
 

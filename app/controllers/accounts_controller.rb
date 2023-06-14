@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   before_action -> { check_owner Account.friendly.find(params[:id]).id }, only: %i[edit update destroy]
 
   def index
-    @accounts = Account.order("updated_at DESC").load_async.page(params[:page])
+    @accounts = Account.order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
   end
 
   def show; end

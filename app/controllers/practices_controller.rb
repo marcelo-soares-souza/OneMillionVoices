@@ -41,6 +41,7 @@ class PracticesController < ApplicationController
     @practices = @practices.by_farm_and_farming_system_complement(params[:system_components]) unless params[:system_components].blank?
     @practices = @practices.by_country(params[:country]) unless params[:country].blank?
     @practices = @practices.by_continent(params[:continent]) unless params[:continent].blank?
+    @practices = @practices.with_attached_photo
     @practices = @practices.order("practices.updated_at DESC").page(params[:page])
   end
 

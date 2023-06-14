@@ -23,7 +23,7 @@ class ConnectController < ApplicationController
     elsif params[:account_id]
       Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
     else
-      Practice.order("updated_at DESC").load_async.page(params[:page])
+      Practice.includes(:account, :location).with_attached_photo.order("updated_at DESC").load_async.page(params[:page])
     end
   end
   def filter
@@ -41,6 +41,7 @@ class ConnectController < ApplicationController
     @practices = @practices.by_does_it_help_restore_land(params[:does_it_help_restore_land]) unless params[:does_it_help_restore_land].blank?
     @practices = @practices.by_does_it_work_in_degraded_environments(params[:does_it_work_in_degraded_environments]) unless params[:does_it_work_in_degraded_environments].blank?
     @practices = @practices.by_knowledge_and_skills_required_for_practice(params[:knowledge_and_skills_required_for_practice]) unless params[:knowledge_and_skills_required_for_practice].blank?
+    @practices = @practices.with_attached_photo
     @practices = @practices.order("practices.updated_at DESC").page(params[:page])
   end
 end

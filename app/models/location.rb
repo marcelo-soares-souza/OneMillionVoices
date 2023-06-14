@@ -30,7 +30,7 @@ class Location < ApplicationRecord
   validate :acceptable_photo
 
   before_save do
-    self.name = name.strip.titleize
+    self.name = name.strip
     self.description = description.strip
     self.farm_and_farming_system_complement.gsub!(/[\[\]"]/, "") if attribute_present?("farm_and_farming_system_complement")
     self.continent = ISO3166::Country[country.downcase].continent
