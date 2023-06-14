@@ -29,7 +29,7 @@ class PracticesController < ApplicationController
     elsif params[:account_id]
       Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
     else
-      Practice.order("updated_at DESC").load_async.page(params[:page])
+      Practice.includes(:account, :location).with_attached_photo.order("updated_at DESC").load_async.page(params[:page])
     end
   end
   def filter
