@@ -1,7 +1,25 @@
+<style>
+  video {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .manual {
+      margin: 32px auto;
+      font-size: 21px;
+      text-align: justify-all;
+      max-width: 875px;
+  }
+</style>
+
 <% title t(:manual) %>
 
-<div class="about">
+<div class="manual">
   <h1>Manual</h1>
-  <h2><%= t(:a_step_by_step_manual_is_still_in_development) %></h2>
-  <h3><%= t(:if_you_need_help_in_the_meantime_please_contact) %>: marcelo@agroecologymap.org</h3>
+  <video controls>
+    <source src="/tutorial.webm" type="video/webm; codecs=vp9,vorbis">
+    <source src="/tutorial.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <h3>Any questions please contact marcelo@agroecologymap.org</h3>
 </div>
