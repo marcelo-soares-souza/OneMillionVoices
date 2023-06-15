@@ -6,6 +6,9 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+    .leaflet-control-layers label {
+        font-size: 16px !important;
+    }
 </style>
 
 <div id="map" style="z-index: 1;"></div>
@@ -89,9 +92,14 @@
         };
 
         // OverLay Maps
-        var overlayMaps = { };
+        var omv = L.markerClusterGroup({ disableClusteringAtZoom: 12, maxClusterRadius: 32 });
 
-        L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'bottomright'}).addTo(map);
+        var overlayMaps = {
+            "<a href='http://agroecologymap.org/' target='_blank'>Agroecology Map</a>": omv
+        };
+
+
+        L.control.layers(baseMaps, overlayMaps, {collapsed: false, position: 'bottomright'}).addTo(map);
 
         map.on('contextmenu',(e) => {
             L.popup()
@@ -104,6 +112,8 @@
 
         <%= render 'locations', locations: @locations %>
 
-        loadAgroecologyMap().then(agroecologymap => agroecologymap.addTo(map));
+        loadAgroecologyMap().then(agroecologymap => {
+            omv.addLayer(agroecologymap);
+        });
     });
 </script>
