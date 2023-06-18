@@ -76,7 +76,7 @@ GEM
       rails (>= 6)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
-    countries (5.4.0)
+    countries (5.5.0)
       unaccent (~> 0.3)
     country_select (8.0.1)
       countries (~> 5.0)
@@ -132,7 +132,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
+    minitest (5.18.1)
     net-imap (0.3.6)
       date
       net-protocol
@@ -216,7 +216,7 @@ GEM
     rubocop-performance (1.18.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.19.1)
+    rubocop-rails (2.20.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
