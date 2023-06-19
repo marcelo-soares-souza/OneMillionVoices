@@ -9,13 +9,15 @@ module ApplicationHelper
     if entity.photo.attached?
       image_tag entity.photo.variant(:thumb), title: description, alt: description, class: "img-fluid"
     else
-      name = 'place'
+      name = "place"
+      number = default_image_number
 
-      if entity.class.to_s == 'Account'
-        name = 'avatar'
+      if entity.class.to_s == "Account"
+        name = "avatar"
+        number = rand(0..9)
       end
 
-      image_tag "/assets/#{name}_thumb_#{default_image_number}.png", title: description, alt: description
+      image_tag "/assets/#{name}_thumb_#{number}.png", title: description, alt: description
     end
   end
   def photo_medium(entity, description = "")

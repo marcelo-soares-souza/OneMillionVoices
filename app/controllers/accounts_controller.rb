@@ -4,6 +4,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update destroy]
   before_action :authenticate_account!, except: %i[show index]
   before_action -> { check_owner Account.friendly.find(params[:id]).id }, only: %i[edit update destroy]
+  before_action :load_total
 
   def index
     @accounts = Account.order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
@@ -44,5 +45,9 @@ class AccountsController < ApplicationController
       else
         params.require(:account).permit(:id, :email, :name, :about, :website, :slug, :photo, :i_agree_with_terms_and_conditions)
       end
+    end
+
+    def load_total
+      @total = Account.count
     end
 end

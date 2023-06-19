@@ -9,6 +9,7 @@ class LocationsController < ApplicationController
   before_action :load_total_medias, only: %i[show]
   before_action :load_options
   before_action :load_system_options
+  before_action :load_total
 
   # GET /locations
   # GET /locations.json
@@ -37,6 +38,7 @@ class LocationsController < ApplicationController
     @locations = @locations.by_country(params[:country]) unless params[:country].blank?
     @locations = @locations.by_continent(params[:continent]) unless params[:continent].blank?
     @locations = @locations.with_attached_photo
+    @total = @locations.count
     @locations = @locations.order("locations.updated_at DESC").page(params[:page])
   end
 
@@ -136,5 +138,9 @@ class LocationsController < ApplicationController
         "4 - " + t(:other) => "Other",
         "5 - " + t(:i_am_not_sure) => "I am not sure"
       }
+    end
+
+    def load_total
+      @total = Location.count
     end
 end

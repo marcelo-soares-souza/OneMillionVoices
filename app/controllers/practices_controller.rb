@@ -12,6 +12,7 @@ class PracticesController < ApplicationController
   before_action :load_system_options
   before_action :load_locations, only: %i[new]
   before_action :load_comments, only: %i[show]
+  before_action :load_total
 
   # GET /practices
   # GET /practices.json
@@ -42,6 +43,7 @@ class PracticesController < ApplicationController
     @practices = @practices.by_country(params[:country]) unless params[:country].blank?
     @practices = @practices.by_continent(params[:continent]) unless params[:continent].blank?
     @practices = @practices.with_attached_photo
+    @total = @practices.count
     @practices = @practices.order("practices.updated_at DESC").page(params[:page])
   end
 
@@ -127,5 +129,8 @@ class PracticesController < ApplicationController
     def load_comments
       @practice_id = Practice.friendly.find(params[:id]).id
       @comments = Comment.where(practice_id: @practice_id).page(params[:page])
+    end
+    def load_total
+      @total = Practice.count
     end
 end

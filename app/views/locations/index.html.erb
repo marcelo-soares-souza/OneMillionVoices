@@ -6,7 +6,7 @@
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">
-    <%= link_to t(:locations) + " (#{@locations.count})" + " #{ @account.blank? ? '' : '(' + @account.name.truncate(25) + ')' }", "#", :class => "nav-link active" %>
+    <%= link_to t(:locations) + " (#{@locations.count} #{t(:of)} #{@total})" + " #{ @account.blank? ? '' : '(' + @account.name.truncate(25) + ')' }", "#", :class => "nav-link active" %>
   </li>
 </ul>
 
