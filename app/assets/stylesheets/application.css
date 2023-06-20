@@ -795,6 +795,10 @@ strong {
      .pagination {
         display: inline;
     }
+
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 280px !important;
+    }
 }
 
 .more-filter {
@@ -816,6 +820,6 @@ label.error {
 
 .link-action {
     text-align: right;
-    min-height: 58px !important;
-    margin-bottom: 32px;
+    min-height: 60px !important;
+    margin-bottom: 4px;
 }
