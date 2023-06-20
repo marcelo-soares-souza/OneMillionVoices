@@ -2,13 +2,13 @@
   <% title t(:photo) + " #{@practice.name}" %>
 <% end %>
 
+<div class="link-action">
 <% if account_signed_in? %>
   <% if params[:practice_id] %>
     <%= link_to t(:send_picture), new_practice_media_path, :class => "btn btn-warning", :style => "float:right;" if current_account.admin? or @practice.account_id == current_account.id %>
   <% end %>
 <% end %>
-
-<br><br><br>
+</div>
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">

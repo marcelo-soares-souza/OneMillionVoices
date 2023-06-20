@@ -1,14 +1,14 @@
 <% title @location.name %>
+
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @location.account.id %>
-    <div class="controls">
-      <%= link_to (bootstrap_icon "pencil") + " " + t(:new_practice), new_location_practice_path(@location), :class => "btn btn-info",  :style => "float:right; margin-left: 16px;" %>
-      <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_location_media_path(@location), :class => "btn btn-warning", :style => "float:right;" %>
+    <div class="link-action">
+      <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_location_media_path(@location), :class => "btn btn-warning" %>
+      <%= link_to (bootstrap_icon "pencil") + " " + t(:new_practice), new_location_practice_path(@location), :class => "btn btn-info" %>
     </div>
   <% end %>
 <% end %>
 
-<br><br><br>
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">
     <%= link_to truncate(@location.name, length: 25), location_path(@location.id), :class => "nav-link active" %>

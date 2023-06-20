@@ -1,8 +1,8 @@
 <% title t(:practices) %>
 
-<%= link_to (bootstrap_icon "clipboard-check") + " " + t(:register_new_practice), new_practice_path, :class => "btn btn-info", :style => "float:right;" %>
-
-<br><br><br>
+<div class="link-action">
+  <%= link_to (bootstrap_icon "clipboard-check") + " " + t(:register_new_practice), new_practice_path, :class => "btn btn-info" %>
+</div>
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <% if params[:location_id] %>

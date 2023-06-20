@@ -1,6 +1,6 @@
 <% title t(:register_new_practice) %>
 
-<br><br><br>
+<div class="link-action"></div>
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">
@@ -10,6 +10,7 @@
     <%= link_to "#{t(:edit)}", edit_practice_path(@practice), :class => "nav-link active" %>
   </li>
 </ul>
+
 <br>
 
 <% if !@location.blank? %>
