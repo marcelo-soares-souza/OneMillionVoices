@@ -48,7 +48,14 @@
 
 <% if @practices.empty? %>
   <br>
-  <h2><%= t(:no_data_has_been_registered_so_far) %> <%= link_to t(:add_a_practice), new_location_practice_path(@location) unless @location.blank? %></h2>
+  <h2>
+    <%= t(:no_data_has_been_registered_so_far) %>
+    <% if account_signed_in? %>
+      <% if current_account.admin? or current_account.id == @location.account.id %>
+        <%= link_to t(:add_a_practice), new_location_practice_path(@location) unless @location.blank? %>
+      <% end %>
+    <% end %>
+  </h2>
 <% else %>
   <div class="row">
     <% @practices.each do |practice| %>
