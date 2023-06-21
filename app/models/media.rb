@@ -17,7 +17,7 @@ class Media < ApplicationRecord
   validates_length_of :description, minimum: 4, maximum: 100, allow_blank: true
 
   before_save do
-    self.description = description.strip.titleize
+    self.description = description.strip
   end
   def acceptable_photo
     return unless photo.attached?

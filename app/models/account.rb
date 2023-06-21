@@ -33,7 +33,7 @@ class Account < ApplicationRecord
   before_save do
     self.name = name.strip.titleize
     self.email = email.strip.downcase
-    self.about = about.strip.capitalize unless !self.about
+    self.about = about.strip unless !self.about
     self.website = website.strip.downcase unless !self.website
   end
 
