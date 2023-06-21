@@ -1,13 +1,13 @@
 <% title @practice.location.name %>
 
+<div class="link-action">
 <% if account_signed_in? %>
   <% if current_account.admin? or current_account.id == @practice.account.id %>
-    <div class="link-action">
       <%= link_to (bootstrap_icon "file-earmark-image") + " " + t(:send_photo), new_practice_media_path(@practice), :class => "btn btn-warning" %>
       <%= link_to (bootstrap_icon "file-earmark-text") + " " + t(:send_document), new_practice_document_path(@practice), :class => "btn btn-secondary" %>
-    </div>
   <% end %>
 <% end %>
+</div>
 
 <ul class="nav nav-tabs flex-column flex-xl-row">
   <li class="nav-item">
