@@ -10,7 +10,7 @@ class Document < ApplicationRecord
 
   validates :file, presence: true
   validate :acceptable_file
-  validates_length_of :description, minimum: 4, maximum: 100, allow_blank: true
+  validates_length_of :description, minimum: 4, maximum: 200, allow_blank: true
 
   before_save do
     self.description = description.strip

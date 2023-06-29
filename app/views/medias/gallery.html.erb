@@ -87,7 +87,7 @@
             </a>
           </div>
           <div class="card-body"  style="min-height: 180px;">
-            <p class="card-text text-box"><%= media.description.truncate(64) unless media.description.blank? %></p>
+            <p class="card-text text-box"><%= media.description.truncate(100) unless media.description.blank? %></p>
 
             <% if account_signed_in? %>
               <% if current_account.admin? or media.account.id == current_account.id %>

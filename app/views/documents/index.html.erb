@@ -61,8 +61,8 @@
       <div class="col-sm-6" style="cursor: pointer;" >
         <div class="card">
           <div class="card-body" style="min-height: <%= account_signed_in? ? "170px" : "110px" %>;">
-            <h4 class="card-title"><%= link_to document.file.filename.to_s.truncate(36), url_for(document.file), target: "_blank" %></h4>
-            <p class="card-text text-box"><%= document.description.truncate(100) if !document.description.blank? %></p>
+            <h4 class="card-title"><%= link_to document.file.filename.to_s.truncate(40), url_for(document.file), target: "_blank" %></h4>
+            <p class="card-text text-box"><%= document.description.truncate(200) if !document.description.blank? %></p>
             <% if account_signed_in? %>
               <% if current_account.admin? or document.account.id == current_account.id %>
                 <td><%= link_to t(:destroy), practice_document_path(document.practice, document), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Você tem Certeza?')) }, :class => 'btn btn-sm btn-danger' %></td>
