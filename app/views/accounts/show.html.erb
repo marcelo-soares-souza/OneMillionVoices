@@ -33,7 +33,7 @@
       <%= "<h4>Website</h4><div class='text-box'><a href='#{@account.website}' target='_blank'>#{@account.website.truncate(32)}</div><br>".html_safe unless @account.website.blank? %>
     <% end %>
 
-    <% if @account.locations %>
+    <% if @account.locations.count > 0 %>
       <%= "<h4>#{t(:registered_locations)}</h4>#{@account.locations.map { |location| link_to location.name.truncate(40), location_path(location) }.join("<br>").html_safe}&nbsp;".html_safe if @account.locations.count > 0 %>
       <br><br>
     <% end %>
