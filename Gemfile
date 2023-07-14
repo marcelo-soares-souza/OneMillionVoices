@@ -9,7 +9,7 @@ end
 
 gem "rails", "~> 7.0"
 
-gem "nokogiri", ">= 1.15.2"
+gem "nokogiri", ">= 1.15.3"
 gem "pg", ">= 1.5.3"
 gem "puma", ">= 6.3.0"
 gem "uglifier", ">= 4.2.0"
@@ -22,7 +22,7 @@ group :development do
 end
 
 group :rubocop do
-  gem "rubocop", ">= 1.52.0", require: false
+  gem "rubocop", ">= 1.54.2", require: false
   gem "rubocop-minitest", require: false
   gem "rubocop-packaging", require: false
   gem "rubocop-performance", require: false
@@ -34,7 +34,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "devise", "~> 4.9.2"
 gem "friendly_id", ">= 5.5.0"
-gem "geocoder", ">= 1.8.1"
+gem "geocoder", ">= 1.8.2"
 gem "kaminari", ">= 1.2.2"
 gem "country_select", ">= 8.0.1"
 gem "image_processing", ">= 1.2"

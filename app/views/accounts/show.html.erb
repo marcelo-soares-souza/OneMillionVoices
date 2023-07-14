@@ -34,6 +34,11 @@
     <% end %>
 
     <%= "<h4>#{t(:registered_locations)}</h4>#{@account.locations.map { |location| link_to location.name.truncate(40), location_path(location) }.join("<br>").html_safe}&nbsp;".html_safe if @account.locations.count > 0 %>
+
+    <% if account_signed_in? %>
+      <%= "<h4>Member Since</h4><div class='text-box'>#{@account.created_at.strftime("%Y-%m-%d")} (#{(@account.created_at.to_datetime..DateTime.now).count} days)</div><br>".html_safe %>
+      <%= "<h4>Last login at</h4><div class='text-box'>#{@account.last_sign_in_at.strftime("%Y-%m-%d")} (#{(@account.last_sign_in_at.to_datetime..DateTime.now).count} days)</div><br>".html_safe if @account.last_sign_in_at%>
+    <% end %>
   </div>
 </div>
 
