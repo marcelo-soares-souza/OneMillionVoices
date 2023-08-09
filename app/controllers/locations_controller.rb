@@ -27,6 +27,10 @@ class LocationsController < ApplicationController
     else
       Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
     end
+
+    if request.format == 'json'
+      Location.all
+    end
   end
 
   def filter
