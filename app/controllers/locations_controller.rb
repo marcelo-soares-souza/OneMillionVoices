@@ -17,7 +17,11 @@ class LocationsController < ApplicationController
     @locations = if params[:filter]
       filter
     else
-      all
+      if request.format == :html
+        all
+      else
+        Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async
+      end
     end
   end
 
@@ -26,10 +30,6 @@ class LocationsController < ApplicationController
       Location.where(account_id: @account.id).includes(:medias, :practices).load_async.sort_by(&:updated_at).reverse
     else
       Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
-    end
-
-    if request.format == 'json'
-      Location.all
     end
   end
 
