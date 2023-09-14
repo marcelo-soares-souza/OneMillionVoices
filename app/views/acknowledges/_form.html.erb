@@ -2,20 +2,18 @@
   <%= link_to t(:back), "javascript:history.back()", class: "btn btn-danger btn-lg", style: "float: left; margin-bottom: 16px;" unless params["action"] == 'edit' %>
   <% button_name = t(:save) %>
   <%= f.submit button_name, class: "btn btn-warning btn-lg", style: "float: right; margin-bottom: 16px;" %>
-
-  <br><br>
-
+  <br>
+  <br>
   <% if acknowledge.errors.any? %>
     <div id="error_explanation">
       <b><%= acknowledge.errors.count.to_s + " Error(s)" %></b>
-      <br><br>
+      <br>
+      <br>
       <% acknowledge.errors.full_messages.each do |message| %>
         <%= message %><br>
       <% end %><br>
     </div>
-
   <% end %>
-
   <div class="form-group row">
     <div class="col-sm-10">
       <% if params[:practice_id] %>
@@ -25,7 +23,6 @@
       <% end %>
     </div>
   </div>
-
   <div class="forms">
     <div class="form-group row bg-light">
       <%= f.label t(:knowledge_source), class: "col-sm-2 col-form-label col-form-label-lg" %>
@@ -33,7 +30,7 @@
         <% i = 0 %>
         <div style="text-align: left;">
           <% @knowledge_source_options.each do |option| %>
-            <%= check_box_tag 'acknowledge[knowledge_source][]', option[0], checked_knowledge_source(option[0]), id: 'knowledge_source' %> <%= i = i + 1%> - <%= option[0] %>
+            <%= check_box_tag 'acknowledge[knowledge_source][]', option[1], checked_knowledge_source(option[1]), id: 'knowledge_source' %> <%= i = i + 1%> - <%= option[0] %>
             <br>
           <% end %>
           <br>
@@ -45,7 +42,6 @@
       </div>
     </div>
     <br>
-
     <div class="form-group row">
       <%= f.label t(:knowledge_timing), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
@@ -57,7 +53,6 @@
       </div>
     </div>
     <br>
-
     <div class="form-group row bg-light">
       <%= f.label t(:uptake_motivation), class: "col-sm-2 col-form-label col-form-label-lg" %>
       <div class="col-sm-10">
@@ -67,7 +62,6 @@
         </div>
       </div>
     </div>
-
     <br>
     <div class="form-group row">
       <%= f.label t(:knowledge_products), class: "col-sm-2 col-form-label col-form-label-lg" %>
@@ -75,7 +69,6 @@
         <%= f.text_area :knowledge_products, class: "form-control", :rows => "6" %>
         <div class="tip">
           <%= t(:knowledge_products_tip) %>
-
         </div>
       </div>
     </div>
