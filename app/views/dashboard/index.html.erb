@@ -1,0 +1,56 @@
+<% title t(:dashboard) %>
+<div class="tab-content" style="min-height: 64px;">
+  <div class="tab-pane active">
+    <br>
+    <div class="practices-box">
+      <h4>Number of locations registered</h4>
+      Locations: <%= @locations_count %>
+    </div>
+    <div class="practices-box bg-light">
+      <h4>Number of locations registered per continent</h4>
+      <% @locations.group(:continent).count.each do |location| %>
+        <%= "#{location[0]}: #{location[1]}" %>
+        <br>
+      <% end %>
+    </div>
+    <div class="practices-box">
+      <h4>Number of practices registered</h4>
+      Practices: <%= @practices_count %>
+    </div>
+    <div class="practices-box bg-light">
+      <h4>Number of practices addressing specific agroecology principles</h4>
+      Recycling: <%= @practices_recycling_count %><br>
+      Input reduction: <%= @practices_input_reduction_count %><br>
+      Soil health: <%= @practices_soil_health_count %><br>
+      Animal health: <%= @practices_animal_health_count %><br>
+      Biodiversity: <%= @practices_biodiversity_count %><br>
+      Synergy: <%= @practices_synergy_count %><br>
+      Economic diversification: <%= @practices_economic_diversification_count %><br>
+      Co-creation of knowledge: <%= @practices_co_creation_of_knowledge_count %><br>
+      Social values and diets: <%= @practices_social_values_and_diets_count %><br>
+      Fairness: <%= @practices_fairness_count %><br>
+      Connectivity: <%= @practices_connectivity_count %><br>
+      Land and natural resource governance: <%= @practices_land_and_natural_resource_governance_count %><br>
+      Participation: <%= @practices_participation_count %><br>
+    </div>
+    <div class="practices-box">
+      <h4>Number of practices addressing specific system components</h4>
+      Soil: <%= @practices_soil_count %><br>
+      Water: <%= @practices_water_count %><br>
+      Crops: <%= @practices_crops_count %><br>
+      Livestock: <%= @practices_livestock_count %><br>
+      Fish: <%= @practices_fish_count %><br>
+      Trees: <%= @practices_trees_count %><br>
+      Pests: <%= @practices_pests_count %><br>
+      Energy: <%= @practices_energy_count %><br>
+      Household: <%= @practices_household_count %><br>
+      Workers: <%= @practices_workers_count %><br>
+      Community: <%= @practices_community_count %><br>
+      Value chain: <%= @practices_value_chain_count %><br>
+      Policy: <%= @practices_policy_count %><br>
+      Whole food system: <%= @practices_whole_food_system_count %><br>
+      Other: <%= @practices_other_count %><br>
+      I am not sure: <%= @practices_i_am_not_sure_count %><br>
+    </div>
+  </div>
+</div>
