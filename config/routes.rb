@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "license", to: "about#license"
     get "thank_you_notes", to: "about#thank_you_notes"
     get "connect", to: "connect#index"
-
+    get "dashboard", to: "dashboard#index"
 
     get "coordinates", to: "locations#coordinates"
     get "countries", to: "locations#countries"
