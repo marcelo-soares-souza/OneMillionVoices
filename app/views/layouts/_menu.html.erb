@@ -1,10 +1,10 @@
-<script>$(document).ready(function () { $("#locale").val("<%= locale %>"); });</script>
-
+<script>
+  $(document).ready(function () { $("#locale").val("<%= locale %>"); });
+</script>
 <nav class="navbar navbar-expand-lg navbar-light" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     &#9776;
   </button>
-
   <div class="collapse navbar-collapse" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item dropdown">
@@ -12,32 +12,27 @@
         <div class="dropdown-menu" style="text-align: left; padding-left: 6px">
           <%= link_to(t(:one_million_voices), about_path, :class => "nav-link") %>
           <%= link_to(t(:manual), manual_path, :class => "nav-link") %>
+          <%= link_to(t(:data_summary), dashboard_path, :class => "nav-link") %>
           <%= link_to(t(:who_we_are), who_we_are_path, :class => "nav-link") %>
           <%= link_to(t(:thank_you_notes), thank_you_notes_path, :class => "nav-link") %>
         </div>
       </li>
-
       <li class="nav-item">
         <%= link_to(t(:home), home_index_path, :class => "nav-link") %>
       </li>
-
       <li class="nav-item">
         <%= link_to(t(:map), map_path, :class => "nav-link") %>
       </li>
-
       <li class="nav-item">
         <%= link_to(t(:locations), locations_path, :class => "nav-link") %>
       </li>
-
       <li class="nav-item">
         <%= link_to(t(:practices), practices_path, :class => "nav-link") %>
       </li>
-
       <li class="nav-item">
         <%= link_to(t(:connect), connect_path, :class => "nav-link") %>
       </li>
     </ul>
-
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item">
         <%= link_to(t(:accounts), accounts_path, :class => "nav-link") %>
@@ -57,7 +52,6 @@
           <strong><%= link_to t(:sign_up), new_account_registration_path, :class => "nav-link" %></strong>
         </li>
       <% end %>
-
       <li>
         <select id="locale" onchange="if (this.value) window.location.href='/' + this.value" class="form-control">
           <option value="en">English</option>
