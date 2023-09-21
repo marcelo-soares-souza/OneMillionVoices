@@ -8,12 +8,6 @@
     </div>
     <div class="practices-box bg-light">
       <h4>Number of locations registered per continent</h4>
-      <!--
-      <% @locations.group(:continent).count.each do |location| %>
-        <%= "#{location[0]}: #{location[1]}" %>
-        <br>
-      <% end %>
-      -->
       <div>
         <canvas id="per-continent-chart"></canvas>
       </div>
@@ -24,43 +18,16 @@
     </div>
     <div class="practices-box bg-light">
       <h4>Number of practices addressing specific agroecology principles</h4>
-      <!--
-      Recycling: <%= @practices_recycling_count %><br>
-      Input reduction: <%= @practices_input_reduction_count %><br>
-      Soil health: <%= @practices_soil_health_count %><br>
-      Animal health: <%= @practices_animal_health_count %><br>
-      Biodiversity: <%= @practices_biodiversity_count %><br>
-      Synergy: <%= @practices_synergy_count %><br>
-      Economic diversification: <%= @practices_economic_diversification_count %><br>
-      Co-creation of knowledge: <%= @practices_co_creation_of_knowledge_count %><br>
-      Social values and diets: <%= @practices_social_values_and_diets_count %><br>
-      Fairness: <%= @practices_fairness_count %><br>
-      Connectivity: <%= @practices_connectivity_count %><br>
-      Land and natural resource governance: <%= @practices_land_and_natural_resource_governance_count %><br>
-      Participation: <%= @practices_participation_count %><br>
-      -->
       <div>
         <canvas id="principles-chart"></canvas>
       </div>
     </div>
+
     <div class="practices-box">
       <h4>Number of practices addressing specific system components</h4>
-      Soil: <%= @practices_soil_count %><br>
-      Water: <%= @practices_water_count %><br>
-      Crops: <%= @practices_crops_count %><br>
-      Livestock: <%= @practices_livestock_count %><br>
-      Fish: <%= @practices_fish_count %><br>
-      Trees: <%= @practices_trees_count %><br>
-      Pests: <%= @practices_pests_count %><br>
-      Energy: <%= @practices_energy_count %><br>
-      Household: <%= @practices_household_count %><br>
-      Workers: <%= @practices_workers_count %><br>
-      Community: <%= @practices_community_count %><br>
-      Value chain: <%= @practices_value_chain_count %><br>
-      Policy: <%= @practices_policy_count %><br>
-      Whole food system: <%= @practices_whole_food_system_count %><br>
-      Other: <%= @practices_other_count %><br>
-      I am not sure: <%= @practices_i_am_not_sure_count %>
+     <div>
+        <canvas id="components-chart"></canvas>
+      </div>  
     </div>
   </div>
 </div>
@@ -72,16 +39,85 @@
     margin-left: auto;
     margin-right: auto;
   }
-
-  #principles-chart {
-    margin-top: -64px;
-    margin-bottom: -64px;
-  }
 </style>
+
 <script>
-  const ctx = document.getElementById('principles-chart');
+  const ctx = document.getElementById('components-chart');
   const opt = {}
   const data = {
+  labels: [
+      'Soil (<%= @practices_soil_count %>)',
+      'Water (<%= @practices_water_count %>)',
+      'Crops (<%= @practices_crops_count %>)',
+      'Livestock (<%= @practices_livestock_count %>)',
+      'Fish (<%= @practices_fish_count %>)',
+      'Trees (<%= @practices_trees_count %>)',
+      'Pests (<%= @practices_pests_count %>)',
+      'Energy (<%= @practices_energy_count %>)',
+      'Household (<%= @practices_household_count %>)',
+      'Workers (<%= @practices_workers_count %>)',
+      'Community (<%= @practices_community_count %>)',
+      'Value chain (<%= @practices_value_chain_count %>)',
+      'Policy (<%= @practices_policy_count %>)',
+      'Whole food system (<%= @practices_whole_food_system_count %>)',
+      'Other (<%= @practices_other_count %>)',
+      'I am not sure (<%= @practices_i_am_not_sure_count %>)'
+  ],
+  datasets: [{
+    label: 'Total',
+    data: [
+    <%= @practices_soil_count %>,
+    <%= @practices_water_count %>,
+    <%= @practices_crops_count %>,
+    <%= @practices_livestock_count %>,
+    <%= @practices_fish_count %>,
+    <%= @practices_trees_count %>,
+    <%= @practices_pests_count %>,
+    <%= @practices_energy_count %>,
+    <%= @practices_household_count %>,
+    <%= @practices_workers_count %>,
+    <%= @practices_community_count %>,
+    <%= @practices_value_chain_count %>,
+    <%= @practices_policy_count %>,
+    <%= @practices_whole_food_system_count %>,
+    <%= @practices_other_count %>,
+    <%= @practices_i_am_not_sure_count %>
+    ],
+    backgroundColor: [
+      'rgba(255, 99, 0.5, 0.5)',
+      'rgba(75, 192, 0.5, 0.5)',
+      'rgba(255, 205, 0.5, 0.5)',
+      'rgba(201, 203, 0.5, 0.5)',
+      'rgba(54, 162, 0.5, 0.5)',
+      'rgba(54, 112, 0.5, 0.5)',
+      'rgba(154, 102, 0.5, 0.5)',
+      'rgba(74, 90, 0.5, 0.5)',
+      'rgba(74, 40, 0.5, 0.5)',
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(255, 159, 64, 0.5)',
+      'rgba(255, 255, 86, 0.5)',
+      'rgba(75, 102, 192, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(251, 223, 207, 0.5)'
+    ]
+  }]
+  };
+
+  var chart = new Chart(ctx, {
+    type: 'polarArea',
+    data: data,
+    options: opt
+  });
+
+  chart.options.plugins.legend.position = 'left';
+  chart.update();
+</script>
+
+<script>
+  const ctxComponents = document.getElementById('principles-chart');
+  const optComponents= {}
+  const dataComponents = {
   labels: [
       'Recycling (<%= @practices_recycling_count %>)',
       'Input reduction (<%= @practices_input_reduction_count %>)',
@@ -115,35 +151,36 @@
     <%= @practices_participation_count %>
     ],
     backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(75, 192, 192)',
-      'rgb(255, 205, 86)',
-      'rgb(201, 203, 207)',
-      'rgb(54, 162, 235)',
-      'rgb(54, 112, 135)',
-      'rgb(154, 102, 105)',
-      'rgb(74, 90, 132)',
-      'rgb(74, 40, 32)',
-      'rgba(255, 99, 132, 1.2)',
-      'rgba(255, 159, 64, 1.2)',
-      'rgba(255, 255, 86, 1.2)',
-      'rgba(75, 102, 192, 1.2)',
-      'rgba(54, 162, 235, 1.2)',
-      'rgba(153, 102, 255, 1.2)',
-      'rgba(251, 223, 207, 1.2)'
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(255, 205, 86, 0.5)',
+      'rgba(201, 203, 207, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(54, 112, 135, 0.5)',
+      'rgba(154, 102, 105, 0.5)',
+      'rgba(74, 90, 132, 0.5)',
+      'rgba(74, 40, 32, 0.5)',
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(255, 159, 64, 0.5)',
+      'rgba(255, 255, 86, 0.5)',
+      'rgba(75, 102, 192, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(251, 223, 207, 0.5)'
     ]
   }]
   };
 
-  var chart = new Chart(ctx, {
+  var chartComponents = new Chart(ctxComponents, {
     type: 'polarArea',
-    data: data,
-    options: opt
+    data: dataComponents,
+    options: optComponents
   });
 
-  chart.options.plugins.legend.position = 'left';
-  chart.update();
+  chartComponents.options.plugins.legend.position = 'left';
+  chartComponents.update();
 </script>
+
 <script>
   const ctxPerContinent = document.getElementById('per-continent-chart');
   const labels = []
