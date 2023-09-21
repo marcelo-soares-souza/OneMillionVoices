@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
     @locations = Location.all
     @locations_count = Location.count
     @practices_count = Practice.count
+
     @practices_recycling_count = Practice.by_agroecology_principles_addressed("Recycling").count
     @practices_input_reduction_count = Practice.by_agroecology_principles_addressed("Input Reduction").count
     @practices_soil_health_count = Practice.by_agroecology_principles_addressed("Soil Health").count
@@ -35,5 +36,9 @@ class DashboardController < ApplicationController
     @practices_whole_food_system_count = Practice.by_food_system_components_addressed("whole food").count
     @practices_other_count = Practice.by_food_system_components_addressed("other").count
     @practices_i_am_not_sure_count = Practice.by_food_system_components_addressed("i am not sure").count
+
+    @practices_on_count = Practice.by_where_it_is_realized("On-farm").count
+    @practices_off_count = Practice.by_where_it_is_realized("Off-farm").count
+    @practices_other_count = Practice.by_where_it_is_realized("Other").count
   end
 end

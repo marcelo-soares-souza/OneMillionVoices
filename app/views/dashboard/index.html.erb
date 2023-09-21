@@ -16,6 +16,14 @@
       <h4>Number of practices registered</h4>
       Practices: <%= @practices_count %>
     </div>
+    
+    <div class="practices-box">
+      <h4>Where it is realized?</h4>
+      <div>
+        <canvas id="where-it-is-realized-chart"></canvas>
+      </div>
+    </div>
+
     <div class="practices-box bg-light">
       <h4>Number of practices addressing specific agroecology principles</h4>
       <div>
@@ -223,5 +231,38 @@
       datasets: dataset,
     },
     options: options,
+  });
+</script>
+
+
+<script>
+  const ctxWhereItIsRealized = document.getElementById('where-it-is-realized-chart');
+
+  const datasetWhereItIsRealized = [{
+      label: '',
+      data: [<%= @practices_on_count %>, <%= @practices_off_count %>, <%= @practices_other_count %>],
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(201, 203, 207, 0.5)'
+    ],
+
+    }]
+  const optionsWhereItIsRealized = {
+    responsive: true,
+    maintainAspectRatio: true,
+    scales: { y: { beginAtZero: true } },
+    
+  }
+
+  var chart_where_it_is_realized = new Chart(ctxWhereItIsRealized, {
+    type: 'doughnut',
+    data: {
+      labels: ['On-farm (<%= @practices_on_count %>)', 'Off-farm (<%= @practices_off_count %>)', 'Other (<%= @practices_other_count %>)'],
+      datasets: datasetWhereItIsRealized,
+    },
+    options: optionsWhereItIsRealized,
   });
 </script>
