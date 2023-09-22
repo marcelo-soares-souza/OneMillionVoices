@@ -40,5 +40,18 @@ class DashboardController < ApplicationController
     @practices_on_count = Practice.by_where_it_is_realized("On-farm").count
     @practices_off_count = Practice.by_where_it_is_realized("Off-farm").count
     @practices_other_count = Practice.by_where_it_is_realized("Other").count
+
+    @practices_formal_knowledge_count = Practice.by_knowledge_source("Formal knowledge").count
+    @practices_indigenous_knowledge_count = Practice.by_knowledge_source("Indigenous knowledge").count
+    @practices_local_knowledge_count = Practice.by_knowledge_source("Local knowledge").count
+    @practices_personal_experimentation_count = Practice.by_knowledge_source("Personal experimentation").count
+    @practices_knowledge_other_count = Practice.by_knowledge_source("Other").count
+    @practices_knowledge_i_am_not_sure_count = Practice.by_knowledge_source("I am not sure").count
+
+    @practices_farm_system_crops_count = Practice.by_farm_and_farming_system_complement("Crops").count
+    @practices_farm_system_animals_count = Practice.by_farm_and_farming_system_complement("Animals").count
+    @practices_farm_system_trees_count = Practice.by_farm_and_farming_system_complement("Trees").count
+    @practices_farm_system_fish_count = Practice.by_farm_and_farming_system_complement("Fish").count
+    @practices_farm_system_other_count = Practice.by_farm_and_farming_system_complement("Other").count
   end
 end

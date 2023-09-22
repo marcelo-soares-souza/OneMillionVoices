@@ -16,29 +16,39 @@
       <h4>Number of practices registered</h4>
       Practices: <%= @practices_count %>
     </div>
-    
     <div class="practices-box">
       <h4>Where it is realized?</h4>
       <div>
         <canvas id="where-it-is-realized-chart"></canvas>
       </div>
     </div>
-
     <div class="practices-box bg-light">
       <h4>Number of practices addressing specific agroecology principles</h4>
       <div>
         <canvas id="principles-chart"></canvas>
       </div>
     </div>
-
     <div class="practices-box">
       <h4>Number of practices addressing specific system components</h4>
-     <div>
+      <div>
         <canvas id="components-chart"></canvas>
-      </div>  
+      </div>
+    </div>
+    <div class="practices-box">
+      <h4>Knowledge source</h4>
+      <div>
+        <canvas id="knowledge-and-skills-required-for-practice-chart"></canvas>
+      </div>
+    </div>
+    <div class="practices-box">
+      <h4>Farm and farming system</h4>
+      <div>
+        <canvas id="farm-and-farming-system-chart"></canvas>
+      </div>
     </div>
   </div>
 </div>
+<!-- Script for ChartJS -->
 <style>
   canvas {
     width: 100%;
@@ -48,7 +58,6 @@
     margin-right: auto;
   }
 </style>
-
 <script>
   const ctx = document.getElementById('components-chart');
   const opt = {}
@@ -121,7 +130,6 @@
   chart.options.plugins.legend.position = 'left';
   chart.update();
 </script>
-
 <script>
   const ctxComponents = document.getElementById('principles-chart');
   const optComponents= {}
@@ -188,7 +196,6 @@
   chartComponents.options.plugins.legend.position = 'left';
   chartComponents.update();
 </script>
-
 <script>
   const ctxPerContinent = document.getElementById('per-continent-chart');
   const labels = []
@@ -233,8 +240,6 @@
     options: options,
   });
 </script>
-
-
 <script>
   const ctxWhereItIsRealized = document.getElementById('where-it-is-realized-chart');
 
@@ -254,7 +259,7 @@
     responsive: true,
     maintainAspectRatio: true,
     scales: { y: { beginAtZero: true } },
-    
+
   }
 
   var chart_where_it_is_realized = new Chart(ctxWhereItIsRealized, {
@@ -264,5 +269,71 @@
       datasets: datasetWhereItIsRealized,
     },
     options: optionsWhereItIsRealized,
+  });
+</script>
+<script>
+  const ctxKnowledgeAndSkillsRequiredForPractice = document.getElementById('knowledge-and-skills-required-for-practice-chart');
+
+  const datasetKnowledgeAndSkillsRequiredForPractice = [{
+      label: '',
+      data: [<%= @practices_formal_knowledge_count %>, <%= @practices_indigenous_knowledge_count %>, <%= @practices_local_knowledge_count %>, <%= @practices_personal_experimentation_count %>, <%= @practices_knowledge_other_count %>, <%= @practices_knowledge_i_am_not_sure_count %>],
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(251, 213, 207, 0.5)',
+      'rgba(255, 255, 86, 0.5)',
+    ],
+    }]
+  const optionsKnowledgeAndSkillsRequiredForPractice = {
+    responsive: true,
+    maintainAspectRatio: true,
+    scales: { y: { beginAtZero: true } },
+
+  }
+
+  var chart_knowledge_and_skills_required_for_practice = new Chart(ctxKnowledgeAndSkillsRequiredForPractice, {
+    type: 'doughnut',
+    data: {
+      labels: ['Formal knowledge (<%= @practices_formal_knowledge_count %>)', 'Indigenous knowledge (<%= @practices_indigenous_knowledge_count %>)','Local knowledge (<%= @practices_local_knowledge_count %>)',  'Personal experimentation (<%= @practices_personal_experimentation_count %>)', 'Other (<%= @practices_knowledge_other_count %>)', 'I am not sure (<%= @practices_knowledge_i_am_not_sure_count %>)'],
+      datasets: datasetKnowledgeAndSkillsRequiredForPractice,
+    },
+    options: optionsKnowledgeAndSkillsRequiredForPractice,
+  });
+</script>
+<!-- farm_and_farming_system -->
+<script>
+  const ctxFarmAndFarmingSystem = document.getElementById('farm-and-farming-system-chart');
+
+  const datasetFarmAndFarmingSystem = [{
+      label: '',
+      data: [<%= @practices_farm_system_crops_count %>, <%= @practices_farm_system_animals_count %>, <%= @practices_farm_system_trees_count %>, <%= @practices_farm_system_fish_count %>, <%= @practices_farm_system_other_count %>],
+      backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(45, 192, 192, 0.5)',
+      'rgba(100, 162, 235, 0.5)',
+      'rgba(253, 102, 255, 0.5)',
+      'rgba(250, 200, 207, 0.5)',
+    ],
+    }]
+  const optionsFarmAndFarmingSystem ={
+    responsive: true,
+    maintainAspectRatio: true,
+    scales: { y: { beginAtZero: true } },
+    plugins: {
+    legend: {
+      display: false
+    }
+  }
+  }
+
+  var chart_farm_and_farming_system = new Chart(ctxFarmAndFarmingSystem, {
+    type: 'bar',
+    data: {
+      labels: ['Crops (<%= @practices_farm_system_crops_count %>)', 'Animals (<%= @practices_farm_system_animals_count %>)', 'Trees (<%= @practices_farm_system_trees_count %>)', 'Fish (<%= @practices_farm_system_fish_count %>)', 'Other (<%= @practices_farm_system_other_count %>)'],
+      datasets: datasetFarmAndFarmingSystem,
+    },
+    options: optionsFarmAndFarmingSystem,
   });
 </script>
