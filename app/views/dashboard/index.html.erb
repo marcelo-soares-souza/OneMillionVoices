@@ -5,6 +5,8 @@
     <div class="practices-box">
       <h4>Number of locations registered</h4>
       Locations: <%= @locations_count %>
+      <br><br>
+      <div id="regions_div"></div>
     </div>
     <div class="practices-box bg-light">
       <h4>Number of locations registered per continent</h4>
@@ -46,6 +48,10 @@
         <canvas id="farm-and-farming-system-chart"></canvas>
       </div>
     </div>
+    <div class="practices-box">
+      <h4>Number of Accounts registered</h4>
+      Locations: <%= @accounts_count %>
+    </div>
   </div>
 </div>
 <!-- Script for ChartJS -->
@@ -60,9 +66,16 @@
 </style>
 <script>
   const ctx = document.getElementById('components-chart');
-  const opt = {}
+  const opt = {
+                plugins: {
+                  patterns: {
+                    backgroundColor: ['#ff0000', '#00ff00', '#0000ff'], 
+                    pattern: ['dot', 'line', 'circle']
+                }
+              }
+  }
   const data = {
-  labels: [
+    labels: [
       'Soil (<%= @practices_soil_count %>)',
       'Water (<%= @practices_water_count %>)',
       'Crops (<%= @practices_crops_count %>)',
@@ -79,28 +92,27 @@
       'Whole food system (<%= @practices_whole_food_system_count %>)',
       'Other (<%= @practices_other_count %>)',
       'I am not sure (<%= @practices_i_am_not_sure_count %>)'
-  ],
-  datasets: [{
-    label: 'Total',
-    data: [
-    <%= @practices_soil_count %>,
-    <%= @practices_water_count %>,
-    <%= @practices_crops_count %>,
-    <%= @practices_livestock_count %>,
-    <%= @practices_fish_count %>,
-    <%= @practices_trees_count %>,
-    <%= @practices_pests_count %>,
-    <%= @practices_energy_count %>,
-    <%= @practices_household_count %>,
-    <%= @practices_workers_count %>,
-    <%= @practices_community_count %>,
-    <%= @practices_value_chain_count %>,
-    <%= @practices_policy_count %>,
-    <%= @practices_whole_food_system_count %>,
-    <%= @practices_other_count %>,
-    <%= @practices_i_am_not_sure_count %>
     ],
-    backgroundColor: [
+    datasets: [{
+      data: [
+      <%= @practices_soil_count %>,
+      <%= @practices_water_count %>,
+      <%= @practices_crops_count %>,
+      <%= @practices_livestock_count %>,
+      <%= @practices_fish_count %>,
+      <%= @practices_trees_count %>,
+      <%= @practices_pests_count %>,
+      <%= @practices_energy_count %>,
+      <%= @practices_household_count %>,
+      <%= @practices_workers_count %>,
+      <%= @practices_community_count %>,
+      <%= @practices_value_chain_count %>,
+      <%= @practices_policy_count %>,
+      <%= @practices_whole_food_system_count %>,
+      <%= @practices_other_count %>,
+      <%= @practices_i_am_not_sure_count %>
+      ],
+      backgroundColor: [
       'rgba(255, 99, 0.5, 0.5)',
       'rgba(75, 192, 0.5, 0.5)',
       'rgba(255, 205, 0.5, 0.5)',
@@ -150,7 +162,6 @@
       'Participation (<%= @practices_participation_count %>)'
   ],
   datasets: [{
-    label: 'Total',
     data: [
     <%= @practices_recycling_count %>,
     <%= @practices_input_reduction_count %>,
@@ -209,6 +220,7 @@
   const dataset = [{
       label: '',
       data: values,
+      pattern: ['dot', 'line', 'circle'],
       backgroundColor: [
       'rgba(255, 99, 132, 0.5)',
       'rgba(255, 159, 64, 0.5)',
@@ -218,17 +230,17 @@
       'rgba(153, 102, 255, 0.5)',
       'rgba(201, 203, 207, 0.5)'
     ],
-
     }]
+
   const options = {
     responsive: true,
     maintainAspectRatio: true,
     scales: { y: { beginAtZero: true } },
     plugins: {
-    legend: {
-      display: false
+      legend: {
+        display: false
+      }
     }
-  }
   }
 
   var chart_per_continent = new Chart(ctxPerContinent, {
@@ -246,6 +258,7 @@
   const datasetWhereItIsRealized = [{
       label: '',
       data: [<%= @practices_on_count %>, <%= @practices_off_count %>, <%= @practices_other_count %>],
+      pattern: ['dot', 'line', 'circle'],
       backgroundColor: [
       'rgba(255, 99, 132, 0.5)',
       'rgba(75, 192, 192, 0.5)',
@@ -258,8 +271,6 @@
   const optionsWhereItIsRealized = {
     responsive: true,
     maintainAspectRatio: true,
-    scales: { y: { beginAtZero: true } },
-
   }
 
   var chart_where_it_is_realized = new Chart(ctxWhereItIsRealized, {
@@ -289,8 +300,6 @@
   const optionsKnowledgeAndSkillsRequiredForPractice = {
     responsive: true,
     maintainAspectRatio: true,
-    scales: { y: { beginAtZero: true } },
-
   }
 
   var chart_knowledge_and_skills_required_for_practice = new Chart(ctxKnowledgeAndSkillsRequiredForPractice, {
@@ -320,7 +329,7 @@
   const optionsFarmAndFarmingSystem ={
     responsive: true,
     maintainAspectRatio: true,
-    scales: { y: { beginAtZero: true } },
+    
     plugins: {
     legend: {
       display: false
@@ -336,4 +345,29 @@
     },
     options: optionsFarmAndFarmingSystem,
   });
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+      });
+
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      countries = []
+      countries.push(['Country', 'Locations'])
+
+      <% @location_by_country.each do |country| %>
+        countries.push(['<%= ::ISO3166::Country[country[0]].iso_short_name %>', <%= country[1] %>])
+      <% end %>
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable(countries);
+        var options = {};
+        options['legend'] = 'none';
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        chart.draw(data, options);
+      }
+      window.onresize = drawRegionsMap;
 </script>

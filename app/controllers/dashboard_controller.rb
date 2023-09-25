@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
     @locations = Location.all
     @locations_count = Location.count
     @practices_count = Practice.count
+    @accounts_count = Account.count
 
     @practices_recycling_count = Practice.by_agroecology_principles_addressed("Recycling").count
     @practices_input_reduction_count = Practice.by_agroecology_principles_addressed("Input Reduction").count
@@ -53,5 +54,7 @@ class DashboardController < ApplicationController
     @practices_farm_system_trees_count = Practice.by_farm_and_farming_system_complement("Trees").count
     @practices_farm_system_fish_count = Practice.by_farm_and_farming_system_complement("Fish").count
     @practices_farm_system_other_count = Practice.by_farm_and_farming_system_complement("Other").count
+
+    @location_by_country = Location.group(:country).count
   end
 end
