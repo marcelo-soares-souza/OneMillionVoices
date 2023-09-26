@@ -5,9 +5,18 @@
     <div class="practices-box">
       <h4>Number of locations registered</h4>
       Locations: <%= @locations_count %>
-      <br><br>
+    </div>
+
+    <div class="practices-box">
+      <h4>Locations per country</h4>
       <div id="regions_div"></div>
     </div>
+
+    <div class="practices-box">
+      <h4>Locations per continent</h4>
+      <div id="continents_div"></div>
+    </div>
+
     <div class="practices-box bg-light">
       <h4>Number of locations registered per continent</h4>
       <div>
@@ -370,4 +379,44 @@
         chart.draw(data, options);
       }
       window.onresize = drawRegionsMap;
+</script>
+
+<script type="text/javascript">
+      google.charts.load('current', { 'packages':['geochart'], });
+
+      google.charts.setOnLoadCallback(drawContinentsMap);
+
+      asia = europe = americas = oceania = africa = 0;
+
+      <% @locations.group(:continent).count.each do |continent| %>
+        <% if continent[0] == 'South America'%>
+          americas += <%= continent[1] %>
+        <% elsif continent[0] == 'Africa'%>
+          africa = <%= continent[1] %>
+        <% elsif continent[0] == 'Asia'%>
+          asia += <%= continent[1] %>
+        <% elsif continent[0] == 'North America'%>
+          americas += <%= continent[1] %>
+        <% elsif continent[0] == 'Europe'%>
+          europe = <%= continent[1] %>
+        <% end %>
+      <% end %>
+
+      var continents = [
+              ['Region Code', 'Continent', 'Locations'],
+              ['142', 'Asia', asia],
+              ['150', 'Europe', europe],
+              ['019', 'Americas', americas],
+              ['009', 'Oceania', oceania],
+              ['002', 'Africa', africa]
+          ];
+
+      function drawContinentsMap() {
+        var data = google.visualization.arrayToDataTable(continents);
+        var options = {resolution: 'continents', colorAxis: {colors: ['#ededed', '#e7711c']}};
+        options['legend'] = 'none';
+        var chart = new google.visualization.GeoChart(document.getElementById('continents_div'));
+        chart.draw(data, options);
+      }
+      window.onresize = drawContinentsMap;
 </script>
