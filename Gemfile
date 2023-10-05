@@ -7,22 +7,22 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "rails", "~> 7.0"
+gem "rails", "~> 7.1"
 
-gem "nokogiri", ">= 1.15.3"
-gem "pg", ">= 1.5.3"
-gem "puma", ">= 6.3.0"
+gem "nokogiri", ">= 1.15.4"
+gem "pg", ">= 1.5.4"
+gem "puma", ">= 6.4.0"
 gem "uglifier", ">= 4.2.0"
 gem "jbuilder", ">= 2.11.5"
 gem "sass-rails", ">= 6.0.0"
 
 group :development do
   gem "listen", ">= 3.8.0"
-  gem "web-console", ">= 4.2.0"
+  gem "web-console", ">= 4.2.1"
 end
 
 group :rubocop do
-  gem "rubocop", ">= 1.54.2", require: false
+  gem "rubocop", ">= 1.54.4", require: false
   gem "rubocop-minitest", require: false
   gem "rubocop-packaging", require: false
   gem "rubocop-performance", require: false
@@ -36,8 +36,8 @@ gem "devise", "~> 4.9.2"
 gem "friendly_id", ">= 5.5.0"
 gem "geocoder", ">= 1.8.2"
 gem "kaminari", ">= 1.2.2"
-gem "country_select", ">= 8.0.1"
+gem "country_select", ">= 8.0.2"
 gem "image_processing", ">= 1.2"
 gem "bootstrap-icons-helper", ">= 1.0.13"
-gem "recaptcha", ">= 5.14.0"
-gem "countries", ">= 5.4.0"
+gem "recaptcha", ">= 5.15.0"
+gem "countries", ">= 5.6.0"
