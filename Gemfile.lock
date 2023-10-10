@@ -87,9 +87,9 @@ GEM
     builder (3.2.4)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
-    countries (5.6.0)
+    countries (5.7.0)
       unaccent (~> 0.3)
-    country_select (8.0.2)
+    country_select (8.0.3)
       countries (~> 5.0)
     crass (1.0.6)
     date (3.3.3)
@@ -151,7 +151,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     mutex_m (0.1.2)
-    net-imap (0.4.0)
+    net-imap (0.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -302,8 +302,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-icons-helper (>= 1.0.13)
-  countries (>= 5.6.0)
-  country_select (>= 8.0.2)
+  countries (>= 5.7.0)
+  country_select (>= 8.0.3)
   devise (~> 4.9.2)
   friendly_id (>= 5.5.0)
   geocoder (>= 1.8.2)
@@ -316,7 +316,7 @@ DEPENDENCIES
   puma (>= 6.4.0)
   rails (~> 7.1)
   recaptcha (>= 5.15.0)
-  rubocop (>= 1.54.4)
+  rubocop (>= 1.56.4)
   rubocop-md
   rubocop-minitest
   rubocop-packaging
@@ -328,4 +328,4 @@ DEPENDENCIES
   web-console (>= 4.2.1)
 
 BUNDLED WITH
-   2.4.15
+   2.4.20

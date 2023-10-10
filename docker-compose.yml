@@ -3,7 +3,7 @@ version: '2'
 
 services:
   postgres:
-    image: 'postgres:15.3'
+    image: 'postgres:latest'
     restart: always
     environment:
       POSTGRES_PASSWORD: ${PASSWORD_DB}
