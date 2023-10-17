@@ -30,7 +30,7 @@
     <% end %>
 
     <% if @account.website %>
-      <%= "<h4>Website</h4><div class='text-box'><a href='#{@account.website}' target='_blank'>#{@account.website.truncate(32)}</div><br>".html_safe unless @account.website.blank? %>
+      <%= "<h4>Website</h4><div class='text-box'><a href='#{@account.website}' target='_blank'>#{@account.website.truncate(32)}</a></div><br>".html_safe unless @account.website.blank? %>
     <% end %>
 
     <% if @account.locations.count > 0 %>
