@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require_tree .
+//= require activestorage
 
 $(document).ready(function () {
     $(".alert").fadeTo(6000, 500).slideUp(500, function () {
