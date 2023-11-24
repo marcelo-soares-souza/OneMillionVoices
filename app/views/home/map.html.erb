@@ -85,10 +85,10 @@
         lon = -32.00;
     }
 
-    var map = L.map('map', { zoomControl: false, worldCopyJump: true }).setView([lat, lon], zoom);
+    var map = L.map('map', { fullscreenControl: true, zoomControl: false, worldCopyJump: true, zoomSnap: 0.25 }).setView([lat, lon], zoom);
 
     L.control.scale().addTo(this.map);
-    map.setMinZoom(3);
+    map.setMinZoom(2);
     map.setMaxZoom(18);
 
     $(document).ready(function () {
