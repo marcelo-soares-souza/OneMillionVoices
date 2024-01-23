@@ -4,6 +4,25 @@ module ApplicationHelper
   def default_image_number
     rand(0..5)
   end
+  def photo_thumb_url(entity, description = "")
+    description || ""
+    if entity.photo.attached?
+      file_url = url_for(entity.photo.variant(:thumb))
+    else
+      name = "place"
+      number = default_image_number
+
+      if entity.class.to_s == "Account"
+        name = "avatar"
+        number = rand(0..9)
+      end
+      name = "#{name}_thumb_#{number}.png"
+      file_url = asset_url(name)
+    end
+
+    asset_url file_url
+  end
+
   def photo_thumb(entity, description = "")
     description || ""
     if entity.photo.attached?

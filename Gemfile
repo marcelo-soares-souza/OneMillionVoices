@@ -7,11 +7,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "rails", "~> 7.1"
+gem "rails", "7.1.2"
 
-gem "nokogiri", ">= 1.15.4"
+gem "nokogiri", ">= 1.16.0"
 gem "pg", ">= 1.5.4"
-gem "puma", ">= 6.4.0"
+gem "puma", ">= 6.4.2"
 gem "uglifier", ">= 4.2.0"
 gem "jbuilder", ">= 2.11.5"
 gem "sass-rails", ">= 6.0.0"
