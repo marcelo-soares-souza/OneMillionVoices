@@ -4,9 +4,23 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
+  before_action :set_schema_org
   rescue_from ActionController::InvalidAuthenticityToken, with: :rescue_invalid_authenticity_token
 
   protected
+    def set_schema_org
+      @schema_org = SchemaDotOrg::Organization.new(
+        name:             "One Million Voices of Agroecology",
+        founder:           SchemaDotOrg::Person.new(name: "Marcelo Soares Souza"),
+        founding_date:     Date.new(2023, 6, 17),
+        founding_location: SchemaDotOrg::Place.new(address: "Brasília, DF, Brazil"),
+        email:            "marcelo@agroecologymap.org",
+        telephone:        "+5512345678900",
+        url:              "https://onemillionvoices.agroecologymap.org",
+        logo:             "https://onemillionvoices.agroecologymap.org/logo.png"
+      )
+    end
+
     def set_locale
       default_locale = "en"
       I18n.default_locale = default_locale
