@@ -20,7 +20,11 @@ class PracticesController < ApplicationController
     @practices = if params[:filter]
       filter
     else
-      all
+      if request.format == :html
+        all
+      else
+        Practice.all.includes(:account, :location).order("updated_at DESC").with_attached_photo.load_async
+      end
     end
   end
 
