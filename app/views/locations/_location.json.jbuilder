@@ -4,7 +4,7 @@ json.id location.id
 json.name location.name
 json.country ISO3166::Country[location.country].iso_short_name
 json.farm_and_farming_system location.farm_and_farming_system
-json.farm_and_farming_system_complement location.farm_and_farming_system_complement
+json.farm_and_farming_system_complement location.farm_and_farming_system_complement ? location.farm_and_farming_system_complement : ""
 json.description location.description
 json.latitude location.latitude if not location.hide_my_location
 json.longitude location.longitude if not location.hide_my_location

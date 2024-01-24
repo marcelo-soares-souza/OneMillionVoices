@@ -2,6 +2,7 @@
 
 json.id practice.id
 json.name practice.name
+json.summary_description practice.what_you_do.summary_description_of_agroecological_practice ? practice.what_you_do.summary_description_of_agroecological_practice.truncate(512) : ""
 json.location practice.location.name
 json.responsible_for_information practice.account.name
 json.url practice_url(practice)
