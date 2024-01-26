@@ -17,6 +17,9 @@ json.why_you_use_and_what_you_expect_from_this_practice @practice.what_you_do.wh
 json.land_size @practice.what_you_do.land_size ? @practice.what_you_do.land_size : ''
 json.substitution_of_less_ecological_alternative @practice.what_you_do.substitution_of_less_ecological_alternative ? @practice.what_you_do.substitution_of_less_ecological_alternative : ''
 
+# characterise
+json.agroecology_principles_addressed @practice.characterise.agroecology_principles_addressed
+json.food_system_components_addressed @practice.characterise.food_system_components_addressed
 
 json.created_at @practice.created_at
 json.updated_at @practice.updated_at
