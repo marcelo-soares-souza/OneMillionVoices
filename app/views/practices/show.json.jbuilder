@@ -19,6 +19,7 @@ json.substitution_of_less_ecological_alternative @practice.what_you_do.substitut
 
 # characterise
 json.agroecology_principles_addressed @practice.characterise.agroecology_principles_addressed ? @practice.characterise.agroecology_principles_addressed : ''
+json.food_system_components_addressed @practice.characterise.food_system_components_addressed ? @practice.characterise.food_system_components_addressed : ''
 
 # evaluate
 json.general_performance_of_practice @practice.evaluate.general_performance_of_practice ? @practice.evaluate.general_performance_of_practice : ''
