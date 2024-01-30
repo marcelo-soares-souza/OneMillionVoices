@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  protect_from_forgery unless: -> { request.format.json? }
+  before_action :authenticate, if: -> { request.format.json? }
+
+  rescue_from JWT::VerificationError, with: :invalid_token
+  rescue_from JWT::DecodeError, with: :decode_error
+
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
@@ -266,5 +272,21 @@ class ApplicationController < ActionController::Base
 
     def store_user_location!
       store_location_for(:account, request.fullpath)
+    end
+
+    def authenticate
+      authorization_header = request.headers['Authorization']
+      token = authorization_header.split(" ").last if authorization_header
+      decoded_token = JsonWebToken.decode(token)
+
+      Account.find(decoded_token[:account_id])
+    end
+   
+    def invalid_token
+      render json: { invalid_token: 'invalid token' }
+    end
+   
+    def decode_error
+      render json: { decode_error: 'decode error' }
     end
 end

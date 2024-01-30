@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
+  before_action :authenticate, if: -> { request.format.json? } #, except: %i[index show]
+
   before_action :set_location, only: %i[show edit update destroy]
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Location.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]

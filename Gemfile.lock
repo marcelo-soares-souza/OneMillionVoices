@@ -123,6 +123,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.7.1)
+    jwt (2.7.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -271,7 +272,7 @@ GEM
       tilt
     schema_dot_org (2.2.3)
       validated_object (~> 2.3)
-    sorbet-runtime (0.5.11219)
+    sorbet-runtime (0.5.11221)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -309,6 +310,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootstrap-icons-helper (>= 1.0.13)
   countries (>= 5.7.0)
   country_select (>= 8.0.3)
@@ -317,6 +319,7 @@ DEPENDENCIES
   geocoder (>= 1.8.2)
   image_processing (>= 1.2)
   jbuilder (>= 2.11.5)
+  jwt (~> 2.7)
   kaminari (>= 1.2.2)
   listen (>= 3.8.0)
   nokogiri (>= 1.16.0)
