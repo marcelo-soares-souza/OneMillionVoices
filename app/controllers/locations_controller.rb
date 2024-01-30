@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
-  before_action :authenticate, if: -> { request.format.json? }, except: %i[index]
+  skip_before_action :authenticate, except: %i[index], if: -> { request.format.json? }
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Location.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
 
@@ -65,15 +65,21 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-    @location.account_id = current_account.id unless current_account.admin?
+
+    if request.format.json?
+      @location.account_id = authenticate.id
+    else
+      @location.account_id = current_account.id unless current_account.admin?
+    end
 
     respond_to do |format|
       if @location.save
         format.html { redirect_to new_location_practice_path(@location), notice: t(:location_has_been_registered) }
-        format.json { render :show, status: :created, location: @location }
+        format.json { render json: { message: "created" }, status: :created }
       else
         format.html { render :new }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
+        format.json { render json: { error: @location.errors }, status: :unprocessable_entity }
+        # format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
   end

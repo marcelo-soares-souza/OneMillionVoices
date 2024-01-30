@@ -31,9 +31,9 @@ class Location < ApplicationRecord
 
   before_save do
     self.name = name.strip
-    self.description = description.strip
+    self.description = description.strip if attribute_present?("description")
     self.farm_and_farming_system_complement.gsub!(/[\[\]"]/, "") if attribute_present?("farm_and_farming_system_complement")
-    self.continent = ISO3166::Country[country.downcase].continent
+    self.continent = ISO3166::Country[country.downcase].continent if attribute_present?("country")
   end
 
   protected

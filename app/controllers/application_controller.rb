@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { request.format.json? }
-  before_action :authenticate, if: -> { request.format.json? }
+  before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
 
   rescue_from JWT::VerificationError, with: :invalid_token
   rescue_from JWT::DecodeError, with: :decode_error
