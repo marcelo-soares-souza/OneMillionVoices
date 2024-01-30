@@ -275,18 +275,18 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate
-      authorization_header = request.headers['Authorization']
+      authorization_header = request.headers["Authorization"]
       token = authorization_header.split(" ").last if authorization_header
       decoded_token = JsonWebToken.decode(token)
 
       Account.find(decoded_token[:account_id])
     end
-   
+
     def invalid_token
-      render json: { invalid_token: 'invalid token' }
+      render json: { invalid_token: "invalid token" }
     end
-   
+
     def decode_error
-      render json: { decode_error: 'decode error' }
+      render json: { decode_error: "decode error" }
     end
 end

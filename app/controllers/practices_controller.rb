@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PracticesController < ApplicationController
+  before_action :authenticate, if: -> { request.format.json? }, except: %i[index]
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action lambda { check_owner Practice.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
 
