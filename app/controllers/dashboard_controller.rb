@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DashboardController < ApplicationController
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
   def index
     @locations = Location.all
     @locations_count = Location.count

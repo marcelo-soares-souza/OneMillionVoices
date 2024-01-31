@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CharacterisesController < ApplicationController
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
   before_action :set_characterise, only: %i[ show edit update destroy ]
 
   # GET /characterises or /characterises.json

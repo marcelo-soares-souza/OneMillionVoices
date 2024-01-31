@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
+
   before_action :set_account, only: %i[show edit update destroy]
   before_action :authenticate_account!, except: %i[show index]
   before_action -> { check_owner Account.friendly.find(params[:id]).id }, only: %i[edit update destroy]

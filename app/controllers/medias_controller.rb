@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MediasController < ApplicationController
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
+
   before_action :set_media, only: %i[show edit update destroy]
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Media.find(params[:id]).account_id }, only: %i[edit update destroy]

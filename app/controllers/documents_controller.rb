@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DocumentsController < ApplicationController
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
   before_action :set_document, only: %i[show edit update destroy]
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Document.find(params[:id]).account_id }, only: %i[edit update destroy]

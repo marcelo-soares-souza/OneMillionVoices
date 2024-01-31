@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ConnectController < ApplicationController
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
   before_action :load_system_options
   before_action :load_principles
   before_action :load_options_what_you_do
