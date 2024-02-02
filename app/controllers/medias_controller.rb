@@ -36,7 +36,21 @@ class MediasController < ApplicationController
   # POST /medias.json
   def create
     @media = Media.new(media_params)
-    @media.account_id = current_account.id unless current_account.admin?
+
+    if request.format.json?
+      if params[:base64Image]
+        base64Image = params[:base64Image]
+        decoded_data = Base64.decode64(base64Image)
+        @media.photo = {
+                            io: StringIO.new(decoded_data),
+                            content_type: "image/jpeg",
+                            filename: "image.jpg"
+                          }
+      end
+      @media.account_id = authenticate.id
+    else
+      @media.account_id = current_account.id unless current_account.admin?
+    end
 
     if params[:practice_id]
       @media.practice_id = @practice.id
@@ -54,10 +68,10 @@ class MediasController < ApplicationController
             redirect_to new_location_media_path(@location),  notice: "Media has been sent"
           end
         end
-        format.json { render :show, status: :created, location: @media }
+        format.json { render json: { message: "created" }, status: :created }
       else
         format.html { render :new }
-        format.json { render json: @media.errors, status: :unprocessable_entity }
+        format.json { render json: { error: @media.errors }, status: :unprocessable_entity }
       end
     end
   end
@@ -107,7 +121,11 @@ class MediasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def media_params
-      params.require(:media).permit(:description, :practice_id, :location_id, :photo, :account_id)
+      if request.format.json?
+        params.require(:media).permit(:description, :practice_id, :location_id, :photo, :account_id, :base64Image)
+      else
+        params.require(:media).permit(:description, :practice_id, :location_id, :photo, :account_id)
+      end
     end
 
     def load_dados
@@ -119,12 +137,16 @@ class MediasController < ApplicationController
     end
 
     def selected_id
-      if current_account && current_account.admin?
-        @selected_id = current_account.id
-        if @practice
-          @selected_id = @practice.account.id
-        elsif @location
-          @selected_id = @location.account.id
+      if request.format.json?
+        puts "[debug] Testing"
+      else
+        if current_account && current_account.admin?
+          @selected_id = current_account.id
+          if @practice
+            @selected_id = @practice.account.id
+          elsif @location
+            @selected_id = @location.account.id
+          end
         end
       end
     end

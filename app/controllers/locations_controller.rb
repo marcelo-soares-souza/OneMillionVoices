@@ -2,6 +2,7 @@
 
 class LocationsController < ApplicationController
   skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
+
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Location.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
 
@@ -65,19 +66,19 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-    
 
-    if params[:base64Image]
-      base64Image = params[:base64Image]
-      decoded_data = Base64.decode64(base64Image)
-      @location.photo = { 
-                          io: StringIO.new(decoded_data),
-                          content_type: 'image/jpeg',
-                          filename: 'image.jpg'
-                         }
-    end
 
     if request.format.json?
+      if params[:base64Image]
+        base64Image = params[:base64Image]
+        decoded_data = Base64.decode64(base64Image)
+        @location.photo = {
+                            io: StringIO.new(decoded_data),
+                            content_type: "image/jpeg",
+                            filename: "image.jpg"
+                          }
+      end
+
       @location.account_id = authenticate.id
     else
       @location.account_id = current_account.id unless current_account.admin?
@@ -140,7 +141,7 @@ class LocationsController < ApplicationController
         :farm_and_farming_system, :farm_and_farming_system_details, :what_is_your_dream, :latitude, :longitude, :account_id,
         :photo, :hide_my_location, :is_it_a_farm, :base64Image, account_ids: [])
 
-      else 
+      else
         params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system,
                                        :farm_and_farming_system_details, :what_is_your_dream, :latitude, :longitude, :account_id,
                                        :photo, :hide_my_location, :is_it_a_farm,
