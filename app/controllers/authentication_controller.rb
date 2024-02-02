@@ -16,4 +16,15 @@ class AuthenticationController < ApplicationController
       render json: { error: "unauthorized" }, status: :unauthorized
     end
   end
+
+  def validate_jwt_token
+      authorization_header = request.headers["Authorization"]
+      token = authorization_header.split(" ").last if authorization_header
+      decoded_token = JsonWebToken.decode(token)
+
+      render json: { token: token,
+                     account_id: decoded_token["account_id"],
+                     expiration_in: Time.at(decoded_token['exp']).strftime("%Y-%m-%d") }, status: :ok
+      
+  end
 end

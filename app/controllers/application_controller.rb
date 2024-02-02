@@ -283,10 +283,10 @@ class ApplicationController < ActionController::Base
     end
 
     def invalid_token
-      render json: { invalid_token: "invalid token" }
+      render json: { invalid_token: "invalid token" }, status: :unauthorized
     end
 
     def decode_error
-      render json: { decode_error: "decode error" }
+      render json: { decode_error: "decode error" }, status: :unauthorized
     end
 end
