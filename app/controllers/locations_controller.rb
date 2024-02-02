@@ -65,6 +65,17 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
+    
+
+    if params[:base64Image]
+      base64Image = params[:base64Image]
+      decoded_data = Base64.decode64(base64Image)
+      @location.photo = { 
+                          io: StringIO.new(decoded_data),
+                          content_type: 'image/jpeg',
+                          filename: 'image.jpg'
+                         }
+    end
 
     if request.format.json?
       @location.account_id = authenticate.id
@@ -127,8 +138,7 @@ class LocationsController < ApplicationController
       if request.format.json?
         params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system_complement,
         :farm_and_farming_system, :farm_and_farming_system_details, :what_is_your_dream, :latitude, :longitude, :account_id,
-        :photo, :hide_my_location, :is_it_a_farm,
-        account_ids: [])
+        :photo, :hide_my_location, :is_it_a_farm, :base64Image, account_ids: [])
 
       else 
         params.require(:location).permit(:name, :slug, :country, :description, :farm_and_farming_system,

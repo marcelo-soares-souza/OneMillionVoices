@@ -18,13 +18,19 @@ class AuthenticationController < ApplicationController
   end
 
   def validate_jwt_token
+    begin
       authorization_header = request.headers["Authorization"]
       token = authorization_header.split(" ").last if authorization_header
       decoded_token = JsonWebToken.decode(token)
-
+      account_id = decoded_token[:account_id]
+      Account.find(account_id)
+    rescue
+      render json: { message: 'unauthorized. account not found' },status: :unauthorized
+    else
       render json: { token: token,
-                     account_id: decoded_token["account_id"],
-                     expiration_in: Time.at(decoded_token['exp']).strftime("%Y-%m-%d") }, status: :ok
+                      account_id: account_id,
+                      expiration_in: Time.at(decoded_token['exp']).strftime("%Y-%m-%d") }, status: :ok
+    end
       
   end
 end
