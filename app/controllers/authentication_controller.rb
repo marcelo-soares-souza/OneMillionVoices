@@ -11,7 +11,7 @@ class AuthenticationController < ApplicationController
       token = JsonWebToken.encode(account_id: account.id)
       expires_at = JsonWebToken.decode(token)[:exp]
 
-      render json: { token:, expires_at: }, status: :ok
+      render json: { token:, expires_at:, account_id: account.id }, status: :ok
     else
       render json: { error: "unauthorized" }, status: :unauthorized
     end
