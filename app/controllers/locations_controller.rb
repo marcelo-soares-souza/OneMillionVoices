@@ -21,11 +21,7 @@ class LocationsController < ApplicationController
     @locations = if params[:filter]
       filter
     else
-      if request.format == :html
         all
-      else
-        Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async
-      end
     end
   end
 
@@ -33,7 +29,11 @@ class LocationsController < ApplicationController
     if params[:account_id]
       Location.where(account_id: @account.id).includes(:medias, :practices).load_async.sort_by(&:updated_at).reverse
     else
-      Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
+      if request.format == :html
+        Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
+      else
+        Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async
+      end     
     end
   end
 

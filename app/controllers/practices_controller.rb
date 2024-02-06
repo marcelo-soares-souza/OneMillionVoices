@@ -2,7 +2,9 @@
 
 class PracticesController < ApplicationController
   skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
-  before_action :authenticate_account!, only: %i[new edit update destroy]
+
+  before_action :authenticate_account!, only: %i[new edit update destroy], if: -> { !request.format.json? }
+
   before_action lambda { check_owner Practice.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
 
   before_action :set_practice, only: %i[show edit update destroy]
@@ -70,7 +72,22 @@ class PracticesController < ApplicationController
   # POST /practices.json
   def create
     @practice = Practice.new(practice_params)
-    @practice.account_id = current_account.id unless current_account.admin?
+
+    if request.format.json?
+      if params[:base64Image]
+        base64Image = params[:base64Image]
+        decoded_data = Base64.decode64(base64Image)
+        @location.photo = {
+                            io: StringIO.new(decoded_data),
+                            content_type: "image/jpeg",
+                            filename: "image.jpg"
+                          }
+      end
+
+      @practice.account_id = authenticate.id
+    else
+      @practice.account_id = current_account.id unless current_account.admin?
+    end
 
     respond_to do |format|
       if @practice.save
@@ -80,7 +97,7 @@ class PracticesController < ApplicationController
         @acknowledge = Acknowledge.new(practice_id: @practice.id).save!
 
         format.html { redirect_to new_practice_what_you_do_path(@practice), notice: "Practice Registered" }
-        format.json { render :show, status: :created, location: @practice }
+        format.json { render json: { message: "created" }, status: :created }
       else
         format.html { render :new }
         format.json { render json: @practice.errors, status: :unprocessable_entity }
@@ -107,7 +124,7 @@ class PracticesController < ApplicationController
   def destroy
     @practice.destroy
     respond_to do |format|
-      format.html { redirect_to practices_url, notice: "Agroecological Practice has been Removed." }
+      format.html { redirect_to practices_url, notice: "Practice has been Removed." }
       format.json { head :no_content }
     end
   end
@@ -120,7 +137,11 @@ class PracticesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def practice_params
-      params.require(:practice).permit(:name, :photo, :slug, :location_id, :account_id)
+      if request.format.json?
+        params.require(:practice).permit(:name, :photo, :slug, :location_id, :account_id, :base64Image)
+      else
+        params.require(:practice).permit(:name, :photo, :slug, :location_id, :account_id)
+      end
     end
 
     def load_location
