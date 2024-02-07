@@ -77,7 +77,7 @@ class PracticesController < ApplicationController
       if params[:base64Image]
         base64Image = params[:base64Image]
         decoded_data = Base64.decode64(base64Image)
-        @location.photo = {
+        @practice.photo = {
                             io: StringIO.new(decoded_data),
                             content_type: "image/jpeg",
                             filename: "image.jpg"

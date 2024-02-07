@@ -52,5 +52,8 @@ json.uptake_motivation @practice.acknowledge.uptake_motivation || ""
 json.knowledge_source_details @practice.acknowledge.knowledge_source_details || ""
 json.knowledge_timing_details @practice.acknowledge.knowledge_timing_details || ""
 
+json.account_id @practice.account_id
+json.location_id @practice.location_id
+
 json.created_at @practice.created_at
 json.updated_at @practice.updated_at
