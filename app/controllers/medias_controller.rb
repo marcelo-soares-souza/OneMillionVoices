@@ -154,9 +154,9 @@ class MediasController < ApplicationController
 
     def load_medias
       if params[:practice_id]
-        @medias = Media.where(practice_id: @practice.id).order("updated_at DESC").load_async.page(params[:page])
+        @medias = Media.where(practice_id: @practice.id).order("updated_at DESC").page(params[:page])
       elsif params[:location_id]
-        @medias = Media.where(location_id: @location.id).order("updated_at DESC").load_async.page(params[:page])
+        @medias = Media.where(location_id: @location.id).order("updated_at DESC").page(params[:page])
       end
     end
 end

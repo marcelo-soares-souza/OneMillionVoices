@@ -21,19 +21,19 @@ class LocationsController < ApplicationController
     @locations = if params[:filter]
       filter
     else
-        all
+      all
     end
   end
 
   def all
     if params[:account_id]
-      Location.where(account_id: @account.id).includes(:medias, :practices).load_async.sort_by(&:updated_at).reverse
+      Location.where(account_id: @account.id).includes(:medias, :practices).sort_by(&:updated_at).reverse
     else
       if request.format == :html
-        Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async.page(params[:page])
+        Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.page(params[:page])
       else
-        Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo.load_async
-      end     
+        Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo
+      end
     end
   end
 
@@ -151,7 +151,7 @@ class LocationsController < ApplicationController
     end
 
     def load_all_accounts
-      @accounts = Account.all.load_async
+      @accounts = Account.all
     end
 
     def load_account

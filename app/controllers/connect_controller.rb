@@ -20,11 +20,11 @@ class ConnectController < ApplicationController
 
   def all
     @practices = if params[:location_id]
-      Practice.where(location_id: @location.id).load_async.sort_by(&:updated_at).reverse
+      Practice.where(location_id: @location.id).sort_by(&:updated_at).reverse
     elsif params[:account_id]
-      Practice.where(account_id: @account.id).load_async.sort_by(&:updated_at).reverse
+      Practice.where(account_id: @account.id).sort_by(&:updated_at).reverse
     else
-      Practice.includes(:account, :location).with_attached_photo.order("updated_at DESC").load_async.page(params[:page])
+      Practice.includes(:account, :location).with_attached_photo.order("updated_at DESC").page(params[:page])
     end
   end
   def filter
