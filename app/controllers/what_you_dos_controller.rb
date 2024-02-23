@@ -2,7 +2,7 @@
 
 class WhatYouDosController < ApplicationController
   skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
-  before_action :authenticate_account!, only: %i[new edit update destroy]
+  before_action :authenticate_account!, only: %i[new edit update destroy], if: -> { !request.format.json? }
   before_action -> { check_owner WhatYouDo.find(params[:id]).practice.account_id }, only: %i[edit update destroy]
 
   before_action :set_what_you_do, only: %i[ show edit update destroy ]
@@ -45,6 +45,7 @@ class WhatYouDosController < ApplicationController
       if @what_you_do
         @what_you_do.update(what_you_do_params)
         format.html { redirect_to new_practice_characterise_path(@what_you_do.practice), notice: "What you do was successfully Updated." }
+        format.json { render json: { message: "created" }, status: :created }
       else
         @what_you_do = WhatYouDo.new(what_you_do_params)
         if @what_you_do.save
