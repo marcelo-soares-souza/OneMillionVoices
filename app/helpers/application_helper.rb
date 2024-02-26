@@ -23,7 +23,7 @@ module ApplicationHelper
     asset_url file_url
   end
 
-  def photo_thumb(entity, description = "")
+  def photo_thumb(entity, description = "", use_gallery_photos = false)
     description || ""
     if entity.photo.attached?
       image_tag entity.photo.variant(:thumb), title: description, alt: description, class: "img-fluid"
@@ -38,7 +38,7 @@ module ApplicationHelper
 
       image_url = "/assets/#{name}_thumb_#{number}.png"
 
-      if entity.medias && entity.medias.count > 0
+      if use_gallery_photos && entity.medias && entity.medias.count > 0
         if entity.medias[0].photo.attached?
           image_url = entity.medias[0].photo.variant(:thumb)
         end
