@@ -36,7 +36,14 @@ module ApplicationHelper
         number = rand(0..9)
       end
 
-      image_tag "/assets/#{name}_thumb_#{number}.png", title: description, alt: description
+      image_url = "/assets/#{name}_thumb_#{number}.png"
+
+      if entity.medias && entity.medias.count > 0
+        if entity.medias[0].photo.attached?
+          image_url = entity.medias[0].photo.variant(:thumb)
+        end
+      end
+      image_tag image_url, title: description, alt: description
     end
   end
   def photo_medium(entity, description = "")
