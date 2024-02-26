@@ -2,11 +2,9 @@
 
 class PracticesController < ApplicationController
   skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
-
   before_action :authenticate_account!, only: %i[new edit update destroy], if: -> { !request.format.json? }
 
   before_action lambda { check_owner Practice.friendly.find(params[:id]).account_id }, only: %i[edit update destroy]
-
   before_action :set_practice, only: %i[show edit update destroy]
   before_action :load_locations, except: %i[index show]
   before_action :load_location
