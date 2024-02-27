@@ -46,6 +46,7 @@ module ApplicationHelper
       image_tag image_url, title: description, alt: description
     end
   end
+
   def photo_medium(entity, description = "")
     description || ""
     if entity.photo.attached?
@@ -62,6 +63,26 @@ module ApplicationHelper
     else
       image_tag "/assets/place_medium_#{default_image_number}.png", title: description, alt: description
     end
+  end
+
+
+  def photo_original_url(entity, description = "")
+    description || ""
+    if entity.photo.attached?
+      file_url = url_for(entity.photo.variant(:original))
+    else
+      name = "place"
+      number = default_image_number
+
+      if entity.class.to_s == "Account"
+        name = "avatar"
+        number = rand(0..9)
+      end
+      name = "#{name}_thumb_#{number}.png"
+      file_url = asset_url(name)
+    end
+
+    asset_url file_url
   end
 
   def form_for_media(condition, &block)
