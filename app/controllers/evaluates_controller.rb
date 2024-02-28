@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class EvaluatesController < ApplicationController
-  before_action :authenticate_account!, only: %i[new edit update destroy]
+  skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
+  before_action :authenticate_account!, only: %i[new edit update destroy], if: -> { !request.format.json? }
+
   before_action -> { check_owner Evaluate.find(params[:id]).practice.account_id }, only: %i[edit update destroy]
 
   before_action :set_evaluate, only: %i[ show edit update destroy ]
@@ -36,11 +38,11 @@ class EvaluatesController < ApplicationController
   # POST /evaluates or /evaluates.json
   def create
     @evaluate = Evaluate.where(practice_id: params[:evaluate][:practice_id]).first
-
     respond_to do |format|
       if @evaluate
         @evaluate.update(evaluate_params)
         format.html { redirect_to new_practice_acknowledge_path(@evaluate.practice), notice: "Evaluate was successfully Updated." }
+        format.json { render json: { message: "created" }, status: :created }
       else
         @evaluate = Evaluate.new(evaluate_params)
         if @evaluate.save

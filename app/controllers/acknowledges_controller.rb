@@ -2,6 +2,7 @@
 
 class AcknowledgesController < ApplicationController
   skip_before_action :authenticate, except: %i[index, show], if: -> { request.format.json? }
+  before_action :authenticate_account!, only: %i[new edit update destroy], if: -> { !request.format.json? }
 
   before_action :authenticate_account!, only: %i[new edit update destroy]
   before_action -> { check_owner Acknowledge.find(params[:id]).practice.account_id }, only: %i[edit update destroy]
@@ -37,11 +38,11 @@ class AcknowledgesController < ApplicationController
   # POST /acknowledges or /acknowledges.json
   def create
     @acknowledge = Acknowledge.where(practice_id: params[:acknowledge][:practice_id]).first
-
     respond_to do |format|
       if @acknowledge
         @acknowledge.update(acknowledge_params)
         format.html { redirect_to location_practice_path(@acknowledge.practice.location, @acknowledge.practice), notice: "Acknowledges was successfully Updated." }
+        format.json { render json: { message: "created" }, status: :created }
       else
         @acknowledge = Acknowledge.new(acknowledge_params)
         if @acknowledge.save
@@ -86,7 +87,11 @@ class AcknowledgesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def acknowledge_params
-      params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, knowledge_source: [])
+      if request.format.json?
+        params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, :knowledge_source)
+      else 
+        params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, knowledge_source: [])
+      end
     end
 
     def load_practice
