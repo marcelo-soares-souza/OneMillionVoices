@@ -3,6 +3,22 @@
 class AuthenticationController < ApplicationController
   skip_before_action :authenticate
 
+  def signup
+    name = params[:name]
+    email = params[:email]
+    password = params[:password]
+
+    @account = Account.new(name: name, email: email, password: password, password_confirmation: password)
+
+    respond_to do |format|
+      if @account.save
+        format.json { render json: { message: "created" }, status: :created }
+      else
+        format.json { render json: { message: "error" }, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def login
     account = Account.find_by(email: params[:email])
     isValid = account.valid_password?(params[:password]) unless account.nil?

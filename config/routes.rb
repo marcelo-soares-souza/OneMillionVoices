@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     end
 
     post "login", to: "authentication#login"
+    post "signup", to: "authentication#signup"
     post "validate_jwt_token", to: "authentication#validate_jwt_token"
 
     match "/404", to: "errors#not_found", via: :all
