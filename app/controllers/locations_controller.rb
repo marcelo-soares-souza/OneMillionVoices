@@ -103,7 +103,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       if @location.update(location_params)
         format.html { redirect_to @location, notice: t(:location_has_been_updated) }
-        format.json { render :show, status: :ok, location: @location }
+        format.json { render json: { message: "updated" }, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @location.errors, status: :unprocessable_entity }
