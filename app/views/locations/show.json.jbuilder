@@ -3,6 +3,7 @@
 json.id @location.id
 json.name @location.name
 json.country @location.country ? ISO3166::Country[@location.country].iso_short_name : ""
+json.country_code @location.country ? @location.country : ""
 json.is_it_a_farm @location.is_it_a_farm || true
 json.farm_and_farming_system_complement @location.farm_and_farming_system_complement || ""
 json.farm_and_farming_system @location.farm_and_farming_system || ""
