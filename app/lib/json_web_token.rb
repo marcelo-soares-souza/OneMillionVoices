@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class JsonWebToken
-  # JWT_SECRET = Rails.application.secrets.secret_key_base
-  JWT_SECRET = "2342gfGFGFDg@35235!!!$wegfsdgrfsdger45r3"
+  JWT_SECRET = Rails.application.secrets.secret_key_base
 
   def self.encode(payload, exp = 8760.hours.from_now)
     payload[:exp] = exp.to_i

@@ -10,7 +10,7 @@ end
 gem "rails", ">=7.1"
 
 gem "nokogiri", ">= 1.16.0"
-gem "pg", ">= 1.5.4"
+gem "pg", ">= 1.5.6"
 gem "puma", ">= 6.4.2"
 gem "uglifier", ">= 4.2.0"
 gem "jbuilder", ">= 2.11.5"
