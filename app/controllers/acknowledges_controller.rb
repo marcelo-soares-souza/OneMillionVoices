@@ -89,7 +89,7 @@ class AcknowledgesController < ApplicationController
     def acknowledge_params
       if request.format.json?
         params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, :knowledge_source)
-      else 
+      else
         params.require(:acknowledge).permit(:practice_id, :knowledge_timing, :knowledge_products, :knowledge_source_details, :knowledge_timing_details, :uptake_motivation, knowledge_source: [])
       end
     end

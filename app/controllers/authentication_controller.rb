@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
     email = params[:email]
     password = params[:password]
 
-    @account = Account.new(name: name, email: email, password: password, password_confirmation: password)
+    @account = Account.new(name:, email:, password:, password_confirmation: password)
 
     respond_to do |format|
       if @account.save
