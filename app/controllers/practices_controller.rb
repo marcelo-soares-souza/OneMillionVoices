@@ -49,7 +49,11 @@ class PracticesController < ApplicationController
     @practices = @practices.by_continent(params[:continent]) unless params[:continent].blank?
     @practices = @practices.with_attached_photo
     @total = @practices.count
-    @practices = @practices.order("practices.updated_at DESC").page(params[:page])
+    if request.format == :html
+      @practices = @practices.order("practices.updated_at DESC").page(params[:page])
+    else
+      @practices = @practices.order("practices.updated_at DESC")
+    end
   end
 
   # GET /practices/1
