@@ -47,7 +47,12 @@ class LocationsController < ApplicationController
     @locations = @locations.by_continent(params[:continent]) unless params[:continent].blank?
     @locations = @locations.with_attached_photo
     @total = @locations.count
-    @locations = @locations.order("locations.updated_at DESC").page(params[:page])
+
+    if request.format == :html
+      @locations = @locations.order("locations.updated_at DESC").page(params[:page])
+    else
+      @locations = @locations.order("locations.updated_at DESC")
+    end
   end
 
   # GET /locations/1

@@ -14,7 +14,7 @@ class AuthenticationController < ApplicationController
       if @account.save
         format.json { render json: { message: "created" }, status: :created }
       else
-        format.json { render json: { message: "error" }, status: :unprocessable_entity }
+        format.json { render json: { error: @account.errors }, status: :unprocessable_entity }
       end
     end
   end
