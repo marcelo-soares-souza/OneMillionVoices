@@ -12,8 +12,10 @@ json.what_is_your_dream @location.what_is_your_dream || ""
 json.image_url photo_thumb_url(@location)
 json.description @location.description || ""
 json.hide_my_location @location.hide_my_location || false
-json.latitude @location.latitude if not @location.hide_my_location
-json.longitude @location.longitude if not @location.hide_my_location
+# json.latitude  @location.hide_my_location ? 0.0 : @location.latitude
+# json.longitude @location.hide_my_location ? 0.0 : @location.longitude
+json.latitude  @location.latitude
+json.longitude @location.longitude
 json.responsible_for_information @location.account.name
 json.url location_url(@location)
 json.account_id @location.account_id
