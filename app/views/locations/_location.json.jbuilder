@@ -15,6 +15,7 @@ json.responsible_for_information location.account.name
 json.url location_url(location)
 json.image_url photo_thumb_url(location)
 json.image_original_url photo_original_url(location)
+json.hide_my_location location.hide_my_location
 json.account_id location.account_id
 json.created_at location.created_at
 json.updated_at location.updated_at
