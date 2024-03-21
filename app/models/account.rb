@@ -49,9 +49,9 @@ class Account < ApplicationRecord
         errors.add(:photo, "Size Limit is 16 Mb")
       end
 
-      acceptable_types = ["image/jpeg", "image/png", "image/gif"]
+      acceptable_types = ["image/jpeg", "image/png", "image/gif", "image/webp"]
       unless acceptable_types.include?(photo.content_type)
-        errors.add(:photo, "must be a JPEG or PNG")
+        errors.add(:photo, "must be a JPEG, PNG, GIF or WebP")
       end
     end
 end

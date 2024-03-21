@@ -17,4 +17,7 @@ class AboutController < ApplicationController
 
   def thank_you_notes
   end
+
+  def privacy_policy
+  end
 end
