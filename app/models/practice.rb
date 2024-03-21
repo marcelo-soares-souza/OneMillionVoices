@@ -36,8 +36,8 @@ class Practice < ApplicationRecord
   belongs_to :location
 
   validates :name, presence: true
-  validates_length_of :name, minimum: 4
-  validates_length_of :name, maximum: 100
+  validates_length_of :name, minimum: 2
+  validates_length_of :name, maximum: 255
   validate :acceptable_photo
 
   extend FriendlyId

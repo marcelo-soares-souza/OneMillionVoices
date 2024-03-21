@@ -21,10 +21,10 @@ class Account < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, presence: true
-  validates_length_of :name, minimum: 2, maximum: 100
+  validates_length_of :name, minimum: 2, maximum: 255
   # validates :name, format: { with: /\w+ \w+/, message: "Inform Your First and Last Name" }
   validates :email, presence: true, uniqueness: true
-  validates_length_of :about, minimum: 4, allow_blank: true
+  validates_length_of :about, minimum: 2, allow_blank: true
   validates_length_of :about, maximum: 2048
   validates :website, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
   validate :acceptable_photo

@@ -25,8 +25,8 @@ class Location < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, presence: true, uniqueness: true
-  validates_length_of :name, minimum: 4, maximum: 100
-  validates_length_of :description, minimum: 4, maximum: 4096, allow_blank: true
+  validates_length_of :name, minimum: 2, maximum: 255
+  validates_length_of :description, minimum: 2, maximum: 8192, allow_blank: true
   validate :acceptable_photo
 
   before_save do

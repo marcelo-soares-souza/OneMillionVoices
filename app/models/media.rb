@@ -14,7 +14,7 @@ class Media < ApplicationRecord
 
   validates :photo, presence: true
   validate :acceptable_photo
-  validates_length_of :description, maximum: 128, allow_blank: true
+  validates_length_of :description, maximum: 255, allow_blank: true
 
   before_save do
     self.description = description.strip if attribute_present?("description")
