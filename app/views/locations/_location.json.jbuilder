@@ -12,7 +12,7 @@ json.name location.name
 json.latitude  location.latitude
 json.longitude location.longitude
 # json.responsible_for_information location.account.name
-# json.url location_url(location)
+json.url location_url(location)
 json.image_url photo_thumb_url(location)
 # json.image_original_url photo_original_url(location)
 json.hide_my_location location.hide_my_location
