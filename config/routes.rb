@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     root to: "home#index"
     get "home/index"
 
-    get "map", to: "home#index"
+    get "map", to: "home#map"
     get "landing", to: "about#landing"
     get "about", to: "about#index"
     get "who_we_are", to: "about#who_we_are"
