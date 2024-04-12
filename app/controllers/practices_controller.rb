@@ -23,8 +23,16 @@ class PracticesController < ApplicationController
     else
       if request.format == :html
         all
+      elsif request.format == :csv
+        respond_to do |format|
+          format.csv { send_data Practice.to_csv, filename: "practices-#{DateTime.now.strftime("%Y-%m-%d")}.csv" }
+        end
       else
-        Practice.all.includes(:account, :location).order("updated_at DESC").with_attached_photo
+        if params[:page]
+          Practice.all.includes(:account, :location).order("updated_at DESC").with_attached_photo.page(params[:page])
+        else
+          Practice.all.includes(:account, :location).order("updated_at DESC").with_attached_photo
+        end
       end
     end
   end
@@ -93,7 +101,13 @@ class PracticesController < ApplicationController
 
     respond_to do |format|
       if @practice.save
-        @what_you_do = WhatYouDo.new(practice_id: @practice.id).save!
+
+        summary_description = params[:summaryDescription] || ""
+        where_it_is_realized = params[:whereItIsRealized] || ""
+
+        @what_you_do = WhatYouDo.new(practice_id: @practice.id,
+                                     summary_description_of_agroecological_practice: summary_description,
+                                     where_it_is_realized:).save!
         @characterise = Characterise.new(practice_id: @practice.id).save!
         @evaluate = Evaluate.new(practice_id: @practice.id).save!
         @acknowledge = Acknowledge.new(practice_id: @practice.id).save!

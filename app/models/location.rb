@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Location < ApplicationRecord
-  paginates_per 25
+  paginates_per 10
 
   scope :by_name, -> (name) { where("locations.name ILIKE ?", "%#{name}%") }
   scope :by_farm_and_farming_system, -> (farm_and_farming_system) { where("locations.farm_and_farming_system ILIKE ?", "%#{farm_and_farming_system}%") }
@@ -51,6 +51,39 @@ class Location < ApplicationRecord
       acceptable_types = ["image/jpeg", "image/png", "image/gif", "image/webp"]
       unless acceptable_types.include?(photo.content_type)
         errors.add(:photo, "must be a JPEG, PNG, GIF or WebP")
+      end
+    end
+
+    require "csv"
+    def self.to_csv
+      cols = column_names.map(&:clone)
+
+      cols.delete("slug")
+      cols.delete("account_id")
+      cols.delete("created_at")
+      cols.delete("updated_at")
+
+      cols.push("total_of_practices")
+      cols.push("responsible_for_information")
+      cols.push("created_at")
+      cols.push("updated_at")
+
+      CSV.generate do |csv|
+        csv << cols
+
+        cols.delete("total_of_practices")
+        cols.delete("responsible_for_information")
+        cols.delete("created_at")
+        cols.delete("updated_at")
+
+        Location.all.joins(:account).order(:id).each do |location|
+          vals = location.attributes.values_at(*cols).map(&:clone)
+          vals.push(location.practices.count)
+          vals.push(location.account.attributes["name"])
+          vals.push(location.attributes["created_at"])
+          vals.push(location.attributes["updated_at"])
+          csv << vals
+        end
       end
     end
 end

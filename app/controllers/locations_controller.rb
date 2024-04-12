@@ -31,8 +31,20 @@ class LocationsController < ApplicationController
     else
       if request.format == :html
         Location.includes(:account, :practices).order("updated_at DESC").with_attached_photo.page(params[:page])
+      elsif request.format == :geojson
+        respond_to do |format|
+          format.geojson { render json: generate_geojson, status: :ok  }
+        end
+      elsif request.format == :csv
+        respond_to do |format|
+          format.csv { send_data Location.to_csv, filename: "locations-#{DateTime.now.strftime("%Y-%m-%d")}.csv" }
+        end
       else
-        Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo
+        if params[:page]
+          Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo.page(params[:page])
+        else
+          Location.all.includes(:account, :practices).order("updated_at DESC").with_attached_photo
+        end
       end
     end
   end
@@ -179,5 +191,34 @@ class LocationsController < ApplicationController
 
     def load_total
       @total = Location.count
+    end
+
+    def generate_geojson
+      locations = []
+
+      Location.where(hide_my_location: false).order(:id).each do |location|
+        locations << GeojsonModel::Feature.new(
+          properties: {
+            id: location.id,
+            name: location.name,
+            country: location.country ? ISO3166::Country[location.country].iso_short_name : "",
+            country_code: location.country || "",
+            farm_and_farming_system: location.farm_and_farming_system || "",
+            farm_and_farming_system_complement: location.farm_and_farming_system_complement || "",
+            description: location.description || "",
+            latitude:  location.latitude,
+            longitude: location.longitude,
+            url: location_url(location),
+            total_of_practices: location.practices.count,
+            responsible_for_information: location.account.name,
+            created_at: location.created_at,
+            updated_at: location.updated_at
+          },
+          geometry: GeojsonModel::Geometry.new(type: "Point", coordinates: [location.longitude, location.latitude])
+        )
+      end
+
+      fc = GeojsonModel::FeatureCollection.new(features: locations)
+      JSON.pretty_generate(JSON.parse(fc.to_json))
     end
 end

@@ -134,13 +134,13 @@ class MediasController < ApplicationController
         @practice = Practice.friendly.find(params[:practice_id])
       elsif params[:location_id]
         @location = Location.friendly.find(params[:location_id])
+      elsif params[:account_id]
+        @account = Account.friendly.find(params[:account_id])
       end
     end
 
     def selected_id
-      if request.format.json?
-        puts "[debug] Testing"
-      else
+      if !request.format.json?
         if current_account && current_account.admin?
           @selected_id = current_account.id
           if @practice
@@ -157,6 +157,8 @@ class MediasController < ApplicationController
         @medias = Media.where(practice_id: @practice.id).order("updated_at DESC").page(params[:page])
       elsif params[:location_id]
         @medias = Media.where(location_id: @location.id).order("updated_at DESC").page(params[:page])
+      elsif params[:account_id]
+        @medias = Media.where(account_id: @account.id).order("updated_at DESC").page(params[:page])
       end
     end
 end
