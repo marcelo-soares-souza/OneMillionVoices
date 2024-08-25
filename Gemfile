@@ -15,6 +15,7 @@ gem "puma", ">= 6.4.2"
 gem "uglifier", ">= 4.2.0"
 gem "jbuilder", ">= 2.11.5"
 gem "sass-rails", ">= 6.0.0"
+gem "rexml", ">= 3.3.6"
 
 group :development do
   gem "listen", ">= 3.8.0"
