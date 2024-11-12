@@ -4,7 +4,8 @@ module ApplicationHelper
   def default_image_number
     rand(0..5)
   end
-  def photo_thumb_url(entity, description = "")
+
+  def photo_thumb_url(entity, description = "", use_gallery_photos = false)
     description || ""
     if entity.photo.attached?
       file_url = url_for(entity.photo.variant(:thumb))
@@ -18,10 +19,17 @@ module ApplicationHelper
       end
       name = "#{name}_thumb_#{number}.png"
       file_url = asset_url(name)
+
+      if use_gallery_photos && entity.medias && entity.medias.any?
+        if entity.medias[0].photo.attached?
+          file_url = url_for(entity.medias[0].photo.variant(:thumb))
+        end
+      end
     end
 
-    asset_url file_url
+    asset_url file_url.gsub("?locale=en", "")
   end
+
 
   def photo_thumb(entity, description = "", use_gallery_photos = false)
     description || ""
