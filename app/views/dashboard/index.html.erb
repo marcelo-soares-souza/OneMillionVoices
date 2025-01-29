@@ -76,6 +76,8 @@
 <script>
   const ctx = document.getElementById('components-chart');
   const opt = { devicePixelRatio: 4,
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                   patterns: {
                     backgroundColor: ['#ff0000', '#00ff00', '#0000ff'], 
@@ -153,7 +155,7 @@
 </script>
 <script>
   const ctxComponents = document.getElementById('principles-chart');
-  const optComponents= { devicePixelRatio: 4 }
+  const optComponents= { devicePixelRatio: 4, responsive: true, maintainAspectRatio: false,}
   const dataComponents = {
   labels: [
       'Recycling (<%= @practices_recycling_count %>)',
@@ -244,7 +246,7 @@
   const options = {
     devicePixelRatio: 4,
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     scales: { y: { beginAtZero: true } },
     plugins: {
       legend: {
@@ -281,7 +283,7 @@
   const optionsWhereItIsRealized = {
     devicePixelRatio: 4,
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
   }
 
   var chart_where_it_is_realized = new Chart(ctxWhereItIsRealized, {
@@ -311,7 +313,7 @@
   const optionsKnowledgeAndSkillsRequiredForPractice = {
     devicePixelRatio: 4,
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
   }
 
   var chart_knowledge_and_skills_required_for_practice = new Chart(ctxKnowledgeAndSkillsRequiredForPractice, {
@@ -341,7 +343,7 @@
   const optionsFarmAndFarmingSystem ={
     devicePixelRatio: 4,
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     
     plugins: {
     legend: {
