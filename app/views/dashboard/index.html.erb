@@ -75,7 +75,7 @@
 </style>
 <script>
   const ctx = document.getElementById('components-chart');
-  const opt = {
+  const opt = { devicePixelRatio: 4,
                 plugins: {
                   patterns: {
                     backgroundColor: ['#ff0000', '#00ff00', '#0000ff'], 
@@ -153,7 +153,7 @@
 </script>
 <script>
   const ctxComponents = document.getElementById('principles-chart');
-  const optComponents= {}
+  const optComponents= { devicePixelRatio: 4 }
   const dataComponents = {
   labels: [
       'Recycling (<%= @practices_recycling_count %>)',
@@ -242,6 +242,7 @@
     }]
 
   const options = {
+    devicePixelRatio: 4,
     responsive: true,
     maintainAspectRatio: true,
     scales: { y: { beginAtZero: true } },
@@ -278,6 +279,7 @@
 
     }]
   const optionsWhereItIsRealized = {
+    devicePixelRatio: 4,
     responsive: true,
     maintainAspectRatio: true,
   }
@@ -307,6 +309,7 @@
     ],
     }]
   const optionsKnowledgeAndSkillsRequiredForPractice = {
+    devicePixelRatio: 4,
     responsive: true,
     maintainAspectRatio: true,
   }
@@ -336,6 +339,7 @@
     ],
     }]
   const optionsFarmAndFarmingSystem ={
+    devicePixelRatio: 4,
     responsive: true,
     maintainAspectRatio: true,
     
